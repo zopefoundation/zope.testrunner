@@ -19,10 +19,10 @@ $Id$
 import time
 import random
 import unittest
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-class Shuffle(zope.testing.testrunner.feature.Feature):
+class Shuffle(zope.testrunner.feature.Feature):
     """Take the tests found so far and shuffle them."""
 
     def __init__(self, runner):

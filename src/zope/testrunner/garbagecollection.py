@@ -18,10 +18,10 @@ $Id: __init__.py 86218 2008-05-03 14:17:26Z ctheune $
 
 import gc
 import sys
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-class Threshold(zope.testing.testrunner.feature.Feature):
+class Threshold(zope.testrunner.feature.Feature):
 
     def __init__(self, runner):
         super(Threshold, self).__init__(runner)
@@ -52,7 +52,7 @@ class Threshold(zope.testing.testrunner.feature.Feature):
         gc.set_threshold(*self.old_threshold)
 
 
-class Debug(zope.testing.testrunner.feature.Feature):
+class Debug(zope.testrunner.feature.Feature):
     """Manages garbage collection debug flags."""
 
     def __init__(self, runner):

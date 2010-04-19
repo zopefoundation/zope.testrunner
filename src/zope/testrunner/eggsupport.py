@@ -41,7 +41,7 @@ class SkipLayers(ScanningLoader):
       tests_require=['zope.testing >= 3.6.1dev', #XXX fix version at release
                     ],
       ...
-      test_loader='zope.testing.testrunner.eggsupport:SkipLayers',
+      test_loader='zope.testrunner.eggsupport:SkipLayers',
       ...
       )
     """
@@ -79,7 +79,7 @@ class ftest(BaseCommand):
       ...
       entry_points='''
       [setuptools.commands]
-      ftest = zope.testing.testrunner.eggsupport:SetuptoolsFunctionalTest
+      ftest = zope.testrunner.eggsupport:SetuptoolsFunctionalTest
       '''
       ...
       )
@@ -95,7 +95,7 @@ class ftest(BaseCommand):
         pass # suppress normal handling
 
     def run(self):
-        from zope.testing.testrunner import run
+        from zope.testrunner import run
 
         dist = self.distribution
         where = dist.package_dir or '.'

@@ -13,7 +13,7 @@ themselves.
     ...     ]
 
     >>> sys.argv = 'test --layer 112 --layer UnitTests --repeat 3'.split()
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> testrunner.run_internal(defaults)
     Running samplelayers.Layer112 tests:
       Set up samplelayers.Layerx in 0.000 seconds.
@@ -26,12 +26,12 @@ themselves.
       Ran 34 tests with 0 failures and 0 errors in 0.010 seconds.
     Iteration 3
       Ran 34 tests with 0 failures and 0 errors in 0.010 seconds.
-    Running zope.testing.testrunner.layer.UnitTests tests:
+    Running zope.testrunner.layer.UnitTests tests:
       Tear down samplelayers.Layer112 in N.NNN seconds.
       Tear down samplelayers.Layerx in N.NNN seconds.
       Tear down samplelayers.Layer11 in N.NNN seconds.
       Tear down samplelayers.Layer1 in N.NNN seconds.
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     Iteration 1
       Ran 192 tests with 0 failures and 0 errors in N.NNN seconds.
     Iteration 2
@@ -39,7 +39,7 @@ themselves.
     Iteration 3
       Ran 192 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     Total: 226 tests, 0 failures, 0 errors in N.NNN seconds.
     False
 

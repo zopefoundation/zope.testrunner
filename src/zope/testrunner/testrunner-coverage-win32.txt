@@ -5,7 +5,7 @@ On Windows drive names can be upper and lower case, these can be
 randomly passed to TestIgnore.names.
 Watch out for the case of the R drive!
 
-  >>> from zope.testing.testrunner.coverage import TestIgnore
+  >>> from zope.testrunner.coverage import TestIgnore
   >>> ignore = TestIgnore((('r:\\winproject\\src\\blah\\foo', ''),
   ...                      ('R:\\winproject\\src\\blah\\bar', '')))
   >>> ignore._test_dirs

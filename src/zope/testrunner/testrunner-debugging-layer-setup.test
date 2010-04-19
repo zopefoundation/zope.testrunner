@@ -41,9 +41,9 @@ setup.
     ...     sys.stdin = Input('p x\nc')
 
     >>> sys.argv = [testrunner_script]
-    >>> import zope.testing.testrunner
+    >>> import zope.testrunner
     >>> try:
-    ...     zope.testing.testrunner.run_internal(['--path', dir, '-D'])
+    ...     zope.testrunner.run_internal(['--path', dir, '-D'])
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS
     Running tests.Layer tests:
@@ -98,7 +98,7 @@ a subprocess:
 
     >>> import sys
     >>> try:
-    ...     zope.testing.testrunner.run_internal(
+    ...     zope.testrunner.run_internal(
     ...       ['--path', dir, '-Dvv', '--tests-pattern', 'tests2'])
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS +REPORT_NDIFF
@@ -126,7 +126,7 @@ a subprocess:
     <BLANKLINE>
     <BLANKLINE>
     Tests with errors:
-       runTest (zope.testing.testrunner.runner.SetUpLayerFailure)
+       runTest (zope.testrunner.runner.SetUpLayerFailure)
     Total: 1 tests, 0 failures, 1 errors in 0.210 seconds.
     True
 

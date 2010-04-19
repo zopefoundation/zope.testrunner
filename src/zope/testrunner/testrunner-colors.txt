@@ -12,7 +12,7 @@ information (such as the names of failing tests) in different colors.
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
 
 Since it wouldn't be a good idea to have terminal control characters in a
 test file, let's wrap sys.stdout in a simple terminal interpreter
@@ -99,11 +99,11 @@ A failed test run highlights the failures in red:
       Tear down samplelayers.Layer121 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer122 in {green}0.000{normal} seconds.
     {normal}  Ran {green}34{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.008{normal} seconds.{normal}
-    {normal}Running zope.testing.testrunner.layer.UnitTests tests:{normal}
+    {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
       Tear down samplelayers.Layer122 in {green}0.000{normal} seconds.
       Tear down samplelayers.Layer12 in {green}0.000{normal} seconds.
       Tear down samplelayers.Layer1 in {green}0.000{normal} seconds.
-      Set up zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+      Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     <BLANKLINE>
     <BLANKLINE>
     {boldred}Failure in test eek (sample2.sampletests_e){normal}
@@ -176,7 +176,7 @@ A failed test run highlights the failures in red:
     <BLANKLINE>
     {normal}  Ran {green}200{normal} tests with {boldred}3{normal} failures and {boldred}1{normal} errors in {green}0.045{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
-      Tear down zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     {normal}Total: {green}413{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors in {green}0.023{normal} seconds.{normal}
     True
 
@@ -189,8 +189,8 @@ colors:
 
     >>> sys.argv = 'test --tests-pattern ^pledge$ -c'.split()
     >>> _ = testrunner.run_internal(defaults)
-    {normal}Running zope.testing.testrunner.layer.UnitTests tests:{normal}
-      Set up zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+    {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
+      Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     <BLANKLINE>
     <BLANKLINE>
     {boldred}Failure in test pledge (pledge){normal}
@@ -214,15 +214,15 @@ colors:
     <BLANKLINE>
     {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures and {green}0{normal} errors in {green}0.002{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
-      Tear down zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
 
 Diffs are highlighted so you can easily tell the context and the mismatches
 apart:
 
     >>> sys.argv = 'test --tests-pattern ^pledge$ --ndiff -c'.split()
     >>> _ = testrunner.run_internal(defaults)
-    {normal}Running zope.testing.testrunner.layer.UnitTests tests:{normal}
-      Set up zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+    {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
+      Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     <BLANKLINE>
     <BLANKLINE>
     {boldred}Failure in test pledge (pledge){normal}
@@ -243,13 +243,13 @@ apart:
     <BLANKLINE>
     {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures and {green}0{normal} errors in {green}0.003{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
-      Tear down zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
 
 Even test failures that have actual blank lines (as opposed to <BLANKLINE>) in
 them are highlighted correctly.
 
-    >>> import zope.testing.testrunner.formatter
-    >>> formatter = zope.testing.testrunner.formatter.ColorfulOutputFormatter(None)
+    >>> import zope.testrunner.formatter
+    >>> formatter = zope.testrunner.formatter.ColorfulOutputFormatter(None)
     >>> formatter.print_doctest_failure("""\
     ...     File "sometest.txt", line 221, in sometest.txt
     ... Failed example:
@@ -284,8 +284,8 @@ At very high verbosity levels you can see the time taken by each test
     >>> sys.argv = 'test -u -t test_one.TestNotMuch -c -vvv'.split()
     >>> testrunner.run_internal(defaults)
     {normal}Running tests at level 1{normal}
-    {normal}Running zope.testing.testrunner.layer.UnitTests tests:{normal}
-      Set up zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+    {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
+      Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     {normal}  Running:{normal}
      test_1 (sample1.sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
      test_2 (sample1.sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
@@ -295,7 +295,7 @@ At very high verbosity levels you can see the time taken by each test
      test_3 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
     {normal}  Ran {green}6{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
-      Tear down zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     False
 
 
@@ -306,8 +306,8 @@ in the test runner to 0 seconds to make all of the tests seem slow.
     >>> sys.argv = 'test -u -t test_one.TestNotMuch -c -vvv --slow-test 0'.split()
     >>> testrunner.run_internal(defaults)
     {normal}Running tests at level 1{normal}
-    {normal}Running zope.testing.testrunner.layer.UnitTests tests:{normal}
-      Set up zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+    {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
+      Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     {normal}  Running:{normal}
      test_1 (sample1.sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
      test_2 (sample1.sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
@@ -317,7 +317,7 @@ in the test runner to 0 seconds to make all of the tests seem slow.
      test_3 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
     {normal}  Ran {green}6{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
-      Tear down zope.testing.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     False
 
 

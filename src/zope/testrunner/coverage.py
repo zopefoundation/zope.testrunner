@@ -21,8 +21,8 @@ import sys
 import os.path
 import threading
 
-import zope.testing.testrunner.feature
-from zope.testing.testrunner.find import test_dirs
+import zope.testrunner.feature
+from zope.testrunner.find import test_dirs
 
 
 # For some reason, the doctest module resets the trace callable randomly, thus
@@ -123,7 +123,7 @@ if sys.platform == 'win32':
             return os.path.normcase(os.path.abspath(filename))
 
 
-class Coverage(zope.testing.testrunner.feature.Feature):
+class Coverage(zope.testrunner.feature.Feature):
 
     tracer = None
     directory = None

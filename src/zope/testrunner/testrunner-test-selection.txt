@@ -12,7 +12,7 @@ other ways we can select tests.  We can select tests by package:
     ...     ]
 
     >>> sys.argv = 'test --layer 122 -ssample1 -vv'.split()
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running samplelayers.Layer122 tests:
@@ -45,8 +45,8 @@ You can specify multiple packages:
     >>> sys.argv = 'test -u  -vv -ssample1 -ssample2'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_x1 (sample1.sampletestsf.TestA)
      test_y0 (sample1.sampletestsf.TestA)
@@ -154,7 +154,7 @@ You can specify multiple packages:
      testrunner-ex/sample2/sampletests/../../sampletests.txt
       Ran 128 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 You can specify directory names instead of packages (useful for
@@ -162,7 +162,7 @@ tab-completion):
 
     >>> subdir = os.path.join(directory_with_tests, 'sample1')
     >>> sys.argv = ['test', '--layer', '122', '-s', subdir, '-vv']
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running samplelayers.Layer122 tests:
@@ -195,8 +195,8 @@ We can select by test module name using the --module (-m) option:
     >>> sys.argv = 'test -u  -vv -ssample1 -m_one -mtest1'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_x1 (sample1.sampletests.test1.TestA)
      test_y0 (sample1.sampletests.test1.TestA)
@@ -226,7 +226,7 @@ We can select by test module name using the --module (-m) option:
      testrunner-ex/sample1/sampletests/../../sampletests.txt
       Ran 32 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -235,8 +235,8 @@ and by test within the module using the --test (-t) option:
     >>> sys.argv = 'test -u  -vv -ssample1 -m_one -mtest1 -tx0 -ty0'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_y0 (sample1.sampletests.test1.TestA)
      test_x0 (sample1.sampletests.test1.TestB)
@@ -248,15 +248,15 @@ and by test within the module using the --test (-t) option:
      test_y0 (sample1.sampletests.test_one)
       Ran 8 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
     >>> sys.argv = 'test -u  -vv -ssample1 -ttxt'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      testrunner-ex/sample1/../sampletests.txt
      testrunner-ex/sample1/sample11/../../sampletests.txt
@@ -265,7 +265,7 @@ and by test within the module using the --test (-t) option:
      testrunner-ex/sample1/sampletests/../../sampletests.txt
       Ran 20 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -276,8 +276,8 @@ match the regular expression are selected:
     >>> sys.argv = 'test -u  -vv -ssample1 -m!sample1[.]sample1'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_x1 (sample1.sampletestsf.TestA)
      test_y0 (sample1.sampletestsf.TestA)
@@ -320,7 +320,7 @@ match the regular expression are selected:
      testrunner-ex/sample1/sampletests/../../sampletests.txt
       Ran 48 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -330,8 +330,8 @@ Module and test filters can also be given as positional arguments:
     >>> sys.argv = 'test -u  -vv -ssample1 !sample1[.]sample1'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_x1 (sample1.sampletestsf.TestA)
      test_y0 (sample1.sampletestsf.TestA)
@@ -374,15 +374,15 @@ Module and test filters can also be given as positional arguments:
      testrunner-ex/sample1/sampletests/../../sampletests.txt
       Ran 48 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
     >>> sys.argv = 'test -u  -vv -ssample1 . txt'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      testrunner-ex/sample1/../sampletests.txt
      testrunner-ex/sample1/sample11/../../sampletests.txt
@@ -391,7 +391,7 @@ Module and test filters can also be given as positional arguments:
      testrunner-ex/sample1/sampletests/../../sampletests.txt
       Ran 20 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 Sometimes, There are tests that you don't want to run by default.
@@ -405,8 +405,8 @@ level.  For example, with the following options:
     >>> sys.argv = 'test -u  -vv -t test_y1 -t test_y0'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_y0 (sampletestsf.TestA)
      test_y1 (sampletestsf.TestB)
@@ -446,7 +446,7 @@ level.  For example, with the following options:
      test_y0 (sampletests.test_one)
       Ran 36 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -456,8 +456,8 @@ additional tests:
     >>> sys.argv = 'test -u  -vv -a 2 -t test_y1 -t test_y0'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 2
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_y0 (sampletestsf.TestA)
      test_y0 (sampletestsf.TestA2)
@@ -499,7 +499,7 @@ additional tests:
      test_y0 (sampletests.test_one)
       Ran 38 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -508,8 +508,8 @@ We can use the --all option to run tests at all levels:
     >>> sys.argv = 'test -u  -vv --all -t test_y1 -t test_y0'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at all levels
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test_y0 (sampletestsf.TestA)
      test_y0 (sampletestsf.TestA2)
@@ -552,7 +552,7 @@ We can use the --all option to run tests at all levels:
      test_y0 (sampletests.test_one)
       Ran 39 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -583,7 +583,7 @@ specifications.
     Listing samplelayers.Layer122 tests:
       test_y0 (sample1.sampletests.test122.TestA)
       test_y0 (sample1.sampletests.test122)
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
       test_y0 (sample1.sampletestsf.TestA)
       test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sample11.sampletests.TestA)

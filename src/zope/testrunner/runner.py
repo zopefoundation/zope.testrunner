@@ -29,24 +29,24 @@ import time
 import traceback
 import unittest
 
-from zope.testing.testrunner.find import import_name
-from zope.testing.testrunner.find import name_from_layer, _layer_name_cache
-from zope.testing.testrunner.refcount import TrackRefs
-from zope.testing.testrunner.options import get_options
-import zope.testing.testrunner.coverage
-import zope.testing.testrunner._doctest
-import zope.testing.testrunner.logsupport
-import zope.testing.testrunner.selftest
-import zope.testing.testrunner.profiling
-import zope.testing.testrunner.filter
-import zope.testing.testrunner.garbagecollection
-import zope.testing.testrunner.listing
-import zope.testing.testrunner.statistics
-import zope.testing.testrunner.process
-import zope.testing.testrunner.interfaces
-import zope.testing.testrunner.debug
-import zope.testing.testrunner.tb_format
-import zope.testing.testrunner.shuffle
+from zope.testrunner.find import import_name
+from zope.testrunner.find import name_from_layer, _layer_name_cache
+from zope.testrunner.refcount import TrackRefs
+from zope.testrunner.options import get_options
+import zope.testrunner.coverage
+import zope.testrunner._doctest
+import zope.testrunner.logsupport
+import zope.testrunner.selftest
+import zope.testrunner.profiling
+import zope.testrunner.filter
+import zope.testrunner.garbagecollection
+import zope.testrunner.listing
+import zope.testrunner.statistics
+import zope.testrunner.process
+import zope.testrunner.interfaces
+import zope.testrunner.debug
+import zope.testrunner.tb_format
+import zope.testrunner.shuffle
 
 
 PYREFCOUNT_PATTERN = re.compile('\[[0-9]+ refs\]')
@@ -174,28 +174,28 @@ class Runner(object):
 
         self.options = options
 
-        self.features.append(zope.testing.testrunner.selftest.SelfTest(self))
-        self.features.append(zope.testing.testrunner.logsupport.Logging(self))
-        self.features.append(zope.testing.testrunner.coverage.Coverage(self))
-        self.features.append(zope.testing.testrunner._doctest.DocTest(self))
-        self.features.append(zope.testing.testrunner.profiling.Profiling(self))
+        self.features.append(zope.testrunner.selftest.SelfTest(self))
+        self.features.append(zope.testrunner.logsupport.Logging(self))
+        self.features.append(zope.testrunner.coverage.Coverage(self))
+        self.features.append(zope.testrunner._doctest.DocTest(self))
+        self.features.append(zope.testrunner.profiling.Profiling(self))
         if is_jython:
             # Jython GC support is not yet implemented
             pass
         else:
             self.features.append(
-                zope.testing.testrunner.garbagecollection.Threshold(self))
+                zope.testrunner.garbagecollection.Threshold(self))
             self.features.append(
-                zope.testing.testrunner.garbagecollection.Debug(self))
+                zope.testrunner.garbagecollection.Debug(self))
 
-        self.features.append(zope.testing.testrunner.find.Find(self))
-        self.features.append(zope.testing.testrunner.shuffle.Shuffle(self))
-        self.features.append(zope.testing.testrunner.process.SubProcess(self))
-        self.features.append(zope.testing.testrunner.filter.Filter(self))
-        self.features.append(zope.testing.testrunner.listing.Listing(self))
+        self.features.append(zope.testrunner.find.Find(self))
+        self.features.append(zope.testrunner.shuffle.Shuffle(self))
+        self.features.append(zope.testrunner.process.SubProcess(self))
+        self.features.append(zope.testrunner.filter.Filter(self))
+        self.features.append(zope.testrunner.listing.Listing(self))
         self.features.append(
-            zope.testing.testrunner.statistics.Statistics(self))
-        self.features.append(zope.testing.testrunner.tb_format.Traceback(self))
+            zope.testrunner.statistics.Statistics(self))
+        self.features.append(zope.testrunner.tb_format.Traceback(self))
 
         # Remove all features that aren't activated
         self.features = [f for f in self.features if f.active]
@@ -217,7 +217,7 @@ class Runner(object):
             try:
                 self.ran += run_layer(self.options, layer_name, layer, tests,
                                       setup_layers, self.failures, self.errors)
-            except zope.testing.testrunner.interfaces.EndRun:
+            except zope.testrunner.interfaces.EndRun:
                 self.failed = True
                 return
             except CanNotTearDown:
@@ -365,7 +365,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
 
     try:
         setup_layer(options, layer, setup_layers)
-    except zope.testing.testrunner.interfaces.EndRun:
+    except zope.testrunner.interfaces.EndRun:
         raise
     except Exception:
         f = cStringIO.StringIO()
@@ -638,7 +638,7 @@ def setup_layer(options, layer, setup_layers):
                             % options.resume_layer)
                         raise
                     else:
-                        zope.testing.testrunner.debug.post_mortem(
+                        zope.testrunner.debug.post_mortem(
                             sys.exc_info())
                 else:
                     raise
@@ -710,7 +710,7 @@ class TestResult(unittest.TestResult):
                                                       " when running a layer"
                                                       " as a subprocess!")
             else:
-                zope.testing.testrunner.debug.post_mortem(exc_info)
+                zope.testrunner.debug.post_mortem(exc_info)
         elif self.options.stop_on_error:
             self.stop()
 
@@ -723,7 +723,7 @@ class TestResult(unittest.TestResult):
         if self.options.post_mortem:
             # XXX: mgedmin: why isn't there a resume_layer check here like
             # in addError?
-            zope.testing.testrunner.debug.post_mortem(exc_info)
+            zope.testrunner.debug.post_mortem(exc_info)
         elif self.options.stop_on_error:
             self.stop()
 

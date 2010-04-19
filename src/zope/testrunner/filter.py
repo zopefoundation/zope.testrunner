@@ -16,13 +16,13 @@
 $Id: __init__.py 86218 2008-05-03 14:17:26Z ctheune $
 """
 
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-UNITTEST_LAYER = 'zope.testing.testrunner.layer.UnitTests'
+UNITTEST_LAYER = 'zope.testrunner.layer.UnitTests'
 
 
-class Filter(zope.testing.testrunner.feature.Feature):
+class Filter(zope.testrunner.feature.Feature):
     """Filters and orders all tests registered until now."""
 
     active = True

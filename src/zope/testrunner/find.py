@@ -21,9 +21,9 @@ import os
 import unittest
 import sys
 
-import zope.testing.testrunner.feature
-import zope.testing.testrunner.layer
-import zope.testing.testrunner.debug
+import zope.testrunner.feature
+import zope.testrunner.layer
+import zope.testrunner.debug
 
 identifier = re.compile(r'[_a-zA-Z]\w*$').match
 
@@ -61,7 +61,7 @@ class StartUpFailure(unittest.TestCase):
     To simulate the user pressing 'c' and hitting return in the
     debugger, we use a FakeInputContinueGenerator:
     
-    >>> from zope.testing.testrunner.runner import FakeInputContinueGenerator
+    >>> from zope.testrunner.runner import FakeInputContinueGenerator
     >>> old_stdin = sys.stdin
     >>> sys.stdin = FakeInputContinueGenerator()
 
@@ -94,7 +94,7 @@ class StartUpFailure(unittest.TestCase):
                 if item is None:
                     raise TypeError('If post_mortem is specified, '
                                     'full exc_info must be passed!')
-            zope.testing.testrunner.debug.post_mortem(exc_info)
+            zope.testrunner.debug.post_mortem(exc_info)
         self.module = module
         self.exc_info = exc_info
 
@@ -337,7 +337,7 @@ def import_name(name):
 
 
 def tests_from_suite(suite, options, dlevel=1,
-                     dlayer=zope.testing.testrunner.layer.UnitTests):
+                     dlayer=zope.testrunner.layer.UnitTests):
     """Returns a sequence of (test, layer_name)
 
     The tree of suites is recursively visited, with the most specific
@@ -404,7 +404,7 @@ def name_from_layer(layer):
     return name
 
 
-class Find(zope.testing.testrunner.feature.Feature):
+class Find(zope.testrunner.feature.Feature):
     """Finds tests and registers them with the test runner."""
 
     active = True

@@ -11,7 +11,7 @@ do not, you will get an error message:
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
 
     >>> sys.argv = 'test --subunit'.split()
     >>> _ = testrunner.run_internal(defaults)

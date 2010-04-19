@@ -19,12 +19,12 @@ $Id: __init__.py 86218 2008-05-03 14:17:26Z ctheune $
 """
 
 import pdb
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 real_pdb_set_trace = pdb.set_trace
 
 
-class SelfTest(zope.testing.testrunner.feature.Feature):
+class SelfTest(zope.testrunner.feature.Feature):
 
     active = True
 

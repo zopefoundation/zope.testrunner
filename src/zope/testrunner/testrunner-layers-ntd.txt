@@ -7,7 +7,7 @@ runner will just note that the tear down couldn't be done:
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',

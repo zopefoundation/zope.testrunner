@@ -95,7 +95,7 @@ TestSpecifyingBaseLayer and TestSpecifyingNoLayer.
 
 Before we can run the tests, we need to setup some helpers.
 
->>> from zope.testing.testrunner import options
+>>> from zope.testrunner import options
 >>> from zope.testing.loggingsupport import InstalledHandler
 >>> import logging
 >>> log_handler = InstalledHandler('zope.testing.tests')
@@ -111,18 +111,18 @@ Now we run the tests. Note that the BaseLayer was not setup when
 the TestSpecifyingNoLayer was run and setup/torn down around the
 TestSpecifyingBaseLayer tests.
 
->>> from zope.testing.testrunner.runner import Runner
+>>> from zope.testrunner.runner import Runner
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[umbrella_suite])
 >>> succeeded = runner.run()
 Running BaseLayer tests:
   Set up BaseLayer in N.NNN seconds.
   Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
-Running zope.testing.testrunner.layer.UnitTests tests:
+Running zope.testrunner.layer.UnitTests tests:
   Tear down BaseLayer in N.NNN seconds.
-  Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+  Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
   Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
 Tearing down left over layers:
-  Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+  Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 Total: 4 tests, 0 failures, 0 errors in N.NNN seconds.
 
 
@@ -205,7 +205,7 @@ BaseLayer.tearDown
 Now lets stack a few more layers to ensure that our setUp and tearDown
 methods are called in the correct order.
 
->>> from zope.testing.testrunner.find import name_from_layer
+>>> from zope.testrunner.find import name_from_layer
 >>> class A(object):
 ...     def setUp(cls):
 ...         log('%s.setUp' % name_from_layer(cls))

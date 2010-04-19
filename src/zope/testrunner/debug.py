@@ -21,7 +21,7 @@ import doctest
 import sys
 import pdb
 
-import zope.testing.testrunner.interfaces
+import zope.testrunner.interfaces
 
 
 def post_mortem(exc_info):
@@ -49,7 +49,7 @@ def post_mortem(exc_info):
     print "%s:" % (exc_info[0], )
     print exc_info[1]
     pdb.post_mortem(exc_info[2])
-    raise zope.testing.testrunner.interfaces.EndRun()
+    raise zope.testrunner.interfaces.EndRun()
 
 
 def print_doctest_location(err):

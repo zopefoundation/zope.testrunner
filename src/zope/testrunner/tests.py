@@ -189,11 +189,11 @@ def test_suite():
         setUp=setUp, tearDown=tearDown,
         optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
         checker=checker),
-        doctest.DocTestSuite('zope.testing.testrunner'),
-        doctest.DocTestSuite('zope.testing.testrunner.coverage',
+        doctest.DocTestSuite('zope.testrunner'),
+        doctest.DocTestSuite('zope.testrunner.coverage',
             optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE),
-        doctest.DocTestSuite('zope.testing.testrunner.options'),
-        doctest.DocTestSuite('zope.testing.testrunner.find'),
+        doctest.DocTestSuite('zope.testrunner.options'),
+        doctest.DocTestSuite('zope.testrunner.find'),
         ]
 
     if sys.platform == 'win32':

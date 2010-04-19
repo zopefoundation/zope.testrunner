@@ -20,7 +20,7 @@ import os
 import glob
 import sys
 import tempfile
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 available_profilers = {}
 
@@ -89,7 +89,7 @@ if not sys.hexversion >= 0x02060000:
         available_profilers['hotshot'] = HotshotProfiler
 
 
-class Profiling(zope.testing.testrunner.feature.Feature):
+class Profiling(zope.testrunner.feature.Feature):
 
     def __init__(self, runner):
         super(Profiling, self).__init__(runner)

@@ -19,7 +19,7 @@ $Id: __init__.py 68482 2006-06-04 14:58:55Z jim $
 import sys
 import traceback
 import zope.exceptions.exceptionformatter
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
 def format_exception(t, v, tb, limit=None):
@@ -34,7 +34,7 @@ def print_exception(t, v, tb, limit=None, file=None):
     file.writelines(format_exception(t, v, tb, limit))
 
 
-class Traceback(zope.testing.testrunner.feature.Feature):
+class Traceback(zope.testrunner.feature.Feature):
 
     active = True
 

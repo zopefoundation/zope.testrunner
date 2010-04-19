@@ -16,10 +16,10 @@
 $Id: __init__.py 86218 2008-05-03 14:17:26Z ctheune $
 """
 
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-class Listing(zope.testing.testrunner.feature.Feature):
+class Listing(zope.testrunner.feature.Feature):
     """Lists all tests in the report instead of running the tests."""
 
     def __init__(self, runner):

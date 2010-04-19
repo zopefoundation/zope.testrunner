@@ -29,7 +29,7 @@ forces the second suite to be run in a subprocess.
 That second suite has two tests.  Both sleep for half a second each.
 
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     ]
@@ -179,7 +179,7 @@ reporting of that error:
     ...      "0 0 0")
 
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     ]
@@ -207,7 +207,7 @@ communicating with the subprocess:
     ...      "")
 
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     ]

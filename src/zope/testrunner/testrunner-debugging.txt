@@ -18,7 +18,7 @@ runner will enter pdb at that point:
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
@@ -35,7 +35,7 @@ runner will enter pdb at that point:
     >>> try: testrunner.run_internal(defaults)
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS
-    Running zope.testing.testrunner.layer.UnitTests tests:
+    Running zope.testrunner.layer.UnitTests tests:
     ...
     > testrunner-ex/sample3/sampletests_d.py(27)test_set_trace1()
     -> y = x
@@ -61,7 +61,7 @@ option:
     >>> try: testrunner.run_internal(defaults)
     ... finally: sys.stdin = real_stdin
     ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF
-    Running zope.testing.testrunner.layer.UnitTests tests:
+    Running zope.testrunner.layer.UnitTests tests:
     ...
     Error in test test_post_mortem1 (sample3.sampletests_d.TestSomething)
     Traceback (most recent call last):
@@ -90,7 +90,7 @@ converted to errors and can be debugged the same way:
     >>> try: testrunner.run_internal(defaults)
     ... finally: sys.stdin = real_stdin
     ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF
-    Running zope.testing.testrunner.layer.UnitTests tests:
+    Running zope.testrunner.layer.UnitTests tests:
     ...
     Error in test test_post_mortem_failure1 (sample3.sampletests_d.TestSomething)
     Traceback (most recent call last):

@@ -14,7 +14,7 @@ directory name given as the parameter will be used to hold the reports.
 
     >>> sys.argv = 'test --coverage=coverage_dir'.split()
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> testrunner.run_internal(defaults)
     Running samplelayers.Layer1 tests:
       Set up samplelayers.Layer1 in 0.000 seconds.
@@ -43,14 +43,14 @@ directory name given as the parameter will be used to hold the reports.
       Tear down samplelayers.Layer121 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Ran 34 tests with 0 failures and 0 errors in 0.125 seconds.
-    Running zope.testing.testrunner.layer.UnitTests tests:
+    Running zope.testrunner.layer.UnitTests tests:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
       Tear down samplelayers.Layer1 in 0.000 seconds.
-      Set up zope.testing.testrunner.layer.UnitTests in 0.000 seconds.
+      Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
       Ran 192 tests with 0 failures and 0 errors in 0.687 seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in 0.000 seconds.
+      Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
     lines   cov%   module   (path)
     ...
        48   100%   sampletests.test1   (testrunner-ex/sampletests/test1.py)
@@ -94,8 +94,8 @@ directories that should be covered.
   ...   package = None
   ...   test_path = [('/myproject/src/blah/foo', ''),
   ...                ('/myproject/src/blah/bar', '')]
-  >>> from zope.testing.testrunner import coverage
-  >>> from zope.testing.testrunner.find import test_dirs
+  >>> from zope.testrunner import coverage
+  >>> from zope.testrunner.find import test_dirs
   >>> ignore = coverage.TestIgnore(test_dirs(FauxOptions(), {}))
   >>> ignore._test_dirs
   ['/myproject/src/blah/foo/', '/myproject/src/blah/bar/']

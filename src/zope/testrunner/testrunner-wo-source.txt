@@ -33,7 +33,7 @@ can't be deleted later.
 
 Now run the tests in the copy:
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
 
     >>> mydefaults = [
     ...     '--path', directory_with_tests,
@@ -44,8 +44,8 @@ Now run the tests in the copy:
     >>> sys.argv = ['test']
     >>> testrunner.run_internal(mydefaults)
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test1 (unlikely_package_name.compiletest.Test)
      test2 (unlikely_package_name.compiletest.Test)
@@ -53,7 +53,7 @@ Now run the tests in the copy:
      test2 (unlikely_package_name.package.compiletest.Test)
       Ran 4 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
@@ -79,8 +79,8 @@ also implies ``--keepbytecode``:
 
     >>> testrunner.run_internal(mydefaults, ["test", "--usecompiled"])
     Running tests at level 1
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
      test1 (unlikely_package_name.compiletest.Test)
      test2 (unlikely_package_name.compiletest.Test)
@@ -88,7 +88,7 @@ also implies ``--keepbytecode``:
      test2 (unlikely_package_name.package.compiletest.Test)
       Ran 4 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 

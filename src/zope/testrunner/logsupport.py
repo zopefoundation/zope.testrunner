@@ -25,10 +25,10 @@ import logging
 import logging.config
 import os.path
 
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-class Logging(zope.testing.testrunner.feature.Feature):
+class Logging(zope.testrunner.feature.Feature):
 
     active = True
 

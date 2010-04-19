@@ -18,10 +18,10 @@ $Id: __init__.py 86232 2008-05-03 15:09:33Z ctheune $
 
 import sys
 import doctest
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-class DocTest(zope.testing.testrunner.feature.Feature):
+class DocTest(zope.testrunner.feature.Feature):
 
     active = True
 

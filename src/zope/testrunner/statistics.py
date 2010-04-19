@@ -17,10 +17,10 @@ $Id: __init__.py 86218 2008-05-03 14:17:26Z ctheune $
 """
 
 import time
-import zope.testing.testrunner.feature
+import zope.testrunner.feature
 
 
-class Statistics(zope.testing.testrunner.feature.Feature):
+class Statistics(zope.testrunner.feature.Feature):
 
     active = True
     layers_run = 0

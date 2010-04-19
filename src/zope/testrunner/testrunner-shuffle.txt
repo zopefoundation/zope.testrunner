@@ -17,7 +17,7 @@ before running them:
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> default_argv = 'test -u -m sample1 -t test_y0 --list-tests '
 
 Running shuffled tests
@@ -29,7 +29,7 @@ time you run the tests:
     >>> argv = (default_argv + '--shuffle').split()
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number ...
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
     ...
     False
 
@@ -52,7 +52,7 @@ tests:
     >>> argv = (default_argv + '--shuffle --shuffle-seed 0').split()
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 0.
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
       test_y0 (sample1.sampletestsf.TestA)
       test_y0 (sample1.sampletests.test_one)
       test_y0 (sample1.sampletests.test1.TestA)
@@ -66,7 +66,7 @@ tests:
     False
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 0.
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
       test_y0 (sample1.sampletestsf.TestA)
       test_y0 (sample1.sampletests.test_one)
       test_y0 (sample1.sampletests.test1.TestA)
@@ -85,7 +85,7 @@ stable, list of tests:
     >>> argv = (default_argv + '--shuffle --shuffle-seed 42').split()
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 42.
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
       test_y0 (sample1.sample13.sampletests.TestA)
       test_y0 (sample1.sample13.sampletests)
       test_y0 (sample1.sampletests.test1)
@@ -99,7 +99,7 @@ stable, list of tests:
     False
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 42.
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
       test_y0 (sample1.sample13.sampletests.TestA)
       test_y0 (sample1.sample13.sampletests)
       test_y0 (sample1.sampletests.test1)
@@ -120,7 +120,7 @@ option or tests will not be re-ordered:
 
     >>> argv = (default_argv + '--shuffle-seed 42').split()
     >>> testrunner.run_internal(defaults, argv)
-    Listing zope.testing.testrunner.layer.UnitTests tests:
+    Listing zope.testrunner.layer.UnitTests tests:
       test_y0 (sample1.sampletestsf.TestA)
       test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sample11.sampletests.TestA)

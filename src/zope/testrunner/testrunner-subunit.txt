@@ -11,7 +11,7 @@ information can be found at https://launchpad.net/subunit.
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
 
 
 Basic output
@@ -224,11 +224,11 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     ...     ]
     >>> testrunner.run_internal(defaults)
     time: 2010-02-05 15:27:05.113541Z
-    test: zope.testing.testrunner.layer.UnitTests:setUp
+    test: zope.testrunner.layer.UnitTests:setUp
     tags: zope:layer
     time: 2010-02-05 15:27:05.113545Z
-    successful: zope.testing.testrunner.layer.UnitTests:setUp
-    tags: zope:layer:zope.testing.testrunner.layer.UnitTests
+    successful: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer:zope.testrunner.layer.UnitTests
     test: sample2.sampletests_e.eek
     failure: sample2.sampletests_e.eek [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
@@ -311,12 +311,12 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     0\r
     <BLANKLINE>
     ]
-    tags: -zope:layer:zope.testing.testrunner.layer.UnitTests
+    tags: -zope:layer:zope.testrunner.layer.UnitTests
     time: 2010-02-05 15:27:05.147082Z
-    test: zope.testing.testrunner.layer.UnitTests:tearDown
+    test: zope.testrunner.layer.UnitTests:tearDown
     tags: zope:layer
     time: 2010-02-05 15:27:05.147088Z
-    successful: zope.testing.testrunner.layer.UnitTests:tearDown
+    successful: zope.testrunner.layer.UnitTests:tearDown
     True
 
 
@@ -329,7 +329,7 @@ that the layer skipped its tearDown.
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> defaults = [
     ...     '--subunit',
     ...     '--path', directory_with_tests,

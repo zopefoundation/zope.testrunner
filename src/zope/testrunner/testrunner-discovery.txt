@@ -10,7 +10,7 @@ inherit from unittest.TestCase as tests:
     >>> import os, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
 
     >>> defaults = [
     ...     '--path', directory_with_tests,
@@ -20,11 +20,11 @@ inherit from unittest.TestCase as tests:
     ...             '--tests-pattern', '^sampletests_discover$',
     ...     ]
     >>> testrunner.run(defaults)
-    Running zope.testing.testrunner.layer.UnitTests tests:
-      Set up zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 If the module neither provides a TestSuite nor has discoverable tests,

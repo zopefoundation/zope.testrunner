@@ -20,7 +20,7 @@ import sys
 import unittest
 
 
-import zope.testing.testrunner.interfaces
+import zope.testrunner.interfaces
 
 
 def run(defaults=None, args=None, script_parts=None):
@@ -40,7 +40,7 @@ def run_internal(defaults=None, args=None, script_parts=None):
 
     """
     # XXX Bah. Lazy import to avoid circular/early import problems
-    from zope.testing.testrunner.runner import Runner
+    from zope.testrunner.runner import Runner
     runner = Runner(defaults, args, script_parts=script_parts)
     runner.run()
     return runner.failed
@@ -60,5 +60,5 @@ if sys.version_info < (2, 4):
 
 if __name__ == '__main__':
     # allow people to try out the test runner with
-    # python -m zope.testing.testrunner --test-path .
+    # python -m zope.testrunner --test-path .
     run()

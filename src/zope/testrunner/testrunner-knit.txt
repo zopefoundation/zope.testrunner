@@ -38,7 +38,7 @@ package name and file path.
     ...     'sample4.products',
     ...     ]
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     
     >>> sys.argv = 'test --layer Layer111 -vv'.split()
     >>> _ = testrunner.run_internal(defaults)

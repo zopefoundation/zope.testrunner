@@ -11,7 +11,7 @@ explicitly.
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> testrunner.run_internal(defaults, 'test --layer 111'.split())
     Running samplelayers.Layer111 tests:
       Set up samplelayers.Layerx in N.NNN seconds.
@@ -37,7 +37,7 @@ different default, that one takes effect.
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
     >>> testrunner.run_internal(defaults, 'test --layer 111'.split())
     Listing samplelayers.Layer111 tests:
       test_x1 (sample1.sampletests.test111.TestA)

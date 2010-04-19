@@ -23,13 +23,13 @@ import sys
 
 import pkg_resources
 
-from zope.testing.testrunner.profiling import available_profilers
-from zope.testing.testrunner.formatter import (
+from zope.testrunner.profiling import available_profilers
+from zope.testrunner.formatter import (
     OutputFormatter,
     ColorfulOutputFormatter,
     SubunitOutputFormatter,
     )
-from zope.testing.testrunner.formatter import terminal_has_colors
+from zope.testrunner.formatter import terminal_has_colors
 
 
 parser = optparse.OptionParser("Usage: %prog [options] [MODULE] [TEST]")
@@ -111,7 +111,7 @@ mode, for dotted names of objects that define a layer.  In an
 extension of Python regexp notation, a leading "!" is stripped and
 causes the sense of the remaining regexp to be negated (so "!bc"
 matches any string that does not match "bc", and vice versa).  The
-layer named 'zope.testing.testrunner.layer.UnitTests' is reserved for
+layer named 'zope.testrunner.layer.UnitTests' is reserved for
 unit tests, however, take note of the --unit and non-unit options.
 """)
 
@@ -632,7 +632,7 @@ def get_options(args=None, defaults=None):
 
     if options.unit:
         # XXX Argh.
-        options.layer = ['zope.testing.testrunner.layer.UnitTests']
+        options.layer = ['zope.testrunner.layer.UnitTests']
     if options.layer:
         options.layer = map(compile_filter, options.layer)
 

@@ -17,13 +17,13 @@ $Id: __init__.py 86232 2008-05-03 15:09:33Z ctheune $
 """
 
 import zope.interface
-import zope.testing.testrunner.interfaces
+import zope.testrunner.interfaces
 
 
 class Feature(object):
     """A base class implementing no-op methods for the IFeature interface."""
 
-    zope.interface.implements(zope.testing.testrunner.interfaces.IFeature)
+    zope.interface.implements(zope.testrunner.interfaces.IFeature)
 
     active = False
 

@@ -15,7 +15,7 @@ For more detailed documentation, see testrunner-leaks.txt.
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
-    >>> from zope.testing import testrunner
+    >>> from zope import testrunner
 
 Each layer is repeated the requested number of times.  For each
 iteration after the first, the system refcount and change in system
@@ -29,11 +29,11 @@ Let's look at an example test that leaks:
     >>> sys.argv = 'test --subunit --tests-pattern leak -N2 -r'.split()
     >>> _ = testrunner.run_internal(defaults)
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: zope.testing.testrunner.layer.UnitTests:setUp
+    test: zope.testrunner.layer.UnitTests:setUp
     tags: zope:layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: zope.testing.testrunner.layer.UnitTests:setUp
-    tags: zope:layer:zope.testing.testrunner.layer.UnitTests
+    successful: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer:zope.testrunner.layer.UnitTests
     test: leak.TestSomething.testleak
     successful: leak.TestSomething.testleak
     test: leak.TestSomething.testleak
@@ -54,12 +54,12 @@ Let's look at an example test that leaks:
     ...\r
     <BLANKLINE>
     ]
-    tags: -zope:layer:zope.testing.testrunner.layer.UnitTests
+    tags: -zope:layer:zope.testrunner.layer.UnitTests
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: zope.testing.testrunner.layer.UnitTests:tearDown
+    test: zope.testrunner.layer.UnitTests:tearDown
     tags: zope:layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: zope.testing.testrunner.layer.UnitTests:tearDown
+    successful: zope.testrunner.layer.UnitTests:tearDown
 
 Here we see that the system refcount is increasing.  If we specify a
 verbosity greater than one, we can get details broken out by object
@@ -68,11 +68,11 @@ type (or class):
     >>> sys.argv = 'test --subunit --tests-pattern leak -N2 -v -r'.split()
     >>> _ = testrunner.run_internal(defaults)
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: zope.testing.testrunner.layer.UnitTests:setUp
+    test: zope.testrunner.layer.UnitTests:setUp
     tags: zope:layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: zope.testing.testrunner.layer.UnitTests:setUp
-    tags: zope:layer:zope.testing.testrunner.layer.UnitTests
+    successful: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer:zope.testrunner.layer.UnitTests
     test: leak.TestSomething.testleak
     successful: leak.TestSomething.testleak
     test: leak.TestSomething.testleak
@@ -99,9 +99,9 @@ type (or class):
     ...
     <BLANKLINE>
     ]
-    tags: -zope:layer:zope.testing.testrunner.layer.UnitTests
+    tags: -zope:layer:zope.testrunner.layer.UnitTests
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: zope.testing.testrunner.layer.UnitTests:tearDown
+    test: zope.testrunner.layer.UnitTests:tearDown
     tags: zope:layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: zope.testing.testrunner.layer.UnitTests:tearDown
+    successful: zope.testrunner.layer.UnitTests:tearDown
