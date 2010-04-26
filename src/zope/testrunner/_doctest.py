@@ -52,3 +52,7 @@ class DocTest(zope.testrunner.feature.Feature):
 
     def global_shutdown(self):
         doctest.set_unittest_reportflags(self.old_reporting_flags)
+
+# Use a special exception for the test runner.
+from zope.testing.exceptions import DocTestFailureException
+doctest.DocTestCase.failureException = DocTestFailureException
