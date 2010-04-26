@@ -246,7 +246,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
         Traceback (most recent call last):
           File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_e.eek[line 2, example 0]>", line 1, in <module>
+          File "<doctest sample2.sampletests_e.eek[0]>", line 1, in <module>
             f()
           File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
@@ -303,9 +303,9 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
         Traceback (most recent call last):
           File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[line 4, example 1]>", line 1, in <module>
+          File "<doctest e.txt[1]>", line 1, in <module>
             f()
-          File "<doctest e.txt[line 1, example 0]>", line 2, in f
+          File "<doctest e.txt[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     0\r

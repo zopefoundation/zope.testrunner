@@ -21,29 +21,29 @@ this option to configure and then build Python.)
       Set up samplelayers.Layer1 in 0.000 seconds.
       Set up samplelayers.Layer11 in 0.000 seconds.
     Iteration 1
-      Ran 34 tests with 0 failures and 0 errors in 0.013 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.013 seconds.
     Iteration 2
-      Ran 34 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
       sys refcount=100401   change=0     
     Iteration 3
-      Ran 34 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
       sys refcount=100401   change=0     
     Iteration 4
-      Ran 34 tests with 0 failures and 0 errors in 0.013 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.013 seconds.
       sys refcount=100401   change=0     
     Running samplelayers.Layer12 tests:
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
     Iteration 1
-      Ran 34 tests with 0 failures and 0 errors in 0.013 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.013 seconds.
     Iteration 2
-      Ran 34 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
       sys refcount=100411   change=0     
     Iteration 3
-      Ran 34 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
       sys refcount=100411   change=0     
     Iteration 4
-      Ran 34 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
       sys refcount=100411   change=0     
     Tearing down left over layers:
       Tear down samplelayers.Layer12 in 0.000 seconds.

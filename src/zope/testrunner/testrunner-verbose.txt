@@ -23,7 +23,7 @@ test:
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
         ..................................
-      Ran 34 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -40,7 +40,7 @@ If there are more than 50 tests, the dots are printed in groups of
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
     ................................................................................................................................................................................................
-      Ran 192 tests with 0 failures and 0 errors in 0.035 seconds.
+      Ran 156 tests with 0 failures and 0 errors in 0.035 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -82,7 +82,7 @@ each test is printed as it is run:
         test_y0 (sampletests.test122)
         test_z1 (sampletests.test122)
         testrunner-ex/sampletests/../sampletestsl.txt
-      Ran 34 tests with 0 failures and 0 errors in 0.009 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.009 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -126,7 +126,7 @@ test-execution times are printed:
         test_y0 (sampletests.test122) (0.001 s)
         test_z1 (sampletests.test122) (0.001 s)
         testrunner-ex/sampletests/../sampletestsl.txt (0.001 s)
-      Ran 34 tests with 0 failures and 0 errors in 0.009 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.009 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -148,7 +148,7 @@ the default verbosity is non-zero:
     >>> testrunner.run_internal(defaults)
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 192 tests with 0 failures and 0 errors in 0.034 seconds.
+      Ran 156 tests with 0 failures and 0 errors in 0.034 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False

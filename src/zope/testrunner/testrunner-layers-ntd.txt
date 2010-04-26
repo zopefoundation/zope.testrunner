@@ -214,7 +214,7 @@ that is run as a subprocess:
     <BLANKLINE>
     --Return--
     > doctest.py(351)set_trace()->None
-    -> pdb.Pdb.set_trace(self)
+    -> Pdb().set_trace()
     (Pdb) c
     <BLANKLINE>
     **********************************************************************
@@ -223,7 +223,7 @@ that is run as a subprocess:
     <BLANKLINE>
     --Return--
     > doctest.py(351)set_trace()->None
-    -> pdb.Pdb.set_trace(self)
+    -> Pdb().set_trace()
     (Pdb) c
     <BLANKLINE>
     **********************************************************************

@@ -33,7 +33,7 @@ other ways we can select tests.  We can select tests by package:
         test_y0 (sample1.sampletests.test122)
         test_z1 (sample1.sampletests.test122)
         testrunner-ex/sample1/sampletests/../../sampletestsl.txt
-      Ran 17 tests with 0 failures and 0 errors in 0.005 seconds.
+      Ran 13 tests with 0 failures and 0 errors in 0.005 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -152,7 +152,7 @@ You can specify multiple packages:
      test_y0 (sample2.sampletests.testone)
      test_z1 (sample2.sampletests.testone)
      testrunner-ex/sample2/sampletests/../../sampletests.txt
-      Ran 128 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 104 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -183,7 +183,7 @@ tab-completion):
         test_y0 (sample1.sampletests.test122)
         test_z1 (sample1.sampletests.test122)
         testrunner-ex/sample1/sampletests/../../sampletestsl.txt
-      Ran 17 tests with 0 failures and 0 errors in 0.005 seconds.
+      Ran 13 tests with 0 failures and 0 errors in 0.005 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -224,7 +224,7 @@ We can select by test module name using the --module (-m) option:
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
      testrunner-ex/sample1/sampletests/../../sampletests.txt
-      Ran 32 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -263,7 +263,7 @@ and by test within the module using the --test (-t) option:
      testrunner-ex/sample1/sample13/../../sampletests.txt
      testrunner-ex/sample1/sampletests/../../sampletests.txt
      testrunner-ex/sample1/sampletests/../../sampletests.txt
-      Ran 20 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 5 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -318,7 +318,7 @@ match the regular expression are selected:
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
      testrunner-ex/sample1/sampletests/../../sampletests.txt
-      Ran 48 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 39 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -372,7 +372,7 @@ Module and test filters can also be given as positional arguments:
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
      testrunner-ex/sample1/sampletests/../../sampletests.txt
-      Ran 48 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 39 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -389,7 +389,7 @@ Module and test filters can also be given as positional arguments:
      testrunner-ex/sample1/sample13/../../sampletests.txt
      testrunner-ex/sample1/sampletests/../../sampletests.txt
      testrunner-ex/sample1/sampletests/../../sampletests.txt
-      Ran 20 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 5 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False

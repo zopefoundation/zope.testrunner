@@ -42,9 +42,9 @@ be read only):
         f()
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_e.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_e.eek[0]>", line 1, in ?
             f()
           File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
@@ -78,11 +78,11 @@ be read only):
         f()
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[line 4, example 1]>", line 1, in ?
+          File "<doctest e.txt[1]>", line 1, in ?
             f()
-          File "<doctest e.txt[line 1, example 0]>", line 2, in f
+          File "<doctest e.txt[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     <BLANKLINE>
@@ -96,10 +96,10 @@ be read only):
         raise self.failureException, \
     AssertionError: 1 != 0
     <BLANKLINE>
-      Ran 200 tests with 3 failures and 1 errors in N.NNN seconds.
+      Ran 164 tests with 3 failures and 1 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-    Total: 413 tests, 3 failures, 1 errors in N.NNN seconds.
+    Total: 329 tests, 3 failures, 1 errors in N.NNN seconds.
     True
 
 We see that we get an error report and a traceback for the failing
@@ -129,9 +129,9 @@ there'll be a summary of the errors at the end of the test:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_e.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_e.eek[0]>", line 1, in ?
             f()
           File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
@@ -166,11 +166,11 @@ there'll be a summary of the errors at the end of the test:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[line 4, example 1]>", line 1, in ?
+          File "<doctest e.txt[1]>", line 1, in ?
             f()
-          File "<doctest e.txt[line 1, example 0]>", line 2, in f
+          File "<doctest e.txt[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     <BLANKLINE>
@@ -186,7 +186,7 @@ there'll be a summary of the errors at the end of the test:
     <BLANKLINE>
     ................................................................................................
     <BLANKLINE>
-      Ran 200 tests with 3 failures and 1 errors in 0.040 seconds.
+      Ran 164 tests with 3 failures and 1 errors in 0.040 seconds.
     ...
     <BLANKLINE>
     Tests with errors:
@@ -207,22 +207,21 @@ Similarly for progress output, the progress ticker will be interrupted:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-        1/56 (1.8%)
+        1/47 (2.1%)
     <BLANKLINE>
     Failure in test eek (sample2.sampletests_e)
     Failed doctest test for sample2.sampletests_e.eek
       File "testrunner-ex/sample2/sampletests_e.py", line 28, in eek
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/sampletests_e.py", line 30,
-           in sample2.sampletests_e.eek
+    File "testrunner-ex/sample2/sampletests_e.py", line 30, in sample2.sampletests_e.eek
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_e.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_e.eek[0]>", line 1, in ?
             f()
           File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
@@ -231,11 +230,11 @@ Similarly for progress output, the progress ticker will be interrupted:
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
     <BLANKLINE>
-        2/56 (3.6%)##r##
-                   ##r##
-        3/56 (5.4%)##r##
-                   ##r##
-        4/56 (7.1%)
+        2/47 (4.3%)\r
+                   \r
+        3/47 (6.4%)\r
+                   \r
+        4/47 (8.5%)
     <BLANKLINE>
     Error in test test3 (sample2.sampletests_e.Test)
     Traceback (most recent call last):
@@ -248,11 +247,11 @@ Similarly for progress output, the progress ticker will be interrupted:
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
     <BLANKLINE>
-        5/56 (8.9%)##r##
-                   ##r##
-        6/56 (10.7%)##r##
-                    ##r##
-        7/56 (12.5%)
+        5/47 (10.6%)\r
+                   \r
+        6/47 (12.8%)\r
+                    \r
+        7/47 (14.9%)
     <BLANKLINE>
     Failure in test testrunner-ex/sample2/e.txt
     Failed doctest test for e.txt
@@ -264,15 +263,15 @@ Similarly for progress output, the progress ticker will be interrupted:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[line 4, example 1]>", line 1, in ?
+          File "<doctest e.txt[1]>", line 1, in ?
             f()
-          File "<doctest e.txt[line 1, example 0]>", line 2, in f
+          File "<doctest e.txt[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     <BLANKLINE>
-        8/56 (14.3%)
+        8/47 (17.0%)
     <BLANKLINE>
     Failure in test test (sample2.sampletests_f.Test)
     Traceback (most recent call last):
@@ -282,85 +281,86 @@ Similarly for progress output, the progress ticker will be interrupted:
         raise self.failureException, \
     AssertionError: 1 != 0
     <BLANKLINE>
-        9/56 (16.1%)##r##
-                    ##r##
-        10/56 (17.9%)##r##
-                     ##r##
-        11/56 (19.6%)##r##
-                     ##r##
-        12/56 (21.4%)##r##
-                     ##r##
-        13/56 (23.2%)##r##
-                     ##r##
-        14/56 (25.0%)##r##
-                     ##r##
-        15/56 (26.8%)##r##
-                     ##r##
-        16/56 (28.6%)##r##
-                     ##r##
-        17/56 (30.4%)##r##
-                     ##r##
-        18/56 (32.1%)##r##
-                     ##r##
-        19/56 (33.9%)##r##
-                     ##r##
-        20/56 (35.7%)##r##
-                     ##r##
-        24/56 (42.9%)##r##
-                     ##r##
-        25/56 (44.6%)##r##
-                     ##r##
-        26/56 (46.4%)##r##
-                     ##r##
-        27/56 (48.2%)##r##
-                     ##r##
-        28/56 (50.0%)##r##
-                     ##r##
-        29/56 (51.8%)##r##
-                     ##r##
-        30/56 (53.6%)##r##
-                     ##r##
-        31/56 (55.4%)##r##
-                     ##r##
-        32/56 (57.1%)##r##
-                     ##r##
-        33/56 (58.9%)##r##
-                     ##r##
-        34/56 (60.7%)##r##
-                     ##r##
-        35/56 (62.5%)##r##
-                     ##r##
-        36/56 (64.3%)##r##
-                     ##r##
-        40/56 (71.4%)##r##
-                     ##r##
-        41/56 (73.2%)##r##
-                     ##r##
-        42/56 (75.0%)##r##
-                     ##r##
-        43/56 (76.8%)##r##
-                     ##r##
-        44/56 (78.6%)##r##
-                     ##r##
-        45/56 (80.4%)##r##
-                     ##r##
-        46/56 (82.1%)##r##
-                     ##r##
-        47/56 (83.9%)##r##
-                     ##r##
-        48/56 (85.7%)##r##
-                     ##r##
-        49/56 (87.5%)##r##
-                     ##r##
-        50/56 (89.3%)##r##
-                     ##r##
-        51/56 (91.1%)##r##
-                     ##r##
-        52/56 (92.9%)##r##
-                     ##r##
-        56/56 (100.0%)##r##
-                      ##r##
-      Ran 56 tests with 3 failures and 1 errors in 0.054 seconds.
+        9/47 (19.1%)\r
+                    \r
+        10/47 (21.3%)\r
+                     \r
+        11/47 (23.4%)\r
+                     \r
+        12/47 (25.5%)\r
+                     \r
+        13/47 (27.7%)\r
+                     \r
+        14/47 (29.8%)\r
+                     \r
+        15/47 (31.9%)\r
+                     \r
+        16/47 (34.0%)\r
+                     \r
+        17/47 (36.2%)\r
+                     \r
+        18/47 (38.3%)\r
+                     \r
+        19/47 (40.4%)\r
+                     \r
+        20/47 (42.6%)\r
+                     \r
+        21/47 (44.7%)\r
+                     \r
+        22/47 (46.8%)\r
+                     \r
+        23/47 (48.9%)\r
+                     \r
+        24/47 (51.1%)\r
+                     \r
+        25/47 (53.2%)\r
+                     \r
+        26/47 (55.3%)\r
+                     \r
+        27/47 (57.4%)\r
+                     \r
+        28/47 (59.6%)\r
+                     \r
+        29/47 (61.7%)\r
+                     \r
+        30/47 (63.8%)\r
+                     \r
+        31/47 (66.0%)\r
+                     \r
+        32/47 (68.1%)\r
+                     \r
+        33/47 (70.2%)\r
+                     \r
+        34/47 (72.3%)\r
+                     \r
+        35/47 (74.5%)\r
+                     \r
+        36/47 (76.6%)\r
+                     \r
+        37/47 (78.7%)\r
+                     \r
+        38/47 (80.9%)\r
+                     \r
+        39/47 (83.0%)\r
+                     \r
+        40/47 (85.1%)\r
+                     \r
+        41/47 (87.2%)\r
+                     \r
+        42/47 (89.4%)\r
+                     \r
+        43/47 (91.5%)\r
+                     \r
+        44/47 (93.6%)\r
+                     \r
+        45/47 (95.7%)\r
+                     \r
+        46/47 (97.9%)\r
+                     \r
+        47/47 (100.0%)\r
+                      \r
+    <BLANKLINE>
+      Ran 47 tests with 3 failures and 1 errors in 0.054 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -392,9 +392,9 @@ examples in the same test to fail.  Each failure is reported:
         x = y
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[0]>", line 1, in ?
             x = y
         NameError: name 'y' is not defined
     ----------------------------------------------------------------------
@@ -404,9 +404,9 @@ examples in the same test to fail.  Each failure is reported:
         x
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 4, example 1]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[1]>", line 1, in ?
             x
         NameError: name 'x' is not defined
     ----------------------------------------------------------------------
@@ -416,9 +416,9 @@ examples in the same test to fail.  Each failure is reported:
         z = x + 1
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 7, example 2]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[2]>", line 1, in ?
             z = x + 1
         NameError: name 'x' is not defined
     <BLANKLINE>
@@ -449,9 +449,9 @@ me the first failed example in a doctest" :)
         x = y
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[0]>", line 1, in ?
             x = y
         NameError: name 'y' is not defined
     <BLANKLINE>
@@ -476,15 +476,14 @@ The --hide-secondary-failures option is an alias for -1:
       File "testrunner-ex/sample2/sampletests_1.py", line 17, in eek
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/sampletests_1.py", line 19,
-         in sample2.sampletests_1.eek
+    File "testrunner-ex/sample2/sampletests_1.py", line 19, in sample2.sampletests_1.eek
     Failed example:
         x = y
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[0]>", line 1, in ?
             x = y
         NameError: name 'y' is not defined
     <BLANKLINE>
@@ -512,39 +511,36 @@ command-line options in sys.argv.
       File "testrunner-ex/sample2/sampletests_1.py", line 17, in eek
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/sampletests_1.py", line 19,
-         in sample2.sampletests_1.eek
+    File "testrunner-ex/sample2/sampletests_1.py", line 19, in sample2.sampletests_1.eek
     Failed example:
         x = y
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 2, example 0]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[0]>", line 1, in ?
             x = y
         NameError: name 'y' is not defined
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/sampletests_1.py", line 21,
-         in sample2.sampletests_1.eek
+    File "testrunner-ex/sample2/sampletests_1.py", line 21, in sample2.sampletests_1.eek
     Failed example:
         x
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 4, example 1]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[1]>", line 1, in ?
             x
         NameError: name 'x' is not defined
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/sampletests_1.py", line 24,
-         in sample2.sampletests_1.eek
+    File "testrunner-ex/sample2/sampletests_1.py", line 24, in sample2.sampletests_1.eek
     Failed example:
         z = x + 1
     Exception raised:
         Traceback (most recent call last):
-          File ".../doctest/__init__.py", line 1256, in __run
+          File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_1.eek[line 7, example 2]>", line 1, in ?
+          File "<doctest sample2.sampletests_1.eek[2]>", line 1, in ?
             z = x + 1
         NameError: name 'x' is not defined
     <BLANKLINE>
@@ -763,28 +759,28 @@ Then run the tests:
       Ran 9 tests with 0 failures and 0 errors in 0.000 seconds.
     Running samplelayers.Layer11 tests:
       Set up samplelayers.Layer11 in 0.000 seconds.
-      Ran 34 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
     Running samplelayers.Layer111 tests:
       Set up samplelayers.Layerx in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
-      Ran 34 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
     Running samplelayers.Layer112 tests:
       Tear down samplelayers.Layer111 in 0.000 seconds.
       Set up samplelayers.Layer112 in 0.000 seconds.
-      Ran 34 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
     Running samplelayers.Layer12 tests:
       Tear down samplelayers.Layer112 in 0.000 seconds.
       Tear down samplelayers.Layerx in 0.000 seconds.
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
-      Ran 34 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
     Running samplelayers.Layer121 tests:
       Set up samplelayers.Layer121 in 0.000 seconds.
-      Ran 34 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
     Running samplelayers.Layer122 tests:
       Tear down samplelayers.Layer121 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 34 tests with 0 failures and 0 errors in 0.006 seconds.
+      Ran 26 tests with 0 failures and 0 errors in 0.006 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -794,7 +790,7 @@ Then run the tests:
       sample2.sampletests_i
       sample2.sample21.sampletests_i
       sample2.sample23.sampletests_i
-    Total: 213 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 165 tests, 0 failures, 0 errors in N.NNN seconds.
     True
 
 
@@ -825,13 +821,21 @@ unicode and another not:
     ----------------------------------------------------------------------
     File testrunner-ex/unicode.txt", Line NNN, in unicode.txt
     Failed example:
+        print get_unicode()
+    Expected:
+        foo — bar
+    Got:
+        foo — bar
+    ----------------------------------------------------------------------
+    File testrunner-ex/unicode.txt", Line NNN, in unicode.txt
+    Failed example:
         'xyz'
     Expected:
         123
     Got:
         'xyz'
     <BLANKLINE>
-      Ran 3 tests with 1 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 1 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -882,10 +886,10 @@ Passing tests exit with code 0 according to UNIX practices:
       Tear down samplelayers.Layer12 in N.NNN seconds.
       Tear down samplelayers.Layer1 in N.NNN seconds.
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 160 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 130 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-    Total: 364 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 286 tests, 0 failures, 0 errors in N.NNN seconds.
     exited with code 0
 
 And remove the temporary directory:

@@ -57,7 +57,7 @@ package name and file path.
         testrunner-ex/sampletests/../sampletestsl.txt
         test_extra_test_in_products (sample4.products.sampletests.Test)
         test_another_test_in_products (sample4.products.more.sampletests.Test)
-      Ran 36 tests with 0 failures and 0 errors in 0.008 seconds.
+      Ran 28 tests with 0 failures and 0 errors in 0.008 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.
       Tear down samplelayers.Layerx in 0.000 seconds.
