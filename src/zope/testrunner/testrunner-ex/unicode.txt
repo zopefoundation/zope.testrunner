@@ -2,19 +2,18 @@
 Errors Containing Unicode
 =========================
 
-There was a unicode bug. Create a function which returns a unicode string with
-non us-ascii characters::
+There was a unicode bug. When a function returned unicode some internal
+state switched. This broke any further test not returning unicode but a plain
+string with unicode characters. Make sure this works now::
 
     >>> def get_unicode():
     ...    return u'foo \u2014 bar'
 
-There was another unicode bug. When a function returned unicode some internal
-state switched. This broke any further test not returning unicode but a plain
-string with unicode characters. Make sure this works now::
-
     >>> get_unicode()
     u'foo \u2014 bar'
-
+    
+    >>> 'foo \xe9'
+    'foo \xe9'
 
 Get some normal output as well::
 
