@@ -813,22 +813,6 @@ unicode and another not:
     ----------------------------------------------------------------------
     File testrunner-ex/unicode.txt", Line NNN, in unicode.txt
     Failed example:
-        print get_unicode()
-    Expected:
-        oink
-    Got:
-        foo — bar
-    ----------------------------------------------------------------------
-    File testrunner-ex/unicode.txt", Line NNN, in unicode.txt
-    Failed example:
-        print get_unicode()
-    Expected:
-        foo — bar
-    Got:
-        foo — bar
-    ----------------------------------------------------------------------
-    File testrunner-ex/unicode.txt", Line NNN, in unicode.txt
-    Failed example:
         'xyz'
     Expected:
         123
