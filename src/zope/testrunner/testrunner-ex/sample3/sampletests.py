@@ -61,12 +61,14 @@ def setUp(test):
 
 def test_y0(self):
     """
+    >>> y = 0
     >>> y
     0
     """
 
 def test_x0(self):
     """
+    >>> x = 0
     >>> x
     0
     """

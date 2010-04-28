@@ -92,9 +92,11 @@ def setUp(test):
     test.globs['z'] = 1
     test.globs['layer'] = layer.layer
     test.globs['layerx'] = layer.layerx
+    test.globs['samplelayers'] = samplelayers
 
 def test_y0(self):
     """
+    >>> y = 0
     >>> y
     0
 
@@ -104,6 +106,7 @@ def test_y0(self):
 
 def test_x0(self):
     """
+    >>> x = 0
     >>> x
     0
 
