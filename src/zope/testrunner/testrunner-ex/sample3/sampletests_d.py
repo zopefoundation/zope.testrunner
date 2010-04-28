@@ -17,7 +17,7 @@ $Id$
 """
 
 import unittest
-from zope.testing import doctest
+import doctest
 
 class TestSomething(unittest.TestCase):
 

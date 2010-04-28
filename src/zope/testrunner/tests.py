@@ -22,7 +22,7 @@ import os
 import sys
 import unittest
 
-from zope.testing import doctest
+import doctest
 from zope.testing import renormalizing
 
 

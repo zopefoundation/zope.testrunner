@@ -13,7 +13,7 @@
 ##############################################################################
 
 import unittest
-from zope.testing import doctest
+import doctest
 import samplelayers
 
 layername = 'samplelayers.Layer121'

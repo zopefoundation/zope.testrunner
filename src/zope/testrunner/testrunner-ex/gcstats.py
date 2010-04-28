@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.testing import doctest
+import doctest
 
 def generate_some_gc_statistics():
     """

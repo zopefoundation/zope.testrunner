@@ -12,7 +12,7 @@
 #
 ##############################################################################
 
-from zope.testing import doctest
+import doctest
 
 def eek(self):
     """

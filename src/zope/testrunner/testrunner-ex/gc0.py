@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.testing import doctest
+import doctest
 
 def make_sure_gc_is_disabled():
     """
