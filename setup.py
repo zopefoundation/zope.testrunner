@@ -95,6 +95,5 @@ setup(
             ['zope-testrunner = zope.testrunner:run',]},
     include_package_data = True,
     zip_safe = False,
-    test_suite = 'zope.testrunner.tests.test_suite',
     dependency_links = ['.'], # Only until the release of zope.testing 4.0.0
 )

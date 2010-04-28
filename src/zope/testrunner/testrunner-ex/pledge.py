@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.testing import doctest
+import doctest
 
 pledge_template = """\
 I give my pledge, as %s,
