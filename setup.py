@@ -22,7 +22,59 @@ $Id: setup.py 110769 2010-04-13 10:30:45Z sidnei $
 """
 
 import os
-
+import sys
+if sys.version > '3':
+    extras = dict(
+    use_2to3 = True,
+    convert_2to3_doctests = ['src/zope/testrunner/testrunner-leaks.txt',
+                             'src/zope/testrunner/testrunner-leaks-err.txt',
+                             'src/zope/testrunner/testrunner-progress.txt',
+                             'src/zope/testrunner/testrunner-edge-cases.txt',
+                             'src/zope/testrunner/testrunner-test-selection.txt',
+                             'src/zope/testrunner/testrunner-simple.txt',
+                             'src/zope/testrunner/testrunner-ex/README.txt',
+                             'src/zope/testrunner/testrunner-ex/sampletests.txt',
+                             'src/zope/testrunner/testrunner-ex/usecompiled/README.txt',
+                             'src/zope/testrunner/testrunner-ex/sample3/set_trace5.txt',
+                             'src/zope/testrunner/testrunner-ex/sample3/post_mortem6.txt',
+                             'src/zope/testrunner/testrunner-ex/sample3/post_mortem5.txt',
+                             'src/zope/testrunner/testrunner-ex/sample3/set_trace6.txt',
+                             'src/zope/testrunner/testrunner-ex/sample3/post_mortem_failure.txt',
+                             'src/zope/testrunner/testrunner-ex/sample2/e.txt',
+                             'src/zope/testrunner/testrunner-ex/unicode.txt',
+                             'src/zope/testrunner/testrunner-ex/sampletestsl.txt',
+                             'src/zope/testrunner/testrunner-coverage.txt',
+                             'src/zope/testrunner/testrunner-errors.txt',
+                             'src/zope/testrunner/testrunner-profiling.txt',
+                             'src/zope/testrunner/testrunner-coverage-win32.txt',
+                             'src/zope/testrunner/testrunner-knit.txt',
+                             'src/zope/testrunner/testrunner-subunit-leaks.txt',
+                             'src/zope/testrunner/testrunner-subunit.txt',
+                             'src/zope/testrunner/testrunner-layers-buff.txt',
+                             'src/zope/testrunner/testrunner-arguments.txt',
+                             'src/zope/testrunner/testrunner-shuffle.txt',
+                             'src/zope/testrunner/testrunner-layers-ntd.txt',
+                             'src/zope/testrunner/testrunner-subunit-err.txt',
+                             'src/zope/testrunner/testrunner-gc.txt',
+                             'src/zope/testrunner/testrunner-tb-format.txt',
+                             'src/zope/testrunner/testrunner-layers.txt',
+                             'src/zope/testrunner/testrunner-wo-source.txt',
+                             'src/zope/testrunner/testrunner.txt',
+                             'src/zope/testrunner/testrunner-profiling-cprofiler.txt',
+                             'src/zope/testrunner/testrunner-verbose.txt',
+                             'src/zope/testrunner/testrunner-discovery.txt',
+                             'src/zope/testrunner/testrunner-layers-api.txt',
+                             'src/zope/testrunner/testrunner-colors.txt',
+                             'src/zope/testrunner/testrunner-repeat.txt',
+                             'src/zope/testrunner/testrunner-debugging.txt',
+                             'src/zope/testrunner/testrunner-debugging-layer-setup.test',
+                             ],
+    dependency_links = ['.'], # Until zope.interface 3.6, zope.exception 3.6
+                              # and zope.testing 4.0 has been released.
+    )
+else:
+    extras = {}
+    
 from setuptools import setup
 
 chapters = '\n'.join([
@@ -70,7 +122,13 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
-    packages=["zope", "zope.testrunner"],
+    packages=["zope", 
+              "zope.testrunner", 
+              "zope.testrunner.testrunner-ex",
+              "zope.testrunner.testrunner-ex.sample1",
+              "zope.testrunner.testrunner-ex.sample2",
+              "zope.testrunner.testrunner-ex.sample3",
+              ],
     package_dir = {'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -95,5 +153,5 @@ setup(
             ['zope-testrunner = zope.testrunner:run',]},
     include_package_data = True,
     zip_safe = False,
-    dependency_links = ['.'], # Only until the release of zope.testing 4.0.0
+    **extras
 )

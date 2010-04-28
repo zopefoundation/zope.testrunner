@@ -71,7 +71,7 @@ Failed test
 A failed test run highlights the failures in red:
 
     >>> sys.argv = 'test -c --tests-pattern ^sampletests(f|_e|_f)?$ '.split()
-    >>> testrunner.run_internal(defaults)
+    >>> testrunner.run_internal(defaults) #doctest: +ELLIPSIS
     {normal}Running samplelayers.Layer1 tests:{normal}
       Set up samplelayers.Layer1 in {green}0.000{normal} seconds.
     {normal}  Ran {green}9{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.001{normal} seconds.{normal}
@@ -117,7 +117,7 @@ A failed test run highlights the failures in red:
     Exception raised:
     {red}    Traceback (most recent call last):{normal}
     {red}      File ".../doctest.py", line 1356, in __run{normal}
-    {red}        compileflags, 1) in test.globs{normal}
+    {red}        compileflags, 1)... test.globs...{normal}
     {red}      File "<doctest sample2.sampletests_e.eek[0]>", line 1, in ?{normal}
     {red}        f(){normal}
     {red}      File "testrunner-ex/sample2/sampletests_e.py", line 19, in f{normal}
@@ -155,7 +155,7 @@ A failed test run highlights the failures in red:
     Exception raised:
     {red}    Traceback (most recent call last):{normal}
     {red}      File ".../doctest.py", line 1356, in __run{normal}
-    {red}        compileflags, 1) in test.globs{normal}
+    {red}        compileflags, 1)... test.globs...{normal}
     {red}      File "<doctest e.txt[1]>", line 1, in ?{normal}
     {red}        f(){normal}
     {red}      File "<doctest e.txt[0]>", line 2, in f{normal}
@@ -176,7 +176,7 @@ A failed test run highlights the failures in red:
     <BLANKLINE>
     {normal}  Ran {green}164{normal} tests with {boldred}3{normal} failures and {boldred}1{normal} errors in {green}0.045{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
-      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
+    Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     {normal}Total: {green}329{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors in {green}0.023{normal} seconds.{normal}
     True
 
@@ -200,17 +200,19 @@ colors:
     ----------------------------------------------------------------------
     {normal}File testrunner-ex/pledge.py{normal}", line {boldred}26{normal}, in {boldcyan}pledge.pledge{normal}
     Failed example:
-    {cyan}    print pledge_template % ('and earthling', 'planet'),{normal}
+    {cyan}    test_print(){normal}
     Expected:
     {green}    I give my pledge, as an earthling,{normal}
     {green}    to save, and faithfully, to defend from waste,{normal}
     {green}    the natural resources of my planet.{normal}
     {green}    It's soils, minerals, forests, waters, and wildlife.{normal}
+    {green}    <BLANKLINE>{normal}
     Got:
     {red}    I give my pledge, as and earthling,{normal}
     {red}    to save, and faithfully, to defend from waste,{normal}
     {red}    the natural resources of my planet.{normal}
     {red}    It's soils, minerals, forests, waters, and wildlife.{normal}
+    {red}    <BLANKLINE>{normal}
     <BLANKLINE>
     {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures and {green}0{normal} errors in {green}0.002{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
@@ -232,7 +234,7 @@ apart:
     ----------------------------------------------------------------------
     {normal}File testrunner-ex/pledge.py{normal}", line {boldred}26{normal}, in {boldcyan}pledge.pledge{normal}
     Failed example:
-    {cyan}    print pledge_template % ('and earthling', 'planet'),{normal}
+    {cyan}    test_print(){normal}
     Differences (ndiff with -expected +actual):
     {green}    - I give my pledge, as an earthling,{normal}
     {red}    + I give my pledge, as and earthling,{normal}
@@ -240,6 +242,7 @@ apart:
     {normal}      to save, and faithfully, to defend from waste,{normal}
     {normal}      the natural resources of my planet.{normal}
     {normal}      It's soils, minerals, forests, waters, and wildlife.{normal}
+    {normal}      <BLANKLINE>{normal}
     <BLANKLINE>
     {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures and {green}0{normal} errors in {green}0.003{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}

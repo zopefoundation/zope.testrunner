@@ -10,7 +10,7 @@ string with unicode characters. Make sure this works now::
     ...    return u'foo \u2014 bar'
 
     >>> get_unicode()
-    u'foo \u2014 bar'
+    oink
     
     >>> 'foo \xe9'
     'foo \xe9'

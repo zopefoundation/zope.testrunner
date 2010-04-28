@@ -1,0 +1,51 @@
+**************************
+developing zope.testrunner
+**************************
+
+Zope testrunner needs itself to run it's own tests. The standard way to set up
+a testrunner to test zope.testrunner with, is to use buildout::
+
+    # python bootstrap.py
+    # bin/buildout
+
+You can now run the tests:
+    
+    # bin/test
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
+      Ran 27 tests with 0 failures and 0 errors in 17.384 seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.    
+    
+However, you may run the tests without buildout, by installing zope.testrunner,
+and using the zope-testrunner script that the instalation creates. To make
+sure you don't install broken development versions in your Python installation,
+it's best to do this in an isolated environment, such as set up with 
+Ian Bickings 'Virtualenv' tool. See http://pypi.python.org/pypi/virtualenv
+for instructions on how to install virtualenv::
+
+    # virtualenv .
+    New python executable in ./bin/python
+    Installing setuptools............done.
+    
+    # ./bin/python setup.py -q install
+    
+    # ./bin/zope-testrunner --test-path src/
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
+      Ran 27 tests with 0 failures and 0 errors in 17.384 seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
+
+The drawback with the non-buildout setup is that you need to re-run the install
+before every testrun, to make sure the installed code is updated::
+
+    # ./bin/python setup.py -q install    
+    # ./bin/zope-testrunner --test-path src/
+    
+If you run Python 3, you need to run the tests against the converted source in
+the build directory::
+
+    # ./bin/python3 setup.py -q install    
+    # ./bin/zope-testrunner --test-path build/lib/
+    
