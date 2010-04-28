@@ -17,35 +17,29 @@ You can now run the tests:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.    
     
-However, you may run the tests without buildout, by installing zope.testrunner,
-and using the zope-testrunner script that the instalation creates. To make
-sure you don't install broken development versions in your Python installation,
-it's best to do this in an isolated environment, such as set up with 
-Ian Bickings 'Virtualenv' tool. See http://pypi.python.org/pypi/virtualenv
-for instructions on how to install virtualenv::
+However, you may run the tests without buildout as well, as the setup.py has
+a custom test command that will run the tests:
 
-    # virtualenv .
-    New python executable in ./bin/python
-    Installing setuptools............done.
-    
-    # ./bin/python setup.py -q install
-    
-    # ./bin/zope-testrunner --test-path src/
+    # python setup.py test
+    running test
+    running egg_info
+    writing requirements to src/zope.testrunner.egg-info/requires.txt
+    writing src/zope.testrunner.egg-info/PKG-INFO
+    writing namespace_packages to src/zope.testrunner.egg-info/namespace_packages.txt
+    writing top-level names to src/zope.testrunner.egg-info/top_level.txt
+    writing dependency_links to src/zope.testrunner.egg-info/dependency_links.txt
+    writing entry points to src/zope.testrunner.egg-info/entry_points.txt
+    reading manifest template 'MANIFEST.in'
+    warning: no files found matching 'sampletests' under directory 'src'
+    writing manifest file 'src/zope.testrunner.egg-info/SOURCES.txt'
+    running build_ext
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
-      Ran 27 tests with 0 failures and 0 errors in 17.384 seconds.
+      Ran 27 tests with 0 failures and 0 errors in 17.600 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
 
-The drawback with the non-buildout setup is that you need to re-run the install
-before every testrun, to make sure the installed code is updated::
+Which one you prefer is much a matter of taste. At the moment of writing
+buildout does not support Python 3, and therefore you must use this way
+of testing under Python 3.
 
-    # ./bin/python setup.py -q install    
-    # ./bin/zope-testrunner --test-path src/
-    
-If you run Python 3, you need to run the tests against the converted source in
-the build directory::
-
-    # ./bin/python3 setup.py -q install    
-    # ./bin/zope-testrunner --test-path build/lib/
-    

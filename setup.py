@@ -22,8 +22,91 @@ $Id: setup.py 110769 2010-04-13 10:30:45Z sidnei $
 """
 
 import os
-
+import sys
 from setuptools import setup
+
+if sys.version_info >= (3,):
+    extra = dict(use_2to3 = True,
+                 setup_requires = ['zope.fixers'],
+                 use_2to3_fixers = ['zope.fixers'],
+                 convert_2to3_doctests = [
+                     'src/zope/testing/doctests.txt',
+                     'src/zope/testing/formparser.txt',
+                     'src/zope/testing/module.txt',
+                     'src/zope/testing/setupstack.txt',
+                     'src/zope/testing/testrunner/testrunner-arguments.txt',
+                     'src/zope/testing/testrunner/testrunner-coverage-win32.txt',
+                     'src/zope/testing/testrunner/testrunner-coverage.txt',
+                     'src/zope/testing/testrunner/testrunner-debugging-layer-setup.test',
+                     'src/zope/testing/testrunner/testrunner-debugging.txt',
+                     'src/zope/testing/testrunner/testrunner-discovery',
+                     'src/zope/testing/testrunner/testrunner-edge-cases.txt',
+                     'src/zope/testing/testrunner/testrunner-errors.txt',
+                     'src/zope/testing/testrunner/testrunner-gc.txt',
+                     'src/zope/testing/testrunner/testrunner-knit.txt',
+                     'src/zope/testing/testrunner/testrunner-layers-api.txt',
+                     'src/zope/testing/testrunner/testrunner-layers-buff.txt',
+                     'src/zope/testing/testrunner/testrunner-layers-ntd.txt',
+                     'src/zope/testing/testrunner/testrunner-layers.txt',
+                     'src/zope/testing/testrunner/testrunner-leaks-err.txt',
+                     'src/zope/testing/testrunner/testrunner-leaks.txt',
+                     'src/zope/testing/testrunner/testrunner-profiling-cprofiler.txt',
+                     'src/zope/testing/testrunner/testrunner-profiling.txt',
+                     'src/zope/testing/testrunner/testrunner-progress.txt',
+                     'src/zope/testing/testrunner/testrunner-repeat.txt',
+                     'src/zope/testing/testrunner/testrunner-simple.txt',
+                     'src/zope/testing/testrunner/testrunner-tb-format.txt',
+                     'src/zope/testing/testrunner/testrunner-test-selection.txt',
+                     'src/zope/testing/testrunner/testrunner-verbose.txt',
+                     'src/zope/testing/testrunner/testrunner-wo-source.txt',
+                     'src/zope/testing/testrunner/testrunner.txt',
+                     'src/zope/testing/testrunner/testrunner-ex/sampletests.txt',
+                     'src/zope/testing/testrunner/testrunner-ex/sampletestsl.txt',
+                     'src/zope/testing/testrunner/testrunner-ex/unicode.txt',
+                     ],
+                 dependency_links = ['.'],
+                 )
+else:
+    extra = {}
+
+from setuptools.command.test import test
+
+class custom_test(test):
+    # The zope.testing tests MUST be run using it's own testrunner. This is
+    # because it's subprocess testing will call the script it was run with. We
+    # therefore create a script to run the testrunner, and call that.
+    def run(self):
+        if self.distribution.install_requires:
+            self.distribution.fetch_build_eggs(self.distribution.install_requires)
+        if self.distribution.tests_require:
+            self.distribution.fetch_build_eggs(self.distribution.tests_require)
+        self.with_project_on_sys_path(self.run_tests)
+
+    def run_tests(self):
+        template = """
+import sys
+sys.path = %s
+
+import os
+os.chdir('%s')
+
+import zope.testrunner
+if __name__ == '__main__':
+    zope.testrunner.run([
+        '--test-path', '%s',
+        ])
+        """
+        import tempfile
+        fd, filename = tempfile.mkstemp(prefix='temprunner', text=True)
+        scriptfile = open(filename, 'w')
+        script = template % (sys.path, os.path.abspath(os.curdir), os.path.abspath('src'))
+        scriptfile.write(script)
+        scriptfile.close()
+ 
+        import subprocess
+        process = subprocess.Popen([sys.executable, filename])
+        process.wait()
+        os.unlink(filename)
 
 chapters = '\n'.join([
     open(os.path.join('src', 'zope', 'testrunner', name)).read()
@@ -95,5 +178,6 @@ setup(
             ['zope-testrunner = zope.testrunner:run',]},
     include_package_data = True,
     zip_safe = False,
-    dependency_links = ['.'], # Only until the release of zope.testing 4.0.0
+    cmdclass = {'test': custom_test},
+    **extra
 )
