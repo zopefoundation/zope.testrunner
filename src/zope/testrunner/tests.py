@@ -46,6 +46,17 @@ if sys.platform == 'win32':
         (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
                     r'exceptions.\1Error:'),
 
+        # Remove '\r', since this only causes confusion.
+        (re.compile(r'\\r', re.MULTILINE), ''),
+        (re.compile(r'\r', re.MULTILINE), ''),
+
+        # testtools content formatter is used to mime-encode
+        # tracebacks when the SubunitOutputFormatter is used, and the
+        # resulting text includes a size which can vary depending on
+        # the path included in the traceback.
+        (re.compile(r'traceback\n[A-F\d]+', re.MULTILINE),
+         r'traceback\nNNN'),
+
         (re.compile("'[A-Za-z]:\\\\"), "'"), # hopefully, we'll make Windows happy
                                              # replaces drives with nothing
 
@@ -61,6 +72,8 @@ if sys.platform == 'win32':
         (re.compile(r'\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
         (re.compile(r'\d+[.]\d\d\d s'), 'N.NNN s'),
         (re.compile(r'\d+[.]\d\d\d{'), 'N.NNN{'),
+        (re.compile(r'\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\.\d+'),
+         'YYYY-MM-DD HH:MM:SS.mmmmmm'),
         (re.compile('( |")[^\n]+testrunner-ex'), r'\1testrunner-ex'),
         (re.compile('( |")[^\n]+testrunner.py'), r'\1testrunner.py'),
         (re.compile(r'> [^\n]*(doc|unit)test[.]py\(\d+\)'),
@@ -70,12 +83,12 @@ if sys.platform == 'win32':
         (re.compile(r' line \d+,', re.IGNORECASE), r' Line NNN,'),
         (re.compile(r' line {([a-z]+)}\d+{', re.IGNORECASE), r' Line {\1}NNN{'),
 
-        # omit traceback entries for unittest.py or doctest.py from
-        # output:
-        (re.compile(r'^ +File "[^\n]*(doc|unit)test.py", [^\n]+\n[^\n]+\n',
+        # omit traceback entries for unittest.py or doctest.py (and
+        # their package variants) from output:
+        (re.compile(r'^ +File "[^\n]*(doctest|unittest|case)(/__init__)?.py", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doc|unit)test.py{\w+}", [^\n]+\n[^\n]+\n',
+        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doctest|unittest|case)(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
         #(re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
@@ -103,6 +116,8 @@ else:
         (re.compile(r'\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
         (re.compile(r'\d+[.]\d\d\d s'), 'N.NNN s'),
         (re.compile(r'\d+[.]\d\d\d{'), 'N.NNN{'),
+        (re.compile(r'\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\.\d+'),
+         'YYYY-MM-DD HH:MM:SS.mmmmmm'),
         (re.compile('( |")[^\n]+testrunner-ex'), r'\1testrunner-ex'),
         (re.compile('( |")[^\n]+testrunner.py'), r'\1testrunner.py'),
         (re.compile(r'> [^\n]*(doc|unit)test[.]py\(\d+\)'),
@@ -112,12 +127,19 @@ else:
         (re.compile(r' line \d+,', re.IGNORECASE), r' Line NNN,'),
         (re.compile(r' line {([a-z]+)}\d+{', re.IGNORECASE), r' Line {\1}NNN{'),
 
-        # omit traceback entries for unittest.py or doctest.py from
-        # output:
-        (re.compile(r'^ +File "[^\n]*(doc|unit)test.py", [^\n]+\n[^\n]+\n',
+        # testtools content formatter is used to mime-encode
+        # tracebacks when the SubunitOutputFormatter is used, and the
+        # resulting text includes a size which can vary depending on
+        # the path included in the traceback.
+        (re.compile(r'traceback\n[A-F\d]+', re.MULTILINE),
+         r'traceback\nNNN'),
+
+        # omit traceback entries for unittest.py or doctest.py (and
+        # their package variants) from output:
+        (re.compile(r'^ +File "[^\n]*(doctest|unittest|case)(/__init__)?.py", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doc|unit)test.py{\w+}", [^\n]+\n[^\n]+\n',
+        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doctest|unittest|case)(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
         (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
@@ -163,6 +185,7 @@ def test_suite():
         'testrunner-repeat.txt',
         'testrunner-gc.txt',
         'testrunner-knit.txt',
+        'testrunner-shuffle.txt',
         setUp=setUp, tearDown=tearDown,
         optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
         checker=checker),
@@ -250,4 +273,29 @@ def test_suite():
             checker=checker,
             )
         )
+
+    try:
+        import subunit
+    except ImportError:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-subunit-err.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
+                checker=checker))
+    else:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-subunit.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
+                checker=checker))
+        if hasattr(sys, 'gettotalrefcount'):
+            suites.append(
+                doctest.DocFileSuite(
+                    'testrunner-subunit-leaks.txt',
+                    setUp=setUp, tearDown=tearDown,
+                    optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
+                    checker=checker))
+
     return unittest.TestSuite(suites)

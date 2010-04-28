@@ -49,14 +49,14 @@ package name and file path.
       Set up samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
       Running:
-        test_x1 (sample1.sampletests.test111.TestA)...
-        test_y0 (sample1.sampletests.test111.TestA)...
+        test_x1 (sample1.sampletests.test111.TestA)
+        test_y0 (sample1.sampletests.test111.TestA)
         ...
-        test_y0 (sampletests.test111)...
-        test_z1 (sampletests.test111)...
+        test_y0 (sampletests.test111)
+        test_z1 (sampletests.test111)
         testrunner-ex/sampletests/../sampletestsl.txt
-        test_extra_test_in_products (sample4.products.sampletests.Test)...
-        test_another_test_in_products (sample4.products.more.sampletests.Test)...
+        test_extra_test_in_products (sample4.products.sampletests.Test)
+        test_another_test_in_products (sample4.products.more.sampletests.Test)
       Ran 28 tests with 0 failures and 0 errors in 0.008 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.
@@ -77,8 +77,8 @@ or individual packages within knit-in packages:
       Set up samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
       Running:
-        test_extra_test_in_products (sample4.products.sampletests.Test)...
-        test_another_test_in_products (sample4.products.more.sampletests.Test)...
+        test_extra_test_in_products (sample4.products.sampletests.Test)
+        test_another_test_in_products (sample4.products.more.sampletests.Test)
       Ran 2 tests with 0 failures and 0 errors in 0.000 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.
@@ -95,7 +95,7 @@ or individual packages within knit-in packages:
       Set up samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
       Running:
-        test_another_test_in_products (sample4.products.more.sampletests.Test)...
+        test_another_test_in_products (sample4.products.more.sampletests.Test)
       Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.

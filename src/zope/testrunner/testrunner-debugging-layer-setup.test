@@ -5,7 +5,7 @@ setup.
     >>> tdir = tempfile.mkdtemp()
     >>> dir = os.path.join(tdir, 'TESTS-DIR')
     >>> os.mkdir(dir)
-    >>> written = open(os.path.join(dir, 'tests.py'), 'w').write(
+    >>> open(os.path.join(dir, 'tests.py'), 'w').write(
     ... '''
     ... import doctest
     ...
@@ -47,7 +47,7 @@ setup.
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS
     Running tests.Layer tests:
-      Set up tests.Layer ....ValueError:
+      Set up tests.Layer exceptions.ValueError:
     <BLANKLINE>
     > ...tests.py(8)setUp()
     -> raise ValueError
@@ -64,7 +64,7 @@ a subprocess:
     ... else:
     ...     sys.stdin = Input('p x\nc')
 
-    >>> written = open(os.path.join(dir, 'tests2.py'), 'w').write(
+    >>> open(os.path.join(dir, 'tests2.py'), 'w').write(
     ... '''
     ... import doctest, unittest
     ...
