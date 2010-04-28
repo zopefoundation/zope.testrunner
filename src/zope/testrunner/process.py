@@ -47,3 +47,5 @@ class SubProcess(zope.testrunner.feature.Feature):
             print >> self.original_stderr, ' '.join(str(test).strip().split('\n'))
         for test, exc_info in self.runner.errors:
             print >> self.original_stderr, ' '.join(str(test).strip().split('\n'))
+        # You need to flush in Python 3, and it doesn't hurt in Python 2:
+        self.original_stderr.flush()

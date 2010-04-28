@@ -457,10 +457,16 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
 
         while nfail > 0:
             nfail -= 1
-            failures.append((erriter.next().strip(), None))
+            # Doing erriter.next().strip() confuses the 2to3 fixer, so
+            # we need to do it on a separate line:
+            next_fail = erriter.next()
+            failures.append((next_fail.strip(), None))
         while nerr > 0:
             nerr -= 1
-            errors.append((erriter.next().strip(), None))
+            # Doing erriter.next().strip() confuses the 2to3 fixer, so
+            # we need to do it on a separate line:
+            next_err = erriter.next()
+            errors.append((next_err.strip(), None))
 
     finally:
         result.done = True
@@ -485,6 +491,8 @@ class DeferredSubprocessResult(AbstractSubprocessResult):
     """Keeps stdout around for later processing,"""
 
     def write(self, out):
+        if not isinstance(out, str): # It's binary, which means it's Python 3
+            out = out.decode()
         if not _is_dots(out):
             self.stdout.append(out)
 
@@ -493,6 +501,11 @@ class ImmediateSubprocessResult(AbstractSubprocessResult):
     """Sends complete output to queue."""
 
     def write(self, out):
+        if not isinstance(out, str):
+            # In Python 3, a Popen process stdout uses bytes,
+            # While normal stdout uses strings. So we need to convert
+            # from bytes to strings here.
+            out = out.decode()
         sys.stdout.write(out)
         # Help keep-alive monitors (human or automated) keep up-to-date.
         sys.stdout.flush()
@@ -511,6 +524,8 @@ class KeepaliveSubprocessResult(AbstractSubprocessResult):
     done = property(lambda self: self._done, _set_done)
 
     def write(self, out):
+        if not isinstance(out, str): # It's binary, which means it's Python 3
+            out = out.decode()
         if _is_dots(out):
             self.queue.put((self.layer_name, out.strip()))
         else:

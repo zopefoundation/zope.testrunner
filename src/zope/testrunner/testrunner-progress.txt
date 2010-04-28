@@ -162,6 +162,8 @@ The terminal width is determined using the curses module.  To see
 that, we'll provide a fake curses module:
 
     >>> class FakeCurses:
+    ...     class error(Exception):
+    ...         pass
     ...     def setupterm(self):
     ...         pass
     ...     def tigetnum(self, ignored):

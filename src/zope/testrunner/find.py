@@ -135,8 +135,8 @@ def find_suites(options):
                 if package:
                     module_name = package + '.' + module_name
 
-                for filter in options.module:
-                    if filter(module_name):
+                for filter_ in options.module:
+                    if filter_(module_name):
                         break
                 else:
                     continue

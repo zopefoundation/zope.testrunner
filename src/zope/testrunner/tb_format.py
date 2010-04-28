@@ -22,16 +22,26 @@ import zope.exceptions.exceptionformatter
 import zope.testrunner.feature
 
 
-def format_exception(t, v, tb, limit=None):
+def format_exception(t, v, tb, limit=None, chain=None):
+    if chain:
+        values = traceback._iter_chain(v, tb)
+    else:
+        values = [(v, tb)]
     fmt = zope.exceptions.exceptionformatter.TextExceptionFormatter(
         limit=None, with_filenames=True)
-    return fmt.formatException(t, v, tb)
+    for v, tb in values:
+        return fmt.formatException(t, v, tb)
 
 
-def print_exception(t, v, tb, limit=None, file=None):
+def print_exception(t, v, tb, limit=None, file=None, chain=None):
+    if chain:
+        values = traceback._iter_chain(v, tb)
+    else:
+        values = [(v, tb)]
     if file is None:
         file = sys.stdout
-    file.writelines(format_exception(t, v, tb, limit))
+    for v, tb in values:
+        file.writelines(format_exception(t, v, tb, limit))
 
 
 class Traceback(zope.testrunner.feature.Feature):

@@ -571,17 +571,19 @@ kinds.
     ----------------------------------------------------------------------
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
-        print pledge_template % ('and earthling', 'planet'),
+        print_pledge()
     Expected:
         I give my pledge, as an earthling,
         to save, and faithfully, to defend from waste,
         the natural resources of my planet.
         It's soils, minerals, forests, waters, and wildlife.
+        <BLANKLINE>
     Got:
         I give my pledge, as and earthling,
         to save, and faithfully, to defend from waste,
         the natural resources of my planet.
         It's soils, minerals, forests, waters, and wildlife.
+        <BLANKLINE>
     <BLANKLINE>
       Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
     Tearing down left over layers:
@@ -611,7 +613,7 @@ caret marking the mismatching column positions.
     ----------------------------------------------------------------------
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
-        print pledge_template % ('and earthling', 'planet'),
+        print_pledge()
     Differences (ndiff with -expected +actual):
         - I give my pledge, as an earthling,
         + I give my pledge, as and earthling,
@@ -619,6 +621,7 @@ caret marking the mismatching column positions.
           to save, and faithfully, to defend from waste,
           the natural resources of my planet.
           It's soils, minerals, forests, waters, and wildlife.
+        <BLANKLINE>
     <BLANKLINE>
       Ran 1 tests with 1 failures and 0 errors in 0.003 seconds.
     Tearing down left over layers:
@@ -639,7 +642,7 @@ The -udiff option requests a standard "unified" diff:
     ----------------------------------------------------------------------
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
-        print pledge_template % ('and earthling', 'planet'),
+        print_pledge()
     Differences (unified diff with -expected +actual):
         @@ -1,3 +1,3 @@
         -I give my pledge, as an earthling,
@@ -666,7 +669,7 @@ The -cdiff option requests a standard "context" diff:
     ----------------------------------------------------------------------
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
-        print pledge_template % ('and earthling', 'planet'),
+        print_pledge()
     Differences (context diff with expected followed by actual):
         ***************
         *** 1,3 ****
@@ -791,37 +794,6 @@ Then run the tests:
       sample2.sample21.sampletests_i
       sample2.sample23.sampletests_i
     Total: 165 tests, 0 failures, 0 errors in N.NNN seconds.
-    True
-
-
-Unicode Errors
---------------
-
-There was a bug preventing decent error reporting when a result contained
-unicode and another not:
-
-    >>> sys.argv = 'test --tests-pattern ^unicode$ -u'.split()
-    >>> testrunner.run_internal(defaults) # doctest: +REPORT_NDIFF
-    Running zope.testrunner.layer.UnitTests tests:
-      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    <BLANKLINE>
-    <BLANKLINE>
-    Failure testrunner-ex/unicode.txt
-    Failed doctest test for unicode.txt
-     testrunner-ex/unicode.txt", line 0
-    <BLANKLINE>
-    ----------------------------------------------------------------------
-    File testrunner-ex/unicode.txt", Line NNN, in unicode.txt
-    Failed example:
-        'xyz'
-    Expected:
-        123
-    Got:
-        'xyz'
-    <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in N.NNN seconds.
-    Tearing down left over layers:
-      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
 
 
