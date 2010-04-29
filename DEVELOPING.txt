@@ -40,6 +40,6 @@ a custom test command that will run the tests:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
 
 Which one you prefer is much a matter of taste. At the moment of writing
-buildout does not support Python 3, and therefore you must use this way
-of testing under Python 3.
+buildout does not support Python 3, and therefore you must use the latter way
+of running the tests in Python 3.
 

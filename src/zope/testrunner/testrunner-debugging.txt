@@ -25,10 +25,7 @@ runner will enter pdb at that point:
     ...     ]
 
     >>> real_stdin = sys.stdin
-    >>> if sys.version_info[:2] == (2, 3):
-    ...     sys.stdin = Input('n\np x\nc')
-    ... else:
-    ...     sys.stdin = Input('p x\nc')
+    >>> sys.stdin = Input('p x\nc')
 
     >>> sys.argv = ('test -ssample3 --tests-pattern ^sampletests_d$'
     ...             ' -t set_trace1').split()

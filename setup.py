@@ -25,6 +25,10 @@ import os
 import sys
 from setuptools import setup
 
+if sys.version_info < (2,4) or sys.version_info[:2] == (3,0):
+    raise ValueError("zope.testrunner requires Python 2.4 or higher, "
+                     "but not Python 3.0.")
+    
 if sys.version_info >= (3,):
     extra = dict(use_2to3 = True,
                  setup_requires = ['zope.fixers'],

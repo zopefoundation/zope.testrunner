@@ -35,10 +35,7 @@ setup.
     ...         return line+'\n'
 
     >>> real_stdin = sys.stdin
-    >>> if sys.version_info[:2] == (2, 3):
-    ...     sys.stdin = Input('n\np x\nc')
-    ... else:
-    ...     sys.stdin = Input('p x\nc')
+    >>> sys.stdin = Input('p x\nc')
 
     >>> sys.argv = [testrunner_script]
     >>> import zope.testrunner
@@ -59,10 +56,7 @@ setup.
 Note that post-mortem debugging doesn't work when the layer is run in
 a subprocess:
 
-    >>> if sys.version_info[:2] == (2, 3):
-    ...     sys.stdin = Input('n\np x\nc')
-    ... else:
-    ...     sys.stdin = Input('p x\nc')
+    >>> sys.stdin = Input('p x\nc')
 
     >>> written = open(os.path.join(dir, 'tests2.py'), 'w').write(
     ... '''

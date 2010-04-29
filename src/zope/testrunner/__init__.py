@@ -46,18 +46,6 @@ def run_internal(defaults=None, args=None, script_parts=None):
     return runner.failed
 
 
-###############################################################################
-# Install 2.4 TestSuite __iter__ into earlier versions
-
-if sys.version_info < (2, 4):
-    def __iter__(suite):
-        return iter(suite._tests)
-    unittest.TestSuite.__iter__ = __iter__
-    del __iter__
-
-# Install 2.4 TestSuite __iter__ into earlier versions
-###############################################################################
-
 if __name__ == '__main__':
     # allow people to try out the test runner with
     # python -m zope.testrunner --test-path .
