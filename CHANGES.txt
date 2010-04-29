@@ -1,7 +1,14 @@
 zope.testrunner Changelog
 *************************
 
+4.0.0b2 (Unreleased)
+====================
+
+- Having 'sampletests' in the MANIFEST.in gave warnings, but doesn't actually
+  seem to include any more files, so I removed it.
+  
+
 4.0.0b1 (2010-04-29)
 ====================
 
-- Extracted the testrunner from zope.testrunner to it's own module.
+- Initial release of the testrunner from zope.testrunner as it's own module.
