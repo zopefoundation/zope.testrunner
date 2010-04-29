@@ -168,7 +168,7 @@ setup(
     install_requires = ['setuptools',
                         'zope.exceptions',
                         'zope.interface',
-                        'zope.testing>=4.0.0dev',],
+                        'zope.testing',],
     entry_points = {
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',]},
