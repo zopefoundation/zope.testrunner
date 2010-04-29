@@ -71,12 +71,13 @@ class StartUpFailure(unittest.TestCase):
     
     >>> from zope.testrunner.interfaces import EndRun
     >>> try: #doctest: +ELLIPSIS
+    ...   try: # try...except...finally doesn't work in Python 2.4
     ...     print "Result:" # Needed to prevent the result from starting with '...'
     ...     StartUpFailure(options, None, exc_info)
-    ... except EndRun:
+    ...   except EndRun:
     ...     print "EndRun raised"
     ... finally:
-    ...    sys.stdin = old_stdin
+    ...   sys.stdin = old_stdin
     Result:
     ...Exception:
     <BLANKLINE>
