@@ -81,7 +81,10 @@ class Runner(object):
 
     def __init__(self, defaults=None, args=None, found_suites=None,
                  options=None, script_parts=None):
-        self.defaults = defaults
+        if defaults is None:
+            self.defaults = []
+        else:
+            self.defaults = defaults
         self.args = args
         self.found_suites = found_suites
         self.options = options
@@ -458,15 +461,17 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
         while nfail > 0:
             nfail -= 1
             # Doing erriter.next().strip() confuses the 2to3 fixer, so
-            # we need to do it on a separate line:
+            # we need to do it on a separate line. Also, in python 3 this
+            # returns bytes, so we decode it.
             next_fail = erriter.next()
-            failures.append((next_fail.strip(), None))
+            failures.append((next_fail.strip().decode(), None))
         while nerr > 0:
             nerr -= 1
             # Doing erriter.next().strip() confuses the 2to3 fixer, so
-            # we need to do it on a separate line:
+            # we need to do it on a separate line. Also, in python 3 this
+            # returns bytes, so we decode it.
             next_err = erriter.next()
-            errors.append((next_err.strip(), None))
+            errors.append((next_err.strip().decode(), None))
 
     finally:
         result.done = True
