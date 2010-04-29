@@ -60,6 +60,7 @@ if sys.version_info >= (3,):
                      'src/zope/testrunner/testrunner-ex/sampletestsl.txt',
                      'src/zope/testrunner/testrunner-ex/unicode.txt',
                      ],
+                 # Needed until Python 3 versions of all dependencies are released on PyPI:
                  dependency_links = ['.'],
                  )
 else:

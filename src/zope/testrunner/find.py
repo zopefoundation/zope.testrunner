@@ -69,12 +69,25 @@ class StartUpFailure(unittest.TestCase):
     postmortem debugger to indicate that debugging is finished and the
     test run should be terminated:
     
-    >>> try:
+    >>> from zope.testrunner.interfaces import EndRun
+    >>> try: #doctest: +ELLIPSIS
+    ...     print "Result:" # Needed to prevent the result from starting with '...'
     ...     StartUpFailure(options, None, exc_info)
+    ... except EndRun:
+    ...     print "EndRun raised"
     ... finally:
     ...    sys.stdin = old_stdin
-    Traceback (most recent call last):
-    EndRun
+    Result:
+    ...Exception:
+    <BLANKLINE>
+    ...
+    (Pdb) c
+    <BLANKLINE>
+    **********************************************************************
+    Can't use pdb.set_trace when running a layer as a subprocess!
+    **********************************************************************
+    <BLANKLINE>
+    EndRun raised
 
     Annoyingly, sometimes StartupFailures occur when postmortem debugging
     is enabled but no exc_info is passed. In this case, we raise a
