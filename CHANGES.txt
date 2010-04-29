@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.0.0 (Unreleased)
-==================
+4.0.0b1 (2010-04-29)
+====================
 
 - Extracted the testrunner from zope.testrunner to it's own module.
