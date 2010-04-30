@@ -7,6 +7,10 @@ zope.testrunner Changelog
 - Having 'sampletests' in the MANIFEST.in gave warnings, but doesn't actually
   seem to include any more files, so I removed it.
   
+- Moved zope.testing.exceptions to zope.testrunner.exceptions. Now
+  zope.testing no longer requires zope.testing except for when running its
+  own tests.
+  
 
 4.0.0b1 (2010-04-29)
 ====================
