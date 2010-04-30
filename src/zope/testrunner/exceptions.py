@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Exceptions for zope.testing
+"""Exceptions for zope.testrunner
 
 $Id$
 """

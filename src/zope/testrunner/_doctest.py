@@ -54,5 +54,5 @@ class DocTest(zope.testrunner.feature.Feature):
         doctest.set_unittest_reportflags(self.old_reporting_flags)
 
 # Use a special exception for the test runner.
-from zope.testing.exceptions import DocTestFailureException
+from zope.testrunner.exceptions import DocTestFailureException
 doctest.DocTestCase.failureException = DocTestFailureException

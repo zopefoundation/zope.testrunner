@@ -712,7 +712,7 @@ Testing-Module Import Errors
 If there are errors when importing a test module, these errors are
 reported.  In order to illustrate a module with a syntax error, we create
 one now:  this module used to be checked in to the project, but then it was
-included in distributions of projects using zope.testing too, and distutils
+included in distributions of projects using zope.testrunner too, and distutils
 complained about the syntax error when it compiled Python files during
 installation of such projects.  So first we create a module with bad syntax:
 
@@ -743,7 +743,7 @@ Then run the tests:
     <BLANKLINE>
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sample21/sampletests_i.py", line 15, in ?
-        import zope.testing.huh
+        import zope.testrunner.huh
     ImportError: No module named huh
     <BLANKLINE>
     <BLANKLINE>

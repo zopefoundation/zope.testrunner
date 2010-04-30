@@ -98,9 +98,9 @@ Before we can run the tests, we need to setup some helpers.
 >>> from zope.testrunner import options
 >>> from zope.testing.loggingsupport import InstalledHandler
 >>> import logging
->>> log_handler = InstalledHandler('zope.testing.tests')
+>>> log_handler = InstalledHandler('zope.testrunner.tests')
 >>> def log(msg):
-...     logging.getLogger('zope.testing.tests').info(msg)
+...     logging.getLogger('zope.testrunner.tests').info(msg)
 >>> def fresh_options():
 ...     opts = options.get_options(['--test-filter', '.*'])
 ...     opts.resume_layer = None

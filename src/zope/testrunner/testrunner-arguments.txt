@@ -52,7 +52,7 @@ different default, that one takes effect.
       test_x0 (sample1.sampletests.test111)
       test_y0 (sample1.sampletests.test111)
       test_z1 (sample1.sampletests.test111)
-      /home/benji/workspace/zope.testing/1/src/zope/testing/testrunner/testrunner-ex/sample1/sampletests/../../sampletestsl.txt
+      /home/benji/workspace/zope.testrunner/1/src/zope/testing/testrunner/testrunner-ex/sample1/sampletests/../../sampletestsl.txt
       test_x1 (sampletests.test111.TestA)
       test_y0 (sampletests.test111.TestA)
       test_z0 (sampletests.test111.TestA)
@@ -65,5 +65,5 @@ different default, that one takes effect.
       test_x0 (sampletests.test111)
       test_y0 (sampletests.test111)
       test_z1 (sampletests.test111)
-      /home/benji/workspace/zope.testing/1/src/zope/testing/testrunner/testrunner-ex/sampletests/../sampletestsl.txt
+      /home/benji/workspace/zope.testrunner/1/src/zope/testing/testrunner/testrunner-ex/sampletests/../sampletestsl.txt
     False

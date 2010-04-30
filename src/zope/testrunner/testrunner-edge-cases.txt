@@ -381,7 +381,7 @@ Post-mortem debugging of a docfile doctest failure:
     Running zope.testrunner.layer.UnitTests tests:...
     <BLANKLINE>
     <BLANKLINE>
-    Error in test /home/jim/z3/zope.testing/src/zope/testing/testrunner-ex/sample3/post_mortem_failure.txt
+    Error in test /home/jim/z3/zope.testrunner/src/zope/testing/testrunner-ex/sample3/post_mortem_failure.txt
     <BLANKLINE>
     File "testrunner-ex/sample3/post_mortem_failure.txt",
                                       line 2, in post_mortem_failure.txt

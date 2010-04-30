@@ -236,21 +236,21 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     4B6\r
     <BLANKLINE>
     Failed doctest test for sample2.sampletests_e.eek
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 29, in eek
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 29, in eek
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 31, in sample2.sampletests_e.eek
+    File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 31, in sample2.sampletests_e.eek
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
+          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
             compileflags, 1) in test.globs
           File "<doctest sample2.sampletests_e.eek[0]>", line 1, in <module>
             f()
-          File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
+          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
-          File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 25, in g
+          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 25, in g
             x = y + 1
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
@@ -270,11 +270,11 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     Traceback (most recent call last):
       File "/usr/lib/python2.6/unittest.py", line 279, in run
         testMethod()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 44, in test3
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 44, in test3
         f()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
         g()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 25, in g
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 25, in g
         x = y + 1
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
@@ -293,15 +293,15 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     329\r
     <BLANKLINE>
     Failed doctest test for e.txt
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/e.txt", line 0
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/e.txt", line 0
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/e.txt", line 4, in e.txt
+    File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/e.txt", line 4, in e.txt
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
+          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
             compileflags, 1) in test.globs
           File "<doctest e.txt[1]>", line 1, in <module>
             f()
@@ -393,7 +393,7 @@ And then run the tests:
     error: sample2.sample21.sampletests_i [
     Traceback (most recent call last):
      testrunner-ex/sample2/sample21/sampletests_i.py", Line NNN, in ?
-        import zope.testing.huh
+        import zope.testrunner.huh
     ImportError: No module named huh
     ]
     test: sample2.sample23.sampletests_i
@@ -596,7 +596,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     Traceback (most recent call last):
       File "/usr/lib/python2.6/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 42, in test_error1
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 42, in test_error1
         raise TypeError("Can we see errors")
     TypeError: Can we see errors
     0\r
@@ -614,7 +614,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     Traceback (most recent call last):
       File "/usr/lib/python2.6/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 45, in test_error2
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 45, in test_error2
         raise TypeError("I hope so")
     TypeError: I hope so
     0\r
@@ -632,7 +632,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     Traceback (most recent call last):
       File "/usr/lib/python2.6/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 48, in test_fail1
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 48, in test_fail1
         self.assertEqual(1, 2)
       File "/usr/lib/python2.6/unittest.py", line 350, in failUnlessEqual
         (msg or '%r != %r' % (first, second))
@@ -652,7 +652,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     Traceback (most recent call last):
       File "/usr/lib/python2.6/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
-      File "/home/jml/src/zope.testing/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 51, in test_fail2
+      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 51, in test_fail2
         self.assertEqual(1, 3)
       File "/usr/lib/python2.6/unittest.py", line 350, in failUnlessEqual
         (msg or '%r != %r' % (first, second))

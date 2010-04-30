@@ -13,7 +13,7 @@
 ##############################################################################
 
 import unittest
-import zope.testing.huh
+import zope.testrunner.huh
 
 class Test(unittest.TestCase):
 

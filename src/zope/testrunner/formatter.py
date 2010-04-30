@@ -25,7 +25,7 @@ import traceback
 
 from datetime import datetime, timedelta
 
-from zope.testing.exceptions import DocTestFailureException
+from zope.testrunner.exceptions import DocTestFailureException
 
 doctest_template = """
 File "%s", line %s, in %s
@@ -671,7 +671,7 @@ class FakeTest(object):
         return self._id
 
 
-# Conditional imports, we don't want zope.testing to have a hard dependency on
+# Conditional imports, we don't want zope.testrunner to have a hard dependency on
 # subunit.
 try:
     import subunit

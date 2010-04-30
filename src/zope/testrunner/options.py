@@ -556,7 +556,7 @@ def get_options(args=None, defaults=None):
     options.original_testrunner_args = args
 
     if options.showversion:
-        dist = pkg_resources.require('zope.testing')[0]
+        dist = pkg_resources.require('zope.testrunner')[0]
         print 'zope.app.testrunner version %s' % dist.version
         options.fail = True
         return options
@@ -670,28 +670,28 @@ def get_options(args=None, defaults=None):
 def normalize_package(package, package_map={}):
     r"""Normalize package name passed to the --package option.
 
-        >>> normalize_package('zope.testing')
-        'zope.testing'
+        >>> normalize_package('zope.testrunner')
+        'zope.testrunner'
 
     Converts path names into package names for compatibility with the old
     test runner.
 
-        >>> normalize_package('zope/testing')
-        'zope.testing'
-        >>> normalize_package('zope/testing/')
-        'zope.testing'
-        >>> normalize_package('zope\\testing')
-        'zope.testing'
+        >>> normalize_package('zope/testrunner')
+        'zope.testrunner'
+        >>> normalize_package('zope/testrunner/')
+        'zope.testrunner'
+        >>> normalize_package('zope\\testrunner')
+        'zope.testrunner'
 
     Can use a map of absolute pathnames to package names
 
         >>> a = os.path.abspath
-        >>> normalize_package('src/zope/testing/',
+        >>> normalize_package('src/zope/testrunner/',
         ...                   {a('src'): ''})
-        'zope.testing'
-        >>> normalize_package('src/zope_testing/',
-        ...                   {a('src/zope_testing'): 'zope.testing'})
-        'zope.testing'
+        'zope.testrunner'
+        >>> normalize_package('src/zope_testrunner/',
+        ...                   {a('src/zope_testrunner'): 'zope.testrunner'})
+        'zope.testrunner'
         >>> normalize_package('src/zope_something/tests',
         ...                   {a('src/zope_something'): 'zope.something',
         ...                    a('src'): ''})

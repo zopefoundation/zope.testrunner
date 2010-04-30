@@ -73,7 +73,7 @@ else:
 from setuptools.command.test import test
 
 class custom_test(test):
-    # The zope.testing tests MUST be run using it's own testrunner. This is
+    # The zope.testrunner tests MUST be run using it's own testrunner. This is
     # because it's subprocess testing will call the script it was run with. We
     # therefore create a script to run the testrunner, and call that.
     def run(self):
@@ -172,8 +172,8 @@ setup(
     namespace_packages=['zope',],
     install_requires = ['setuptools',
                         'zope.exceptions',
-                        'zope.interface',
-                        'zope.testing',],
+                        'zope.interface',],
+    tests_requires = ['zope.testing',],
     entry_points = {
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',]},

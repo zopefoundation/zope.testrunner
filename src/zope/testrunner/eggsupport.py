@@ -31,14 +31,14 @@ class SkipLayers(ScanningLoader):
     o To run layer-dependent tests, use 'setup.py ftest' (see below for
       adding the command to your setup.py).
 
-    o To use this loader your pacakge add the following your 'setup()'
+    o To use this loader your package add the following your 'setup()'
       call::
 
       setup(
       ...
       setup_requires=['eggtestinfo' # captures testing metadata in EGG-INFO
                      ],
-      tests_require=['zope.testing >= 3.6.1dev', #XXX fix version at release
+      tests_require=['zope.testrunner',
                     ],
       ...
       test_loader='zope.testrunner.eggsupport:SkipLayers',
@@ -59,7 +59,7 @@ class ftest(BaseCommand):
     o Note that this command runs *all* tests (unit *and* functional).
     
     o This command does not provide any of the configuration options which
-      the usual testrunner provided by 'zope.testing' offers:  it is intended
+      the usual testrunner provided by 'zope.testrunner' offers:  it is intended
       to allow easy verification that a package has been installed correctly
       via setuptools, but is not likely to be useful for developers working
       on the package.
@@ -73,7 +73,7 @@ class ftest(BaseCommand):
 
       setup(
       ...
-      setup_requires=['zope.testing >= 3.6.1dev', #XXX fix version at release
+      setup_requires=['zope.testrunner',
                       'eggtestinfo' # captures testing metadata in EGG-INFO
                      ],
       ...
