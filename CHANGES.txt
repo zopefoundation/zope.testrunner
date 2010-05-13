@@ -4,19 +4,19 @@ zope.testrunner Changelog
 4.0.0b3 (unreleased)
 ====================
 
-- Nothing changed yet.
-
+- LP #579019: When layers were run in parallel, their tearDown was
+  not called. Additionally, the first layer which was run in the main
+  thread did not have it's tearDown called either.
 
 4.0.0b2 (2010-05-03)
 ====================
 
 - Having 'sampletests' in the MANIFEST.in gave warnings, but doesn't actually
   seem to include any more files, so I removed it.
-  
+
 - Moved zope.testing.exceptions to zope.testrunner.exceptions. Now
-  zope.testrunner no longer requires zope.testing except for when running 
+  zope.testrunner no longer requires zope.testing except for when running
   its own tests.
-  
 
 4.0.0b1 (2010-04-29)
 ====================
