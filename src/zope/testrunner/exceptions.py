@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Exceptions for zope.testrunner
-
-$Id$
 """
 
 class DocTestFailureException(AssertionError):

@@ -11,11 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""XXX short summary goes here.
-
-$Id$
-"""
-
 import unittest
 import doctest
 

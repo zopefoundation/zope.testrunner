@@ -17,8 +17,6 @@
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
 """Setup for zope.testrunner package
-
-$Id: setup.py 110769 2010-04-13 10:30:45Z sidnei $
 """
 
 import os
