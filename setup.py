@@ -172,6 +172,7 @@ setup(
                         'zope.exceptions',
                         'zope.interface',],
     tests_require = ['zope.testing',],
+    extras_require = {'test': ['zope.testing',]},
     entry_points = {
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',]},
