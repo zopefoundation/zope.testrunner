@@ -8,6 +8,9 @@ zope.testrunner Changelog
   distutils appears to munge the empty ``__init__.py`` file in the
   ``foo.bar`` egg used for testing into a directory.
 
+- LP #580083: fix the ``bin/test`` script to run only tests from
+  ``zope.testrunner``.
+
 - LP #579019: When layers were run in parallel, their tearDown was
   not called. Additionally, the first layer which was run in the main
   thread did not have it's tearDown called either.
