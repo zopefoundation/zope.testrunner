@@ -4,6 +4,9 @@ zope.testrunner Changelog
 4.0.0b3 (unreleased)
 ====================
 
+- LP #221151: keep ``unittest.TestCase.shortDescription`` happy by supplying
+  a ``_testMethodDoc`` attribute.
+
 - LP #595052: keep the distribution installable under Python 2.4:  its
   distutils appears to munge the empty ``__init__.py`` file in the
   ``foo.bar`` egg used for testing into a directory.
