@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.0.0b3 (unreleased)
+4.0.0b3 (2010-06-16)
 ====================
 
 - LP #221151: keep ``unittest.TestCase.shortDescription`` happy by supplying
