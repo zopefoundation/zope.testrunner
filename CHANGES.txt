@@ -1,10 +1,11 @@
 zope.testrunner Changelog
 *************************
 
-4.0.0 (unreleased)
-==================
+4.0.0b4 (2010-06-23)
+====================
 
-- TBD
+- Package as a zipefile to work around Python 2.4 distutils bug (no
+  feature changes or bugfixes in ``zope.testrunner`` itself).
 
 
 4.0.0b3 (2010-06-16)
