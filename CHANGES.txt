@@ -4,12 +4,13 @@ zope.testrunner Changelog
 4.0.0 (unreleased)
 ==================
 
-- TBD
+- Update fix for LP #221151 to a spelliing compatible with Pythont 2.4.
+
 
 4.0.0b4 (2010-06-23)
 ====================
 
-- Package as a zipefile to work around Python 2.4 distutils bug (no
+- Package as a zipfile to work around Python 2.4 distutils bug (no
   feature changes or bugfixes in ``zope.testrunner`` itself).
 
 
