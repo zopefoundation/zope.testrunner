@@ -296,4 +296,8 @@ def test_suite():
                     optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
                     checker=checker))
 
+        suites.append(
+            unittest.defaultTestLoader.loadTestsFromName(
+                'zope.testrunner.test_subunit'))
+
     return unittest.TestSuite(suites)

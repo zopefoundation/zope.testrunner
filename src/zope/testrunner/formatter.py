@@ -717,14 +717,18 @@ class SubunitOutputFormatter(object):
     TAG_THREADS = 'zope:threads'
     TAG_REFCOUNTS = 'zope:refcounts'
 
-    def __init__(self, options):
+    def __init__(self, options, stream=None):
         if subunit is None:
             raise Exception("Requires subunit 0.0.5 or better")
         if content is None:
             raise Exception("Requires testtools 0.9.2 or better")
         self.options = options
-        self._stream = sys.stdout
+
+        if stream is None:
+            stream = sys.stdout
+        self._stream = stream
         self._subunit = subunit.TestProtocolClient(self._stream)
+
         # Used to track the last layer that was set up or torn down. Either
         # None or (layer_name, last_touched_time).
         self._last_layer = None
@@ -912,9 +916,18 @@ class SubunitOutputFormatter(object):
         # create an object equivalent to an instance of 'TracebackContent'.
         formatter = OutputFormatter(None)
         traceback = formatter.format_traceback(exc_info)
+
+        # We have no idea if the traceback is a unicode object or a bytestring
+        # with non-ASCII characters.  We had best be careful when handling it.
+        if isinstance(traceback, unicode):
+            unicode_tb = traceback
+        else:
+            # Assume the traceback was utf-8 encoded, but still be careful.
+            unicode_tb = traceback.decode('utf8', 'replace')
+
         return {
             'traceback': content.Content(
-                self.TRACEBACK_CONTENT_TYPE, lambda: [traceback.encode('utf8')])}
+                self.TRACEBACK_CONTENT_TYPE, lambda: [unicode_tb.encode('utf8')])}
 
     def test_error(self, test, seconds, exc_info):
         """Report that an error occurred while running a test.

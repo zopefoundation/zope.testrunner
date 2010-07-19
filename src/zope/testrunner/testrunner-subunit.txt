@@ -164,34 +164,34 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     ...     'test', '--subunit' , '--tests-pattern', '^sampletests_e$',
     ...     ]
     >>> testrunner.run_internal(defaults)
-    time: 2010-02-05 15:27:05.113541Z
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: zope.testrunner.layer.UnitTests:setUp
     tags: zope:layer
-    time: 2010-02-05 15:27:05.113545Z
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: zope.testrunner.layer.UnitTests:setUp
     tags: zope:layer:zope.testrunner.layer.UnitTests
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.eek
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: sample2.sampletests_e.eek [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
-    4B6\r
+    NNN\r
     <BLANKLINE>
     Failed doctest test for sample2.sampletests_e.eek
-      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 29, in eek
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in eek
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 31, in sample2.sampletests_e.eek
+    File testrunner-ex/sample2/sampletests_e.py", Line NNN, in sample2.sampletests_e.eek
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
-            compileflags, 1) in test.globs
-          File "<doctest sample2.sampletests_e.eek[0]>", line 1, in <module>
+          File "<doctest sample2.sampletests_e.eek[0]>", Line NNN, in ?
             f()
-          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in f
             g()
-          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 25, in g
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
             x = y + 1
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
@@ -212,16 +212,14 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     error: sample2.sampletests_e.Test.test3 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
-    29F\r
+    NNN\r
     <BLANKLINE>
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 279, in run
-        testMethod()
-      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 44, in test3
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in test3
         f()
-      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 19, in f
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in f
         g()
-      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/sampletests_e.py", line 25, in g
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
         x = y + 1
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
@@ -239,36 +237,33 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: e_txt
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    failure: e_txt [
-    multipart
+    failure: e_txt [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
-    329\r
+    NNN\r
     <BLANKLINE>
     Failed doctest test for e.txt
-      File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/e.txt", line 0
+     testrunner-ex/sample2/e.txt", line 0
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample2/e.txt", line 4, in e.txt
+    File testrunner-ex/sample2/e.txt", Line NNN, in e.txt
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
-          File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/doctest/__init__.py", line 1355, in __run
-            compileflags, 1) in test.globs
-          File "<doctest e.txt[1]>", line 1, in <module>
+          File "<doctest e.txt[1]>", Line NNN, in ?
             f()
-          File "<doctest e.txt[0]>", line 2, in f
+          File "<doctest e.txt[0]>", Line NNN, in f
             return x
         NameError: global name 'x' is not defined
     0\r
     <BLANKLINE>
     ]
     tags: -zope:layer:zope.testrunner.layer.UnitTests
-    time: 2010-02-05 15:27:05.147082Z
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: zope.testrunner.layer.UnitTests:tearDown
     tags: zope:layer
-    time: 2010-02-05 15:27:05.147088Z
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: zope.testrunner.layer.UnitTests:tearDown
     True
 
@@ -337,8 +332,7 @@ And then run the tests:
     test: sample2.sampletests_i
     tags: zope:import_error
     error: sample2.sampletests_i [
-    Traceback (most recent call last):
-     testrunner-ex/sample2/sampletests_i.py", line 1
+      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sampletests_i.py", line 1
         importx unittest
                        ^
     SyntaxError: invalid syntax
@@ -347,7 +341,7 @@ And then run the tests:
     tags: zope:import_error
     error: sample2.sample21.sampletests_i [
     Traceback (most recent call last):
-     testrunner-ex/sample2/sample21/sampletests_i.py", Line NNN, in ?
+      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
         import zope.testrunner.huh
     ImportError: No module named huh
     ]
@@ -355,13 +349,13 @@ And then run the tests:
     tags: zope:import_error
     error: sample2.sample23.sampletests_i [
     Traceback (most recent call last):
-     testrunner-ex/sample2/sample23/sampletests_i.py", Line NNN, in ?
+      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample23/sampletests_i.py", line 17, in <module>
         class Test(unittest.TestCase):
-     testrunner-ex/sample2/sample23/sampletests_i.py", Line NNN, in Test
+      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample23/sampletests_i.py", line 22, in Test
         raise TypeError('eek')
     TypeError: eek
     ]
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    time: 2010-07-19 21:27:16.708260Z
     test: samplelayers.Layer1:setUp
     tags: zope:layer
     ...

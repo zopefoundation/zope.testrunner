@@ -26,7 +26,7 @@ from setuptools import setup
 if sys.version_info < (2,4) or sys.version_info[:2] == (3,0):
     raise ValueError("zope.testrunner requires Python 2.4 or higher, "
                      "but not Python 3.0.")
-    
+
 if sys.version_info >= (3,):
     extra = dict(use_2to3 = True,
                  setup_requires = ['zope.fixers'],
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         script = template % (sys.path, os.path.abspath(os.curdir), os.path.abspath('src'))
         scriptfile.write(script)
         scriptfile.close()
- 
+
         import subprocess
         process = subprocess.Popen([sys.executable, filename])
         process.wait()
@@ -171,8 +171,8 @@ setup(
     install_requires = ['setuptools',
                         'zope.exceptions',
                         'zope.interface',],
-    tests_require = ['zope.testing',],
-    extras_require = {'test': ['zope.testing',]},
+    tests_require = ['zope.testing', 'python-subunit'],
+    extras_require = {'test': ['zope.testing', 'python-subunit']},
     entry_points = {
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',]},
