@@ -48,65 +48,6 @@ Once the layer is set up, all future tests are tagged with
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: samplelayers.Layer122:setUp
     tags: zope:layer:samplelayers.Layer122
-    test: sample1.sampletests.test122.TestNotMuch.test_1
-    successful: sample1.sampletests.test122.TestNotMuch.test_1
-    test: sample1.sampletests.test122.TestNotMuch.test_2
-    successful: sample1.sampletests.test122.TestNotMuch.test_2
-    test: sample1.sampletests.test122.TestNotMuch.test_3
-    successful: sample1.sampletests.test122.TestNotMuch.test_3
-    test: sampletests.test122.TestNotMuch.test_1
-    successful: sampletests.test122.TestNotMuch.test_1
-    test: sampletests.test122.TestNotMuch.test_2
-    successful: sampletests.test122.TestNotMuch.test_2
-    test: sampletests.test122.TestNotMuch.test_3
-    successful: sampletests.test122.TestNotMuch.test_3
-    tags: -zope:layer:samplelayers.Layer122
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: samplelayers.Layer122:tearDown
-    tags: zope:layer
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: samplelayers.Layer122:tearDown
-    tags: -zope:layer:samplelayers.Layer12
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: samplelayers.Layer12:tearDown
-    tags: zope:layer
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: samplelayers.Layer12:tearDown
-    tags: -zope:layer:samplelayers.Layer1
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: samplelayers.Layer1:tearDown
-    tags: zope:layer
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: samplelayers.Layer1:tearDown
-    False
-
-
-Timing tests
-------------
-
-When verbosity is high enough, the subunit stream includes timing information
-for the actual tests, as well as for the layers.
-
-    >>> sys.argv = 'test --layer 122 -vvv --subunit -t TestNotMuch'.split()
-    >>> testrunner.run_internal(defaults)
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: samplelayers.Layer1:setUp
-    tags: zope:layer
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: samplelayers.Layer1:setUp
-    tags: zope:layer:samplelayers.Layer1
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: samplelayers.Layer12:setUp
-    tags: zope:layer
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: samplelayers.Layer12:setUp
-    tags: zope:layer:samplelayers.Layer12
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    test: samplelayers.Layer122:setUp
-    tags: zope:layer
-    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
-    successful: samplelayers.Layer122:setUp
-    tags: zope:layer:samplelayers.Layer122
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample1.sampletests.test122.TestNotMuch.test_1
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -257,11 +198,17 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     0\r
     <BLANKLINE>
     ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.Test.test1
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_e.Test.test1
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.Test.test2
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_e.Test.test2
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.Test.test3
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample2.sampletests_e.Test.test3 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -281,11 +228,17 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     0\r
     <BLANKLINE>
     ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.Test.test4
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_e.Test.test4
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.Test.test5
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_e.Test.test5
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: e_txt
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: e_txt [
     multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
@@ -344,7 +297,9 @@ that the layer skipped its tearDown.
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample2.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_ntd.TestSomething.test_something
     tags: -zope:layer:sample2.sampletests_ntd.Layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -434,7 +389,9 @@ resuming tests where it left off:
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample1.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample1.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample1.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample1.sampletests_ntd.TestSomething.test_something
     tags: -zope:layer:sample1.sampletests_ntd.Layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -453,7 +410,9 @@ resuming tests where it left off:
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample2.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_ntd.TestSomething.test_something
     tags: -zope:layer:sample2.sampletests_ntd.Layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -472,7 +431,9 @@ resuming tests where it left off:
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample3.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample3.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_error1
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error1 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -485,7 +446,9 @@ resuming tests where it left off:
     0\r
     <BLANKLINE>
     ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_error2
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error2 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -498,7 +461,9 @@ resuming tests where it left off:
     0\r
     <BLANKLINE>
     ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_fail1
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: sample3.sampletests_ntd.TestSomething.test_fail1 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -511,7 +476,9 @@ resuming tests where it left off:
     0\r
     <BLANKLINE>
     ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_fail2
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: sample3.sampletests_ntd.TestSomething.test_fail2 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -524,9 +491,13 @@ resuming tests where it left off:
     0\r
     <BLANKLINE>
     ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample3.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_something_else
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample3.sampletests_ntd.TestSomething.test_something_else
     tags: -zope:layer:sample3.sampletests_ntd.Layer
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -549,7 +520,9 @@ Note that debugging doesn't work when running tests in a subprocess:
     time: 2010-02-10 22:41:25.279695Z
     successful: sample1.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample1.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample1.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample1.sampletests_ntd.TestSomething.test_something
     tags: -zope:layer:sample1.sampletests_ntd.Layer
     time: 2010-02-10 22:41:25.310078Z
@@ -568,7 +541,9 @@ Note that debugging doesn't work when running tests in a subprocess:
     time: 2010-02-10 22:41:25.753079Z
     successful: sample2.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample2.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample2.sampletests_ntd.TestSomething.test_something
     tags: -zope:layer:sample2.sampletests_ntd.Layer
     time: 2010-02-10 22:41:25.779256Z
@@ -587,7 +562,9 @@ Note that debugging doesn't work when running tests in a subprocess:
     time: 2010-02-10 22:41:26.310299Z
     successful: sample3.sampletests_ntd.Layer:setUp
     tags: zope:layer:sample3.sampletests_ntd.Layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_error1
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error1 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -605,7 +582,9 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: Can't post-mortem debug when running a layer as a subprocess!
     tags: zope:error_with_banner
     successful: Can't post-mortem debug when running a layer as a subprocess!
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_error2
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error2 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -623,7 +602,9 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: Can't post-mortem debug when running a layer as a subprocess!
     tags: zope:error_with_banner
     successful: Can't post-mortem debug when running a layer as a subprocess!
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_fail1
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_fail1 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -643,7 +624,9 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: Can't post-mortem debug when running a layer as a subprocess!
     tags: zope:error_with_banner
     successful: Can't post-mortem debug when running a layer as a subprocess!
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_fail2
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_fail2 [ multipart
     Content-Type: text/x-traceback;charset=utf8,language=python
     traceback
@@ -663,9 +646,13 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: Can't post-mortem debug when running a layer as a subprocess!
     tags: zope:error_with_banner
     successful: Can't post-mortem debug when running a layer as a subprocess!
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample3.sampletests_ntd.TestSomething.test_something
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample3.sampletests_ntd.TestSomething.test_something_else
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     successful: sample3.sampletests_ntd.TestSomething.test_something_else
     tags: -zope:layer:sample3.sampletests_ntd.Layer
     time: 2010-02-10 22:41:26.340878Z

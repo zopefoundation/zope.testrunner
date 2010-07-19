@@ -737,10 +737,6 @@ class SubunitOutputFormatter(object):
         self.PLAIN_TEXT = content.ContentType(
             'text', 'plain', {'charset': 'utf8'})
 
-    @property
-    def _time_tests(self):
-        return self.verbose > 2
-
     def _emit_timestamp(self, now=None):
         """Emit a timestamp to the subunit stream.
 
@@ -875,8 +871,7 @@ class SubunitOutputFormatter(object):
         The next output operation should be test_success(), test_error(), or
         test_failure().
         """
-        if self._time_tests:
-            self._emit_timestamp()
+        self._emit_timestamp()
         # Note that this always emits newlines, so it will function as well as
         # other start_test implementations if we are running in a subprocess.
         self._subunit.startTest(test)
@@ -891,8 +886,7 @@ class SubunitOutputFormatter(object):
         self._stream.flush()
 
     def test_success(self, test, seconds):
-        if self._time_tests:
-            self._emit_timestamp()
+        self._emit_timestamp()
         self._subunit.addSuccess(test)
 
     def import_errors(self, import_errors):
@@ -929,8 +923,7 @@ class SubunitOutputFormatter(object):
 
         The next output operation should be stop_test().
         """
-        if self._time_tests:
-            self._emit_timestamp()
+        self._emit_timestamp()
         details = self._exc_info_to_details(exc_info)
         self._subunit.addError(test, details=details)
 
@@ -941,8 +934,7 @@ class SubunitOutputFormatter(object):
 
         The next output operation should be stop_test().
         """
-        if self._time_tests:
-            self._emit_timestamp()
+        self._emit_timestamp()
         details = self._exc_info_to_details(exc_info)
         self._subunit.addFailure(test, details=details)
 
