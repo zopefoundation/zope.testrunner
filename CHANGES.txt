@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.0.0b5 (unreleased)
+4.0.0b5 (2010-07-20)
 ====================
 
 - Update fix for LP #221151 to a spelliing compatible with Python 2.4.
