@@ -105,7 +105,7 @@ a subprocess:
     Running tests2.Layer2 tests:
       Tear down tests2.Layer1 ... not supported
       Running in a subprocess.
-      Set up tests2.Layer2 
+      Set up tests2.Layer2
     **********************************************************************
     <BLANKLINE>
     Can't post-mortem debug when running a layer as a subprocess!
@@ -120,7 +120,7 @@ a subprocess:
     <BLANKLINE>
     <BLANKLINE>
     Tests with errors:
-       runTest (zope.testrunner.runner.SetUpLayerFailure)
+       Layer: tests2.Layer2
     Total: 1 tests, 0 failures, 1 errors in 0.210 seconds.
     True
 

@@ -1,11 +1,19 @@
 zope.testrunner Changelog
 *************************
 
+After 4.0.0b5 (unreleased)
+==========================
+
+- Show more information about layers whose setup fails (LP #638153).
+
+
 4.0.0b5 (2010-07-20)
 ====================
 
 - Update fix for LP #221151 to a spelliing compatible with Python 2.4.
+
 - Timestamps are now always included in subunit output (r114849).
+
 - LP #591309: fix a crash when subunit reports test failures containing
   UTF8-encoded data.
 

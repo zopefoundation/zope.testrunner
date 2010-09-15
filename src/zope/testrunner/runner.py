@@ -371,7 +371,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         f = cStringIO.StringIO()
         traceback.print_exc(file=f)
         output.error(f.getvalue())
-        errors.append((SetUpLayerFailure(), sys.exc_info()))
+        errors.append((SetUpLayerFailure(layer), sys.exc_info()))
         return 0
     else:
         return run_tests(options, tests, layer_name, failures, errors)
@@ -379,8 +379,15 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
 
 class SetUpLayerFailure(unittest.TestCase):
 
+    def __init__(self, layer):
+        super(SetUpLayerFailure, self).__init__()
+        self.layer = layer
+
     def runTest(self):
-        "Layer set up failure."
+        pass
+
+    def __str__(self):
+        return "Layer: %s" % self.layer
 
 
 def spawn_layer_in_subprocess(result, script_parts, options, features,
