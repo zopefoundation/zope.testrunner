@@ -45,6 +45,7 @@ import zope.testrunner.interfaces
 import zope.testrunner.debug
 import zope.testrunner.tb_format
 import zope.testrunner.shuffle
+import zope.testrunner.transactions
 
 
 PYREFCOUNT_PATTERN = re.compile('\[[0-9]+ refs\]')
@@ -188,6 +189,7 @@ class Runner(object):
                 zope.testrunner.garbagecollection.Threshold(self))
             self.features.append(
                 zope.testrunner.garbagecollection.Debug(self))
+        self.features.append(zope.testrunner.transactions.Transaction(self))
 
         self.features.append(zope.testrunner.find.Find(self))
         self.features.append(zope.testrunner.shuffle.Shuffle(self))
@@ -217,7 +219,8 @@ class Runner(object):
                 feature.layer_setup(layer)
             try:
                 self.ran += run_layer(self.options, layer_name, layer, tests,
-                                      setup_layers, self.failures, self.errors)
+                                      setup_layers, self.failures, self.errors,
+                                      self.features)
             except zope.testrunner.interfaces.EndRun:
                 self.failed = True
                 return
@@ -245,7 +248,7 @@ class Runner(object):
         self.failed = bool(self.import_errors or self.failures or self.errors)
 
 
-def run_tests(options, tests, name, failures, errors):
+def run_tests(options, tests, name, failures, errors, features):
     repeat = options.repeat or 1
     repeat_range = iter(range(repeat))
     ran = 0
@@ -281,6 +284,9 @@ def run_tests(options, tests, name, failures, errors):
             for test in tests:
                 if result.shouldStop:
                     break
+
+                for feature in features:
+                    feature.before_test(test)
                 result.startTest(test)
                 state = test.__dict__.copy()
                 try:
@@ -297,6 +303,8 @@ def run_tests(options, tests, name, failures, errors):
                         result.addSuccess(test)
                 finally:
                     result.stopTest(test)
+                for feature in features:
+                    feature.after_test(test)
                 test.__dict__.clear()
                 test.__dict__.update(state)
 
@@ -306,7 +314,11 @@ def run_tests(options, tests, name, failures, errors):
                 if result.shouldStop:
                     break
                 state = test.__dict__.copy()
+                for feature in features:
+                    feature.before_test(test)
                 test(result)
+                for feature in features:
+                    feature.after_test(test)
                 test.__dict__.clear()
                 test.__dict__.update(state)
 
@@ -350,7 +362,7 @@ def run_tests(options, tests, name, failures, errors):
 
 
 def run_layer(options, layer_name, layer, tests, setup_layers,
-              failures, errors):
+              failures, errors, features):
 
     output = options.output
     gathered = []
@@ -374,7 +386,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         errors.append((SetUpLayerFailure(layer), sys.exc_info()))
         return 0
     else:
-        return run_tests(options, tests, layer_name, failures, errors)
+        return run_tests(options, tests, layer_name, failures, errors, features)
 
 
 class SetUpLayerFailure(unittest.TestCase):
