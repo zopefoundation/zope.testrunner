@@ -47,13 +47,17 @@ class TestSubunitTracebackPrinting(unittest.TestCase):
         exc_info = self.makeByteStringFailure(unichr(6514), 'utf8')
         self.subunit_formatter.test_failure(self, 0, exc_info)
         assert "AssertionError: \xe1\xa5\xb2" in self.output.getvalue()
+        # '\xe1\xa5\xb2'.decode('utf-8') == unichr(6514)
 
     def test_print_error_containing_utf8_bytestrings(self):
         exc_info = self.makeByteStringFailure(unichr(6514), 'utf8')
         self.subunit_formatter.test_error(self, 0, exc_info)
         assert "AssertionError: \xe1\xa5\xb2" in self.output.getvalue()
+        # '\xe1\xa5\xb2'.decode('utf-8') == unichr(6514)
 
     def test_print_failure_containing_latin1_bytestrings(self):
         exc_info = self.makeByteStringFailure(unichr(241), 'latin1')
         self.subunit_formatter.test_failure(self, 0, exc_info)
-        assert "AssertionError: \xef\xbf\xbd0" in self.output.getvalue()
+        assert "AssertionError: \xef\xbf\xbd" in self.output.getvalue()
+        # '\xef\xbf\xbd'.decode('utf-8') = unichr(0xFFFD)
+
