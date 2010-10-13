@@ -73,7 +73,6 @@ levels of verbosity.
                      ##r##
         26/26 (100.0%)##r##
                       ##r##
-    <BLANKLINE>
       Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
@@ -149,7 +148,6 @@ width, when the terminal width can't be determined, is 80:
                                                    ##r##
      testrunner-ex/sampletests/../sampletestsl.txt##r##
                                                                                    ##r##
-    <BLANKLINE>
       Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
@@ -229,7 +227,6 @@ that, we'll provide a fake curses module:
                                                    ##r##
         26/26 (100.0%) ... r-ex/sampletests/../sampletestsl.txt##r##
                                                                ##r##
-    <BLANKLINE>
       Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.

@@ -44,10 +44,6 @@ if sys.platform == 'win32':
         (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
                     r'exceptions.\1Error:'),
 
-        # Remove '\r', since this only causes confusion.
-        (re.compile(r'\\r', re.MULTILINE), ''),
-        (re.compile(r'\r', re.MULTILINE), ''),
-
         # testtools content formatter is used to mime-encode
         # tracebacks when the SubunitOutputFormatter is used, and the
         # resulting text includes a size which can vary depending on
@@ -63,6 +59,8 @@ if sys.platform == 'win32':
 
         (re.compile(r'\\'), '/'), # even more Windows happiness
                                   # replaces backslashes in paths
+
+        (re.compile(r'/r$', re.MULTILINE), '\\r'), # undo some of that
 
         #this is a magic to put linefeeds into the doctest
         (re.compile('##r##\n'), '\r'),
