@@ -765,7 +765,7 @@ class SubunitOutputFormatter(object):
         test = FakeTest(message)
         self._subunit.startTest(test)
         self._emit_tag(tag)
-        self._subunit.addSuccess(test, details)
+        self._subunit.addSuccess(test, details=details)
 
     def _emit_error(self, error_id, tag, exc_info):
         """Emit an error to the subunit stream.
@@ -1033,7 +1033,7 @@ class SubunitOutputFormatter(object):
         self._subunit.startTest(test)
         self._emit_tag(self.TAG_GARBAGE)
         self._subunit.addError(
-            test, self._get_text_details('garbage', unicode(garbage)))
+            test, details=self._get_text_details('garbage', unicode(garbage)))
 
     def test_threads(self, test, new_threads):
         """Report threads left behind by a test.
@@ -1045,7 +1045,7 @@ class SubunitOutputFormatter(object):
         self._subunit.startTest(test)
         self._emit_tag(self.TAG_THREADS)
         self._subunit.addError(
-            test, self._get_text_details('garbage', unicode(new_threads)))
+            test, details=self._get_text_details('garbage', unicode(new_threads)))
 
     def refcounts(self, rc, prev):
         """Report a change in reference counts."""
