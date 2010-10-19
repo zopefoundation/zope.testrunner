@@ -1,8 +1,8 @@
 zope.testrunner Changelog
 *************************
 
-After 4.0.0b5 (unreleased)
-==========================
+4.0.0 (2010-10-19)
+==================
 
 - Show more information about layers whose setup fails (LP #638153).
 
