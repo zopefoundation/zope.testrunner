@@ -4,7 +4,11 @@ zope.testrunner Changelog
 4.1.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- An `Unexpected success`_ (concept intruduced in Python 2.7) is no longer
+  handled as success but as failure. This is a workaround. The whole
+  unexpected success concept might be implemented later.
+
+.. _`Unexpected success`: http://www.voidspace.org.uk/python/articles/unittest2.shtml#more-skipping
 
 
 4.0.0 (2010-10-19)
