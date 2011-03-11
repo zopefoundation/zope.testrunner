@@ -22,10 +22,13 @@
 import os
 import sys
 from setuptools import setup
+from setuptools.command.test import test
 
 if sys.version_info < (2,4) or sys.version_info[:2] == (3,0):
     raise ValueError("zope.testrunner requires Python 2.4 or higher, "
                      "but not Python 3.0.")
+
+
 
 if sys.version_info >= (3,):
     extra = dict(use_2to3 = True,
@@ -62,13 +65,24 @@ if sys.version_info >= (3,):
                      'src/zope/testrunner/testrunner-ex/sampletestsl.txt',
                      'src/zope/testrunner/testrunner-ex/unicode.txt',
                      ],
-                 # Needed until Python 3 versions of all dependencies are released on PyPI:
+                 # Needed until Python 3 versions of all dependencies are
+                 # released on PyPI:
                  dependency_links = ['.'],
+
+                 # XXX:  python-subunit is not yet ported to Python3.
+                 tests_require = ['zope.testing'],
+                 extras_require = {'test': ['zope.testing']},
                  )
 else:
-    extra = {}
+    extra = dict(tests_require = ['zope.testing',
+                                  'python-subunit',
+                                 ],
+                 extras_require = {'test': ['zope.testing',
+                                            'python-subunit',
+                                           ]},
+                )
+ 
 
-from setuptools.command.test import test
 
 class custom_test(test):
     # The zope.testrunner tests MUST be run using it's own testrunner. This is
@@ -170,9 +184,8 @@ setup(
     namespace_packages=['zope',],
     install_requires = ['setuptools',
                         'zope.exceptions',
-                        'zope.interface',],
-    tests_require = ['zope.testing', 'python-subunit'],
-    extras_require = {'test': ['zope.testing', 'python-subunit']},
+                        'zope.interface',
+                       ],
     entry_points = {
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',]},
