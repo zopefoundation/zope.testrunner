@@ -18,7 +18,6 @@
 import sys
 import unittest
 import formatter
-import subunit
 from StringIO import StringIO
 
 
