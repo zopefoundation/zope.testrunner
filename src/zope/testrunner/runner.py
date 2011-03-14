@@ -46,6 +46,15 @@ import zope.testrunner.debug
 import zope.testrunner.tb_format
 import zope.testrunner.shuffle
 
+try:
+    from unittest import _UnexpectedSuccess # Python 3.1
+except ImportError:
+    try:
+        from unittest.case import _UnexpectedSuccess # Python 2.7 and 3.2
+    except ImportError:
+        class _UnexpectedSuccess(Exception):
+            pass
+    
 
 PYREFCOUNT_PATTERN = re.compile('\[[0-9]+ refs\]')
 
@@ -313,8 +322,9 @@ def run_tests(options, tests, name, failures, errors):
         t = time.time() - t
         output.stop_tests()
         failures.extend(result.failures)
+        failures.extend(result.unexpectedSuccesses)
         errors.extend(result.errors)
-        output.summary(result.testsRun, len(result.failures),
+        output.summary(result.testsRun, len(failures),
             len(result.errors), t)
         ran = result.testsRun
 
@@ -387,7 +397,8 @@ class SetUpLayerFailure(unittest.TestCase):
         pass
 
     def __str__(self):
-        return "Layer: %s" % self.layer
+        return "Layer: %s.%s" % (self.layer.__module__, self.layer.__name__)
+
 
 
 def spawn_layer_in_subprocess(result, script_parts, options, features,
@@ -675,10 +686,6 @@ def setup_layer(options, layer, setup_layers):
 
 class TestResult(unittest.TestResult):
 
-    # Handle unexpected success as failure:
-    # https://bugs.launchpad.net/zope.testrunner/+bug/719369
-    addUnexpectedSuccess = None
-
     def __init__(self, options, tests, layer_name=None):
         unittest.TestResult.__init__(self)
         self.options = options
@@ -757,6 +764,28 @@ class TestResult(unittest.TestResult):
         elif self.options.stop_on_error:
             self.stop()
 
+    def addExpectedFailure(self, test, exc_info):
+        t = max(time.time() - self._start_time, 0.0)
+        self.options.output.test_success(test, t)
+
+        unittest.TestResult.addExpectedFailure(self, test, exc_info)
+
+    def addUnexpectedSuccess(self, test):
+        self.options.output.test_error(test, time.time() - self._start_time, 
+                                       (_UnexpectedSuccess, None, None))
+
+        unittest.TestResult.addUnexpectedSuccess(self, test)
+
+        if self.options.post_mortem:
+            if self.options.resume_layer:
+                self.options.output.error_with_banner("Can't post-mortem debug"
+                                                      " when running a layer"
+                                                      " as a subprocess!")
+            else:
+                zope.testrunner.debug.post_mortem(exc_info)
+        elif self.options.stop_on_error:
+            self.stop()
+            
     def stopTest(self, test):
         self.testTearDown()
         self.options.output.stop_test(test)

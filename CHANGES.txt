@@ -4,7 +4,7 @@ zope.testrunner Changelog
 4.0.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Added back Python 3 support which was broken in 4.0.1.
 
 
 4.0.1 (2011-02-21)

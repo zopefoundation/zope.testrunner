@@ -263,7 +263,7 @@ like it once did).
     Total: 2 tests, 0 failures, 0 errors in 0.197 seconds.
     False
 
-    >>> print sys.stderr.getvalue()
+    >>> print(sys.stderr.getvalue())
     A message on stderr.  Please ignore (expected in test output).
 
     >>> sys.stderr = real_stderr

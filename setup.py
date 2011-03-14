@@ -26,7 +26,7 @@ from setuptools.command.test import test
 
 if sys.version_info < (2,4) or sys.version_info[:2] == (3,0):
     raise ValueError("zope.testrunner requires Python 2.4 or higher, "
-                     "but not Python 3.0.")
+                     "or 3.1 or higher.")
 
 
 
@@ -132,10 +132,6 @@ chapters = '\n'.join([
         'testrunner-verbose.txt',
         'testrunner-test-selection.txt',
         'testrunner-progress.txt',
-
-        # The following seems to cause weird unicode in the output: :(
-        ##     'testrunner-errors.txt',
-
         'testrunner-debugging.txt',
         'testrunner-layers-ntd.txt',
         'testrunner-coverage.txt',
@@ -145,6 +141,11 @@ chapters = '\n'.join([
         'testrunner-gc.txt',
         'testrunner-leaks.txt',
         'testrunner-knit.txt',
+        'testrunner-edge-cases.txt',
+
+        # The following seems to cause weird unicode in the output: :(
+             'testrunner-errors.txt',
+
     )])
 
 long_description=(
@@ -178,6 +179,8 @@ setup(
         "Programming Language :: Python :: 2.4",
         "Programming Language :: Python :: 2.5",
         "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.1",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
         ],

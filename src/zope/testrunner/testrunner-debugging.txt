@@ -86,7 +86,7 @@ converted to errors and can be debugged the same way:
     ...             ' -t post_mortem_failure1 -D').split()
     >>> try: testrunner.run_internal(defaults)
     ... finally: sys.stdin = real_stdin
-    ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF
+    ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF +ELLIPSIS
     Running zope.testrunner.layer.UnitTests tests:
     ...
     Error in test test_post_mortem_failure1 (sample3.sampletests_d.TestSomething)

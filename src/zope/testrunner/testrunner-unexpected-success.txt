@@ -33,9 +33,12 @@ affecting the Python path:
     ... # doctest: +ELLIPSIS
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    Failure in test test_ef (sampletestsf.TestUnexpectedSuccess)
+    <BLANKLINE>
+    <BLANKLINE>
+    Error in test test_ef (sampletestsf.TestUnexpectedSuccess)
     Traceback (most recent call last):
-    _UnexpectedSuccess
+    ..._UnexpectedSuccess
+    <BLANKLINE>
       Ran 1 tests with 1 failures and 0 errors in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
