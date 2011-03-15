@@ -319,13 +319,26 @@ def remove_stale_bytecode(options):
         return
     for (p, _) in options.test_path:
         for dirname, dirs, files in walk_with_symlinks(options, p):
+            if '__pycache__' in dirs:
+                cached_files = os.listdir(os.path.join(dirname, '__pycache__'))
+                for file in cached_files:
+                    pyfile = file[:-14] + 'py'
+                    if pyfile not in files:
+                        fullname = os.path.join(dirname, '__pycache__', file)
+                        options.output.info("Removing stale bytecode file %s"
+                                            % fullname)
+                        os.unlink(fullname)
+            
+            if '__pycache__' in dirname:
+                # Already cleaned
+                continue
+
             for file in files:
                 if file[-4:] in compiled_suffixes and file[:-1] not in files:
                     fullname = os.path.join(dirname, file)
                     options.output.info("Removing stale bytecode file %s"
                                         % fullname)
                     os.unlink(fullname)
-
 
 def contains_init_py(options, fnamelist):
     """Return true iff fnamelist contains a suitable spelling of __init__.py.
