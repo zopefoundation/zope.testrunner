@@ -4,13 +4,15 @@ zope.testrunner Changelog
 4.0.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Added back support for Python <= 2.6 which was broken in 4.0.2.
 
 
 4.0.2 (2011-03-16)
 ==================
 
 - Added back Python 3 support which was broken in 4.0.1.
+
+- Fixed `Unexpected success`_ support by implementing the whole concept.
 
 - Added support for the new __pycache__ directories in Python 3.2.
 

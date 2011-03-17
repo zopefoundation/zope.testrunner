@@ -54,7 +54,7 @@ except ImportError:
     except ImportError:
         class _UnexpectedSuccess(Exception):
             pass
-    
+
 
 PYREFCOUNT_PATTERN = re.compile('\[[0-9]+ refs\]')
 
@@ -322,7 +322,10 @@ def run_tests(options, tests, name, failures, errors):
         t = time.time() - t
         output.stop_tests()
         failures.extend(result.failures)
-        failures.extend(result.unexpectedSuccesses)
+        if hasattr(result, 'unexpectedSuccesses'):
+            # Python versions prior to 2.7 do not have the concept of
+            # unexpectedSuccesses.
+            failures.extend(result.unexpectedSuccesses)
         errors.extend(result.errors)
         output.summary(result.testsRun, len(failures),
             len(result.errors), t)
@@ -771,7 +774,7 @@ class TestResult(unittest.TestResult):
         unittest.TestResult.addExpectedFailure(self, test, exc_info)
 
     def addUnexpectedSuccess(self, test):
-        self.options.output.test_error(test, time.time() - self._start_time, 
+        self.options.output.test_error(test, time.time() - self._start_time,
                                        (_UnexpectedSuccess, None, None))
 
         unittest.TestResult.addUnexpectedSuccess(self, test)
@@ -785,7 +788,7 @@ class TestResult(unittest.TestResult):
                 zope.testrunner.debug.post_mortem(exc_info)
         elif self.options.stop_on_error:
             self.stop()
-            
+
     def stopTest(self, test):
         self.testTearDown()
         self.options.output.stop_test(test)
