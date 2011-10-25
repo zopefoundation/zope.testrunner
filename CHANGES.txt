@@ -4,7 +4,8 @@ zope.testrunner Changelog
 4.0.4 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Work around sporadic timing-related issues in the subprocess buffering
+  tests.  Thanks to Jonathan Ballet for the patch!
 
 
 4.0.3 (2011-03-17)
