@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.1.0 (unreleased)
+4.1.0 (2013-02-07)
 ==================
 
 - Replaced deprecated ``zope.interface.implements`` usage with equivalent
