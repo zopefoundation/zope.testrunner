@@ -24,8 +24,8 @@ import sys
 from setuptools import setup
 from setuptools.command.test import test
 
-if sys.version_info < (2,4) or sys.version_info[:2] == (3,0):
-    raise ValueError("zope.testrunner requires Python 2.4 or higher, "
+if sys.version_info < (2,6) or sys.version_info[:2] == (3,0):
+    raise ValueError("zope.testrunner requires Python 2.6 or higher, "
                      "or 3.1 or higher.")
 
 
@@ -180,6 +180,8 @@ setup(
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.1",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
         ],
