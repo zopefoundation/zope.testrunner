@@ -44,21 +44,42 @@ class StartUpFailure(unittest.TestCase):
     >>> s.shortDescription()
     'StartUpFailure: import errors in fauxmodule.'
 
+    Sometimes test suited collected by zope.testrunner end up being run
+    by a regular unittest TestRunner, and it's not hard to make sure
+    StartUpFailure does something sensible in that case
+
+    >>> r = unittest.TestResult(sys.stdout)
+    >>> s.run(r)
+    >>> print r.failures[0][1], # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+      ...
+    AssertionError: could not import fauxmodule
+
+    If you'd like more details, be sure to pass the original exc_info::
+
+    >>> import sys
+    >>> try:
+    ...    raise Exception('something bad happened during import')
+    ... except:
+    ...     exc_info = sys.exc_info()
+
+    >>> s = StartUpFailure(options, 'fauxmodule', exc_info)
+
+    >>> r = unittest.TestResult(sys.stdout)
+    >>> s.run(r)
+    >>> print r.errors[0][0].shortDescription()
+    StartUpFailure: import errors in fauxmodule.
+    >>> print r.errors[0][1], # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+      ...
+    Exception: something bad happened during import
+
     However, if the post mortem option is enabled:
 
     >>> options.post_mortem = True
 
     ...then the the StartUpFailure will start the debugger and stop
     the test run after the debugger quits.
-    
-    To simulate this, we need an exception and its associated
-    exc_info: 
-
-    >>> import sys
-    >>> try:
-    ...    raise Exception()
-    ... except:
-    ...     exc_info = sys.exc_info()
 
     To simulate the user pressing 'c' and hitting return in the
     debugger, we use a FakeInputContinueGenerator:
@@ -82,7 +103,7 @@ class StartUpFailure(unittest.TestCase):
     ...   sys.stdin = old_stdin
     Result:
     ...Exception:
-    <BLANKLINE>
+    something bad happened during import
     ...
     (Pdb) c
     <BLANKLINE>
@@ -112,12 +133,19 @@ class StartUpFailure(unittest.TestCase):
             zope.testrunner.debug.post_mortem(exc_info)
         self.module = module
         self.exc_info = exc_info
+        super(StartUpFailure, self).__init__()
 
     def shortDescription(self):
         return 'StartUpFailure: import errors in %s.' % self.module
 
     def __repr__(self):
         return '<StartUpFailure module=%s>' % self.module
+
+    def runTest(self):
+        if self.exc_info is None or any(x is None for x in self.exc_info):
+            self.fail("could not import %s" % self.module)
+        else:
+            raise self.exc_info[0], self.exc_info[1], self.exc_info[2]
 
 
 def find_tests(options, found_suites=None):

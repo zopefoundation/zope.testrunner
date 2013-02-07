@@ -9,6 +9,9 @@ zope.testrunner Changelog
 
 - Dropped support for Python 2.4 and 2.5.
 
+- Made StartUpFailure compatible with unittest.TextTestRunner() (LP #1118344).
+
+
 4.0.4 (2011-10-25)
 ==================
 
