@@ -3,7 +3,7 @@ Profiling
 The testrunner supports hotshot and cProfile profilers. Hotshot profiler
 support does not work with python2.6
 
-    >>> import os.path, sys
+    >>> import os.path, sys, tempfile
     >>> profiler = '--profile=hotshot'
     >>> if sys.hexversion >= 0x02060000:
     ...     profiler = '--profile=cProfile'
@@ -14,9 +14,12 @@ via the --profile option, if it a python <= 2.6
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> sys.path.append(directory_with_tests)
 
+    >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-')
+
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
+    ...     '--profile-directory', tempdir,
     ...     ]
 
     >>> sys.argv = [testrunner_script, profiler]
@@ -56,6 +59,5 @@ data:
 
 It deletes these when rerun.  We'll delete these ourselves:
 
-    >>> import os
-    >>> for f in files:
-    ...     os.unlink(f)
+    >>> import shutil
+    >>> shutil.rmtree(tempdir)
