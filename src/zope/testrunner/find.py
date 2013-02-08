@@ -50,7 +50,7 @@ class StartUpFailure(unittest.TestCase):
 
     >>> r = unittest.TestResult()
     >>> s.run(r)
-    >>> print r.failures[0][1], # doctest: +ELLIPSIS
+    >>> print r.failures[0][1].rstrip() # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
     AssertionError: could not import fauxmodule
@@ -69,7 +69,7 @@ class StartUpFailure(unittest.TestCase):
     >>> s.run(r)
     >>> print r.errors[0][0].shortDescription()
     StartUpFailure: import errors in fauxmodule.
-    >>> print r.errors[0][1], # doctest: +ELLIPSIS
+    >>> print r.errors[0][1].rstrip() # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
     Exception: something bad happened during import
