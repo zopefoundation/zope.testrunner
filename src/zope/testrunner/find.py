@@ -353,18 +353,12 @@ def remove_stale_bytecode(options):
     for (p, _) in options.test_path:
         for dirname, dirs, files in walk_with_symlinks(options, p):
             if '__pycache__' in dirs:
-                cached_files = os.listdir(os.path.join(dirname, '__pycache__'))
-                for file in cached_files:
-                    pyfile = file[:-14] + 'py'
-                    if pyfile not in files:
-                        fullname = os.path.join(dirname, '__pycache__', file)
-                        options.output.info("Removing stale bytecode file %s"
-                                            % fullname)
-                        os.unlink(fullname)
-            
-            if '__pycache__' in dirname:
-                # Already cleaned
-                continue
+                # Do not recurse in there: we would end up removing all pyc
+                # files because the main loop checks for py files in the same
+                # directory.  Besides, stale pyc files in __pycache__ are
+                # harmless, see PEP-3147 for details (sourceless imports
+                # work only when pyc lives in the source dir directly).
+                dirs.remove('__pycache__')
 
             for file in files:
                 if file[-4:] in compiled_suffixes and file[:-1] not in files:
