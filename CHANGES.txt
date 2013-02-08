@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.1.1 (unreleased)
+4.1.1 (2013-02-08)
 ==================
 
 - Dropped use of zope.fixers (LP: #1118877).
