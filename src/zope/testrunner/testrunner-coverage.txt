@@ -5,14 +5,17 @@ If the --coverage option is used, test coverage reports will be generated.  The
 directory name given as the parameter will be used to hold the reports.
 
 
-    >>> import os.path, sys
+    >>> import os.path, sys, tempfile
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
-    >>> sys.argv = 'test --coverage=coverage_dir'.split()
+    >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-')
+    >>> coverage_dir = os.path.join(tempdir, 'coverage_dir')
+
+    >>> sys.argv = ['test', '--coverage', coverage_dir]
 
     >>> from zope import testrunner
     >>> testrunner.run_internal(defaults)
@@ -68,15 +71,15 @@ directory name given as the parameter will be used to hold the reports.
 The directory specified with the --coverage option will have been created and
 will hold the coverage reports.
 
-    >>> os.path.exists('coverage_dir')
+    >>> os.path.exists(coverage_dir)
     True
-    >>> os.listdir('coverage_dir')
+    >>> os.listdir(coverage_dir)
     [...]
 
 (We should clean up after ourselves.)
 
     >>> import shutil
-    >>> shutil.rmtree('coverage_dir')
+    >>> shutil.rmtree(tempdir)
 
 
 Ignoring Tests

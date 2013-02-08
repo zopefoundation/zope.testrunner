@@ -18,6 +18,9 @@ zope.testrunner Changelog
 - New option: --profile-directory.  Use it in the test suite so that tests
   executed by detox in parallel don't conflict.
 
+- Use a temporary coverage directory in the test suite so that tests
+  executed by detox in parallel don't conflict.
+
 
 4.1.0 (2013-02-07)
 ==================
