@@ -32,8 +32,6 @@ if sys.version_info < (2,6) or sys.version_info[:2] == (3,0):
 
 if sys.version_info >= (3,):
     extra = dict(use_2to3 = True,
-                 setup_requires = ['zope.fixers'],
-                 use_2to3_fixers = ['zope.fixers'],
                  convert_2to3_doctests = [
                      'src/zope/testrunner/testrunner-arguments.txt',
                      'src/zope/testrunner/testrunner-coverage-win32.txt',
@@ -65,9 +63,6 @@ if sys.version_info >= (3,):
                      'src/zope/testrunner/testrunner-ex/sampletestsl.txt',
                      'src/zope/testrunner/testrunner-ex/unicode.txt',
                      ],
-                 # Needed until Python 3 versions of all dependencies are
-                 # released on PyPI:
-                 dependency_links = ['.'],
 
                  # XXX:  python-subunit is not yet ported to Python3.
                  tests_require = ['zope.testing'],

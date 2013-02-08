@@ -4,7 +4,9 @@ zope.testrunner Changelog
 4.1.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Dropped use of zope.fixers (LP: #1118877).
+
+- Fixed tox test error reporting; fixed tests on Pythons 2.6 and 3.1.
 
 
 4.1.0 (2013-02-07)
