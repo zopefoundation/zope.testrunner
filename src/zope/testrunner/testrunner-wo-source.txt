@@ -77,6 +77,20 @@ output is the same as when running with .py source above.  The absence
 of "removing stale bytecode ..." messages shows that ``--usecompiled``
 also implies ``--keepbytecode``:
 
+    >>> if sys.version_info >= (3, 2):
+    ...     # PEP-3147: pyc files in __pycache__ directories cannot be
+    ...     # imported; legacy source-less imports need to use the legacy
+    ...     # layout
+    ...     for root, dirs, files in os.walk(dst):
+    ...         for f in files:
+    ...             if f.endswith((".pyc", ".pyo")):
+    ...                 # "root/f" is "dirname/__pycache__/name.magic.ext"
+    ...                 dirname = os.path.dirname(os.path.abspath(root))
+    ...                 namewmagic, ext = os.path.splitext(os.path.basename(f))
+    ...                 newname = os.path.splitext(namewmagic)[0] + ext
+    ...                 os.rename(os.path.join(root, f),
+    ...                           os.path.join(dirname, newname))
+
     >>> testrunner.run_internal(mydefaults, ["test", "--usecompiled"])
     Running tests at level 1
     Running zope.testrunner.layer.UnitTests tests:
