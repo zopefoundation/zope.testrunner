@@ -48,7 +48,7 @@ class StartUpFailure(unittest.TestCase):
     by a regular unittest TestRunner, and it's not hard to make sure
     StartUpFailure does something sensible in that case
 
-    >>> r = unittest.TestResult(sys.stdout)
+    >>> r = unittest.TestResult()
     >>> s.run(r)
     >>> print r.failures[0][1], # doctest: +ELLIPSIS
     Traceback (most recent call last):
@@ -65,7 +65,7 @@ class StartUpFailure(unittest.TestCase):
 
     >>> s = StartUpFailure(options, 'fauxmodule', exc_info)
 
-    >>> r = unittest.TestResult(sys.stdout)
+    >>> r = unittest.TestResult()
     >>> s.run(r)
     >>> print r.errors[0][0].shortDescription()
     StartUpFailure: import errors in fauxmodule.
