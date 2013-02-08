@@ -41,6 +41,7 @@ setup.
     >>> import zope.testrunner
     >>> try:
     ...     zope.testrunner.run_internal(['--path', dir, '-D'])
+    ... except zope.testrunner.interfaces.EndRun: print "unexpected EndRun!"
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS
     Running tests.Layer tests:
@@ -94,6 +95,7 @@ a subprocess:
     >>> try:
     ...     zope.testrunner.run_internal(
     ...       ['--path', dir, '-Dvv', '--tests-pattern', 'tests2'])
+    ... except zope.testrunner.interfaces.EndRun: print "unexpected EndRun!"
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS +REPORT_NDIFF
     Running tests at level 1
