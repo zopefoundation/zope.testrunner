@@ -6,7 +6,11 @@ Post-mortem debugging also works when there is an import failure.
     >>> tdir = tempfile.mkdtemp()
     >>> dir = os.path.join(tdir, 'TESTS-DIR')
     >>> os.mkdir(dir)
-    >>> written = open(os.path.join(dir, 'tests.py'), 'w').write(
+    >>> def write_file(filename, body):
+    ...     with open(os.path.join(dir, filename), 'w') as f:
+    ...         f.write(body)
+
+    >>> write_file('tests.py',
     ... '''
     ... impot doctest
     ... ''')
@@ -40,7 +44,7 @@ Post-mortem debugging also works when the test suite is invalid:
 
     >>> sys.stdin = Input('c')
 
-    >>> written = open(os.path.join(dir, 'tests2.py'), 'w').write(
+    >>> write_file('tests2.py',
     ... '''
     ... def test_suite():
     ...     return None

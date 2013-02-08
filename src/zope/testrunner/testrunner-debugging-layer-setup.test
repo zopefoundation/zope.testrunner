@@ -5,7 +5,11 @@ setup.
     >>> tdir = tempfile.mkdtemp()
     >>> dir = os.path.join(tdir, 'TESTS-DIR')
     >>> os.mkdir(dir)
-    >>> written = open(os.path.join(dir, 'tests.py'), 'w').write(
+    >>> def write_file(filename, body):
+    ...     with open(os.path.join(dir, filename), 'w') as f:
+    ...         f.write(body)
+
+    >>> write_file('tests.py',
     ... '''
     ... import doctest
     ...
@@ -14,7 +18,7 @@ setup.
     ...     def setUp(self):
     ...         x = 1
     ...         raise ValueError
-    ...     
+    ...
     ... def a_test():
     ...     """
     ...     >>> None
@@ -25,7 +29,7 @@ setup.
     ...     return suite
     ... 
     ... ''')
-    
+
     >>> class Input:
     ...     def __init__(self, src):
     ...         self.lines = src.split('\n')
@@ -59,7 +63,7 @@ a subprocess:
 
     >>> sys.stdin = Input('p x\nc')
 
-    >>> written = open(os.path.join(dir, 'tests2.py'), 'w').write(
+    >>> write_file('tests2.py',
     ... '''
     ... import doctest, unittest
     ...
