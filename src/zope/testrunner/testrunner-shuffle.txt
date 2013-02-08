@@ -46,6 +46,12 @@ that happened during a randomly shuffled test run then simply write down the
 seed number that was printed out and run it again using the ``--shuffle-seed``
 option. The order is guaranteed to be the same.
 
+    There was an issue with the guaranteed order in zope.testrunner before
+    4.0.2: the order could change depending on dictionary iteration order, if
+    you had multiple test layers.  This bug was fixed in 4.0.2, but a side
+    effect of the fix means that the new guaranteed order is likely to be
+    different from what you used to get with an older zope.testrunner.
+
 For example, using the seed number 0 will give us the following, stable, list of
 tests:
 
@@ -53,30 +59,30 @@ tests:
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 0.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sample13.sampletests.TestA)
       test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletests.test_one)
+      test_y0 (sample1.sampletests.test1.TestA)
       test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sampletests.test_one.TestA)
-      test_y0 (sample1.sampletests.test_one)
-      test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sample11.sampletests.TestA)
-      test_y0 (sample1.sampletests.test1.TestA)
-      test_y0 (sample1.sample11.sampletests)
       test_y0 (sample1.sample13.sampletests)
+      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample11.sampletests)
+      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sampletests.test1)
     False
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 0.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sample13.sampletests.TestA)
       test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletests.test_one)
+      test_y0 (sample1.sampletests.test1.TestA)
       test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sampletests.test_one.TestA)
-      test_y0 (sample1.sampletests.test_one)
-      test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sample11.sampletests.TestA)
-      test_y0 (sample1.sampletests.test1.TestA)
-      test_y0 (sample1.sample11.sampletests)
       test_y0 (sample1.sample13.sampletests)
+      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample11.sampletests)
+      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sampletests.test1)
     False
 
 Whereas using the seed number 42 will give us the following, different but
@@ -86,30 +92,30 @@ stable, list of tests:
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 42.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sample13.sampletests.TestA)
-      test_y0 (sample1.sampletests.test_one.TestA)
-      test_y0 (sample1.sample11.sampletests.TestA)
-      test_y0 (sample1.sampletestsf.TestA)
-      test_y0 (sample1.sampletests.test_one)
-      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sample13.sampletests)
       test_y0 (sample1.sampletests.test1)
+      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sampletestsf)
+      test_y0 (sample1.sampletests.test_one)
+      test_y0 (sample1.sample11.sampletests)
+      test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletests.test_one.TestA)
     False
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 42.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sample13.sampletests.TestA)
-      test_y0 (sample1.sampletests.test_one.TestA)
-      test_y0 (sample1.sample11.sampletests.TestA)
-      test_y0 (sample1.sampletestsf.TestA)
-      test_y0 (sample1.sampletests.test_one)
-      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sample13.sampletests)
       test_y0 (sample1.sampletests.test1)
+      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sampletestsf)
+      test_y0 (sample1.sampletests.test_one)
+      test_y0 (sample1.sample11.sampletests)
+      test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletests.test_one.TestA)
     False
 
 Selecting a seed number without ``--shuffle``

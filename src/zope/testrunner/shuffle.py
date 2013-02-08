@@ -38,7 +38,8 @@ class Shuffle(zope.testrunner.feature.Feature):
         if sys.version_info >= (3, 2):
             # in case somebody tries to use a string as the seed
             rng.seed(self.seed, version=1)
-        for layer, suite in list(self.runner.tests_by_layer_name.items()):
+        # Be careful to shuffle the layers in a deterministic order!
+        for layer, suite in sorted(self.runner.tests_by_layer_name.items()):
             # Test suites cannot be modified through a public API.  We thus
             # take a mutable copy of the list of tests of that suite, shuffle
             # that and replace the test suite instance with a new one of the
