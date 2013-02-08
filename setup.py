@@ -118,8 +118,9 @@ if __name__ == '__main__':
 
         import subprocess
         process = subprocess.Popen([sys.executable, filename])
-        process.wait()
+        rc = process.wait()
         os.unlink(filename)
+        sys.exit(rc)
 
 chapters = '\n'.join([
     open(os.path.join('src', 'zope', 'testrunner', name)).read()
