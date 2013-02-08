@@ -51,10 +51,7 @@ Profiling also works across layers.
 The testrunner creates temnporary files containing hotshot profiler
 data:
 
-    >>> import glob
-    >>> files = list(glob.glob('tests_profile.*.prof'))
-    >>> files.sort()
-    >>> files
+    >>> os.listdir(tempdir)
     ['tests_profile.cZj2jt.prof', 'tests_profile.yHD-so.prof']
 
 It deletes these when rerun.  We'll delete these ourselves:
