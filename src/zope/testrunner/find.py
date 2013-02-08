@@ -49,7 +49,7 @@ class StartUpFailure(unittest.TestCase):
     StartUpFailure does something sensible in that case
 
     >>> r = unittest.TestResult()
-    >>> s.run(r)
+    >>> _ = s.run(r)
     >>> print r.failures[0][1].rstrip() # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
@@ -66,7 +66,7 @@ class StartUpFailure(unittest.TestCase):
     >>> s = StartUpFailure(options, 'fauxmodule', exc_info)
 
     >>> r = unittest.TestResult()
-    >>> s.run(r)
+    >>> _ = s.run(r)
     >>> print r.errors[0][0].shortDescription()
     StartUpFailure: import errors in fauxmodule.
     >>> print r.errors[0][1].rstrip() # doctest: +ELLIPSIS
