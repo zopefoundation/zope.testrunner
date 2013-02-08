@@ -1,0 +1,64 @@
+Regression tests for https://bugs.launchpad.net/zope.testrunner/+bug/1119363
+
+Post-mortem debugging also works when there is an import failure.
+
+    >>> import os, shutil, sys, tempfile
+    >>> tdir = tempfile.mkdtemp()
+    >>> dir = os.path.join(tdir, 'TESTS-DIR')
+    >>> os.mkdir(dir)
+    >>> written = open(os.path.join(dir, 'tests.py'), 'w').write(
+    ... '''
+    ... impot doctest
+    ... ''')
+
+    >>> class Input:
+    ...     def __init__(self, src):
+    ...         self.lines = src.split('\n')
+    ...     def readline(self):
+    ...         line = self.lines.pop(0)
+    ...         print line
+    ...         return line+'\n'
+
+    >>> real_stdin = sys.stdin
+    >>> sys.stdin = Input('c')
+
+    >>> sys.argv = [testrunner_script]
+    >>> import zope.testrunner
+    >>> try:
+    ...     zope.testrunner.run_internal(['--path', dir, '-D'])
+    ... except zope.testrunner.interfaces.EndRun: print 'EndRun raised'
+    ... finally: sys.stdin = real_stdin
+    ... # doctest: +ELLIPSIS +REPORT_NDIFF
+    exceptions.SyntaxError:
+    invalid syntax (tests.py, line 2)
+    > ...find.py(399)import_name()
+    -> __import__(name)
+    (Pdb) c
+    EndRun raised
+
+Post-mortem debugging also works when the test suite is invalid:
+
+    >>> sys.stdin = Input('c')
+
+    >>> written = open(os.path.join(dir, 'tests2.py'), 'w').write(
+    ... '''
+    ... def test_suite():
+    ...     return None
+    ... ''')
+
+    >>> import sys
+    >>> try:
+    ...     zope.testrunner.run_internal(
+    ...       ['--path', dir, '-Dvv', '--tests-pattern', 'tests2'])
+    ... except zope.testrunner.interfaces.EndRun: print 'EndRun raised'
+    ... finally: sys.stdin = real_stdin
+    ... # doctest: +ELLIPSIS +REPORT_NDIFF
+    exceptions.TypeError:
+    Invalid test_suite, None, in tests2
+    > ...find.py(217)find_suites()
+    -> % (suite, module_name)
+    (Pdb) c
+    EndRun raised
+
+    >>> shutil.rmtree(tdir)
+

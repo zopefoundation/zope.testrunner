@@ -37,6 +37,7 @@ if sys.version_info >= (3,):
                      'src/zope/testrunner/testrunner-coverage-win32.txt',
                      'src/zope/testrunner/testrunner-coverage.txt',
                      'src/zope/testrunner/testrunner-debugging-layer-setup.test',
+                     'src/zope/testrunner/testrunner-debugging-import-failure.test',
                      'src/zope/testrunner/testrunner-debugging.txt',
                      'src/zope/testrunner/testrunner-discovery',
                      'src/zope/testrunner/testrunner-edge-cases.txt',

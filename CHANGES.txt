@@ -21,6 +21,9 @@ zope.testrunner Changelog
 - Use a temporary coverage directory in the test suite so that tests
   executed by detox in parallel don't conflict.
 
+* Fix --post-mortem (aka -D, --pdb) when a test module cannot be imported
+  or is invalid (LP #1119363).
+
 
 4.1.0 (2013-02-07)
 ==================

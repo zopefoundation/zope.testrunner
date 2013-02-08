@@ -192,11 +192,12 @@ def find_suites(options):
                 except KeyboardInterrupt:
                     raise
                 except:
+                    exc_info = sys.exc_info()
+                    if not options.post_mortem:
+                        # Skip a couple of frames
+                        exc_info = exc_info[:2] + (exc_info[2].tb_next.tb_next,)
                     suite = StartUpFailure(
-                        options, module_name,
-                        sys.exc_info()[:2]
-                        + (sys.exc_info()[2].tb_next.tb_next,),
-                        )
+                        options, module_name, exc_info)
                 else:
                     try:
                         if hasattr(module, options.suite_name):
@@ -218,8 +219,12 @@ def find_suites(options):
                     except KeyboardInterrupt:
                         raise
                     except:
+                        exc_info = sys.exc_info()
+                        if not options.post_mortem:
+                            # Suppress traceback
+                            exc_info = exc_info[:2] + (None,)
                         suite = StartUpFailure(
-                            options, module_name, sys.exc_info()[:2]+(None,))
+                            options, module_name, exc_info)
 
                 yield suite
                 break

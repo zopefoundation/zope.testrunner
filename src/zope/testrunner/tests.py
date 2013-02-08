@@ -90,6 +90,10 @@ if sys.platform == 'win32':
         #(re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
         (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
 
+        # Python 3 exceptions are from the builtins module
+        (re.compile(r'builtins\.(SyntaxError|TypeError)'),
+         r'exceptions.\1'),
+
         # Python 3.3 has better exception messages
         (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
          r'ImportError: No module named \1'),
@@ -145,6 +149,10 @@ else:
          r''),
         (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
 
+        # Python 3 exceptions are from the builtins module
+        (re.compile(r'builtins\.(SyntaxError|TypeError)'),
+         r'exceptions.\1'),
+
         # Python 3.3 has better exception messages
         (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
          r'ImportError: No module named \1'),
@@ -175,6 +183,7 @@ def test_suite():
         'testrunner-arguments.txt',
         'testrunner-coverage.txt',
         'testrunner-debugging-layer-setup.test',
+        'testrunner-debugging-import-failure.test',
         'testrunner-debugging.txt',
         'testrunner-edge-cases.txt',
         'testrunner-errors.txt',
