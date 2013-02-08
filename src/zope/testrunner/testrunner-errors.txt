@@ -14,8 +14,8 @@ be read only):
     ...     dirs[:] = [d for d in dirs if d != ".svn"] # prune cruft
     ...     os.mkdir(os.path.join(directory_with_tests, root[n:]))
     ...     for f in files:
-    ...         shutil.copy(os.path.join(root, f),
-    ...                     os.path.join(directory_with_tests, root[n:], f))
+    ...         _ = shutil.copy(os.path.join(root, f),
+    ...                         os.path.join(directory_with_tests, root[n:], f))
 
     >>> from zope import testrunner
     >>> defaults = [

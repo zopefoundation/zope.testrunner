@@ -28,8 +28,8 @@ can't be deleted later.
     ...     dirs[:] = [d for d in dirs if d == "package"] # prune cruft
     ...     os.mkdir(os.path.join(dst, root[n:]))
     ...     for f in files:
-    ...         shutil.copy(os.path.join(root, f),
-    ...                     os.path.join(dst, root[n:], f))
+    ...         _ = shutil.copy(os.path.join(root, f),
+    ...                         os.path.join(dst, root[n:], f))
 
 Now run the tests in the copy:
 
