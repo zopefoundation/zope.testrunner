@@ -14,9 +14,9 @@
 """Shuffle tests discovered before executing them.
 """
 
+import sys
 import time
 import random
-import unittest
 import zope.testrunner.feature
 
 
@@ -35,13 +35,24 @@ class Shuffle(zope.testrunner.feature.Feature):
 
     def global_setup(self):
         rng = random.Random(self.seed)
+        if sys.version_info >= (3, 2):
+            # in case somebody tries to use a string as the seed
+            rng.seed(self.seed, version=1)
         for layer, suite in list(self.runner.tests_by_layer_name.items()):
             # Test suites cannot be modified through a public API.  We thus
             # take a mutable copy of the list of tests of that suite, shuffle
             # that and replace the test suite instance with a new one of the
             # same class.
             tests = list(suite)
-            rng.shuffle(tests)
+            # Black magic: if we don't pass random=rng.random to rng.shuffle,
+            # we get different results on Python 2.7--3.1 and 3.2.  The
+            # standard library guarantees rng.random() will return the same
+            # floats if given the same seed.  It makes no guarantees for
+            # rng.randrange, or rng.choice, or rng.shuffle.  Experiments
+            # show that Python happily breaks backwards compatibility for
+            # these functions.  By passing the random function we trick
+            # shuffle() into using the old algorithm.
+            rng.shuffle(tests, random=rng.random)
             self.runner.tests_by_layer_name[layer] = suite.__class__(tests)
 
     def report(self):
