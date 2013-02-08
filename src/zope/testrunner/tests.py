@@ -89,6 +89,11 @@ if sys.platform == 'win32':
          r''),
         #(re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
         (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
+
+        # Python 3.3 has better exception messages
+        (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
+         r'ImportError: No module named \1'),
+
         ])
 else:
     #*nix
@@ -139,6 +144,11 @@ else:
                     re.MULTILINE),
          r''),
         (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
+
+        # Python 3.3 has better exception messages
+        (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
+         r'ImportError: No module named \1'),
+
         ])
 
 def setUp(test):
