@@ -15,6 +15,9 @@ zope.testrunner Changelog
 - Fix --shuffle nondeterminism when multiple test layers are present.
   Note: this will likely change the order of tests for the same --shuffle-seed.
 
+- New option: --profile-directory.  Use it in the test suite so that tests
+  executed by detox in parallel don't conflict.
+
 
 4.1.0 (2013-02-07)
 ==================

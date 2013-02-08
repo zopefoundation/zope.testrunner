@@ -4,13 +4,16 @@ Profiling
 The testrunner includes the ability to profile the test execution with cProfile
 via the `--profile=cProfile` option::
 
-    >>> import os.path, sys
+    >>> import os, sys, tempfile
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> sys.path.append(directory_with_tests)
+
+    >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-')
 
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
+    ...     '--profile-directory', tempdir,
     ...     ]
 
     >>> sys.argv = [testrunner_script, '--profile=cProfile']
@@ -36,14 +39,10 @@ Profiling also works across layers::
 The testrunner creates temnporary files containing cProfiler profiler
 data::
 
-    >>> import glob
-    >>> files = list(glob.glob('tests_profile.*.prof'))
-    >>> files.sort()
-    >>> files
+    >>> os.listdir(tempdir)
     ['tests_profile.cZj2jt.prof', 'tests_profile.yHD-so.prof']
 
 It deletes these when rerun.  We'll delete these ourselves::
 
-    >>> import os
-    >>> for f in files:
-    ...     os.unlink(f)
+    >>> import shutil
+    >>> shutil.rmtree(tempdir)

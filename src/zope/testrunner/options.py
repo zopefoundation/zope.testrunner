@@ -318,6 +318,14 @@ analysis.add_option(
 Run the tests under cProfiler or hotshot and display the top 50 stats, sorted
 by cumulative time and number of calls.
 """)
+analysis.add_option(
+    '--profile-directory', action="store", dest='prof_dir', default='.',
+    help="""\
+Directory for temporary profiler files.  All files named tests_profile.*.prof
+in this directory will be removed.  If you intend to run multiple instances
+of the test runner in parallel, be sure to tell them to use different
+directories, so they won't step on each other's toes.
+""")
 
 def do_pychecker(*args):
     if not os.environ.get("PYCHECKER"):
