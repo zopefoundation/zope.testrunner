@@ -133,9 +133,13 @@ Test suites often cover a lot of code, and the performance of test suites
 themselves is often a critical part of the development process. Thus, it's
 good to be able to profile a test run.
 
-    >>> sys.argv = (
-    ...     'test --layer 122 --profile=cProfile --subunit '
-    ...     '-t TestNotMuch').split()
+    >>> import tempfile
+    >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-')
+
+    >>> sys.argv = [
+    ...     'test', '--layer=122', '--profile=cProfile', '--subunit',
+    ...     '--profile-directory', tempdir,
+    ...     '-t', 'TestNotMuch']
     >>> testrunner.run_internal(defaults)
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: samplelayers.Layer1:setUp
@@ -153,6 +157,9 @@ good to be able to profile a test run.
     <BLANKLINE>
     ]
     False
+
+    >>> import shutil
+    >>> shutil.rmtree(tempdir)
 
 
 Errors
