@@ -98,6 +98,12 @@ if sys.platform == 'win32':
         (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
          r'ImportError: No module named \1'),
 
+        # PyPy has different exception messages too
+        (re.compile("ImportError: No module named (?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
+         r'ImportError: No module named \1'),
+        (re.compile("NameError: global name '([^']*)' is not defined"),
+         r"NameError: name '\1' is not defined"),
+
         ])
 else:
     #*nix
@@ -157,6 +163,12 @@ else:
         (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
          r'ImportError: No module named \1'),
 
+        # PyPy has different exception messages too
+        (re.compile("ImportError: No module named (?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
+         r'ImportError: No module named \1'),
+        (re.compile("NameError: global name '([^']*)' is not defined"),
+         r"NameError: name '\1' is not defined"),
+
         ])
 
 def setUp(test):
@@ -164,15 +176,17 @@ def setUp(test):
         sys.path[:],
         sys.argv[:],
         sys.modules.copy(),
-        gc.get_threshold(),
-        )
+    )
+    if hasattr(gc, 'get_threshold'):
+        test.globs['saved-gc-threshold'] = gc.get_threshold()
     test.globs['this_directory'] = os.path.split(__file__)[0]
     test.globs['testrunner_script'] = sys.argv[0]
 
 
 def tearDown(test):
     sys.path[:], sys.argv[:] = test.globs['saved-sys-info'][:2]
-    gc.set_threshold(*test.globs['saved-sys-info'][3])
+    if hasattr(gc, 'get_threshold'):
+        gc.set_threshold(*test.globs['saved-gc-threshold'])
     sys.modules.clear()
     sys.modules.update(test.globs['saved-sys-info'][2])
 
@@ -196,9 +210,7 @@ def test_suite():
         'testrunner-simple.txt',
         'testrunner-test-selection.txt',
         'testrunner-verbose.txt',
-        'testrunner-wo-source.txt',
         'testrunner-repeat.txt',
-        'testrunner-gc.txt',
         'testrunner-knit.txt',
         'testrunner-shuffle.txt',
         setUp=setUp, tearDown=tearDown,
@@ -210,6 +222,24 @@ def test_suite():
         doctest.DocTestSuite('zope.testrunner.options'),
         doctest.DocTestSuite('zope.testrunner.find'),
         ]
+
+    # PyPy uses a different garbage collector
+    if hasattr(gc, 'get_threshold'):
+        suites.append(
+            doctest.DocFileSuite(
+            'testrunner-gc.txt',
+            setUp=setUp, tearDown=tearDown,
+            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            checker=checker))
+
+    # PyPy does not support sourceless imports, apparently (tried version 1.9)
+    if 'PyPy' not in sys.version:
+        suites.append(
+            doctest.DocFileSuite(
+            'testrunner-wo-source.txt',
+            setUp=setUp, tearDown=tearDown,
+            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            checker=checker))
 
     if sys.platform == 'win32':
         suites.append(
