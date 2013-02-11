@@ -2,13 +2,8 @@
 developing zope.testrunner
 **************************
 
-Zope testrunner needs itself to run it's own tests. There are two ways to 
+Zope testrunner needs itself to run its own tests. There are two ways to
 do that.
-
-Note: At the moment of writing buildout does not support Python 3, and
-therefore you must use the latter way of running the tests in Python 3.
-Also, the zc.recipe.testrunner doesn't yet support zope.testrunner, so 
-actually, the first way doesn't work unless you manually edit bin/test.
 
 
 Using zc.buildout
@@ -17,25 +12,28 @@ Using zc.buildout
 The standard way to set up a testrunner to test zope.testrunner with,
 is to use buildout::
 
-    # python bootstrap.py
-    # bin/buildout
+    $ python bootstrap.py
+    $ bin/buildout
 
-You can now run the tests:
-    
-    # bin/test
+You can now run the tests::
+
+    $ bin/test
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
       Ran 27 tests with 0 failures and 0 errors in 17.384 seconds.
     Tearing down left over layers:
-      Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.    
-    
+      Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
+
+Note: At the moment of writing this works only on Python 2.
+
+
 Using setup.py
 --------------
 
 You may run the tests without buildout as well, as the setup.py has
-a custom test command that will run the tests:
+a custom test command that will run the tests::
 
-    # python setup.py test
+    $ python setup.py test
     running test
     running egg_info
     writing requirements to src/zope.testrunner.egg-info/requires.txt
@@ -54,3 +52,35 @@ a custom test command that will run the tests:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
 
+
+Using tox/detox
+---------------
+
+This is a convenient way to run the test suite for all supported Python
+versions, either sequentially (`tox`_) or in parallel (`detox`_)::
+
+    $ detox
+    GLOB sdist-make: /home/mg/src/zope.testrunner/setup.py
+    py33 sdist-reinst: .../.tox/dist/zope.testrunner-4.1.2.dev0.zip
+    py27 sdist-reinst: .../.tox/dist/zope.testrunner-4.1.2.dev0.zip
+    pypy sdist-reinst: .../.tox/dist/zope.testrunner-4.1.2.dev0.zip
+    py31 sdist-reinst: .../.tox/dist/zope.testrunner-4.1.2.dev0.zip
+    py32 sdist-reinst: .../.tox/dist/zope.testrunner-4.1.2.dev0.zip
+    py26 sdist-reinst: .../.tox/dist/zope.testrunner-4.1.2.dev0.zip
+    py27 runtests: commands[0]
+    py26 runtests: commands[0]
+    pypy runtests: commands[0]
+    py32 runtests: commands[0]
+    py33 runtests: commands[0]
+    py31 runtests: commands[0]
+    ______________________________ summary _______________________________
+      py26: commands succeeded
+      py27: commands succeeded
+      py31: commands succeeded
+      py32: commands succeeded
+      py33: commands succeeded
+      pypy: commands succeeded
+      congratulations :)
+
+.. _tox: http://pypi.python.org/pypi/tox
+.. _detox: http://pypi.python.org/pypi/detox
