@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2004 Zope Foundation and Contributors.
+# Copyright (c) 2004, 2013 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -81,8 +81,8 @@ else:
 
 
 class custom_test(test):
-    # The zope.testrunner tests MUST be run using it's own testrunner. This is
-    # because it's subprocess testing will call the script it was run with. We
+    # The zope.testrunner tests MUST be run using its own testrunner. This is
+    # because its subprocess testing will call the script it was run with. We
     # therefore create a script to run the testrunner, and call that.
     def run(self):
         if self.distribution.install_requires:
@@ -146,9 +146,9 @@ chapters = '\n'.join([
     )])
 
 long_description=(
-    open('README.txt').read()
+    open('README.rst').read()
     + '\n' +
-    open('CHANGES.txt').read()
+    open('CHANGES.rst').read()
     + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
