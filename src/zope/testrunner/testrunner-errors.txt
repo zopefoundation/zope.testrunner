@@ -719,7 +719,7 @@ installation of such projects.  So first we create a module with bad syntax:
     >>> badsyntax_path = os.path.join(directory_with_tests,
     ...                               "sample2", "sampletests_i.py")
     >>> f = open(badsyntax_path, "w")
-    >>> print >> f, "importx unittest"  # syntax error
+    >>> print("importx unittest", file=f)  # syntax error
     >>> f.close()
 
 Then run the tests:
@@ -811,10 +811,10 @@ instead of ``run_internal()``:
     ...     'test --tests-pattern ^sampletests_1$'.split())
     >>> try:
     ...     testrunner.run(defaults)
-    ... except SystemExit, e:
-    ...     print 'exited with code', e.code
+    ... except SystemExit as e:
+    ...     print('exited with code', e.code)
     ... else:
-    ...     print 'sys.exit was not called'
+    ...     print('sys.exit was not called')
     ... # doctest: +ELLIPSIS
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -830,10 +830,10 @@ Passing tests exit with code 0 according to UNIX practices:
     ...     'test --tests-pattern ^sampletests$'.split())
     >>> try:
     ...     testrunner.run(defaults)
-    ... except SystemExit, e2:
-    ...     print 'exited with code', e2.code
+    ... except SystemExit as e2:
+    ...     print('exited with code', e2.code)
     ... else:
-    ...     print 'sys.exit was not called'
+    ...     print('sys.exit was not called')
     ... # doctest: +ELLIPSIS
     Running samplelayers.Layer11 tests:
     ...
@@ -851,3 +851,4 @@ Passing tests exit with code 0 according to UNIX practices:
 And remove the temporary directory:
 
     >>> shutil.rmtree(tmpdir)
+

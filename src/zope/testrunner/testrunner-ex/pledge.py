@@ -23,7 +23,7 @@ It's soils, minerals, forests, waters, and wildlife.
 def pledge():
     """
     >>> def print_pledge():
-    ...     print pledge_template % ('and earthling', 'planet')
+    ...     print(pledge_template % ('and earthling', 'planet'))
     >>> print_pledge()
     I give my pledge, as an earthling,
     to save, and faithfully, to defend from waste,
@@ -34,4 +34,5 @@ def pledge():
 
 def test_suite():
     return doctest.DocTestSuite()
+
 

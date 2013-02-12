@@ -13,6 +13,7 @@
 ##############################################################################
 """Test harness for the test runner itself.
 """
+from __future__ import print_function
 
 import re
 import gc
@@ -172,6 +173,7 @@ else:
         ])
 
 def setUp(test):
+    test.globs['print_function'] = print_function
     test.globs['saved-sys-info'] = (
         sys.path[:],
         sys.argv[:],

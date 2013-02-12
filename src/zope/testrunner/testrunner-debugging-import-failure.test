@@ -20,7 +20,7 @@ Post-mortem debugging also works when there is an import failure.
     ...         self.lines = src.split('\n')
     ...     def readline(self):
     ...         line = self.lines.pop(0)
-    ...         print line
+    ...         print(line)
     ...         return line+'\n'
 
     >>> real_stdin = sys.stdin
@@ -30,7 +30,7 @@ Post-mortem debugging also works when there is an import failure.
     >>> import zope.testrunner
     >>> try:
     ...     zope.testrunner.run_internal(['--path', dir, '-D'])
-    ... except zope.testrunner.interfaces.EndRun: print 'EndRun raised'
+    ... except zope.testrunner.interfaces.EndRun: print('EndRun raised')
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS +REPORT_NDIFF
     exceptions.SyntaxError:
@@ -54,7 +54,7 @@ Post-mortem debugging also works when the test suite is invalid:
     >>> try:
     ...     zope.testrunner.run_internal(
     ...       ['--path', dir, '-Dvv', '--tests-pattern', 'tests2'])
-    ... except zope.testrunner.interfaces.EndRun: print 'EndRun raised'
+    ... except zope.testrunner.interfaces.EndRun: print('EndRun raised')
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS +REPORT_NDIFF
     exceptions.TypeError:
@@ -65,4 +65,5 @@ Post-mortem debugging also works when the test suite is invalid:
     EndRun raised
 
     >>> shutil.rmtree(tdir)
+
 

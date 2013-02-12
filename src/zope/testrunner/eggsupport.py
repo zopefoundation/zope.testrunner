@@ -1,5 +1,6 @@
 """ Add unit and functional testing support to setuptools-driven eggs.
 """
+from __future__ import print_function
 from setuptools.command.test import ScanningLoader
 from setuptools.command.test import test as BaseCommand
 
@@ -49,15 +50,15 @@ class SkipLayers(ScanningLoader):
         return skipLayers(ScanningLoader.loadTestsFromModule(self, module))
 
 def print_usage():
-    print 'python setup.py ftest'
-    print
-    print ftest.__doc__
+    print('python setup.py ftest')
+    print()
+    print(ftest.__doc__)
 
 class ftest(BaseCommand):
     """ Run unit and functional tests after an in-place build.
 
     o Note that this command runs *all* tests (unit *and* functional).
-    
+
     o This command does not provide any of the configuration options which
       the usual testrunner provided by 'zope.testrunner' offers:  it is intended
       to allow easy verification that a package has been installed correctly

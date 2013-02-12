@@ -17,8 +17,15 @@
 
 import sys
 import unittest
-import formatter
-from StringIO import StringIO
+
+from six import StringIO
+from zope.testrunner import formatter
+
+
+try:
+    unichr
+except NameError:
+    unichr = chr # Python 3
 
 
 class TestSubunitTracebackPrinting(unittest.TestCase):

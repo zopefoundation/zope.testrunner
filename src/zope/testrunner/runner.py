@@ -13,13 +13,11 @@
 ##############################################################################
 """Test execution
 """
+from __future__ import print_function
 
 import subprocess
-
-import cStringIO
 import errno
 import gc
-import Queue
 import re
 import sys
 import threading
@@ -27,6 +25,7 @@ import time
 import traceback
 import unittest
 
+from six import StringIO
 from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer, _layer_name_cache
 from zope.testrunner.refcount import TrackRefs
@@ -45,6 +44,12 @@ import zope.testrunner.interfaces
 import zope.testrunner.debug
 import zope.testrunner.tb_format
 import zope.testrunner.shuffle
+
+try:
+    import Queue # Python 2
+except ImportError:
+    # Python 3
+    import queue as Queue # Python 3
 
 try:
     from unittest import _UnexpectedSuccess # Python 3.1
@@ -381,7 +386,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
     except zope.testrunner.interfaces.EndRun:
         raise
     except Exception:
-        f = cStringIO.StringIO()
+        f = StringIO()
         traceback.print_exc(file=f)
         output.error(f.getvalue())
         errors.append((SetUpLayerFailure(layer), sys.exc_info()))
@@ -451,7 +456,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
                     if not l:
                         break
                     result.write(l)
-            except IOError, e:
+            except IOError as e:
                 if e.errno == errno.EINTR:
                     # If the subprocess dies before we finish reading its
                     # output, a SIGCHLD signal can interrupt the reading.
@@ -481,14 +486,14 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             # Doing erriter.next().strip() confuses the 2to3 fixer, so
             # we need to do it on a separate line. Also, in python 3 this
             # returns bytes, so we decode it.
-            next_fail = erriter.next()
+            next_fail = next(erriter)
             failures.append((next_fail.strip().decode(), None))
         while nerr > 0:
             nerr -= 1
             # Doing erriter.next().strip() confuses the 2to3 fixer, so
             # we need to do it on a separate line. Also, in python 3 this
             # returns bytes, so we decode it.
-            next_err = erriter.next()
+            next_err = next(erriter)
             errors.append((next_err.strip().decode(), None))
 
     finally:
@@ -579,7 +584,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors):
     # Now start a few threads at a time.
     running_threads = []
     results_iter = iter(results)
-    current_result = results_iter.next()
+    current_result = next(results_iter)
     last_layer_intermediate_output = None
     output = None
     while ready_threads or running_threads:
@@ -613,10 +618,10 @@ def resume_tests(script_parts, options, features, layers, failures, errors):
             if output is not None:
                 sys.stdout.write(']\n')
                 output = None
-            map(sys.stdout.write, current_result.stdout)
+            sys.stdout.writelines(current_result.stdout)
 
             try:
-                current_result = results_iter.next()
+                current_result = next(results_iter)
             except StopIteration:
                 current_result = None
 
@@ -826,7 +831,7 @@ def layer_from_name(layer_name):
     module = import_name(module_name)
     try:
         return getattr(module, module_layer_name)
-    except AttributeError, e:
+    except AttributeError as e:
         # the default error is very uninformative:
         #   AttributeError: 'module' object has no attribute 'DemoLayer'
         # it doesn't say *which* module
@@ -864,10 +869,10 @@ def gather_layers(layer, result):
 class FakeInputContinueGenerator:
 
     def readline(self):
-        print  'c\n'
-        print '*'*70
+        print('c\n')
+        print('*'*70)
         print ("Can't use pdb.set_trace when running a layer"
                " as a subprocess!")
-        print '*'*70
-        print
+        print('*'*70)
+        print()
         return 'c\n'

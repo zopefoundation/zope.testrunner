@@ -78,7 +78,7 @@ Debugging Edge Cases
     ...         self.lines = src.split('\n')
     ...     def readline(self):
     ...         line = self.lines.pop(0)
-    ...         print line
+    ...         print(line)
     ...         return line+'\n'
 
     >>> real_stdin = sys.stdin
@@ -487,4 +487,5 @@ repeat count greater than 1
             option.
     <BLANKLINE>
     True
+
 

@@ -327,7 +327,7 @@ Let's create a module with some bad syntax:
     >>> badsyntax_path = os.path.join(directory_with_tests,
     ...                               "sample2", "sampletests_i.py")
     >>> f = open(badsyntax_path, "w")
-    >>> print >> f, "importx unittest"  # syntax error
+    >>> print("importx unittest", file=f)  # syntax error
     >>> f.close()
 
 And then run the tests:
@@ -664,3 +664,4 @@ Note that debugging doesn't work when running tests in a subprocess:
     tearDown not supported
     ]
     True
+

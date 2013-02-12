@@ -19,6 +19,7 @@ import os
 import unittest
 import sys
 
+import six
 import zope.testrunner.feature
 import zope.testrunner.layer
 import zope.testrunner.debug
@@ -50,7 +51,7 @@ class StartUpFailure(unittest.TestCase):
 
     >>> r = unittest.TestResult()
     >>> _ = s.run(r)
-    >>> print r.failures[0][1].rstrip() # doctest: +ELLIPSIS
+    >>> print(r.failures[0][1].rstrip()) # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
     AssertionError: could not import fauxmodule
@@ -67,9 +68,9 @@ class StartUpFailure(unittest.TestCase):
 
     >>> r = unittest.TestResult()
     >>> _ = s.run(r)
-    >>> print r.errors[0][0].shortDescription()
+    >>> print(r.errors[0][0].shortDescription())
     StartUpFailure: import errors in fauxmodule.
-    >>> print r.errors[0][1].rstrip() # doctest: +ELLIPSIS
+    >>> print(r.errors[0][1].rstrip()) # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
     Exception: something bad happened during import
@@ -95,10 +96,10 @@ class StartUpFailure(unittest.TestCase):
     >>> from zope.testrunner.interfaces import EndRun
     >>> try: #doctest: +ELLIPSIS
     ...   try: # try...except...finally doesn't work in Python 2.4
-    ...     print "Result:" # Needed to prevent the result from starting with '...'
+    ...     print("Result:") # Needed to prevent the result from starting with '...'
     ...     StartUpFailure(options, None, exc_info)
     ...   except EndRun:
-    ...     print "EndRun raised"
+    ...     print("EndRun raised")
     ... finally:
     ...   sys.stdin = old_stdin
     Result:
@@ -145,7 +146,7 @@ class StartUpFailure(unittest.TestCase):
         if self.exc_info is None or any(x is None for x in self.exc_info):
             self.fail("could not import %s" % self.module)
         else:
-            raise self.exc_info[0], self.exc_info[1], self.exc_info[2]
+            six.reraise(*self.exc_info)
 
 
 def find_tests(options, found_suites=None):
@@ -268,7 +269,7 @@ def find_test_files_(options):
                 del dirs[:]
                 continue
             root2ext = {}
-            dirs[:] = filter(identifier, dirs)
+            dirs[:] = [d for d in dirs if identifier(d)]
             d = os.path.split(dirname)[1]
             if tests_pattern(d) and contains_init_py(options, files):
                 # tests directory
@@ -282,8 +283,7 @@ def find_test_files_(options):
                 if noext and tests_pattern(noext):
                     update_root2ext(dirname, noext, file)
 
-            winners = root2ext.values()
-            winners.sort()
+            winners = sorted(root2ext.values())
             for file in winners:
                 yield file, package
 
@@ -408,7 +408,7 @@ def tests_from_suite(suite, options, dlevel=1,
     """
     level = getattr(suite, 'level', dlevel)
     layer = getattr(suite, 'layer', dlayer)
-    if not isinstance(layer, basestring):
+    if not isinstance(layer, six.string_types):
         layer = name_from_layer(layer)
 
     if isinstance(suite, unittest.TestSuite):
@@ -484,3 +484,4 @@ class Find(zope.testrunner.feature.Feature):
     def report(self):
         self.runner.options.output.modules_with_import_problems(
             self.import_errors)
+

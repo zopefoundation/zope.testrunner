@@ -13,6 +13,7 @@
 ##############################################################################
 """Command-line option parsing
 """
+from __future__ import print_function
 
 import optparse
 import re
@@ -313,7 +314,7 @@ out.
 
 analysis.add_option(
     '--profile', action="store", dest='profile', type="choice",
-    choices=available_profilers.keys(),
+    choices=list(available_profilers),
     help="""\
 Run the tests under cProfiler or hotshot and display the top 50 stats, sorted
 by cumulative time and number of calls.
@@ -563,7 +564,7 @@ def get_options(args=None, defaults=None):
 
     if options.showversion:
         dist = pkg_resources.require('zope.testrunner')[0]
-        print 'zope.app.testrunner version %s' % dist.version
+        print('zope.app.testrunner version %s' % dist.version)
         options.fail = True
         return options
 
@@ -571,10 +572,10 @@ def get_options(args=None, defaults=None):
         try:
             import subunit
         except ImportError:
-            print """\
+            print("""\
         Subunit is not installed. Please install Subunit
         to generate subunit output.
-        """
+        """)
             options.fail = True
             return options
         else:
@@ -608,11 +609,11 @@ def get_options(args=None, defaults=None):
     options.ignore_dir = dict([(d,1) for d in options.ignore_dir])
     options.test_file_pattern = re.compile(options.test_file_pattern).search
     options.tests_pattern = re.compile(options.tests_pattern).search
-    options.test = map(compile_filter, options.test or ('.'))
-    options.module = map(compile_filter, options.module or ('.'))
+    options.test = [compile_filter(t) for t in options.test or ('.')]
+    options.module = [compile_filter(m) for m in options.module or ('.')]
 
-    options.path = map(os.path.abspath, options.path or ())
-    options.test_path = map(os.path.abspath, options.test_path or ())
+    options.path = [os.path.abspath(p) for p in options.path or ()]
+    options.test_path = [os.path.abspath(p) for p in options.test_path or ()]
     options.test_path += options.path
 
     options.test_path = ([(path, '') for path in options.test_path]
@@ -629,7 +630,7 @@ def get_options(args=None, defaults=None):
     options.prefix = [(path + os.path.sep, package)
                       for (path, package) in options.test_path]
     if options.all:
-        options.at_level = sys.maxint
+        options.at_level = sys.maxsize
 
     if options.unit and options.non_unit:
         # The test runner interprets this as "run only those tests that are
@@ -642,7 +643,7 @@ def get_options(args=None, defaults=None):
         # XXX Argh.
         options.layer = ['zope.testrunner.layer.UnitTests']
     if options.layer:
-        options.layer = map(compile_filter, options.layer)
+        options.layer = [compile_filter(l) for l in options.layer]
 
     options.layer = options.layer and dict([(l, 1) for l in options.layer])
 
@@ -653,21 +654,21 @@ def get_options(args=None, defaults=None):
         options.verbose = 0
 
     if options.report_refcounts and options.repeat < 2:
-        print """\
+        print("""\
         You must use the --repeat (-N) option to specify a repeat
         count greater than 1 when using the --report_refcounts (-r)
         option.
-        """
+        """)
         options.fail = True
         return options
 
 
     if options.report_refcounts and not hasattr(sys, "gettotalrefcount"):
-        print """\
+        print("""\
         The Python you are running was not configured
         with --with-pydebug. This is required to use
         the --report-refcounts option.
-        """
+        """)
         options.fail = True
         return options
 

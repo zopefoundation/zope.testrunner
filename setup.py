@@ -31,45 +31,12 @@ if sys.version_info < (2,6) or sys.version_info[:2] == (3,0):
 
 
 if sys.version_info >= (3,):
-    extra = dict(use_2to3 = True,
-                 convert_2to3_doctests = [
-                     'src/zope/testrunner/testrunner-arguments.txt',
-                     'src/zope/testrunner/testrunner-coverage-win32.txt',
-                     'src/zope/testrunner/testrunner-coverage.txt',
-                     'src/zope/testrunner/testrunner-debugging-layer-setup.test',
-                     'src/zope/testrunner/testrunner-debugging-import-failure.test',
-                     'src/zope/testrunner/testrunner-debugging.txt',
-                     'src/zope/testrunner/testrunner-discovery',
-                     'src/zope/testrunner/testrunner-edge-cases.txt',
-                     'src/zope/testrunner/testrunner-errors.txt',
-                     'src/zope/testrunner/testrunner-gc.txt',
-                     'src/zope/testrunner/testrunner-knit.txt',
-                     'src/zope/testrunner/testrunner-layers-api.txt',
-                     'src/zope/testrunner/testrunner-layers-buff.txt',
-                     'src/zope/testrunner/testrunner-layers-ntd.txt',
-                     'src/zope/testrunner/testrunner-layers.txt',
-                     'src/zope/testrunner/testrunner-leaks-err.txt',
-                     'src/zope/testrunner/testrunner-leaks.txt',
-                     'src/zope/testrunner/testrunner-profiling-cprofiler.txt',
-                     'src/zope/testrunner/testrunner-profiling.txt',
-                     'src/zope/testrunner/testrunner-progress.txt',
-                     'src/zope/testrunner/testrunner-repeat.txt',
-                     'src/zope/testrunner/testrunner-simple.txt',
-                     'src/zope/testrunner/testrunner-tb-format.txt',
-                     'src/zope/testrunner/testrunner-test-selection.txt',
-                     'src/zope/testrunner/testrunner-verbose.txt',
-                     'src/zope/testrunner/testrunner-wo-source.txt',
-                     'src/zope/testrunner/testrunner.txt',
-                     'src/zope/testrunner/testrunner-ex/sampletests.txt',
-                     'src/zope/testrunner/testrunner-ex/sampletestsl.txt',
-                     'src/zope/testrunner/testrunner-ex/unicode.txt',
-                     ],
-
-                 # XXX:  python-subunit is not yet ported to Python3.
-                 tests_require = ['zope.testing'],
+    tests_require = ['zope.testing']
+    extra = dict(# XXX:  python-subunit is not yet ported to Python3.
                  extras_require = {'test': ['zope.testing']},
                  )
 else:
+    tests_require = ['zope.testing', 'python-subunit']
     extra = dict(tests_require = ['zope.testing',
                                   'python-subunit',
                                  ],
@@ -157,7 +124,7 @@ long_description=(
 
 setup(
     name='zope.testrunner',
-    version='4.1.2.dev0',
+    version='4.2.0.dev0',
     url='http://pypi.python.org/pypi/zope.testrunner',
     license='ZPL 2.1',
     description='Zope testrunner script.',
@@ -185,7 +152,10 @@ setup(
         "Topic :: Software Development :: Testing",
         ],
     namespace_packages=['zope',],
+    tests_require = tests_require,
+    extras_require = {'test': tests_require},
     install_requires = ['setuptools',
+                        'six',
                         'zope.exceptions',
                         'zope.interface',
                        ],
@@ -195,5 +165,4 @@ setup(
     include_package_data = True,
     zip_safe = False,
     cmdclass = {'test': custom_test},
-    **extra
 )

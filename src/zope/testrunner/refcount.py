@@ -13,6 +13,7 @@
 ##############################################################################
 """Support for tracking reference counts.
 """
+from __future__ import print_function
 
 import gc
 import sys
@@ -61,13 +62,13 @@ class TrackRefs(object):
                type2count[t] - self.type2count.get(t, 0),
                type2all[t] - self.type2all.get(t, 0),
                )
-              for t in type2count.iterkeys()]
+              for t in type2count]
         ct += [(
                 type_or_class_title(t),
                 - self.type2count[t],
                 - self.type2all[t],
                 )
-               for t in self.type2count.iterkeys()
+               for t in self.type2count
                if t not in type2count]
         ct.sort()
         self.delta = ct
@@ -85,16 +86,16 @@ class TrackRefs(object):
                     print (
                         '    Leak details, changes in instances and refcounts'
                         ' by type/class:')
-                    print "    %-55s %6s %6s" % ('type/class', 'insts', 'refs')
-                    print "    %-55s %6s %6s" % ('-' * 55, '-----', '----')
+                    print("    %-55s %6s %6s" % ('type/class', 'insts', 'refs'))
+                    print("    %-55s %6s %6s" % ('-' * 55, '-----', '----'))
                     printed = True
-                print "    %-55s %6d %6d" % (t, delta1, delta2)
+                print("    %-55s %6d %6d" % (t, delta1, delta2))
                 s1 += delta1
                 s2 += delta2
 
         if printed:
-            print "    %-55s %6s %6s" % ('-' * 55, '-----', '----')
-            print "    %-55s %6s %6s" % ('total', s1, s2)
+            print("    %-55s %6s %6s" % ('-' * 55, '-----', '----'))
+            print("    %-55s %6s %6s" % ('total', s1, s2))
 
 
         self.delta = None

@@ -14,6 +14,7 @@
 """Debug functions
 
 """
+from __future__ import print_function
 
 import doctest
 import sys
@@ -38,14 +39,14 @@ def post_mortem(exc_info):
             # Hm, we have a DocTestFailure exception.  We need to
             # generate our own traceback
             try:
-                exec ('raise ValueError'
+                exec(('raise ValueError'
                       '("Expected and actual output are different")'
-                      ) in err.test.globs
+                      ), err.test.globs)
             except:
                 exc_info = sys.exc_info()
 
-    print "%s.%s:" % (exc_info[0].__module__, exc_info[0].__name__)
-    print exc_info[1]
+    print("%s.%s:" % (exc_info[0].__module__, exc_info[0].__name__))
+    print(exc_info[1])
     pdb.post_mortem(exc_info[2])
     raise zope.testrunner.interfaces.EndRun()
 
@@ -55,4 +56,4 @@ def print_doctest_location(err):
     filename = err.test.filename
     if filename.endswith('.pyc'):
         filename = filename[:-1]
-    print "> %s(%s)_()" % (filename, err.test.lineno+err.example.lineno+1)
+    print("> %s(%s)_()" % (filename, err.test.lineno+err.example.lineno+1))

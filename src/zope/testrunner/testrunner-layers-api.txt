@@ -170,9 +170,9 @@ also see that the layer's test setup and teardown methods got called for
 each test using that layer in the right order.
 
 >>> def report():
-...     print "Report:"
+...     print("Report:")
 ...     for record in log_handler.records:
-...         print record.getMessage()
+...         print(record.getMessage())
 >>> report()
 Report:
 BaseLayer.setUp
@@ -282,3 +282,4 @@ Report:
 ...C.tearDown
 ...B.tearDown
 ...A.tearDown
+

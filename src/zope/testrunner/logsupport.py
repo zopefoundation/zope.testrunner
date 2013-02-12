@@ -47,7 +47,7 @@ class Logging(zope.testrunner.feature.Feature):
             root.addHandler(NullHandler())
             logging.basicConfig()
 
-        if os.environ.has_key("LOGGING"):
+        if "LOGGING" in os.environ:
             level = int(os.environ["LOGGING"])
             logging.getLogger().setLevel(level)
 

@@ -1,10 +1,11 @@
 zope.testrunner Changelog
 *************************
 
-4.1.2 (unreleased)
+4.2.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Dropped use of 2to3, rewrote source code to be compatible with all Python
+  versions.  Introduced a dependency on `six`_.
 
 
 4.1.1 (2013-02-08)
@@ -132,3 +133,6 @@ zope.testrunner Changelog
 ====================
 
 - Initial release of the testrunner from zope.testrunner as it's own module.
+
+
+.. _six: http://pypi.python.org/pypi/six

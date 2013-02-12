@@ -13,6 +13,7 @@
 ##############################################################################
 """Subprocess support.
 """
+from __future__ import print_function
 
 import sys
 import zope.testrunner.feature
@@ -39,11 +40,11 @@ class SubProcess(zope.testrunner.feature.Feature):
     def report(self):
         sys.stdout.close()
         # Communicate with the parent.  The protocol is obvious:
-        print >> self.original_stderr, self.runner.ran, \
-                len(self.runner.failures), len(self.runner.errors)
+        print(self.runner.ran,
+                len(self.runner.failures), len(self.runner.errors), file=self.original_stderr)
         for test, exc_info in self.runner.failures:
-            print >> self.original_stderr, ' '.join(str(test).strip().split('\n'))
+            print(' '.join(str(test).strip().split('\n')), file=self.original_stderr)
         for test, exc_info in self.runner.errors:
-            print >> self.original_stderr, ' '.join(str(test).strip().split('\n'))
+            print(' '.join(str(test).strip().split('\n')), file=self.original_stderr)
         # You need to flush in Python 3, and it doesn't hurt in Python 2:
         self.original_stderr.flush()

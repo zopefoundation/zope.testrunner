@@ -10,7 +10,7 @@ To demonstrate this, we'll provide input via helper Input objects:
     ...         self.lines = src.split('\n')
     ...     def readline(self):
     ...         line = self.lines.pop(0)
-    ...         print line
+    ...         print(line)
     ...         return line+'\n'
 
 If a test or code called by a test calls pdb.set_trace, then the
@@ -108,3 +108,4 @@ converted to errors and can be debugged the same way:
     2
     (Pdb) c
     True
+

@@ -4,3 +4,4 @@ eggs/
 develop-eggs/
 *.egg-info/
 tags
+.tox

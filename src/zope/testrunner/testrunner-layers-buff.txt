@@ -16,6 +16,9 @@ which a given line was written.
     ...     def write(self, out):
     ...         self.record.append((out, datetime.datetime.now()))
     ...         self.wrapped.write(out)
+    ...     def writelines(self, lines):
+    ...         for line in lines:
+    ...             self.write(line)
     ...     def flush(self):
     ...         self.wrapped.flush()
     ...
@@ -68,12 +71,12 @@ more than a second after the second suite ran.
     >>> def assert_progressive_output():
     ...     pause = datetime.timedelta(seconds=0.3)
     ...     last_line, last_time = record.pop(0)
-    ...     print '---'
+    ...     print('---')
     ...     for line, time in record:
     ...         if time-last_time >= pause:
     ...             # We paused!
-    ...             print 'PAUSE FOUND BETWEEN THESE LINES:'
-    ...             print ''.join([last_line, line, '-'*70])
+    ...             print('PAUSE FOUND BETWEEN THESE LINES:')
+    ...             print(''.join([last_line, line, '-'*70]))
     ...         last_line, last_time = line, time
 
     >>> assert_progressive_output() # doctest: +ELLIPSIS
@@ -134,12 +137,12 @@ before, the progress output is not buffered.
     >>> def assert_progressive_output():
     ...     pause = datetime.timedelta(seconds=0.3)
     ...     last_line, last_time = record.pop(0)
-    ...     print '---'
+    ...     print('---')
     ...     for line, time in record:
     ...         if time-last_time >= pause:
     ...             # We paused!
-    ...             print 'PAUSE FOUND BETWEEN THIS OUTPUT:'
-    ...             print '\n'.join([last_line, line, '-'*70])
+    ...             print('PAUSE FOUND BETWEEN THIS OUTPUT:')
+    ...             print('\n'.join([last_line, line, '-'*70]))
     ...         last_line, last_time = line, time
 
     >>> assert_progressive_output() # doctest: +ELLIPSIS
@@ -245,3 +248,4 @@ communicating with the subprocess:
     Total: 1 tests, 0 failures, 0 errors in N.NNN seconds.
 
     >>> subprocess.Popen = Popen
+

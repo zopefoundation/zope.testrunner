@@ -31,7 +31,7 @@ class Shuffle(zope.testrunner.feature.Feature):
             # We can't rely on the random modules seed initialization because
             # we can't introspect the seed later for reporting.  This is a
             # simple emulation of what random.Random.seed does anyway.
-            self.seed = long(time.time() * 256) # use fractional seconds
+            self.seed = int(time.time() * 256) # use fractional seconds
 
     def global_setup(self):
         rng = random.Random(self.seed)
