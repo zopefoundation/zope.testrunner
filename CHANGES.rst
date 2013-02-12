@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.2.0 (unreleased)
+4.2.0 (2013-02-12)
 ==================
 
 - Dropped use of 2to3, rewrote source code to be compatible with all Python
