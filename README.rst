@@ -11,7 +11,7 @@ Getting started
 ***************
 
 Buildout-based projects
------------------------
+=======================
 
 zope.testrunner is often used for projects that use buildout_::
 
@@ -39,7 +39,7 @@ creates a ``bin/test`` script that will run the tests for *mypackage*.
 
 
 Virtualenv-based projects
--------------------------
+=========================
 
 ``pip install zope.testrunner`` and you'll get a ``zope-testrunner``
 script.  Run your tests with ::
@@ -52,7 +52,7 @@ so you need to run ``python setup.py install`` or ``pip install -e
 
 
 Some useful command-line options to get you started
----------------------------------------------------
+===================================================
 
 -p              show a percentage indicator
 -v              increase verbosity
@@ -73,7 +73,7 @@ runs all TestBar tests from a module called test_foo.py.
 
 
 Writing tests
--------------
+=============
 
 ``zope.testrunner`` expects to find your tests inside your package
 directory, in a subpackage or module named ``tests``.  Test modules
@@ -118,7 +118,7 @@ Example::
 
 
 Test grouping
--------------
+=============
 
 In addition to per-package and per-module filtering, zope.testrunner
 has other mechanisms for grouping tests:
@@ -137,7 +137,7 @@ For more details please see the detailed documentation.
 
 
 Other features
---------------
+==============
 
 zope.testrunner can profile your tests, measure test coverage,
 check for memory leaks, integrate with subunit_, shuffle the
