@@ -17,12 +17,14 @@ is to use buildout::
 
 You can now run the tests::
 
-    $ bin/test
+    $ bin/test -pvc
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
-      Ran 27 tests with 0 failures and 0 errors in 17.384 seconds.
+
+      Ran 28 tests with 0 failures and 0 errors in 17.384 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
+
 
 
 Using setup.py

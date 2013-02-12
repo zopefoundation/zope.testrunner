@@ -85,7 +85,7 @@ zope.testrunner Changelog
 4.0.0b5 (2010-07-20)
 ====================
 
-- Update fix for LP #221151 to a spelliing compatible with Python 2.4.
+- Update fix for LP #221151 to a spelling compatible with Python 2.4.
 
 - Timestamps are now always included in subunit output (r114849).
 
@@ -115,7 +115,7 @@ zope.testrunner Changelog
 
 - LP #579019: When layers were run in parallel, their tearDown was
   not called. Additionally, the first layer which was run in the main
-  thread did not have it's tearDown called either.
+  thread did not have its tearDown called either.
 
 
 4.0.0b2 (2010-05-03)
@@ -132,7 +132,7 @@ zope.testrunner Changelog
 4.0.0b1 (2010-04-29)
 ====================
 
-- Initial release of the testrunner from zope.testrunner as it's own module.
+- Initial release of the testrunner from zope.testrunner as its own module.
 
 
 .. _six: http://pypi.python.org/pypi/six
