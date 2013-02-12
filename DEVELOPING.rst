@@ -24,8 +24,6 @@ You can now run the tests::
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
 
-Note: At the moment of writing this works only on Python 2.
-
 
 Using setup.py
 --------------
