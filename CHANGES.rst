@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.3.1 (unreleased)
+4.3.1 (2013-03-02)
 ==================
 
 - Fixed a bug in the `ftest` command and added a test.
