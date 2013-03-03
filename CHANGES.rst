@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.3.0 (unreleased)
+4.3.0 (2013-03-02)
 ==================
 
 - Expose `ftest` distutils command via an entry point.
