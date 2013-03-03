@@ -97,10 +97,11 @@ class ftest(BaseCommand):
 
     def run(self):
         from zope.testrunner import run
+        args = ['IGNORE_ME']
 
         dist = self.distribution
-        where = dist.package_dir or '.'
-        args = ['IGNORE_ME', '--test-path', where]
+        for src_loc in (dist.package_dir.values() or ['.']):
+            args += ['--test-path', src_loc]
 
         if dist.install_requires:
             dist.fetch_build_eggs(dist.install_requires)

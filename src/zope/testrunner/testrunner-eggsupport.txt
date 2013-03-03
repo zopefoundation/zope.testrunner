@@ -17,6 +17,29 @@ exposes it as such via an entry point.
   >>> eps['ftest']
   EntryPoint.parse('ftest = zope.testrunner.eggsupport:ftest')
 
+Let's now run this command:
+
+  >>> import zope.testrunner
+  >>> org_run = zope.testrunner.run
+
+  >>> def run(args):
+  ...     print(' '.join(args))
+  >>> zope.testrunner.run = run
+
+  >>> import os
+  >>> import setuptools.dist
+  >>> dist = setuptools.dist.Distribution(
+  ...     {'package_dir': {'': os.path.dirname(__file__)},
+  ...      'script_name': 'foo'})
+
+  >>> from zope.testrunner.eggsupport import ftest
+  >>> ftest(dist).run()
+  IGNORE_ME --test-path ...zope/testrunner
+
+Cleanup:
+
+  >>> zope.testrunner.run = org_run
+
 
 Skipping Tests with Layers
 --------------------------

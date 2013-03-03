@@ -4,7 +4,9 @@ zope.testrunner Changelog
 4.3.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fixed a bug in the `ftest` command and added a test.
+
+- Fixed a trivial test failure with Python 3 of the previous release.
 
 
 4.3.0 (2013-03-02)
