@@ -4,7 +4,10 @@ zope.testrunner Changelog
 4.3.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Running layers in sub-processes did not use to work when run via
+  ``python setup.py ftest`` since it tried to run setup.py with all the
+  command line options. It now detects ``setup.py`` runs and we run the test
+  runner directly.
 
 
 4.3.2 (2013-03-03)

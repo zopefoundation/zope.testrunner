@@ -418,6 +418,10 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
         # BBB
         if script_parts is None:
             script_parts = sys.argv[0:1]
+            # If we are running via setup.py, then we'll have to run the
+            # sub-process differently.
+            if script_parts[0] == 'setup.py':
+                script_parts = ['-c', 'from zope.testrunner import run; run()']
         args = [sys.executable]
         args.extend(script_parts)
         args.extend(['--resume-layer', layer_name, str(resume_number)])
