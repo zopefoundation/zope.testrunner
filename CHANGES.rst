@@ -4,7 +4,8 @@ zope.testrunner Changelog
 4.3.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix ``SkipLayers`` class in cases where the distribution specifies a
+  ``test_suite`` value.
 
 
 4.3.1 (2013-03-02)

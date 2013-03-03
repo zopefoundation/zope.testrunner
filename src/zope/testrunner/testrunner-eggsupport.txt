@@ -107,3 +107,27 @@ Now we can retrieve the modules from the layer skipping loader:
 Cleanup:
 
   >>> ScanningLoader.loadTestsFromModule = orig_loadTestsFromModule
+
+When the distribution specified a ``test_suite``, another method is used to
+load the tests.
+
+  >>> orig_loadTestsFromNames = ScanningLoader.loadTestsFromNames
+  >>> ScanningLoader.loadTestsFromNames = lambda *args: all
+
+Now we can retrieve the modules from the layer skipping loader:
+
+  >>> from zope.testrunner.eggsupport import SkipLayers
+  >>> filtered = SkipLayers().loadTestsFromNames(
+  ...     'zope.testrunner.tests.test_suite', 'zope.testrunner')
+
+  >>> len(filtered._tests)
+  3
+  >>> from pprint import pprint
+  >>> pprint(filtered._tests)
+  [<...T1 testMethod=test_t1>,
+   StartUpFailure (zope.testrunner.find),
+   .../zope/testrunner/testrunner.txt]
+
+Cleanup:
+
+  >>> ScanningLoader.loadTestsFromNames = orig_loadTestsFromNames

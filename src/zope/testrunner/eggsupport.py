@@ -52,7 +52,13 @@ class SkipLayers(ScanningLoader):
       )
     """
     def loadTestsFromModule(self, module):
-        return skipLayers(ScanningLoader.loadTestsFromModule(self, module))
+        return skipLayers(
+            ScanningLoader.loadTestsFromModule(self, module))
+
+    def loadTestsFromNames(self, testNames, module):
+        return skipLayers(
+            ScanningLoader.loadTestsFromNames(self, testNames, module))
+
 
 def print_usage():
     print('python setup.py ftest')
