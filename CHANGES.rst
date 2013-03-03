@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.3.2 (unreleased)
+4.3.2 (2013-03-03)
 ==================
 
 - Fix ``SkipLayers`` class in cases where the distribution specifies a
