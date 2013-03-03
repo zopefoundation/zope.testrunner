@@ -4,22 +4,27 @@ from __future__ import print_function
 from setuptools.command.test import ScanningLoader
 from setuptools.command.test import test as BaseCommand
 
-
-def skipLayers(suite):
+def skipLayers(suite, _result=None):
     """ Walk the suite returned by setuptools' testloader.
-    
+
     o Skip any tests which have a 'layer' defined.
     """
     from unittest import TestSuite
-    result = TestSuite()
+    if _result is None:
+        _result = TestSuite()
+    # Sometimes test suites do not have tests, like DocFileSuite.
+    if len(suite._tests) == 0:
+        _result.addTest(suite)
+        return _result
     for test in suite._tests:
+        layer = getattr(test, 'layer', None)
+        if layer is not None:
+            continue
         if isinstance(test, TestSuite):
-            result.addTest(skipLayers(test))
+            skipLayers(test, _result)
         else:
-            layer = getattr(test, 'layer', None)
-            if layer is None:
-                result.addTest(test)
-    return result
+            _result.addTest(test)
+    return _result
 
 class SkipLayers(ScanningLoader):
     """ Load only unit tests (those which have no layer associated with them).
@@ -77,11 +82,6 @@ class ftest(BaseCommand):
       setup_requires=['zope.testrunner',
                       'eggtestinfo' # captures testing metadata in EGG-INFO
                      ],
-      ...
-      entry_points='''
-      [setuptools.commands]
-      ftest = zope.testrunner.eggsupport:SetuptoolsFunctionalTest
-      '''
       ...
       )
     """

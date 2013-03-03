@@ -1,10 +1,12 @@
 zope.testrunner Changelog
 *************************
 
-4.2.1 (unreleased)
+4.3.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Expose `ftest` distutils command via an entry point.
+
+- Added tests for ``zope.testrunner.eggsupport``.
 
 
 4.2.0 (2013-02-12)

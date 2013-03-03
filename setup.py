@@ -98,6 +98,7 @@ chapters = '\n'.join([
         'testrunner-progress.txt',
         'testrunner-debugging.txt',
         'testrunner-layers-ntd.txt',
+        'testrunner-eggsupport.txt',
         'testrunner-coverage.txt',
         'testrunner-profiling.txt',
         'testrunner-wo-source.txt',
@@ -161,7 +162,10 @@ setup(
                        ],
     entry_points = {
         'console_scripts':
-            ['zope-testrunner = zope.testrunner:run',]},
+            ['zope-testrunner = zope.testrunner:run',],
+        'distutils.commands': [
+            'ftest = zope.testrunner.eggsupport:ftest',],
+        },
     include_package_data = True,
     zip_safe = False,
     cmdclass = {'test': custom_test},
