@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.3.3 (unreleased)
+4.3.3 (2013-03-03)
 ==================
 
 - Running layers in sub-processes did not use to work when run via
