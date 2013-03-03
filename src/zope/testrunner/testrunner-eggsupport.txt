@@ -77,7 +77,7 @@ Now we can retrieve the modules from the layer skipping loader:
   3
   >>> from pprint import pprint
   >>> pprint(filtered._tests)
-  [<__builtin__.T1 testMethod=test_t1>,
+  [<...T1 testMethod=test_t1>,
    StartUpFailure (zope.testrunner.find),
    .../zope/testrunner/testrunner.txt]
 
