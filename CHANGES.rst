@@ -1,6 +1,12 @@
 zope.testrunner Changelog
 *************************
 
+4.3.2 (unreleased)
+==================
+
+- Nothing changed yet.
+
+
 4.3.1 (2013-03-02)
 ==================
 
