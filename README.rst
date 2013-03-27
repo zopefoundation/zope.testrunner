@@ -6,6 +6,9 @@ zope.testrunner
 
 This package provides a flexible test runner with layer support.
 
+You can find more `detailed documentation`_ on PyPI or in the ``src/``
+directory.
+
 
 Getting started
 ***************
@@ -133,7 +136,7 @@ has other mechanisms for grouping tests:
   by default.  They're specified by setting the ``level`` attribute
   on test suites to an int.
 
-For more details please see the detailed documentation.
+For more details please see the `detailed documentation`_.
 
 
 Other features
@@ -143,9 +146,10 @@ zope.testrunner can profile your tests, measure test coverage,
 check for memory leaks, integrate with subunit_, shuffle the
 test execution order, and run multiple tests in parallel.
 
-For more details please see the detailed documentation.
+For more details please see the `detailed documentation`_.
 
 .. _buildout: http://www.buildout.org/
 .. _virtualenv: http://www.virtualenv.org/
 .. _zc.recipe.testrunner: http://pypi.python.org/pypi/zc.recipe.testrunner
 .. _subunit: http://pypi.python.org/pypi/subunit
+.. _detailed documentation: http://docs.zope.org/zope.testrunner/
