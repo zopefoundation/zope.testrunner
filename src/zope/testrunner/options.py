@@ -507,11 +507,6 @@ parser.set_defaults(
 ######################################################################
 # Command-line processing
 
-def compile_filter(pattern):
-    if pattern.startswith('!'):
-        pattern = re.compile(pattern[1:]).search
-        return (lambda s: not pattern(s))
-    return re.compile(pattern).search
 
 def merge_options(options, defaults):
     odict = options.__dict__
@@ -642,8 +637,6 @@ def get_options(args=None, defaults=None):
     if options.unit:
         # XXX Argh.
         options.layer = ['zope.testrunner.layer.UnitTests']
-    if options.layer:
-        options.layer = [compile_filter(l) for l in options.layer]
 
     options.layer = options.layer and dict([(l, 1) for l in options.layer])
 

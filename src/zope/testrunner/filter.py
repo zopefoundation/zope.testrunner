@@ -37,11 +37,8 @@ class Filter(zope.testrunner.feature.Feature):
             should_run = True
             if (not options.non_unit):
                 if options.layer:
-                    should_run = False
-                    for pat in options.layer:
-                        if pat(UNITTEST_LAYER):
-                            should_run = True
-                            break
+                    accept = build_filtering_func(options.layer)
+                    should_run = accept(UNITTEST_LAYER)
                 else:
                     should_run = True
             else:
@@ -55,12 +52,9 @@ class Filter(zope.testrunner.feature.Feature):
                 if name != self.runner.options.resume_layer:
                     layers.pop(name)
         elif self.runner.options.layer:
+            accept = build_filtering_func(self.runner.options.layer)
             for name in list(layers):
-                for pat in self.runner.options.layer:
-                    if pat(name):
-                        # This layer matches a pattern selecting this layer
-                        break
-                else:
+                if not accept(name):
                     # No pattern matched this name so we remove it
                     layers.pop(name)
 
