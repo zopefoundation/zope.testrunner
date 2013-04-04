@@ -610,7 +610,7 @@ def get_options(args=None, defaults=None):
     options.test_file_pattern = re.compile(options.test_file_pattern).search
     options.tests_pattern = re.compile(options.tests_pattern).search
     options.test = [t for t in options.test or ('.')]
-    options.module = [compile_filter(m) for m in options.module or ('.')]
+    options.module = [m for m in options.module or ('.')]
 
     options.path = [os.path.abspath(p) for p in options.path or ()]
     options.test_path = [os.path.abspath(p) for p in options.test_path or ()]

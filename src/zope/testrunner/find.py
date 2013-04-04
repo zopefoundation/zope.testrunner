@@ -183,10 +183,8 @@ def find_suites(options):
                 if package:
                     module_name = package + '.' + module_name
 
-                for filter_ in options.module:
-                    if filter_(module_name):
-                        break
-                else:
+                accept = build_filtering_func(options.module)
+                if not accept(module_name):
                     continue
 
                 try:
