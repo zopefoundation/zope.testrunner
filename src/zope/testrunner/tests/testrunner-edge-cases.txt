@@ -489,3 +489,25 @@ repeat count greater than 1
     True
 
 
+Selection
+---------
+
+Several tests can be excluded using the '!' notation:
+
+    >>> sys.argv = 'test -u -vv -ssample1.sample13 -t!test_x -t!test_y'.split()
+    >>> testrunner.run_internal(defaults)
+    Running tests at level 1
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Running:
+     test_z0 (sample1.sample13.sampletests.TestA)
+     test_z0 (sample1.sample13.sampletests.TestB)
+     test_1 (sample1.sample13.sampletests.TestNotMuch)
+     test_2 (sample1.sample13.sampletests.TestNotMuch)
+     test_3 (sample1.sample13.sampletests.TestNotMuch)
+     test_z1 (sample1.sample13.sampletests)
+     testrunner-ex/sample1/sample13/../../sampletests.txt
+      Ran 7 tests with 0 failures and 0 errors in N.NNN seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False

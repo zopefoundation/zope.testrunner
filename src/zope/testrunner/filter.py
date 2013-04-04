@@ -14,6 +14,8 @@
 """Filter which tests to run.
 """
 
+import re
+
 import zope.testrunner.feature
 
 
@@ -78,3 +80,39 @@ class Filter(zope.testrunner.feature.Feature):
         if self.runner.options.verbose:
             self.runner.options.output.tests_with_errors(self.runner.errors)
             self.runner.options.output.tests_with_failures(self.runner.failures)
+
+
+def build_filtering_func(patterns):
+    """Build a filtering function from a set of patterns
+
+    Patterns are understood as regular expressions, with the additional feature
+    that, prefixed by "!", they create a "don't match" rule.
+
+    This returns a function which returns True if a string matches the set of
+    patterns, or False if it doesn't match.
+
+    """
+
+    selected = []
+    unselected = []
+
+    for pattern in patterns:
+        if pattern.startswith('!'):
+            store = unselected.append
+            pattern = pattern[1:]
+        else:
+            store = selected.append
+
+        store(re.compile(pattern).search)
+
+    if not selected and unselected:
+        # If there's no selection patterns but some un-selection patterns,
+        # suppose we want everything (that is, everything that matches '.'),
+        # minus the un-selection ones.
+        selected.append(re.compile('.').search)
+
+    def accept(value):
+        return (any(search(value) for search in selected) and not
+                any(search(value) for search in unselected))
+
+    return accept

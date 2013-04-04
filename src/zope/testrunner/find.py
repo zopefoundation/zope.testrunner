@@ -23,6 +23,7 @@ import six
 import zope.testrunner.feature
 import zope.testrunner.layer
 import zope.testrunner.debug
+from zope.testrunner.filter import build_filtering_func
 
 identifier = re.compile(r'[_a-zA-Z]\w*$').match
 
@@ -419,10 +420,9 @@ def tests_from_suite(suite, options, dlevel=1,
         yield (suite, None)
     else:
         if level <= options.at_level:
-            for pat in options.test:
-                if pat(str(suite)):
-                    yield (suite, layer)
-                    break
+            accept = build_filtering_func(options.test)
+            if accept(str(suite)):
+                yield (suite, layer)
 
 
 def check_suite(suite, module_name):
