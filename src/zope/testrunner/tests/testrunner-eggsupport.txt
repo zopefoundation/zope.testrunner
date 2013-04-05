@@ -34,7 +34,7 @@ Let's now run this command:
 
   >>> from zope.testrunner.eggsupport import ftest
   >>> ftest(dist).run()
-  IGNORE_ME --test-path ...zope/testrunner
+  IGNORE_ME --test-path ...zope/testrunner/tests
 
 Cleanup:
 
@@ -77,8 +77,8 @@ properly skipped.
   >>> T3 = doctest.DocTestSuite('zope.testrunner.find')
   >>> T4 = doctest.DocTestSuite('zope.testrunner.options')
   >>> T4.layer = 'layer'
-  >>> T5 = doctest.DocFileSuite('testrunner.txt', package='zope.testrunner')
-  >>> T6 = doctest.DocFileSuite('testrunner-gc.txt', package='zope.testrunner')
+  >>> T5 = doctest.DocFileSuite('testrunner.txt', package='zope.testrunner.tests')
+  >>> T6 = doctest.DocFileSuite('testrunner-gc.txt', package='zope.testrunner.tests')
   >>> T6.layer = 'layer'
 
   >>> all = unittest.TestSuite((
@@ -102,7 +102,7 @@ Now we can retrieve the modules from the layer skipping loader:
   >>> pprint(filtered._tests)
   [<...T1 testMethod=test_t1>,
    StartUpFailure (zope.testrunner.find),
-   .../zope/testrunner/testrunner.txt]
+   .../zope/testrunner/tests/testrunner.txt]
 
 Cleanup:
 
@@ -126,7 +126,7 @@ Now we can retrieve the modules from the layer skipping loader:
   >>> pprint(filtered._tests)
   [<...T1 testMethod=test_t1>,
    StartUpFailure (zope.testrunner.find),
-   .../zope/testrunner/testrunner.txt]
+   .../zope/testrunner/tests/testrunner.txt]
 
 Cleanup:
 

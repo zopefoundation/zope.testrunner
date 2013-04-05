@@ -14,6 +14,8 @@
 """Filter which tests to run.
 """
 
+import re
+
 import zope.testrunner.feature
 
 
@@ -35,11 +37,8 @@ class Filter(zope.testrunner.feature.Feature):
             should_run = True
             if (not options.non_unit):
                 if options.layer:
-                    should_run = False
-                    for pat in options.layer:
-                        if pat(UNITTEST_LAYER):
-                            should_run = True
-                            break
+                    accept = build_filtering_func(options.layer)
+                    should_run = accept(UNITTEST_LAYER)
                 else:
                     should_run = True
             else:
@@ -53,12 +52,9 @@ class Filter(zope.testrunner.feature.Feature):
                 if name != self.runner.options.resume_layer:
                     layers.pop(name)
         elif self.runner.options.layer:
+            accept = build_filtering_func(self.runner.options.layer)
             for name in list(layers):
-                for pat in self.runner.options.layer:
-                    if pat(name):
-                        # This layer matches a pattern selecting this layer
-                        break
-                else:
+                if not accept(name):
                     # No pattern matched this name so we remove it
                     layers.pop(name)
 
@@ -78,3 +74,39 @@ class Filter(zope.testrunner.feature.Feature):
         if self.runner.options.verbose:
             self.runner.options.output.tests_with_errors(self.runner.errors)
             self.runner.options.output.tests_with_failures(self.runner.failures)
+
+
+def build_filtering_func(patterns):
+    """Build a filtering function from a set of patterns
+
+    Patterns are understood as regular expressions, with the additional feature
+    that, prefixed by "!", they create a "don't match" rule.
+
+    This returns a function which returns True if a string matches the set of
+    patterns, or False if it doesn't match.
+
+    """
+
+    selected = []
+    unselected = []
+
+    for pattern in patterns:
+        if pattern.startswith('!'):
+            store = unselected.append
+            pattern = pattern[1:]
+        else:
+            store = selected.append
+
+        store(re.compile(pattern).search)
+
+    if not selected and unselected:
+        # If there's no selection patterns but some un-selection patterns,
+        # suppose we want everything (that is, everything that matches '.'),
+        # minus the un-selection ones.
+        selected.append(re.compile('.').search)
+
+    def accept(value):
+        return (any(search(value) for search in selected) and not
+                any(search(value) for search in unselected))
+
+    return accept

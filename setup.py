@@ -86,7 +86,7 @@ if __name__ == '__main__':
         sys.exit(rc)
 
 chapters = '\n'.join([
-    open(os.path.join('src', 'zope', 'testrunner', name)).read()
+    open(os.path.join('src', 'zope', 'testrunner', 'tests', name)).read()
     for name in (
         'testrunner.txt',
         'testrunner-simple.txt',
@@ -132,7 +132,7 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
-    packages=["zope", "zope.testrunner", "zope.testrunner.testrunner-ex"],
+    packages=["zope", "zope.testrunner", "zope.testrunner.tests.testrunner-ex"],
     package_dir = {'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",

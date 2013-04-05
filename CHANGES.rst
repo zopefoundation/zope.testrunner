@@ -4,7 +4,8 @@ zope.testrunner Changelog
 4.3.4 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix tests selection when the negative "!" pattern is used several times
+  (LP #1160965)
 
 
 4.3.3 (2013-03-03)
