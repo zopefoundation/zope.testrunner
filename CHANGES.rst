@@ -4,7 +4,7 @@ zope.testrunner Changelog
 4.3.4 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Moved tests into a 'tests' subpackage.
 
 
 4.3.3 (2013-03-03)
