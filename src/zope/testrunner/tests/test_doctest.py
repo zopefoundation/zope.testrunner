@@ -346,10 +346,6 @@ def test_suite():
                     optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
                     checker=checker))
 
-        suites.append(
-            unittest.defaultTestLoader.loadTestsFromName(
-                'zope.testrunner.test_subunit'))
-
     if sys.version_info[:3] >= (2,7,0):
         # Python 2.7 adds support for unittest.expectedFailure
         suites.append(doctest.DocFileSuite(
