@@ -9,6 +9,8 @@ zope.testrunner Changelog
 
 - Moved tests into a 'tests' subpackage.
 
+- Made ``python -m zope.testrunner`` work again.
+
 
 4.3.3 (2013-03-03)
 ==================
