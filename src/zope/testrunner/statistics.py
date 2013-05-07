@@ -43,4 +43,4 @@ class Statistics(zope.testrunner.feature.Feature):
             return
         self.runner.options.output.totals(
             self.runner.ran, len(self.runner.failures), len(self.runner.errors),
-            self.total_time)
+            self.total_time, len(self.runner.skipped))

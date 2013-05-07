@@ -38,17 +38,17 @@ affecting the Python path:
     ... # doctest: +ELLIPSIS
     Running samplelayers.Layer1 tests:
       Set up samplelayers.Layer1 in 0.000 seconds.
-      Ran 9 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 9 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     ...
     Running zope.testrunner.layer.UnitTests tests:
       Tear down samplelayers.Layer122 in N.NNN seconds.
       Tear down samplelayers.Layer12 in N.NNN seconds.
       Tear down samplelayers.Layer1 in N.NNN seconds.
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 156 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 156 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-    Total: 321 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 321 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
 Bug #251759: The test runner's protection against descending into non-package
@@ -61,7 +61,7 @@ close by:
     ...     '--test-path', directory_with_tests,
     ...     ]
     >>> testrunner.run_internal(defaults)
-    Total: 0 tests, 0 failures, 0 errors in 0.000 seconds.
+    Total: 0 tests, 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     False
 
 
@@ -97,7 +97,7 @@ Using pdb.set_trace in a function called by an ordinary test:
     (Pdb) p x
     1
     (Pdb) c
-      Ran 1 tests with 0 failures and 0 errors in 0.001 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.001 seconds.
     ...
     False
 
@@ -119,7 +119,7 @@ Using pdb.set_trace in a function called by a doctest in a doc string:
     (Pdb) p x
     1
     (Pdb) c
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -142,7 +142,7 @@ Using pdb in a docstring-based doctest
     (Pdb) p x
     1
     (Pdb) c
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -166,7 +166,7 @@ Using pdb.set_trace in a doc file:
     (Pdb) p x
     1
     (Pdb) c
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -190,7 +190,7 @@ Using pdb.set_trace in a function called by a doctest in a doc file:
     (Pdb) p x
     1
     (Pdb) c
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -421,7 +421,7 @@ Post-mortem debugging with triple verbosity
         test_1 (sampletestsf.TestNotMuch1) (0.000 s)
         test_2 (sampletestsf.TestNotMuch1) (0.000 s)
         test_3 (sampletestsf.TestNotMuch1) (0.000 s)
-      Ran 9 tests with 0 failures and 0 errors in 0.001 seconds.
+      Ran 9 tests with 0 failures, 0 errors and 0 skipped in 0.001 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer1 in 0.000 seconds.
     False
@@ -444,7 +444,7 @@ Test Suites with None for suites or tests
     <BLANKLINE>
     Test-modules with import problems:
       sample1.sampletests_none_suite
-    Total: 0 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 0 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     True
 
 
@@ -463,7 +463,7 @@ Test Suites with None for suites or tests
     <BLANKLINE>
     Test-modules with import problems:
       sample1.sampletests_none_test
-    Total: 0 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 0 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     True
 
 You must use --repeat with --report-refcounts
@@ -507,7 +507,7 @@ Several tests can be excluded using the '!' notation:
      test_3 (sample1.sample13.sampletests.TestNotMuch)
      test_z1 (sample1.sample13.sampletests)
      testrunner-ex/sample1/sample13/../../sampletests.txt
-      Ran 7 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 7 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False

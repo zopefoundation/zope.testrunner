@@ -22,7 +22,7 @@ inherit from unittest.TestCase as tests:
     >>> testrunner.run(defaults)
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -44,5 +44,5 @@ testrunner will exit with an error to prevent acidentally missing test cases:
     <BLANKLINE>
     Test-modules with import problems:
       sample1.sampletests_discover_notests
-    Total: 0 tests, 0 failures, 0 errors in 0.000 seconds.
+    Total: 0 tests, 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     True

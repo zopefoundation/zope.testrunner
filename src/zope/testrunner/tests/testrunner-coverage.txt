@@ -21,37 +21,37 @@ directory name given as the parameter will be used to hold the reports.
     >>> testrunner.run_internal(defaults)
     Running samplelayers.Layer1 tests:
       Set up samplelayers.Layer1 in 0.000 seconds.
-      Ran 9 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 9 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     Running samplelayers.Layer11 tests:
       Set up samplelayers.Layer11 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.125 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.125 seconds.
     Running samplelayers.Layer111 tests:
       Set up samplelayers.Layerx in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.125 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.125 seconds.
     Running samplelayers.Layer112 tests:
       Tear down samplelayers.Layer111 in 0.000 seconds.
       Set up samplelayers.Layer112 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.125 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.125 seconds.
     Running samplelayers.Layer12 tests:
       Tear down samplelayers.Layer112 in 0.000 seconds.
       Tear down samplelayers.Layerx in 0.000 seconds.
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.140 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.140 seconds.
     Running samplelayers.Layer121 tests:
       Set up samplelayers.Layer121 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.125 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.125 seconds.
     Running samplelayers.Layer122 tests:
       Tear down samplelayers.Layer121 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.125 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.125 seconds.
     Running zope.testrunner.layer.UnitTests tests:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
       Tear down samplelayers.Layer1 in 0.000 seconds.
       Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
-      Ran 156 tests with 0 failures and 0 errors in 0.687 seconds.
+      Ran 156 tests with 0 failures, 0 errors and 0 skipped in 0.687 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
     lines   cov%   module   (path)
@@ -65,7 +65,7 @@ directory name given as the parameter will be used to hold the reports.
        74   100%   sampletests.test122   (testrunner-ex/sampletests/test122.py)
        48   100%   sampletests.test_one   (testrunner-ex/sampletests/test_one.py)
       112    95%   sampletestsf   (testrunner-ex/sampletestsf.py)
-    Total: 321 tests, 0 failures, 0 errors in 0.630 seconds.
+    Total: 321 tests, 0 failures, 0 errors and 0 skipped in 0.630 seconds.
     False
 
 The directory specified with the --coverage option will have been created and
