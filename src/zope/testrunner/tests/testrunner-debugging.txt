@@ -39,7 +39,7 @@ runner will enter pdb at that point:
     (Pdb) p x
     1
     (Pdb) c
-      Ran 1 tests with 0 failures and 0 errors in 0.001 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.001 seconds.
     ...
     False
 

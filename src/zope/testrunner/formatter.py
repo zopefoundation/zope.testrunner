@@ -165,17 +165,20 @@ class OutputFormatter(object):
         """Format a time in seconds (short version)."""
         return "%.3f s" % n_seconds
 
-    def summary(self, n_tests, n_failures, n_errors, n_seconds):
+    def summary(self, n_tests, n_failures, n_errors, n_seconds,
+                n_skipped=0):
         """Summarize the results of a single test layer."""
-        print(("  Ran %s tests with %s failures and %s errors in %s."
-               % (n_tests, n_failures, n_errors,
-                  self.format_seconds(n_seconds))))
+        print ("  Ran %s tests with %s failures, %s errors and "
+               "%s skipped in %s."
+               % (n_tests, n_failures, n_errors, n_skipped,
+                   self.format_seconds(n_seconds)))
 
-    def totals(self, n_tests, n_failures, n_errors, n_seconds):
+    def totals(self, n_tests, n_failures, n_errors, n_seconds,
+               n_skipped=0):
         """Summarize the results of all layers."""
-        print(("Total: %s tests, %s failures, %s errors in %s."
-               % (n_tests, n_failures, n_errors,
-                  self.format_seconds(n_seconds))))
+        print("Total: %s tests, %s failures, %s errors and %s skipped in %s."
+              % (n_tests, n_failures, n_errors, n_skipped,
+                 self.format_seconds(n_seconds)))
 
     def list_of_tests(self, tests, layer_name):
         """Report a list of test names."""
@@ -302,6 +305,22 @@ class OutputFormatter(object):
             s = " (%s)" % self.format_seconds_short(seconds)
             sys.stdout.write(s)
             self.test_width += len(s) + 1
+
+    def test_skipped(self, test, reason):
+        """Report that a test was skipped.
+
+        Should be called right after start_test().
+
+        The next output operation should be stop_test().
+        """
+        if self.verbose > 2:
+            s = " (skipped: %s)" % reason
+        elif self.verbose > 1:
+            s = " (skipped)"
+        else:
+            return
+        sys.stdout.write(s)
+        self.test_width += len(s) + 1
 
     def test_error(self, test, seconds, exc_info):
         """Report that an error occurred while running a test.
@@ -436,7 +455,9 @@ class ColorfulOutputFormatter(OutputFormatter):
                    'actual-output': 'red',
                    'character-diffs': 'magenta',
                    'diff-chunk': 'magenta',
-                   'exception': 'red'}
+                   'exception': 'red',
+                   'skipped': 'brightyellow',
+                   }
 
     # Map prefix character to color in diff output.  This handles ndiff and
     # udiff correctly, but not cdiff.  In cdiff we ought to highlight '!' as
@@ -495,6 +516,31 @@ class ColorfulOutputFormatter(OutputFormatter):
         else:
             return self.color('ok-number')
 
+    def skip_count_color(self, n):
+        """Choose a color for the number of skipped tests."""
+        if n:
+            return self.color('skipped')
+        else:
+            return self.color('ok-number')
+
+    def test_skipped(self, test, reason):
+        """Report that a test was skipped.
+
+        Should be called right after start_test().
+
+        The next output operation should be stop_test().
+        """
+        if self.verbose > 2:
+            s = " (%sskipped: %s%s)" % (
+                self.color('skipped'), reason, self.color('info'))
+        elif self.verbose > 1:
+            s = " (%sskipped%s)" % (
+                self.color('skipped'), self.color('info'))
+        else:
+            return
+        sys.stdout.write(s)
+        self.test_width += len(s) + 1
+
     def info(self, message):
         """Print an informative message."""
         print(self.colorize('info', message))
@@ -545,20 +591,25 @@ class ColorfulOutputFormatter(OutputFormatter):
             color = 'number'
         return self.colorize(color, "%.3f s" % n_seconds)
 
-    def summary(self, n_tests, n_failures, n_errors, n_seconds):
+    def summary(self, n_tests, n_failures, n_errors, n_seconds,
+                n_skipped=0):
         """Summarize the results."""
         sys.stdout.writelines([
             self.color('info'), '  Ran ',
             self.color('number'), str(n_tests),
             self.color('info'), ' tests with ',
             self.error_count_color(n_failures), str(n_failures),
-            self.color('info'), ' failures and ',
+            self.color('info'), ' failures, ',
             self.error_count_color(n_errors), str(n_errors),
-            self.color('info'), ' errors in ',
+            self.color('info'), ' errors, ',
+            self.skip_count_color(n_skipped), str(n_skipped),
+            self.color('info'), ' skipped in ',
             self.format_seconds(n_seconds, 'info'), '.',
-            self.color('normal'), '\n'])
+            self.color('normal'), '\n',
+            ])
 
-    def totals(self, n_tests, n_failures, n_errors, n_seconds):
+    def totals(self, n_tests, n_failures, n_errors, n_seconds,
+               n_skipped=0):
         """Report totals (number of tests, failures, and errors)."""
         sys.stdout.writelines([
             self.color('info'), 'Total: ',
@@ -567,7 +618,9 @@ class ColorfulOutputFormatter(OutputFormatter):
             self.error_count_color(n_failures), str(n_failures),
             self.color('info'), ' failures, ',
             self.error_count_color(n_errors), str(n_errors),
-            self.color('info'), ' errors in ',
+            self.color('info'), ' errors, ',
+            self.skip_count_color(n_skipped), str(n_skipped),
+            self.color('info'), ' skipped in ',
             self.format_seconds(n_seconds, 'info'), '.',
             self.color('normal'), '\n'])
 
@@ -868,7 +921,8 @@ class SubunitOutputFormatter(object):
         self._subunit.addSkip(
             FakeTest('%s:tearDown' % (layer_name,)), "tearDown not supported")
 
-    def summary(self, n_tests, n_failures, n_errors, n_seconds):
+    def summary(self, n_tests, n_failures, n_errors, n_seconds,
+                n_skipped=0):
         """Print out a summary.
 
         Since subunit is a stream protocol format, it has no need for a
@@ -994,7 +1048,7 @@ class SubunitOutputFormatter(object):
         """
         pass
 
-    def totals(self, n_tests, n_failures, n_errors, n_seconds):
+    def totals(self, n_tests, n_failures, n_errors, n_seconds, n_skipped=0):
         """Summarize the results of all layers.
 
         Simply not supported by the subunit formatter. Fancy summary output

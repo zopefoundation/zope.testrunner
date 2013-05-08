@@ -23,7 +23,10 @@ import sys
 import threading
 import time
 import traceback
-import unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 
 from six import StringIO
 from zope.testrunner.find import import_name
@@ -104,6 +107,7 @@ class Runner(object):
         self.failed = True
 
         self.ran = 0
+        self.skipped = []
         self.failures = []
         self.errors = []
 
@@ -231,7 +235,8 @@ class Runner(object):
                 feature.layer_setup(layer)
             try:
                 self.ran += run_layer(self.options, layer_name, layer, tests,
-                                      setup_layers, self.failures, self.errors)
+                                      setup_layers, self.failures, self.errors,
+                                      self.skipped)
             except zope.testrunner.interfaces.EndRun:
                 self.failed = True
                 return
@@ -249,7 +254,7 @@ class Runner(object):
             if layers_to_run:
                 self.ran += resume_tests(
                     self.script_parts, self.options, self.features,
-                    layers_to_run, self.failures, self.errors)
+                    layers_to_run, self.failures, self.errors, self.skipped)
 
         if setup_layers:
             if self.options.resume_layer is None:
@@ -259,7 +264,7 @@ class Runner(object):
         self.failed = bool(self.import_errors or self.failures or self.errors)
 
 
-def run_tests(options, tests, name, failures, errors):
+def run_tests(options, tests, name, failures, errors, skipped):
     repeat = options.repeat or 1
     repeat_range = iter(range(repeat))
     ran = 0
@@ -331,9 +336,14 @@ def run_tests(options, tests, name, failures, errors):
             # Python versions prior to 2.7 do not have the concept of
             # unexpectedSuccesses.
             failures.extend(result.unexpectedSuccesses)
+        if not hasattr(result, 'skipped'):
+            # Only in Python >= 2.7, Python >= 3.1, and when using unittest2
+            result.skipped = []
+        skipped.extend(result.skipped)
         errors.extend(result.errors)
-        output.summary(result.testsRun, len(failures),
-            len(result.errors), t)
+        output.summary(result.testsRun,
+                       len(failures), len(result.errors),
+                       t, len(result.skipped))
         ran = result.testsRun
 
         if is_jython:
@@ -368,7 +378,7 @@ def run_tests(options, tests, name, failures, errors):
 
 
 def run_layer(options, layer_name, layer, tests, setup_layers,
-              failures, errors):
+              failures, errors, skipped):
 
     output = options.output
     gathered = []
@@ -392,7 +402,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         errors.append((SetUpLayerFailure(layer), sys.exc_info()))
         return 0
     else:
-        return run_tests(options, tests, layer_name, failures, errors)
+        return run_tests(options, tests, layer_name, failures, errors, skipped)
 
 
 class SetUpLayerFailure(unittest.TestCase):
@@ -410,7 +420,7 @@ class SetUpLayerFailure(unittest.TestCase):
 
 
 def spawn_layer_in_subprocess(result, script_parts, options, features,
-                              layer_name, layer, failures, errors,
+                              layer_name, layer, failures, errors, skipped,
                               resume_number):
     output = options.output
 
@@ -564,7 +574,8 @@ class KeepaliveSubprocessResult(AbstractSubprocessResult):
             self.stdout.append(out)
 
 
-def resume_tests(script_parts, options, features, layers, failures, errors):
+def resume_tests(script_parts, options, features, layers, failures, errors,
+                 skipped):
     results = []
     stdout_queue = None
     if options.processes == 1:
@@ -582,7 +593,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors):
         ready_threads.append(threading.Thread(
             target=spawn_layer_in_subprocess,
             args=(result, script_parts, options, features, layer_name, layer,
-                  failures, errors, resume_number)))
+                  failures, errors, skipped, resume_number)))
         resume_number += 1
 
     # Now start a few threads at a time.
@@ -746,6 +757,10 @@ class TestResult(unittest.TestResult):
     def addSuccess(self, test):
         t = max(time.time() - self._start_time, 0.0)
         self.options.output.test_success(test, t)
+
+    def addSkip(self, test, reason):
+        unittest.TestResult.addSkip(self, test, reason)
+        self.options.output.test_skipped(test, reason)
 
     def addError(self, test, exc_info):
         self.options.output.test_error(test, time.time() - self._start_time,

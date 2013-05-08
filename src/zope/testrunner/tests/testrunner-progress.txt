@@ -73,7 +73,7 @@ levels of verbosity.
                      ##r##
         26/26 (100.0%)##r##
                       ##r##
-      Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
       Tear down samplelayers.Layer12 in N.NNN seconds.
@@ -148,7 +148,7 @@ width, when the terminal width can't be determined, is 80:
                                                    ##r##
      testrunner-ex/sampletests/../sampletestsl.txt##r##
                                                                                    ##r##
-      Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
       Tear down samplelayers.Layer12 in N.NNN seconds.
@@ -227,7 +227,7 @@ that, we'll provide a fake curses module:
                                                    ##r##
         26/26 (100.0%) ... r-ex/sampletests/../sampletestsl.txt##r##
                                                                ##r##
-      Ran 26 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
       Tear down samplelayers.Layer12 in N.NNN seconds.
@@ -295,7 +295,7 @@ information.
                                                   ##r##
         24/24 (100.0%) test_z1 (sampletests.test122)##r##
                                                    ##r##
-      Ran 24 tests with 0 failures and 0 errors in 0.006 seconds.
+      Ran 24 tests with 0 failures, 0 errors and 0 skipped in 0.006 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -349,7 +349,7 @@ with '!' to exclude tests containing the string "txt".
                                                               ##r##
         18/18 (100.0%) test_z1 (sampletests.test122) (0.001 s)##r##
                                                                ##r##
-      Ran 18 tests with 0 failures and 0 errors in 0.006 seconds.
+      Ran 18 tests with 0 failures, 0 errors and 0 skipped in 0.006 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -398,7 +398,7 @@ Let's pretend we have a terminal
                    ##r##
         6/6 (100.0%)##r##
                     ##r##
-      Ran 6 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 6 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -412,7 +412,7 @@ Let's stop pretending
     >>> testrunner.run_internal(defaults)
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 6 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 6 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -429,7 +429,7 @@ wrapper script) but you do not desire progress indication, you can switch it off
     >>> testrunner.run_internal(defaults)
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 6 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 6 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False

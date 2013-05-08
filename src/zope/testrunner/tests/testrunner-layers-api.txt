@@ -116,14 +116,14 @@ TestSpecifyingBaseLayer tests.
 >>> succeeded = runner.run()
 Running ...BaseLayer tests:
   Set up ...BaseLayer in N.NNN seconds.
-  Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
+  Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Running zope.testrunner.layer.UnitTests tests:
   Tear down ...BaseLayer in N.NNN seconds.
   Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-  Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
+  Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Tearing down left over layers:
   Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-Total: 4 tests, 0 failures, 0 errors in N.NNN seconds.
+Total: 4 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 
 Now lets specify a layer in the suite containing TestSpecifyingNoLayer
@@ -135,7 +135,7 @@ a layer. This is generally how you specify what layer doctests need.
 >>> succeeded = runner.run()
 Running ...BaseLayer tests:
   Set up ...BaseLayer in N.NNN seconds.
-  Ran 4 tests with 0 failures and 0 errors in N.NNN seconds.
+  Ran 4 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Tearing down left over layers:
   Tear down ...BaseLayer in N.NNN seconds.
 
@@ -154,14 +154,14 @@ TestSpecifyingNoLayer tests are run.
 >>> succeeded = runner.run()
 Running ...BaseLayer tests:
   Set up ...BaseLayer in N.NNN seconds.
-  Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
+  Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Running ...TopLayer tests:
   Set up ...TopLayer in N.NNN seconds.
-  Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
+  Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Tearing down left over layers:
   Tear down ...TopLayer in N.NNN seconds.
   Tear down ...BaseLayer in N.NNN seconds.
-Total: 4 tests, 0 failures, 0 errors in N.NNN seconds.
+Total: 4 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 
 If we inspect our trace of what methods got called in what order, we can
@@ -246,7 +246,7 @@ Running ...F tests:
   Set up ...D in N.NNN seconds.
   Set up ...E in N.NNN seconds.
   Set up ...F in N.NNN seconds.
-  Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+  Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Tearing down left over layers:
   Tear down ...F in N.NNN seconds.
   Tear down ...E in N.NNN seconds.

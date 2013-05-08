@@ -21,34 +21,34 @@ this option to configure and then build Python.)
       Set up samplelayers.Layer1 in 0.000 seconds.
       Set up samplelayers.Layer11 in 0.000 seconds.
     Iteration 1
-      Ran 26 tests with 0 failures and 0 errors in 0.013 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.013 seconds.
     Iteration 2
-      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
       sys refcount=100401   change=0     
     Iteration 3
-      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
       sys refcount=100401   change=0     
     Iteration 4
-      Ran 26 tests with 0 failures and 0 errors in 0.013 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.013 seconds.
       sys refcount=100401   change=0     
     Running samplelayers.Layer12 tests:
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
     Iteration 1
-      Ran 26 tests with 0 failures and 0 errors in 0.013 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.013 seconds.
     Iteration 2
-      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
       sys refcount=100411   change=0     
     Iteration 3
-      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
       sys refcount=100411   change=0     
     Iteration 4
-      Ran 26 tests with 0 failures and 0 errors in 0.012 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
       sys refcount=100411   change=0     
     Tearing down left over layers:
       Tear down samplelayers.Layer12 in 0.000 seconds.
       Tear down samplelayers.Layer1 in 0.000 seconds.
-    Total: 68 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 68 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 Each layer is repeated the requested number of times.  For each
 iteration after the first, the system refcount and change in system
@@ -63,15 +63,15 @@ Let's look at an example test that leaks:
     >>> _ = testrunner.run_internal(defaults)
     Running zope.testrunner.layer.UnitTests tests:...
     Iteration 1
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     Iteration 2
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sys refcount=92506    change=12
     Iteration 3
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sys refcount=92513    change=12
     Iteration 4
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sys refcount=92520    change=12
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -87,11 +87,11 @@ type (or class):
     Iteration 1
       Running:
         .
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     Iteration 2
       Running:
         .
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sum detail refcount=95832    sys refcount=105668   change=16    
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
@@ -110,7 +110,7 @@ type (or class):
     Iteration 3
       Running:
         .
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sum detail refcount=95844    sys refcount=105680   change=12    
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
@@ -129,7 +129,7 @@ type (or class):
     Iteration 4
       Running:
         .
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sum detail refcount=95856    sys refcount=105692   change=12    
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
@@ -147,7 +147,7 @@ type (or class):
     Iteration 5
       Running:
         .
-      Ran 1 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
       sum detail refcount=95868    sys refcount=105704   change=12    
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
