@@ -307,7 +307,7 @@ class OutputFormatter(object):
             self.test_width += len(s) + 1
 
     def test_skipped(self, test, reason):
-        """Report that a test was skip.
+        """Report that a test was skipped.
 
         Should be called right after start_test().
 
@@ -524,7 +524,7 @@ class ColorfulOutputFormatter(OutputFormatter):
             return self.color('ok-number')
 
     def test_skipped(self, test, reason):
-        """Report that a test was skip.
+        """Report that a test was skipped.
 
         Should be called right after start_test().
 
@@ -602,7 +602,7 @@ class ColorfulOutputFormatter(OutputFormatter):
             self.color('info'), ' failures, ',
             self.error_count_color(n_errors), str(n_errors),
             self.color('info'), ' errors, ',
-            self.skip_count_color(n_skipped),  str(n_skipped),
+            self.skip_count_color(n_skipped), str(n_skipped),
             self.color('info'), ' skipped in ',
             self.format_seconds(n_seconds, 'info'), '.',
             self.color('normal'), '\n',
@@ -619,7 +619,7 @@ class ColorfulOutputFormatter(OutputFormatter):
             self.color('info'), ' failures, ',
             self.error_count_color(n_errors), str(n_errors),
             self.color('info'), ' errors, ',
-            self.error_count_color(n_skipped), str(n_skipped),
+            self.skip_count_color(n_skipped), str(n_skipped),
             self.color('info'), ' skipped in ',
             self.format_seconds(n_seconds, 'info'), '.',
             self.color('normal'), '\n'])
