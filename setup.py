@@ -122,7 +122,7 @@ long_description=(
 
 setup(
     name='zope.testrunner',
-    version='4.3.4.dev0',
+    version='4.4.0.dev0',
     url='http://pypi.python.org/pypi/zope.testrunner',
     license='ZPL 2.1',
     description='Zope testrunner script.',

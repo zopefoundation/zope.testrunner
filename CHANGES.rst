@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.3.4 (unreleased)
+4.4.0 (unreleased)
 ==================
 
 - Fix tests selection when the negative "!" pattern is used several times
@@ -10,6 +10,9 @@ zope.testrunner Changelog
 - Moved tests into a 'tests' subpackage.
 
 - Made ``python -m zope.testrunner`` work again.
+
+- Support 'skip' feature of unittest2 (which became the new unittest in Python
+  2.7).
 
 
 4.3.3 (2013-03-03)
