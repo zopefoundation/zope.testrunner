@@ -51,7 +51,7 @@ Now run the tests in the copy:
      test2 (unlikely_package_name.compiletest.Test)
      test1 (unlikely_package_name.package.compiletest.Test)
      test2 (unlikely_package_name.package.compiletest.Test)
-      Ran 4 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 4 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
@@ -68,7 +68,7 @@ delete the compiled Python files too:
     ...            os.remove(os.path.join(root, f))
     >>> testrunner.run_internal(mydefaults, ["test", "--keepbytecode"])
     Running tests at level 1
-    Total: 0 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 0 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
 Finally, passing ``--usecompiled`` asks the test runner to treat .pyc
@@ -100,7 +100,7 @@ also implies ``--keepbytecode``:
      test2 (unlikely_package_name.compiletest.Test)
      test1 (unlikely_package_name.package.compiletest.Test)
      test2 (unlikely_package_name.package.compiletest.Test)
-      Ran 4 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 4 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False

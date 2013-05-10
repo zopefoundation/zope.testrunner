@@ -57,7 +57,7 @@ A successful test run soothes the developer with warm green colors:
       Set up samplelayers.Layer1 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer12 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer122 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.007{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down samplelayers.Layer122 in {green}0.000{normal} seconds.
       Tear down samplelayers.Layer12 in {green}0.000{normal} seconds.
@@ -74,31 +74,31 @@ A failed test run highlights the failures in red:
     >>> testrunner.run_internal(defaults)
     {normal}Running samplelayers.Layer1 tests:{normal}
       Set up samplelayers.Layer1 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}9{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.001{normal} seconds.{normal}
+    {normal}  Ran {green}9{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.001{normal} seconds.{normal}
     {normal}Running samplelayers.Layer11 tests:{normal}
       Set up samplelayers.Layer11 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.007{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
     {normal}Running samplelayers.Layer111 tests:{normal}
       Set up samplelayers.Layerx in {green}0.000{normal} seconds.
       Set up samplelayers.Layer111 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.008{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.008{normal} seconds.{normal}
     {normal}Running samplelayers.Layer112 tests:{normal}
       Tear down samplelayers.Layer111 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer112 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.008{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.008{normal} seconds.{normal}
     {normal}Running samplelayers.Layer12 tests:{normal}
       Tear down samplelayers.Layer112 in {green}0.000{normal} seconds.
       Tear down samplelayers.Layerx in {green}0.000{normal} seconds.
       Tear down samplelayers.Layer11 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer12 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.007{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
     {normal}Running samplelayers.Layer121 tests:{normal}
       Set up samplelayers.Layer121 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.007{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
     {normal}Running samplelayers.Layer122 tests:{normal}
       Tear down samplelayers.Layer121 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer122 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.008{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.008{normal} seconds.{normal}
     {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
       Tear down samplelayers.Layer122 in {green}0.000{normal} seconds.
       Tear down samplelayers.Layer12 in {green}0.000{normal} seconds.
@@ -174,11 +174,32 @@ A failed test run highlights the failures in red:
     {cyan}    raise self.failureException, \{normal}
     {red}AssertionError: 1 != 0{normal}
     <BLANKLINE>
-    {normal}  Ran {green}164{normal} tests with {boldred}3{normal} failures and {boldred}1{normal} errors in {green}0.045{normal} seconds.{normal}
+    {normal}  Ran {green}164{normal} tests with {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}0.045{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
-    {normal}Total: {green}329{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors in {green}0.023{normal} seconds.{normal}
+    {normal}Total: {green}329{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}0.023{normal} seconds.{normal}
     True
+
+
+Skipped tests
+-------------
+
+Tests which are skipped are colorized::
+
+    >>> defaults_skip = [
+    ...     '--path', os.path.join(this_directory, 'testrunner-ex-skip'),
+    ...     '--tests-pattern', '^sample_skipped_tests$',
+    ... ]
+    >>> sys.argv = 'test --tests-pattern ^sample_skipped_tests$ -t NoLayer -c -vvvvvv'.split()
+    >>> _ = testrunner.run_internal(defaults_skip)
+    {normal}Running tests at level 1{normal}
+    {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
+      Set up zope.testrunner.layer.UnitTests in {green}0.000{normal} seconds.
+    {normal}  Running:{normal}
+     test_skipped (sample_skipped_tests.TestSkipppedNoLayer) ({boldyellow}skipped: I'm a skipped test!{normal})
+    {normal}  Ran {green}1{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {boldyellow}1{normal} skipped in {green}N.NNN{normal} seconds.{normal}
+    {normal}Tearing down left over layers:{normal}
+      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
 
 
 Doctest failures
@@ -214,7 +235,7 @@ colors:
     {red}    It's soils, minerals, forests, waters, and wildlife.{normal}
     {red}    <BLANKLINE>{normal}
     <BLANKLINE>
-    {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures and {green}0{normal} errors in {green}0.002{normal} seconds.{normal}
+    {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.002{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
 
@@ -244,7 +265,7 @@ apart:
     {normal}      It's soils, minerals, forests, waters, and wildlife.{normal}
     {normal}      <BLANKLINE>{normal}
     <BLANKLINE>
-    {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures and {green}0{normal} errors in {green}0.003{normal} seconds.{normal}
+    {normal}  Ran {green}1{normal} tests with {boldred}1{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.003{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
 
@@ -296,7 +317,7 @@ At very high verbosity levels you can see the time taken by each test
      test_1 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
      test_2 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
      test_3 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
-    {normal}  Ran {green}6{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}N.NNN{normal} seconds.{normal}
+    {normal}  Ran {green}6{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     False
@@ -318,7 +339,7 @@ in the test runner to 0 seconds to make all of the tests seem slow.
      test_1 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
      test_2 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
      test_3 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
-    {normal}  Ran {green}6{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}N.NNN{normal} seconds.{normal}
+    {normal}  Ran {green}6{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     False
@@ -338,7 +359,7 @@ a test runner wrapper script), but no colorized output is desired, the -C or
       Set up samplelayers.Layer1 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -351,7 +372,7 @@ a test runner wrapper script), but no colorized output is desired, the -C or
       Set up samplelayers.Layer1 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -372,7 +393,7 @@ pretends it is a terminal, but the curses module will realize it isn't:
       Set up samplelayers.Layer1 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -396,7 +417,7 @@ We can fake it
       Set up samplelayers.Layer1 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer12 in {green}0.000{normal} seconds.
       Set up samplelayers.Layer122 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures and {green}0{normal} errors in {green}0.007{normal} seconds.{normal}
+    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down samplelayers.Layer122 in {green}0.000{normal} seconds.
       Tear down samplelayers.Layer12 in {green}0.000{normal} seconds.
@@ -415,7 +436,7 @@ The real stdout is not a terminal in a doctest:
       Set up samplelayers.Layer1 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.

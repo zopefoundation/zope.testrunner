@@ -50,7 +50,7 @@ That second suite has two tests.  Both sleep for half a second each.
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
      test_something (sampletests_buffering.TestSomething1)
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running sampletests_buffering.Layer2 tests:
       Tear down sampletests_buffering.Layer1 ... not supported
       Running in a subprocess.
@@ -58,9 +58,9 @@ That second suite has two tests.  Both sleep for half a second each.
       Running:
      test_something (sampletests_buffering.TestSomething2)
      test_something2 (sampletests_buffering.TestSomething2)
-      Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
       Tear down sampletests_buffering.Layer2 ... not supported
-    Total: 3 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 3 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
 Now we actually check the results we care about.  We should see that there are
@@ -111,17 +111,17 @@ a different result that has similar characteristics.
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
      test_something (sampletests_buffering.TestSomething1)
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     [Parallel tests running in sampletests_buffering.Layer2:
       .. LAYER FINISHED]
     Running sampletests_buffering.Layer2 tests:
       Running in a subprocess.
       Set up sampletests_buffering.Layer2 in N.NNN seconds.
-      Ran 2 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
       Tear down sampletests_buffering.Layer2 ... not supported
     Tearing down left over layers:
       Tear down sampletests_buffering.Layer1 ... not supported
-    Total: 3 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 3 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
 Notice that, with a -vv (or greater) verbosity, the parallel test run includes
@@ -207,12 +207,12 @@ reporting of that error:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
      test_something (sampletests_buffering.TestSomething1)
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running sampletests_buffering.Layer2 tests:
       Tear down sampletests_buffering.Layer1 ... not supported
     Error reading subprocess output for sampletests_buffering.Layer2
     Failure triggered to verify error reporting
-    Total: 1 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 1 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 Now fake an empty stderr to test reporting a failure when
 communicating with the subprocess:
@@ -235,7 +235,7 @@ communicating with the subprocess:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
      test_something (sampletests_buffering.TestSomething1)
-      Ran 1 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running sampletests_buffering.Layer2 tests:
       Tear down sampletests_buffering.Layer1 ... not supported
     Error reading subprocess output for sampletests_buffering.Layer2
@@ -245,7 +245,7 @@ communicating with the subprocess:
     Could not communicate with subprocess
     **********************************************************************
     <BLANKLINE>
-    Total: 1 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 1 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
     >>> subprocess.Popen = Popen
 

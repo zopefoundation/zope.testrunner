@@ -96,10 +96,10 @@ be read only):
         raise self.failureException, \
     AssertionError: 1 != 0
     <BLANKLINE>
-      Ran 164 tests with 3 failures and 1 errors in N.NNN seconds.
+      Ran 164 tests with 3 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-    Total: 329 tests, 3 failures, 1 errors in N.NNN seconds.
+    Total: 329 tests, 3 failures, 1 errors and 0 skipped in N.NNN seconds.
     True
 
 We see that we get an error report and a traceback for the failing
@@ -186,7 +186,7 @@ there'll be a summary of the errors at the end of the test:
     <BLANKLINE>
     ................................................................................................
     <BLANKLINE>
-      Ran 164 tests with 3 failures and 1 errors in 0.040 seconds.
+      Ran 164 tests with 3 failures, 1 errors and 0 skipped in 0.040 seconds.
     ...
     <BLANKLINE>
     Tests with errors:
@@ -360,7 +360,7 @@ Similarly for progress output, the progress ticker will be interrupted:
         47/47 (100.0%)\r
                       \r
     <BLANKLINE>
-      Ran 47 tests with 3 failures and 1 errors in 0.054 seconds.
+      Ran 47 tests with 3 failures, 1 errors and 0 skipped in 0.054 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -422,7 +422,7 @@ examples in the same test to fail.  Each failure is reported:
             z = x + 1
         NameError: name 'x' is not defined
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.002 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -455,7 +455,7 @@ me the first failed example in a doctest" :)
             x = y
         NameError: name 'y' is not defined
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.001 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.001 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -487,7 +487,7 @@ The --hide-secondary-failures option is an alias for -1:
             x = y
         NameError: name 'y' is not defined
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.001 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.001 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -544,7 +544,7 @@ command-line options in sys.argv.
             z = x + 1
         NameError: name 'x' is not defined
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.002 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
@@ -585,7 +585,7 @@ kinds.
         It's soils, minerals, forests, waters, and wildlife.
         <BLANKLINE>
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.002 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 
@@ -623,7 +623,7 @@ caret marking the mismatching column positions.
           It's soils, minerals, forests, waters, and wildlife.
         <BLANKLINE>
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.003 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.003 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 
@@ -650,7 +650,7 @@ The -udiff option requests a standard "unified" diff:
          to save, and faithfully, to defend from waste,
          the natural resources of my planet.
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.002 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 
@@ -681,7 +681,7 @@ The -cdiff option requests a standard "context" diff:
           to save, and faithfully, to defend from waste,
           the natural resources of my planet.
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.002 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 
@@ -759,31 +759,31 @@ Then run the tests:
     <BLANKLINE>
     Running samplelayers.Layer1 tests:
       Set up samplelayers.Layer1 in 0.000 seconds.
-      Ran 9 tests with 0 failures and 0 errors in 0.000 seconds.
+      Ran 9 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     Running samplelayers.Layer11 tests:
       Set up samplelayers.Layer11 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Running samplelayers.Layer111 tests:
       Set up samplelayers.Layerx in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Running samplelayers.Layer112 tests:
       Tear down samplelayers.Layer111 in 0.000 seconds.
       Set up samplelayers.Layer112 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Running samplelayers.Layer12 tests:
       Tear down samplelayers.Layer112 in 0.000 seconds.
       Tear down samplelayers.Layerx in 0.000 seconds.
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Running samplelayers.Layer121 tests:
       Set up samplelayers.Layer121 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.007 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.007 seconds.
     Running samplelayers.Layer122 tests:
       Tear down samplelayers.Layer121 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
-      Ran 26 tests with 0 failures and 0 errors in 0.006 seconds.
+      Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.006 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
       Tear down samplelayers.Layer12 in 0.000 seconds.
@@ -793,7 +793,7 @@ Then run the tests:
       sample2.sampletests_i
       sample2.sample21.sampletests_i
       sample2.sample23.sampletests_i
-    Total: 165 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 165 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     True
 
 
@@ -819,7 +819,7 @@ instead of ``run_internal()``:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     ...
-      Ran 1 tests with 1 failures and 0 errors in 0.002 seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in 0.002 seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     exited with code 1
@@ -842,10 +842,10 @@ Passing tests exit with code 0 according to UNIX practices:
       Tear down samplelayers.Layer12 in N.NNN seconds.
       Tear down samplelayers.Layer1 in N.NNN seconds.
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-      Ran 130 tests with 0 failures and 0 errors in N.NNN seconds.
+      Ran 130 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-    Total: 286 tests, 0 failures, 0 errors in N.NNN seconds.
+    Total: 286 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     exited with code 0
 
 And remove the temporary directory:

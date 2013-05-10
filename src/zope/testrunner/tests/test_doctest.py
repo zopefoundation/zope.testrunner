@@ -291,6 +291,21 @@ def test_suite():
                     )
                 )
 
+    skip_feature = True
+    if sys.version_info < (2, 7, 0):
+        try:
+            import unittest2
+        except ImportError:
+            skip_feature = False
+
+    if skip_feature:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-report-skipped.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+                checker=checker)
+        )
 
     if hasattr(sys, 'gettotalrefcount'):
         suites.append(

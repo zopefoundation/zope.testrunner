@@ -36,7 +36,7 @@ When the tests are run, we get profiling output.
     ...
        ncalls  tottime  percall  cumtime  percall filename:lineno(function)
     ...
-    Total: ... tests, 0 failures, 0 errors in ... seconds.
+    Total: ... tests, 0 failures, 0 errors and 0 skipped in ... seconds.
     False
 
 Profiling also works across layers.

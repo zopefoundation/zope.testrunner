@@ -39,7 +39,7 @@ affecting the Python path:
     Traceback (most recent call last):
     ..._UnexpectedSuccess
     <BLANKLINE>
-      Ran 1 tests with 1 failures and 0 errors in N.NNN seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     True
