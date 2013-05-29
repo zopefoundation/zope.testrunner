@@ -14,6 +14,9 @@ zope.testrunner Changelog
 - Support 'skip' feature of unittest2 (which became the new unittest in Python
   2.7).
 
+- Better diagnostics when communication with subprocess fails
+  (https://github.com/zopefoundation/zope.testrunner/issues/5).
+
 
 4.3.3 (2013-03-03)
 ==================
