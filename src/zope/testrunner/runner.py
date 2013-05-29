@@ -33,6 +33,7 @@ from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer, _layer_name_cache
 from zope.testrunner.refcount import TrackRefs
 from zope.testrunner.options import get_options
+import zope.testrunner
 import zope.testrunner.coverage
 import zope.testrunner._doctest
 import zope.testrunner.logsupport
@@ -95,7 +96,7 @@ class Runner(object):
     """
 
     def __init__(self, defaults=None, args=None, found_suites=None,
-                 options=None, script_parts=None):
+                 options=None, script_parts=None, cwd=None):
         if defaults is None:
             self.defaults = []
         else:
@@ -104,6 +105,7 @@ class Runner(object):
         self.found_suites = found_suites
         self.options = options
         self.script_parts = script_parts
+        self.cwd = cwd
         self.failed = True
 
         self.ran = 0
@@ -254,7 +256,8 @@ class Runner(object):
             if layers_to_run:
                 self.ran += resume_tests(
                     self.script_parts, self.options, self.features,
-                    layers_to_run, self.failures, self.errors, self.skipped)
+                    layers_to_run, self.failures, self.errors,
+                    self.skipped, self.cwd)
 
         if setup_layers:
             if self.options.resume_layer is None:
@@ -421,17 +424,13 @@ class SetUpLayerFailure(unittest.TestCase):
 
 def spawn_layer_in_subprocess(result, script_parts, options, features,
                               layer_name, layer, failures, errors, skipped,
-                              resume_number):
+                              resume_number, cwd=None):
     output = options.output
 
     try:
         # BBB
         if script_parts is None:
-            script_parts = sys.argv[0:1]
-            # If we are running via setup.py, then we'll have to run the
-            # sub-process differently.
-            if script_parts[0] == 'setup.py':
-                script_parts = ['-c', 'from zope.testrunner import run; run()']
+            script_parts = zope.testrunner._script_parts()
         args = [sys.executable]
         args.extend(script_parts)
         args.extend(['--resume-layer', layer_name, str(resume_number)])
@@ -454,7 +453,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             feature.layer_setup(layer)
 
         child = subprocess.Popen(args, shell=False, stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd,
             close_fds=not sys.platform.startswith('win'))
 
         while True:
@@ -588,7 +587,7 @@ class KeepaliveSubprocessResult(AbstractSubprocessResult):
 
 
 def resume_tests(script_parts, options, features, layers, failures, errors,
-                 skipped):
+                 skipped, cwd=None):
     results = []
     stdout_queue = None
     if options.processes == 1:
@@ -606,7 +605,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
         ready_threads.append(threading.Thread(
             target=spawn_layer_in_subprocess,
             args=(result, script_parts, options, features, layer_name, layer,
-                  failures, errors, skipped, resume_number)))
+                  failures, errors, skipped, resume_number, cwd)))
         resume_number += 1
 
     # Now start a few threads at a time.
