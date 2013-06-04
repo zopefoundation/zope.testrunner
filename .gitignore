@@ -8,3 +8,4 @@ develop-eggs/
 *.egg-info/
 tags
 .tox
+parts/
