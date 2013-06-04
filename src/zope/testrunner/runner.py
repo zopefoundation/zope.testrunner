@@ -495,6 +495,8 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
         else:
             errmsg = "Could not communicate with subprocess!"
             errors.append(("subprocess for %s" % layer_name, None))
+            if options.verbose >= 1:
+                errmsg += "\nChild command line: %s" % args
             if (options.verbose >= 2 or
                 (options.verbose == 1 and len(errlines) < 20)):
                 errmsg += ("\nChild stderr was:\n" +

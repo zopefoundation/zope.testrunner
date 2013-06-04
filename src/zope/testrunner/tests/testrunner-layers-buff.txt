@@ -229,7 +229,7 @@ communicating with the subprocess:
     >>> argv = [sys.argv[0],
     ...         '-vv', '--tests-pattern', '^sampletests_buffering.*']
 
-    >>> _ = testrunner.run_internal(defaults, argv)
+    >>> _ = testrunner.run_internal(defaults, argv) # doctest: +ELLIPSIS
     Running tests at level 1
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
@@ -243,6 +243,7 @@ communicating with the subprocess:
     <BLANKLINE>
     **********************************************************************
     Could not communicate with subprocess!
+    Child command line: ['...', '--resume-layer', 'sampletests_buffering.Layer2', '0', '--default', '--path', '--default', 'testrunner-ex', '-vv', '--tests-pattern', '^sampletests_buffering.*']
     Child stderr was:
       segmentation fault (core dumped muahahaha)
     **********************************************************************
@@ -266,7 +267,7 @@ Very large subprocess output is trimmed, unless you ask for extra verbosity
     >>> argv = [sys.argv[0],
     ...         '-v', '--tests-pattern', '^sampletests_buffering.*']
 
-    >>> _ = testrunner.run_internal(defaults, argv)
+    >>> _ = testrunner.run_internal(defaults, argv) # doctest: +ELLIPSIS
     Running tests at level 1
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
@@ -280,6 +281,7 @@ Very large subprocess output is trimmed, unless you ask for extra verbosity
     <BLANKLINE>
     **********************************************************************
     Could not communicate with subprocess!
+    Child command line: ['...', '--resume-layer', 'sampletests_buffering.Layer2', '0', '--default', '--path', '--default', 'testrunner-ex', '-v', '--tests-pattern', '^sampletests_buffering.*']
     Child stderr was:
       1
       2
