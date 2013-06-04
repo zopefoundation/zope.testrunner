@@ -498,12 +498,15 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             if (options.verbose >= 2 or
                 (options.verbose == 1 and len(errlines) < 20)):
                 errmsg += ("\nChild stderr was:\n" +
-                           "\n".join("  " + line for line in errlines))
+                           "\n".join("  " + line.decode('utf-8', 'replace')
+                                     for line in errlines))
             elif options.verbose >= 1:
                 errmsg += ("\nChild stderr was:\n" +
-                           "\n".join("  " + line for line in errlines[:10]) +
+                           "\n".join("  " + line.decode('utf-8', 'replace')
+                                     for line in errlines[:10]) +
                            "\n...\n" +
-                           "\n".join("  " + line for line in errlines[-10:]))
+                           "\n".join("  " + line.decode('utf-8', 'replace')
+                                     for line in errlines[-10:]))
             output.error_with_banner(errmsg)
 
 
