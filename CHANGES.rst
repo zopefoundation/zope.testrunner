@@ -17,6 +17,9 @@ zope.testrunner Changelog
 - Better diagnostics when communication with subprocess fails
   (https://github.com/zopefoundation/zope.testrunner/issues/5).
 
+- Do not break subprocess execution when the test suite changes the working
+  directory (https://github.com/zopefoundation/zope.testrunner/issues/6).
+
 
 4.3.3 (2013-03-03)
 ==================
