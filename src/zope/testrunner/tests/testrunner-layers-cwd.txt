@@ -9,6 +9,8 @@ invocation might fail.
     ...     '--tests-pattern', '^cwdtests?$',
     ...     ]
 
+    >>> orig_cwd = os.getcwd()
+
     >>> sys.argv = [os.path.relpath(testrunner_script), '-j2']
     >>> from zope import testrunner
     >>> testrunner.run_internal(defaults)
@@ -25,3 +27,4 @@ invocation might fail.
     Total: 2 tests, 0 failures, 0 errors and 0 skipped in 0.162 seconds.
     False
 
+    >>> os.chdir(orig_cwd)
