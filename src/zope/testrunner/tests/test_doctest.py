@@ -208,6 +208,7 @@ def test_suite():
         'testrunner-layers.txt',
         'testrunner-layers-api.txt',
         'testrunner-layers-cantfind.txt',
+        'testrunner-layers-cwd.txt',
         'testrunner-progress.txt',
         'testrunner-colors.txt',
         'testrunner-simple.txt',
