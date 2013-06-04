@@ -51,6 +51,13 @@ class Filter(zope.testrunner.feature.Feature):
             for name in list(layers):
                 if name != self.runner.options.resume_layer:
                     layers.pop(name)
+            if not layers:
+                self.runner.options.output.error_with_banner(
+                    "Cannot find layer %s" % self.runner.options.resume_layer)
+                self.runner.errors.append(
+                    ("subprocess failed for %s" %
+                         self.runner.options.resume_layer,
+                     None))
         elif self.runner.options.layer:
             accept = build_filtering_func(self.runner.options.layer)
             for name in list(layers):
