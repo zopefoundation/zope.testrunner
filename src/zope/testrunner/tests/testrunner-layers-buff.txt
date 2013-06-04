@@ -214,12 +214,12 @@ reporting of that error:
     Failure triggered to verify error reporting
     Total: 1 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
-Now fake an empty stderr to test reporting a failure when
+Now fake some unexpected stderr to test reporting a failure when
 communicating with the subprocess:
 
     >>> subprocess.Popen = FakePopen(
     ...      "Failure triggered to verify error reporting",
-    ...      "segmentation fault (core dumped muahahaha)")
+    ...      b"segmentation fault (core dumped muahahaha)")
 
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> from zope import testrunner
@@ -229,7 +229,7 @@ communicating with the subprocess:
     >>> argv = [sys.argv[0],
     ...         '-vv', '--tests-pattern', '^sampletests_buffering.*']
 
-    >>> _ = testrunner.run_internal(defaults, argv)
+    >>> _ = testrunner.run_internal(defaults, argv) # doctest: +ELLIPSIS
     Running tests at level 1
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
@@ -243,6 +243,7 @@ communicating with the subprocess:
     <BLANKLINE>
     **********************************************************************
     Could not communicate with subprocess!
+    Child command line: ['...', '--resume-layer', 'sampletests_buffering.Layer2', '0', '--default', '--path', '--default', 'testrunner-ex', '-vv', '--tests-pattern', '^sampletests_buffering.*']
     Child stderr was:
       segmentation fault (core dumped muahahaha)
     **********************************************************************
@@ -256,7 +257,7 @@ Very large subprocess output is trimmed, unless you ask for extra verbosity
 
     >>> subprocess.Popen = FakePopen(
     ...      "Failure triggered to verify error reporting",
-    ...      "\n".join(str(n) for n in range(1, 101)))
+    ...      "\n".join(str(n) for n in range(1, 101)).encode())
 
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> from zope import testrunner
@@ -266,7 +267,7 @@ Very large subprocess output is trimmed, unless you ask for extra verbosity
     >>> argv = [sys.argv[0],
     ...         '-v', '--tests-pattern', '^sampletests_buffering.*']
 
-    >>> _ = testrunner.run_internal(defaults, argv)
+    >>> _ = testrunner.run_internal(defaults, argv) # doctest: +ELLIPSIS
     Running tests at level 1
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
@@ -280,6 +281,7 @@ Very large subprocess output is trimmed, unless you ask for extra verbosity
     <BLANKLINE>
     **********************************************************************
     Could not communicate with subprocess!
+    Child command line: ['...', '--resume-layer', 'sampletests_buffering.Layer2', '0', '--default', '--path', '--default', 'testrunner-ex', '-v', '--tests-pattern', '^sampletests_buffering.*']
     Child stderr was:
       1
       2
