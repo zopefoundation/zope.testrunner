@@ -9,6 +9,11 @@ Post-mortem debugging also works when there is an import failure.
     >>> def write_file(filename, body):
     ...     with open(os.path.join(dir, filename), 'w') as f:
     ...         f.write(body)
+    ...     try:
+    ...         # Need to do this on Python 3.3 after creating new modules
+    ...         import importlib; importlib.invalidate_caches()
+    ...     except (ImportError, AttributeError):
+    ...         pass
 
     >>> write_file('tests.py',
     ... '''
