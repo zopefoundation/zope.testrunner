@@ -112,6 +112,7 @@ class Runner(object):
         self.skipped = []
         self.failures = []
         self.errors = []
+        self.import_errors = []
 
         self.show_report = True
         self.do_run_tests = True
@@ -238,7 +239,7 @@ class Runner(object):
             try:
                 self.ran += run_layer(self.options, layer_name, layer, tests,
                                       setup_layers, self.failures, self.errors,
-                                      self.skipped)
+                                      self.skipped, self.import_errors)
             except zope.testrunner.interfaces.EndRun:
                 self.failed = True
                 return
@@ -267,7 +268,7 @@ class Runner(object):
         self.failed = bool(self.import_errors or self.failures or self.errors)
 
 
-def run_tests(options, tests, name, failures, errors, skipped):
+def run_tests(options, tests, name, failures, errors, skipped, import_errors):
     repeat = options.repeat or 1
     repeat_range = iter(range(repeat))
     ran = 0
@@ -343,9 +344,11 @@ def run_tests(options, tests, name, failures, errors, skipped):
             result.skipped = []
         skipped.extend(result.skipped)
         errors.extend(result.errors)
-        output.summary(result.testsRun,
-                       len(failures), len(result.errors),
-                       t, len(result.skipped))
+        output.summary(n_tests=result.testsRun,
+                       n_failures=len(failures),
+                       n_errors=len(result.errors) + len(import_errors),
+                       n_seconds=t,
+                       n_skipped=len(result.skipped))
         ran = result.testsRun
 
         if is_jython:
@@ -380,7 +383,7 @@ def run_tests(options, tests, name, failures, errors, skipped):
 
 
 def run_layer(options, layer_name, layer, tests, setup_layers,
-              failures, errors, skipped):
+              failures, errors, skipped, import_errors):
 
     output = options.output
     gathered = []
@@ -404,7 +407,8 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         errors.append((SetUpLayerFailure(layer), sys.exc_info()))
         return 0
     else:
-        return run_tests(options, tests, layer_name, failures, errors, skipped)
+        return run_tests(options, tests, layer_name, failures, errors, skipped,
+                         import_errors)
 
 
 class SetUpLayerFailure(unittest.TestCase):

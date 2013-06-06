@@ -444,7 +444,7 @@ Test Suites with None for suites or tests
     <BLANKLINE>
     Test-modules with import problems:
       sample1.sampletests_none_suite
-    Total: 0 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Total: 0 tests, 0 failures, 1 errors and 0 skipped in N.NNN seconds.
     True
 
 
@@ -463,7 +463,7 @@ Test Suites with None for suites or tests
     <BLANKLINE>
     Test-modules with import problems:
       sample1.sampletests_none_test
-    Total: 0 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Total: 0 tests, 0 failures, 1 errors and 0 skipped in N.NNN seconds.
     True
 
 You must use --repeat with --report-refcounts

@@ -20,6 +20,8 @@ zope.testrunner Changelog
 - Do not break subprocess execution when the test suite changes the working
   directory (https://github.com/zopefoundation/zope.testrunner/issues/6).
 
+- Count test module import errors as errors (LP #1026576).
+
 
 4.3.3 (2013-03-03)
 ==================

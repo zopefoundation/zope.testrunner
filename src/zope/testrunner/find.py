@@ -477,7 +477,7 @@ class Find(zope.testrunner.feature.Feature):
 
         # XXX move to reporting ???
         self.runner.options.output.import_errors(self.import_errors)
-        self.runner.import_errors = bool(self.import_errors)
+        self.runner.import_errors = list(self.import_errors or [])
 
     def report(self):
         self.runner.options.output.modules_with_import_problems(

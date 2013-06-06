@@ -42,5 +42,8 @@ class Statistics(zope.testrunner.feature.Feature):
         if self.layers_run == 1:
             return
         self.runner.options.output.totals(
-            self.runner.ran, len(self.runner.failures), len(self.runner.errors),
-            self.total_time, len(self.runner.skipped))
+            n_tests=self.runner.ran,
+            n_failures=len(self.runner.failures),
+            n_errors=len(self.runner.errors) + len(self.runner.import_errors),
+            n_seconds=self.total_time,
+            n_skipped=len(self.runner.skipped))
