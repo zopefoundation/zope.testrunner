@@ -281,7 +281,6 @@ def run_tests(options, tests, name, failures, errors, skipped):
         gc.collect()
         lgarbage = len(gc.garbage)
 
-    sumrc = 0
     if options.report_refcounts:
         if options.verbose:
             # XXX This code path is untested
@@ -867,7 +866,7 @@ def layer_from_name(layer_name):
     module = import_name(module_name)
     try:
         return getattr(module, module_layer_name)
-    except AttributeError as e:
+    except AttributeError:
         # the default error is very uninformative:
         #   AttributeError: 'module' object has no attribute 'DemoLayer'
         # it doesn't say *which* module
