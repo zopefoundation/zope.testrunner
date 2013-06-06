@@ -825,6 +825,7 @@ class TestResult(unittest.TestResult):
                                                       " when running a layer"
                                                       " as a subprocess!")
             else:
+                # XXX: what exc_info? there's no exc_info!
                 zope.testrunner.debug.post_mortem(exc_info)
         elif self.options.stop_on_error:
             self.stop()
