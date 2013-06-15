@@ -4,7 +4,7 @@ zope.testrunner Changelog
 4.4.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Tear down layers after ``post_mortem`` debugging is finished.
 
 
 4.4.0 (2013-06-06)

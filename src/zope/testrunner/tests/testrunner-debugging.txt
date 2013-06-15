@@ -74,7 +74,9 @@ option:
     (Pdb) p x
     1
     (Pdb) c
-    True
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False
 
 Note that the test runner exits after post-mortem debugging.
 
@@ -107,5 +109,7 @@ converted to errors and can be debugged the same way:
     (Pdb) p y
     2
     (Pdb) c
-    True
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False
 
