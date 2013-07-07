@@ -447,6 +447,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             and sys.version_info[:3] <= (2, 4, 1)):
             args.insert(1, '-O')
 
+        debugargs = args  # save them before messing up for windows
         if sys.platform.startswith('win'):
             args = args[0] + ' ' + ' '.join([
                 ('"' + a.replace('\\', '\\\\').replace('"', '\\"') + '"')
@@ -499,7 +500,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             errmsg = "Could not communicate with subprocess!"
             errors.append(("subprocess for %s" % layer_name, None))
             if options.verbose >= 1:
-                errmsg += "\nChild command line: %s" % args
+                errmsg += "\nChild command line: %s" % debugargs
             if (options.verbose >= 2 or
                 (options.verbose == 1 and len(errlines) < 20)):
                 errmsg += ("\nChild stderr was:\n" +
