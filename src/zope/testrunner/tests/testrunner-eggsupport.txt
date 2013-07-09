@@ -26,19 +26,21 @@ Let's now run this command:
   ...     print(' '.join(args))
   >>> zope.testrunner.run = run
 
-  >>> import os
+  >>> import os, tempfile, shutil
+  >>> tmpdir = tempfile.mkdtemp()
   >>> import setuptools.dist
   >>> dist = setuptools.dist.Distribution(
-  ...     {'package_dir': {'': os.path.dirname(__file__)},
+  ...     {'package_dir': {'': tmpdir},
   ...      'script_name': 'foo'})
 
   >>> from zope.testrunner.eggsupport import ftest
   >>> ftest(dist).run()
-  IGNORE_ME --test-path ...zope/testrunner/tests
+  IGNORE_ME --test-path ...
 
 Cleanup:
 
   >>> zope.testrunner.run = org_run
+  >>> shutil.rmtree(tmpdir)
 
 
 Skipping Tests with Layers
