@@ -4,8 +4,20 @@ Subunit Output
 Subunit is a streaming protocol for interchanging test results. More
 information can be found at https://launchpad.net/subunit.
 
-    >>> import os.path, sys
-    >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
+First we need to make a temporary copy of the entire testing directory:
+
+    >>> import os.path, sys, tempfile, shutil
+    >>> tmpdir = tempfile.mkdtemp()
+    >>> directory_with_tests = os.path.join(tmpdir, 'testrunner-ex')
+    >>> source = os.path.join(this_directory, 'testrunner-ex')
+    >>> n = len(source) + 1
+    >>> for root, dirs, files in os.walk(source):
+    ...     dirs[:] = [d for d in dirs if d != ".svn"] # prune cruft
+    ...     os.mkdir(os.path.join(directory_with_tests, root[n:]))
+    ...     for f in files:
+    ...         _ = shutil.copy(os.path.join(root, f),
+    ...                         os.path.join(directory_with_tests, root[n:], f))
+
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
@@ -282,9 +294,6 @@ A layer can have a tearDown method that raises NotImplementedError. If this is
 the case and there are no remaining tests to run, the subunit stream will say
 that the layer skipped its tearDown.
 
-    >>> import os.path, sys
-    >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
-    >>> from zope import testrunner
     >>> defaults = [
     ...     '--subunit',
     ...     '--path', directory_with_tests,
@@ -664,4 +673,8 @@ Note that debugging doesn't work when running tests in a subprocess:
     tearDown not supported
     ]
     True
+
+And remove the temporary directory:
+
+    >>> shutil.rmtree(tmpdir)
 
