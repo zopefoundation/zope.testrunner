@@ -1,10 +1,12 @@
 zope.testrunner Changelog
 *************************
 
-4.4.1 (unreleased)
+4.4.1 (2013-07-10)
 ==================
 
 - Updated ``boostrap.py`` to version 2.2.
+
+- Fix nondeterministic test failures on Python 3.3
 
 - Tear down layers after ``post_mortem`` debugging is finished.
 
