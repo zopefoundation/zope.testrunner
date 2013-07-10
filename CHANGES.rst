@@ -8,6 +8,8 @@ zope.testrunner Changelog
 
 - Tear down layers after ``post_mortem`` debugging is finished.
 
+- Fix tests that write to source directory, it might be read-only.
+
 
 4.4.0 (2013-06-06)
 ==================

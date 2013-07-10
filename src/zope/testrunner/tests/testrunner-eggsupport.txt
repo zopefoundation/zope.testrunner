@@ -28,14 +28,17 @@ Let's now run this command:
 
   >>> import os, tempfile, shutil
   >>> tmpdir = tempfile.mkdtemp()
+  >>> srcdir = os.path.join(tmpdir, 'src')
+  >>> os.mkdir(srcdir)
+
   >>> import setuptools.dist
   >>> dist = setuptools.dist.Distribution(
-  ...     {'package_dir': {'': tmpdir},
-  ...      'script_name': 'foo'})
+  ...     {'package_dir': {'': srcdir},
+  ...      'script_name': __file__})
 
   >>> from zope.testrunner.eggsupport import ftest
   >>> ftest(dist).run()
-  IGNORE_ME --test-path ...
+  IGNORE_ME --test-path .../src
 
 Cleanup:
 
