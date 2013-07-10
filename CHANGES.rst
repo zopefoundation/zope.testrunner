@@ -4,6 +4,8 @@ zope.testrunner Changelog
 4.4.1 (unreleased)
 ==================
 
+- Updated ``boostrap.py`` to version 2.2.
+
 - Tear down layers after ``post_mortem`` debugging is finished.
 
 
