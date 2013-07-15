@@ -67,7 +67,7 @@ option:
         raise ValueError
     ValueError
     <BLANKLINE>
-    ...ValueError:
+    ...ValueError
     <BLANKLINE>
     > testrunner-ex/sample3/sampletests_d.py(34)test_post_mortem1()
     -> raise ValueError
@@ -100,7 +100,7 @@ converted to errors and can be debugged the same way:
         assert x == y
     AssertionError
     <BLANKLINE>
-    ...AssertionError:
+    ...AssertionError
     <BLANKLINE>
     > testrunner-ex/sample3/sampletests_d.py(42)test_post_mortem_failure1()
     -> assert x == y

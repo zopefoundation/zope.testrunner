@@ -200,6 +200,7 @@ def test_suite():
         'testrunner-coverage.txt',
         'testrunner-debugging-layer-setup.test',
         'testrunner-debugging-import-failure.test',
+        'testrunner-debugging-nonprintable-exc.test',
         'testrunner-debugging.txt',
         'testrunner-edge-cases.txt',
         'testrunner-errors.txt',

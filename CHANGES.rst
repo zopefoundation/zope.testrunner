@@ -4,7 +4,8 @@ zope.testrunner Changelog
 4.4.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix post-mortem debugging when a non-printable exception happens
+  (https://github.com/zopefoundation/zope.testrunner/issues/8).
 
 
 4.4.1 (2013-07-10)

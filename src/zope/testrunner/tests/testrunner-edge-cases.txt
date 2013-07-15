@@ -215,7 +215,7 @@ Post-mortem debugging function called from ordinary test:
         raise ValueError
     ValueError
     <BLANKLINE>
-    ...ValueError:
+    ...ValueError
     <BLANKLINE>
     > testrunner-ex/sample3/sampletests_d.py(46)g()
     -> raise ValueError
@@ -243,7 +243,7 @@ Post-mortem debugging docstring-based doctest:
     Traceback (most recent call last):
     ...UnexpectedException: testrunner-ex/sample3/sampletests_d.py:NNN (2 examples)>
     <BLANKLINE>
-    ...ValueError:
+    ...ValueError
     <BLANKLINE>
     > <doctest sample3.sampletests_d.post_mortem3[1]>(1)?()
     (Pdb) p x
@@ -269,7 +269,7 @@ Post-mortem debugging function called from docstring-based doctest:
     Traceback (most recent call last):
     ...UnexpectedException: testrunner-ex/sample3/sampletests_d.py:NNN (1 example)>
     <BLANKLINE>
-    ...ValueError:
+    ...ValueError
     <BLANKLINE>
     > testrunner-ex/sample3/sampletests_d.py(NNN)g()
     -> raise ValueError
@@ -296,7 +296,7 @@ Post-mortem debugging file-based doctest:
     Traceback (most recent call last):
     ...UnexpectedException: testrunner-ex/sample3/post_mortem5.txt:0 (2 examples)>
     <BLANKLINE>
-    ...ValueError:
+    ...ValueError
     <BLANKLINE>
     > <doctest post_mortem5.txt[1]>(1)?()
     (Pdb) p x
@@ -334,7 +334,7 @@ Post-mortem debugging function called from file-based doctest:
         raise UnexpectedException(test, example, exc_info)
     ...UnexpectedException: testrunner-ex/sample3/post_mortem6.txt:0 (2 examples)>
     <BLANKLINE>
-    ...ValueError:
+    ...ValueError
     <BLANKLINE>
     > testrunner-ex/sample3/sampletests_d.py(NNN)g()
     -> raise ValueError
@@ -371,8 +371,7 @@ Post-mortem debugging of a docstring doctest failure:
     <BLANKLINE>
     <BLANKLINE>
     > testrunner-ex/sample3/sampletests_d.py(81)_()
-    ...ValueError:
-    Expected and actual output are different
+    ...ValueError: Expected and actual output are different
     > <string>(1)...()
     (Pdb) p x
     1

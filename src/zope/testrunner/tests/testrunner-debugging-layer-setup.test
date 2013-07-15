@@ -54,7 +54,7 @@ setup.
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS
     Running tests.Layer tests:
-      Set up tests.Layer ...ValueError:
+      Set up tests.Layer ...ValueError
     <BLANKLINE>
     > ...tests.py(8)setUp()
     -> raise ValueError

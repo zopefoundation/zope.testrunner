@@ -104,8 +104,7 @@ class StartUpFailure(unittest.TestCase):
     ... finally:
     ...   sys.stdin = old_stdin
     Result:
-    ...Exception:
-    something bad happened during import
+    Exception: something bad happened during import
     ...
     (Pdb) c
     <BLANKLINE>

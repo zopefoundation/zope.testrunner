@@ -19,6 +19,7 @@ from __future__ import print_function
 import doctest
 import sys
 import pdb
+import traceback
 
 import zope.testrunner.interfaces
 
@@ -45,8 +46,7 @@ def post_mortem(exc_info):
             except:
                 exc_info = sys.exc_info()
 
-    print("%s.%s:" % (exc_info[0].__module__, exc_info[0].__name__))
-    print(exc_info[1])
+    print(''.join(traceback.format_exception_only(exc_info[0], exc_info[1])))
     pdb.post_mortem(exc_info[2])
     raise zope.testrunner.interfaces.EndRun()
 
