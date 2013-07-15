@@ -2,6 +2,9 @@
 zope.testrunner
 ***************
 
+|buildstatus|_
+|winbotstatus|_
+
 .. contents::
 
 This package provides a flexible test runner with layer support.
@@ -153,3 +156,9 @@ For more details please see the `detailed documentation`_.
 .. _zc.recipe.testrunner: http://pypi.python.org/pypi/zc.recipe.testrunner
 .. _subunit: http://pypi.python.org/pypi/subunit
 .. _detailed documentation: http://docs.zope.org/zope.testrunner/
+
+.. |buildstatus| image:: https://api.travis-ci.org/zopefoundation/zope.testrunner.png?branch=master
+.. _buildstatus: https://travis-ci.org/zopefoundation/zope.testrunner
+
+.. |winbotstatus| image:: http://winbot.zope.org/buildstatusimage?builder=zope.testrunner_py_265_32&number=-1
+.. _winbotstatus: http://winbot.zope.org/builders/zope.testrunner_py_265_32/builds/-1
