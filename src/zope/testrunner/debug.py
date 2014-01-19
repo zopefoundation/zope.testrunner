@@ -18,7 +18,11 @@ from __future__ import print_function
 
 import doctest
 import sys
-import pdb
+try:
+    # Prefer ipdb to plain pdb if it is available
+    import ipdb as pdb
+except ImportError:
+    import pdb
 import traceback
 
 import zope.testrunner.interfaces
