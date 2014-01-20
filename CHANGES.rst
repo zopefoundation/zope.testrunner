@@ -1,8 +1,10 @@
 zope.testrunner Changelog
 *************************
 
-4.4.2 (unreleased)
-==================
+Unreleased
+==========
+
+- Drop support for Python 3.1.
 
 - Fix post-mortem debugging when a non-printable exception happens
   (https://github.com/zopefoundation/zope.testrunner/issues/8).
