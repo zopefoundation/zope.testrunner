@@ -403,14 +403,13 @@ def tigetnum(attr, default=None):
         # avoid reimporting a broken module in python 2.3
         sys.modules['curses'] = None
     else:
-        # If sys.stdout is not a real file object (e.g. in unit tests that 
+        # If sys.stdout is not a real file object (e.g. in unit tests that
         # use various wrappers), you get an error, different depending on
         # Python version:
+        expected_exceptions = (curses.error, TypeError, AttributeError)
         if sys.version_info >= (3,):
             import io
-            expected_exceptions = (curses.error, TypeError, io.UnsupportedOperation)
-        else:
-            expected_exceptions = (curses.error, TypeError)
+            expected_exceptions += (io.UnsupportedOperation, )
         try:
             curses.setupterm()
         except expected_exceptions:
