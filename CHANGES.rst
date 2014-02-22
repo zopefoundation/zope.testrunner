@@ -1,8 +1,8 @@
 zope.testrunner Changelog
 *************************
 
-Unreleased
-==========
+4.4.2 (2014-02-22)
+==================
 
 - Drop support for Python 3.1.
 
