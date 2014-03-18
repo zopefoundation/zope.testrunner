@@ -193,7 +193,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     test: sample2.sampletests_e.eek
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: sample2.sampletests_e.eek [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     NNN\r
     <BLANKLINE>
@@ -229,7 +229,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     test: sample2.sampletests_e.Test.test3
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample2.sampletests_e.Test.test3 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     NNN\r
     <BLANKLINE>
@@ -257,7 +257,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     test: e_txt
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: e_txt [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     NNN\r
     <BLANKLINE>
@@ -446,7 +446,7 @@ resuming tests where it left off:
     test: sample3.sampletests_ntd.TestSomething.test_error1
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error1 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     14F\r
     <BLANKLINE>
@@ -461,7 +461,7 @@ resuming tests where it left off:
     test: sample3.sampletests_ntd.TestSomething.test_error2
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error2 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     13F\r
     <BLANKLINE>
@@ -476,7 +476,7 @@ resuming tests where it left off:
     test: sample3.sampletests_ntd.TestSomething.test_fail1
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: sample3.sampletests_ntd.TestSomething.test_fail1 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     1AA\r
     <BLANKLINE>
@@ -491,7 +491,7 @@ resuming tests where it left off:
     test: sample3.sampletests_ntd.TestSomething.test_fail2
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     failure: sample3.sampletests_ntd.TestSomething.test_fail2 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     1AA\r
     <BLANKLINE>
@@ -577,7 +577,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: sample3.sampletests_ntd.TestSomething.test_error1
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error1 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     16A\r
     <BLANKLINE>
@@ -597,7 +597,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: sample3.sampletests_ntd.TestSomething.test_error2
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_error2 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     15A\r
     <BLANKLINE>
@@ -617,7 +617,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: sample3.sampletests_ntd.TestSomething.test_fail1
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_fail1 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     1C5\r
     <BLANKLINE>
@@ -639,7 +639,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     test: sample3.sampletests_ntd.TestSomething.test_fail2
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     error: sample3.sampletests_ntd.TestSomething.test_fail2 [ multipart
-    Content-Type: text/x-traceback;charset=utf8,language=python
+    Content-Type: text/x-traceback...
     traceback
     1C5\r
     <BLANKLINE>
