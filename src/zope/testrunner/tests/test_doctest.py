@@ -354,7 +354,9 @@ def test_suite():
             doctest.DocFileSuite(
                 'testrunner-subunit.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
+                optionflags=doctest.ELLIPSIS +
+                            doctest.NORMALIZE_WHITESPACE +
+                            doctest.REPORT_NDIFF,
                 checker=checker))
         if hasattr(sys, 'gettotalrefcount'):
             suites.append(
