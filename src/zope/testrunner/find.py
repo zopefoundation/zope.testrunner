@@ -416,8 +416,7 @@ def tests_from_suite(suite, options, dlevel=1,
     elif isinstance(suite, StartUpFailure):
         yield (suite, None)
     else:
-        import pdb; pdb.set_trace()
-        if options.only and level == options.level:
+        if options.only and level == options.only:
             accept = build_filtering_func(options.test)
             if accept(str(suite)):
                 yield (suite, layer)
