@@ -18,6 +18,7 @@ from __future__ import print_function
 import subprocess
 import errno
 import gc
+import inspect
 import re
 import sys
 import threading
@@ -883,11 +884,15 @@ def layer_from_name(layer_name):
 def order_by_bases(layers):
     """Order the layers from least to most specific (bottom to top)
     """
-    named_layers = [(name_from_layer(layer), layer) for layer in layers]
-    named_layers.sort()
-    named_layers.reverse()
+    getmro = inspect.getmro
+
+    def layer_sortkey(layer):
+        return tuple((c.__module__, c.__name__) for c in getmro(layer)[::-1] if c is not object)
+
+    layers = [layer for layer in layers]
+    layers.sort(key=layer_sortkey, reverse=True)
     gathered = []
-    for name, layer in named_layers:
+    for layer in layers:
         gather_layers(layer, gathered)
     gathered.reverse()
     seen = {}
