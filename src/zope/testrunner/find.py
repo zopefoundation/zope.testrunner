@@ -171,8 +171,13 @@ def find_tests(options, found_suites=None):
 
 
 def find_suites(options):
+    # Sort prefixes so that longest prefixes come first.
+    # That is because only first match is evaluated which
+    # can be a problem with nested source packages.
+    sorted_prefixes = [x for x in options.prefix]
+    sorted_prefixes.sort(key=lambda prefix: len(prefix[0]), reverse=True)
     for fpath, package in find_test_files(options):
-        for (prefix, prefix_package) in options.prefix:
+        for (prefix, prefix_package) in sorted_prefixes:
             if fpath.startswith(prefix) and package == prefix_package:
                 # strip prefix, strip .py suffix and convert separator to dots
                 noprefix = fpath[len(prefix):]

@@ -46,3 +46,26 @@ testrunner will exit with an error to prevent acidentally missing test cases:
       sample1.sampletests_discover_notests
     Total: 0 tests, 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     True
+
+You can explicitly specify which tests to run by providing a function that
+returns a unittest.TestSuite in the test modules (the name of the function can
+be configured with the --suite-name parameter, it defaults to 'test_suite'). If
+no such function is present, testrunner will use all classes in the module that
+inherit from unittest.TestCase as tests:
+
+    >>> import os, sys
+    >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
+
+    >>> from zope import testrunner
+
+    >>> defaults = [
+    ...     ]
+    >>> sys.argv = ['test',
+    ...     ]
+    >>> testrunner.run(defaults)
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False

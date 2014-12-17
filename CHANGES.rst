@@ -4,7 +4,8 @@ zope.testrunner Changelog
 4.4.4 (unreleased)
 ==================
 
-- TBD
+- When looking for the right location of test code, start with longest
+  location paths first. This fixes problems with nested code locations.
 
 
 4.4.3 (2014-03-19)

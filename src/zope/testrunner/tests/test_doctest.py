@@ -213,6 +213,7 @@ def test_suite():
         'testrunner-progress.txt',
         'testrunner-colors.txt',
         'testrunner-simple.txt',
+        'testrunner-nestedcode.txt',
         'testrunner-test-selection.txt',
         'testrunner-verbose.txt',
         'testrunner-repeat.txt',
