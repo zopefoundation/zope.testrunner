@@ -624,6 +624,12 @@ def get_options(args=None, defaults=None):
 
     options.prefix = [(path + os.path.sep, package)
                       for (path, package) in options.test_path]
+
+    # Sort prefixes so that longest prefixes come first.
+    # That is because only first match is evaluated which
+    # can be a problem with nested source packages.
+    options.prefix.sort(key=lambda p: len(p[0]), reverse=True)
+
     if options.all:
         options.at_level = sys.maxsize
 
