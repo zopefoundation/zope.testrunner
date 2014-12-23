@@ -36,15 +36,15 @@ If tests has been skipped in a layer, they are reported in the layer's status
 line, and in the total status line::
 
     >>> testrunner.run_internal(defaults)
-    Running sample_skipped_tests.Layer tests:
-      Set up sample_skipped_tests.Layer in 0.000 seconds.
-      Ran 2 tests with 0 failures, 0 errors and 1 skipped in 0.000 seconds.
     Running zope.testrunner.layer.UnitTests tests:
-      Tear down sample_skipped_tests.Layer in 0.000 seconds.
       Set up zope.testrunner.layer.UnitTests in 0.000 seconds.
       Ran 1 tests with 0 failures, 0 errors and 1 skipped in 0.000 seconds.
-    Tearing down left over layers:
+    Running sample_skipped_tests.Layer tests:
       Tear down zope.testrunner.layer.UnitTests in 0.000 seconds.
+      Set up sample_skipped_tests.Layer in 0.000 seconds.
+      Ran 2 tests with 0 failures, 0 errors and 1 skipped in 0.000 seconds.
+    Tearing down left over layers:
+      Tear down sample_skipped_tests.Layer in 0.000 seconds.
     Total: 3 tests, 0 failures, 0 errors and 2 skipped in 0.034 seconds.
     False
 

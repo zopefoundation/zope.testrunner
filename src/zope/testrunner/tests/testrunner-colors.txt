@@ -72,37 +72,7 @@ A failed test run highlights the failures in red:
 
     >>> sys.argv = 'test -c --tests-pattern ^sampletests(f|_e|_f)?$ '.split()
     >>> testrunner.run_internal(defaults)
-    {normal}Running samplelayers.Layer1 tests:{normal}
-      Set up samplelayers.Layer1 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}9{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.001{normal} seconds.{normal}
-    {normal}Running samplelayers.Layer11 tests:{normal}
-      Set up samplelayers.Layer11 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
-    {normal}Running samplelayers.Layer111 tests:{normal}
-      Set up samplelayers.Layerx in {green}0.000{normal} seconds.
-      Set up samplelayers.Layer111 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.008{normal} seconds.{normal}
-    {normal}Running samplelayers.Layer112 tests:{normal}
-      Tear down samplelayers.Layer111 in {green}0.000{normal} seconds.
-      Set up samplelayers.Layer112 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.008{normal} seconds.{normal}
-    {normal}Running samplelayers.Layer12 tests:{normal}
-      Tear down samplelayers.Layer112 in {green}0.000{normal} seconds.
-      Tear down samplelayers.Layerx in {green}0.000{normal} seconds.
-      Tear down samplelayers.Layer11 in {green}0.000{normal} seconds.
-      Set up samplelayers.Layer12 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
-    {normal}Running samplelayers.Layer121 tests:{normal}
-      Set up samplelayers.Layer121 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.007{normal} seconds.{normal}
-    {normal}Running samplelayers.Layer122 tests:{normal}
-      Tear down samplelayers.Layer121 in {green}0.000{normal} seconds.
-      Set up samplelayers.Layer122 in {green}0.000{normal} seconds.
-    {normal}  Ran {green}26{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}0.008{normal} seconds.{normal}
     {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
-      Tear down samplelayers.Layer122 in {green}0.000{normal} seconds.
-      Tear down samplelayers.Layer12 in {green}0.000{normal} seconds.
-      Tear down samplelayers.Layer1 in {green}0.000{normal} seconds.
       Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     <BLANKLINE>
     <BLANKLINE>
@@ -175,9 +145,8 @@ A failed test run highlights the failures in red:
     {red}AssertionError: 1 != 0{normal}
     <BLANKLINE>
     {normal}  Ran {green}164{normal} tests with {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}0.045{normal} seconds.{normal}
-    {normal}Tearing down left over layers:{normal}
-      Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
-    {normal}Total: {green}329{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}0.023{normal} seconds.{normal}
+    ...
+    {normal}Total: {green}329{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}N.NNN{normal} seconds.{normal}
     True
 
 
