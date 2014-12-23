@@ -59,23 +59,23 @@ methods are called in the correct order.
 >>> log_handler.clear()
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[suite])
 >>> succeeded = runner.run() #doctest: +ELLIPSIS
-Running AAAABD tests:
-  Set up A in N.NNN seconds.
-  Set up AB in N.NNN seconds.
-  Set up AAAABD in N.NNN seconds.
+Running ...AAAABD tests:
+  Set up ...A in N.NNN seconds.
+  Set up ...AB in N.NNN seconds.
+  Set up ...AAAABD in N.NNN seconds.
   Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
-Running ZZZABE tests:
-  Tear down AAAABD in N.NNN seconds.
-  Set up ZZZABE in N.NNN seconds.
+Running ...ZZZABE tests:
+  Tear down ...AAAABD in N.NNN seconds.
+  Set up ...ZZZABE in N.NNN seconds.
   Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
-Running MMMACF tests:
-  Tear down ZZZABE in N.NNN seconds.
-  Tear down AB in N.NNN seconds.
-  Set up AC in N.NNN seconds.
-  Set up MMMACF in N.NNN seconds.
+Running ...MMMACF tests:
+  Tear down ...ZZZABE in N.NNN seconds.
+  Tear down ...AB in N.NNN seconds.
+  Set up ...AC in N.NNN seconds.
+  Set up ...MMMACF in N.NNN seconds.
   Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 Tearing down left over layers:
-  Tear down MMMACF in N.NNN seconds.
-  Tear down AC in N.NNN seconds.
-  Tear down A in N.NNN seconds.
+  Tear down ...MMMACF in N.NNN seconds.
+  Tear down ...AC in N.NNN seconds.
+  Tear down ...A in N.NNN seconds.
 Total: 3 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
