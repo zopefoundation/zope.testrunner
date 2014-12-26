@@ -889,11 +889,10 @@ def order_by_bases(layers):
     getmro = inspect.getmro
 
     def layer_sortkey(layer):
-        return tuple((c.__module__, c.__name__) for c in getmro(layer)[::-1] 
+        return tuple((c.__module__, c.__name__) for c in getmro(layer)[::-1]
                       if c not in (object, UnitTests))
 
-    layers = [layer for layer in layers]
-    layers.sort(key=layer_sortkey, reverse=True)
+    layers = sorted(layers, key=layer_sortkey, reverse=True)
     gathered = []
     for layer in layers:
         gather_layers(layer, gathered)
