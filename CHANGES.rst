@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.4.4 (unreleased)
+4.4.4 (2014-12-27)
 ==================
 
 - When looking for the right location of test code, start with longest
