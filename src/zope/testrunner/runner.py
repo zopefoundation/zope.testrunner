@@ -18,6 +18,7 @@ from __future__ import print_function
 import subprocess
 import errno
 import gc
+import inspect
 import re
 import sys
 import threading
@@ -31,8 +32,9 @@ except ImportError:
 from six import StringIO
 from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer, _layer_name_cache
-from zope.testrunner.refcount import TrackRefs
+from zope.testrunner.layer import UnitTests
 from zope.testrunner.options import get_options
+from zope.testrunner.refcount import TrackRefs
 import zope.testrunner
 import zope.testrunner.coverage
 import zope.testrunner._doctest
@@ -882,12 +884,17 @@ def layer_from_name(layer_name):
 
 def order_by_bases(layers):
     """Order the layers from least to most specific (bottom to top)
+       Group layers with common bases and put unittests first.
     """
-    named_layers = [(name_from_layer(layer), layer) for layer in layers]
-    named_layers.sort()
-    named_layers.reverse()
+    getmro = inspect.getmro
+
+    def layer_sortkey(layer):
+        return tuple((c.__module__, c.__name__) for c in getmro(layer)[::-1]
+                      if c not in (object, UnitTests))
+
+    layers = sorted(layers, key=layer_sortkey, reverse=True)
     gathered = []
-    for name, layer in named_layers:
+    for layer in layers:
         gather_layers(layer, gathered)
     gathered.reverse()
     seen = {}

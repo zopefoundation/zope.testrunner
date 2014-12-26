@@ -6,6 +6,9 @@ zope.testrunner Changelog
 
 - When looking for the right location of test code, start with longest
   location paths first. This fixes problems with nested code locations.
+- sort related layers close to each other to reduce the number of unnecessary teardowns (fixes #14)
+- run the unit test layer first (fixes https://bugs.launchpad.net/zope.testrunner/+bug/497871)
+
 
 
 4.4.3 (2014-03-19)

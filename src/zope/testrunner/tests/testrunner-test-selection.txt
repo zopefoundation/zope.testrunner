@@ -565,6 +565,18 @@ specifications.
 
     >>> sys.argv = 'test --all -m sample1 -t test_y0 --list-tests'.split()
     >>> testrunner.run_internal(defaults)
+    Listing zope.testrunner.layer.UnitTests tests:
+      test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletestsf)
+      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sample11.sampletests.TestA3)
+      test_y0 (sample1.sample11.sampletests)
+      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample13.sampletests)
+      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sampletests.test1)
+      test_y0 (sample1.sampletests.test_one.TestA)
+      test_y0 (sample1.sampletests.test_one)
     Listing samplelayers.Layer11 tests:
       test_y0 (sample1.sampletests.test11.TestA)
       test_y0 (sample1.sampletests.test11)
@@ -583,16 +595,4 @@ specifications.
     Listing samplelayers.Layer122 tests:
       test_y0 (sample1.sampletests.test122.TestA)
       test_y0 (sample1.sampletests.test122)
-    Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sampletestsf.TestA)
-      test_y0 (sample1.sampletestsf)
-      test_y0 (sample1.sample11.sampletests.TestA)
-      test_y0 (sample1.sample11.sampletests.TestA3)
-      test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sample13.sampletests.TestA)
-      test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sampletests.test1.TestA)
-      test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sampletests.test_one.TestA)
-      test_y0 (sample1.sampletests.test_one)
     False
