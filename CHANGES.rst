@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.4.5 (unreleased)
+4.4.5 (2015-01-06)
 ==================
 
 - Nothing changed yet.
