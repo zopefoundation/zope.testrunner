@@ -10,16 +10,18 @@ zope.testrunner Changelog
 4.4.5 (2015-01-06)
 ==================
 
-- Nothing changed yet.
+- Sort related layers close to each other to reduce the number of unnecessary
+  teardowns (fixes `#14
+  <https://github.com/zopefoundation/zope.testrunner/issues/14>`_).
+- Run the unit test layer first (fixes `LP #497871
+  <https://bugs.launchpad.net/zope.testrunner/+bug/497871>`__).
 
 
-4.4.4 (unreleased)
+4.4.4 (2014-12-27)
 ==================
 
 - When looking for the right location of test code, start with longest
   location paths first. This fixes problems with nested code locations.
-- sort related layers close to each other to reduce the number of unnecessary teardowns (fixes #14)
-- run the unit test layer first (fixes https://bugs.launchpad.net/zope.testrunner/+bug/497871)
 
 
 
