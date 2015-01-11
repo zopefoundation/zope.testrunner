@@ -886,11 +886,15 @@ def order_by_bases(layers):
     """Order the layers from least to most specific (bottom to top)
        Group layers with common bases and put unittests first.
     """
-    getmro = inspect.getmro
+    def getmro(layer):
+        try:
+            return inspect.getmro(layer)
+        except AttributeError:
+            return inspect.getmro(layer.__class__)
 
     def layer_sortkey(layer):
         return tuple((c.__module__, c.__name__) for c in getmro(layer)[::-1]
-                      if c not in (object, UnitTests))
+                     if c not in (object, UnitTests))
 
     layers = sorted(layers, key=layer_sortkey, reverse=True)
     gathered = []
