@@ -15,6 +15,7 @@
 """
 from __future__ import print_function
 
+import collections
 import subprocess
 import errno
 import gc
@@ -882,17 +883,40 @@ def layer_from_name(layer_name):
                              % (module_name, module_layer_name))
 
 
-def order_by_bases(layers):
-    """Order the layers from least to most specific (bottom to top)
-       Group layers with common bases and put unittests first.
+def layer_sort_key(layer):
+    """Compute sort key for layers.
+
+    Based on the reverse MRO ordering in order to put layers with shared base
+    layers next to each other.
     """
-    getmro = inspect.getmro
+    seen = set([])
+    key = []
 
-    def layer_sortkey(layer):
-        return tuple((c.__module__, c.__name__) for c in getmro(layer)[::-1]
-                      if c not in (object, UnitTests))
+    # Note: we cannot reuse gather_layers() here because it uses a
+    # different traversal order.
+    def _gather(layer):
+        seen.add(layer)
+        # We make the simplifying assumption that the order of initialization
+        # of base layers does not matter.  Given that, traversing the bases
+        # in reverse order here keeps the ordering of layers in
+        # testrunner-layers.txt the same as it was in older versions of
+        # zope.testrunner, so let's use that.
+        for base in layer.__bases__[::-1]:
+            if base is not object and base not in seen:
+                _gather(base)
+        key.append(layer)
 
-    layers = sorted(layers, key=layer_sortkey, reverse=True)
+    _gather(layer)
+    return tuple(name_from_layer(l) for l in key if l != UnitTests)
+
+
+def order_by_bases(layers):
+    """Order the layers from least to most specific (bottom to top).
+
+    Puts unit tests first.  Groups layers with common base layers together.
+    Sorts the rest alphabetically.  Removes duplicates.
+    """
+    layers = sorted(layers, key=layer_sort_key, reverse=True)
     gathered = []
     for layer in layers:
         gather_layers(layer, gathered)
