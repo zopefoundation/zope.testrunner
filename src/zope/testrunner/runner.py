@@ -423,7 +423,7 @@ class SetUpLayerFailure(unittest.TestCase):
         pass
 
     def __str__(self):
-        return "Layer: %s.%s" % (self.layer.__module__, self.layer.__name__)
+        return "Layer: %s" % (name_from_layer(self.layer))
 
 
 
