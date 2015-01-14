@@ -100,3 +100,60 @@ class ITestRunner(zope.interface.Interface):
 
     options = zope.interface.Attribute(
       "Provides access to configuration options.")
+
+
+class IMinimalTestLayer(zope.interface.Interface):
+    """A test layer.
+
+    This is the bare minimum that a ``layer`` attribute on a test suite
+    should provide.
+    """
+
+    __bases__ = zope.interface.Attribute(
+        "A tuple of base layers.")
+
+    __name__ = zope.interface.Attribute(
+        "Name of the layer")
+
+    __module__ = zope.interface.Attribute(
+        "Dotted name of the module that defines this layer")
+
+    def __hash__():
+        """A test layer must be hashable"""
+
+
+class IFullTestLayer(IMinimalTestLayer):
+    """A test layer.
+
+    This is the full list of optional methods that a test layer can specify.
+    """
+
+    def setUp():
+        """Shared layer setup.
+
+        Called once before any of the tests in this layer (or sublayers)
+        are run.
+        """
+
+    def tearDown():
+        """Shared layer teardown.
+
+        Called once after all the tests in this layer (and sublayers)
+        are run.
+
+        May raise NotImplementedError.
+        """
+
+    def testSetUp():
+        """Additional test setup.
+
+        Called once before every of test in this layer (or sublayers)
+        is run.
+        """
+
+    def testTearDown():
+        """Additional test teardown.
+
+        Called once after every of test in this layer (or sublayers)
+        is run.
+        """
