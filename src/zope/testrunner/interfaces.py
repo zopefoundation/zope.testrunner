@@ -119,7 +119,18 @@ class IMinimalTestLayer(zope.interface.Interface):
         "Dotted name of the module that defines this layer")
 
     def __hash__():
-        """A test layer must be hashable"""
+        """A test layer must be hashable.
+
+        The default identity-based __eq__ and __hash__ that Python provides
+        usually suffice.
+        """
+
+    def __eq__():
+        """A test layer must be hashable.
+
+        The default identity-based __eq__ and __hash__ that Python provides
+        usually suffice.
+        """
 
 
 class IFullTestLayer(IMinimalTestLayer):
