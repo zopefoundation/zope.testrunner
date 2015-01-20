@@ -205,6 +205,7 @@ def test_suite():
         'testrunner-edge-cases.txt',
         'testrunner-errors.txt',
         'testrunner-layers-api.txt',
+        'testrunner-layers-instances.txt',
         'testrunner-layers-buff.txt',
         'testrunner-layers-cantfind.txt',
         'testrunner-layers-cwd.txt',
