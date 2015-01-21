@@ -1,10 +1,11 @@
 zope.testrunner Changelog
 *************************
 
-4.4.6 (unreleased)
+4.4.6 (2015-01-21)
 ==================
 
-- Nothing changed yet.
+- Restore support for instance-based test layers that regressed in 4.4.5
+  (`#20 <https://github.com/zopefoundation/zope.testrunner/pull/20>`_).
 
 
 4.4.5 (2015-01-06)
