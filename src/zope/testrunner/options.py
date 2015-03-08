@@ -491,7 +491,7 @@ parser.add_option_group(other)
 # Default values
 
 parser.set_defaults(
-    ignore_dir=['.svn', 'CVS', '{arch}', '.arch-ids', '_darcs'],
+    ignore_dir=['.git', '.svn', 'CVS', '{arch}', '.arch-ids', '_darcs'],
     tests_pattern='^tests$',
     at_level=1,
     test_file_pattern='^test',
