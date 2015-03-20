@@ -559,7 +559,7 @@ def get_options(args=None, defaults=None):
 
     if options.showversion:
         dist = pkg_resources.require('zope.testrunner')[0]
-        print('zope.app.testrunner version %s' % dist.version)
+        print('zope.testrunner version %s' % dist.version)
         options.fail = True
         return options
 
