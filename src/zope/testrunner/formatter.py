@@ -416,7 +416,12 @@ def tigetnum(attr, default=None):
             # You get curses.error when $TERM is set to an unknown name
             pass
         else:
-            return curses.tigetnum(attr)
+            try:
+                return curses.tigetnum(attr)
+            except expected_exceptions:
+                # You get TypeError on PyPy3 due to a bug:
+                # https://bitbucket.org/pypy/pypy/issue/2016/pypy3-cursestigetnum-raises-ctype
+                pass
     return default
 
 

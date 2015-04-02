@@ -4,7 +4,8 @@ zope.testrunner Changelog
 4.4.7 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Work around a bug in PyPy3's curses module
+  (`#24 <https://github.com/zopefoundation/zope.testrunner/issues/24>`_).
 
 
 4.4.6 (2015-01-21)
