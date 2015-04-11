@@ -416,7 +416,12 @@ def tests_from_suite(suite, options, dlevel=1,
     elif isinstance(suite, StartUpFailure):
         yield (suite, None)
     else:
-        if level <= options.at_level:
+        if options.only:
+            accept = build_filtering_func(options.test)
+            if accept(str(suite)) and level == options.only:
+                yield (suite, layer)
+
+        elif level <= options.at_level:
             accept = build_filtering_func(options.test)
             if accept(str(suite)):
                 yield (suite, layer)

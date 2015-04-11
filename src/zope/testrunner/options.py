@@ -127,6 +127,10 @@ searching.add_option(
     help="Run tests at all levels.")
 
 searching.add_option(
+    '-y', '--only', type="int", dest='only',
+    help="Run only tests at the selected level")
+
+searching.add_option(
     '--list-tests', action="store_true", dest='list_tests',
     help="List all tests that matched your filters.  Do not run any tests.")
 
