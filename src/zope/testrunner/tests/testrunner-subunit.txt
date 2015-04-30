@@ -675,6 +675,39 @@ Note that debugging doesn't work when running tests in a subprocess:
     ]
     True
 
+
+Support skipped tests
+---------------------
+
+    >>> directory_with_skipped_tests = os.path.join(this_directory,
+    ...                                             'testrunner-ex-skip')
+    >>> skip_defaults = [
+    ...     '--path', directory_with_skipped_tests,
+    ...     '--tests-pattern', '^sample_skipped_tests$',
+    ...  ]
+    >>> sys.argv = ['test']
+    >>> testrunner.run_internal(
+    ...     skip_defaults + ["--subunit", "-t", "TestSkipppedNoLayer"])
+    time: ...
+    test: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer
+    time: ...
+    successful: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer:zope.testrunner.layer.UnitTests
+    time: ...
+    test: sample_skipped_tests.TestSkipppedNoLayer.test_skipped
+    skip: sample_skipped_tests.TestSkipppedNoLayer.test_skipped [
+    I'm a skipped test!
+    ]
+    tags: -zope:layer:zope.testrunner.layer.UnitTests
+    time: ...
+    test: zope.testrunner.layer.UnitTests:tearDown
+    tags: zope:layer
+    time: ...
+    successful: zope.testrunner.layer.UnitTests:tearDown
+    False
+
+
 And remove the temporary directory:
 
     >>> shutil.rmtree(tmpdir)
