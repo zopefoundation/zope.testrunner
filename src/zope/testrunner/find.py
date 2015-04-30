@@ -159,10 +159,15 @@ def find_tests(options, found_suites=None):
     """
     remove_stale_bytecode(options)
     suites = {}
+
+    test_accept = build_filtering_func(options.test)
+    module_accept = build_filtering_func(options.module)
+
     if found_suites is None:
-        found_suites = find_suites(options)
+        found_suites = find_suites(options, accept=module_accept)
     for suite in found_suites:
-        for test, layer_name in tests_from_suite(suite, options):
+        for test, layer_name in tests_from_suite(suite, options,
+                                                 accept=test_accept):
             suite = suites.get(layer_name)
             if not suite:
                 suite = suites[layer_name] = unittest.TestSuite()
@@ -170,7 +175,7 @@ def find_tests(options, found_suites=None):
     return suites
 
 
-def find_suites(options):
+def find_suites(options, accept=None):
     for fpath, package in find_test_files(options):
         for (prefix, prefix_package) in options.prefix:
             if fpath.startswith(prefix) and package == prefix_package:
@@ -182,8 +187,7 @@ def find_suites(options):
                 if package:
                     module_name = package + '.' + module_name
 
-                accept = build_filtering_func(options.module)
-                if not accept(module_name):
+                if accept is not None and not accept(module_name):
                     continue
 
                 try:
@@ -393,7 +397,8 @@ def import_name(name):
 
 
 def tests_from_suite(suite, options, dlevel=1,
-                     dlayer=zope.testrunner.layer.UnitTests):
+                     dlayer=zope.testrunner.layer.UnitTests,
+                     accept=None):
     """Returns a sequence of (test, layer_name)
 
     The tree of suites is recursively visited, with the most specific
@@ -401,8 +406,9 @@ def tests_from_suite(suite, options, dlevel=1,
     contained in a TestSuite with a layer of 'bar', the test case would be
     returned with 'foo' as the layer.
 
-    Tests are also filtered out based on the test level and test selection
-    filters stored in the options.
+    Tests are also filtered out based on the test level and accept predicate.
+    accept is a function, returning boolean for given test name (see also
+    build_filtering_func()).
     """
     level = getattr(suite, 'level', dlevel)
     layer = getattr(suite, 'layer', dlayer)
@@ -411,14 +417,14 @@ def tests_from_suite(suite, options, dlevel=1,
 
     if isinstance(suite, unittest.TestSuite):
         for possible_suite in suite:
-            for r in tests_from_suite(possible_suite, options, level, layer):
+            for r in tests_from_suite(possible_suite, options, level, layer,
+                                      accept=accept):
                 yield r
     elif isinstance(suite, StartUpFailure):
         yield (suite, None)
     else:
         if level <= options.at_level:
-            accept = build_filtering_func(options.test)
-            if accept(str(suite)):
+            if accept is None or accept(str(suite)):
                 yield (suite, layer)
 
 
