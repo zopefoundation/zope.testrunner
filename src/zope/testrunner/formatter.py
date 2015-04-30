@@ -959,6 +959,9 @@ class SubunitOutputFormatter(object):
         self._emit_timestamp()
         self._subunit.addSuccess(test)
 
+    def test_skipped(self, test, reason):
+        self._subunit.addSkip(test, reason)
+
     def import_errors(self, import_errors):
         """Report test-module import errors (if any)."""
         if not import_errors:
