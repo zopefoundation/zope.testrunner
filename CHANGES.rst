@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.4.8 (unreleased)
+4.4.8 (2015-05-01)
 ==================
 
 - Support skipped tests in subunit output
