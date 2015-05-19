@@ -107,11 +107,17 @@ a different result that has similar characteristics.
     ...     sys.stdout = sys.stdout.wrapped
     ...
     Running tests at level 1
-    Running sampletests_buffering.Layer1 tests:
-      Set up sampletests_buffering.Layer1 in N.NNN seconds.
+    Running .FakeMultiProcessLayer tests:
+      Set up .FakeMultiProcessLayer in N.NNN seconds.
       Running:
-     test_something (sampletests_buffering.TestSomething1)
+      Ran 0 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    [Parallel tests running in sampletests_buffering.Layer1:
+      . LAYER FINISHED]
+    Running sampletests_buffering.Layer1 tests:
+      Running in a subprocess.
+      Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+      Tear down sampletests_buffering.Layer1 ... not supported
     [Parallel tests running in sampletests_buffering.Layer2:
       .. LAYER FINISHED]
     Running sampletests_buffering.Layer2 tests:
@@ -120,7 +126,7 @@ a different result that has similar characteristics.
       Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
       Tear down sampletests_buffering.Layer2 ... not supported
     Tearing down left over layers:
-      Tear down sampletests_buffering.Layer1 ... not supported
+      Tear down .FakeMultiProcessLayer in N.NNN seconds.
     Total: 3 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
@@ -312,4 +318,3 @@ Very large subprocess output is trimmed, unless you ask for extra verbosity
     Total: 1 tests, 0 failures, 1 errors and 0 skipped in N.NNN seconds.
 
     >>> subprocess.Popen = Popen
-

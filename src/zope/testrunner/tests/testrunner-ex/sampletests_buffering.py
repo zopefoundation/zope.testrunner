@@ -30,7 +30,7 @@ class Layer1:
 class Layer2:
 
     def setUp(self):
-        pass
+        time.sleep(0.1)
     setUp = classmethod(setUp)
 
     def tearDown(self):

@@ -13,7 +13,26 @@
 ##############################################################################
 """Layer definitions
 """
+import unittest
 
 
 class UnitTests(object):
     """A layer for gathering all unit tests."""
+
+
+class FakeMultiProcessLayer(object):
+    """A fake layer to start spreading out subprocesses."""
+
+    __bases__ = ()
+    __module__ = ''
+
+
+class FakeMultiProcessTests(unittest.TestCase):
+    """A fake TestCase to start spreading out subprocesses."""
+    layer = FakeMultiProcessLayer()
+
+
+def FakeMultiProcessTests_suite():
+    return unittest.TestSuite((
+        unittest.makeSuite(FakeMultiProcessTests),
+    ))
