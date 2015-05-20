@@ -34,8 +34,8 @@ from six import StringIO
 from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer, _layer_name_cache
 from zope.testrunner.layer import UnitTests
-from zope.testrunner.layer import FakeMultiProcessLayer
-from zope.testrunner.layer import FakeMultiProcessTests_suite
+from zope.testrunner.layer import EmptyLayer
+from zope.testrunner.layer import EmptySuite
 from zope.testrunner.options import get_options
 from zope.testrunner.refcount import TrackRefs
 import zope.testrunner
@@ -131,8 +131,7 @@ class Runner(object):
             # if we want multiple processes, we need a fake layer as first
             # to start spreading out layers/tests to subprocesses
             # but only if this is not in the subprocess
-            yield (name_from_layer(FakeMultiProcessLayer),
-                   FakeMultiProcessLayer, FakeMultiProcessTests_suite())
+            yield (name_from_layer(EmptyLayer), EmptyLayer, EmptySuite())
 
         layer_names = dict([(layer_from_name(layer_name), layer_name)
                             for layer_name in self.tests_by_layer_name])

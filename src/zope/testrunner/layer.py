@@ -20,19 +20,14 @@ class UnitTests(object):
     """A layer for gathering all unit tests."""
 
 
-class FakeMultiProcessLayer(object):
-    """A fake layer to start spreading out subprocesses."""
+class EmptyLayer(object):
+    """An empty layer to start spreading out subprocesses."""
 
     __bases__ = ()
     __module__ = ''
 
 
-class FakeMultiProcessTests(unittest.TestCase):
-    """A fake TestCase to start spreading out subprocesses."""
-    layer = FakeMultiProcessLayer()
-
-
-def FakeMultiProcessTests_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(FakeMultiProcessTests),
-    ))
+def EmptySuite():
+    suite = unittest.TestSuite()
+    suite.layer = EmptyLayer()
+    return suite
