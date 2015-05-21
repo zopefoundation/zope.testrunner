@@ -25,9 +25,9 @@ which a given line was written.
     >>> sys.stdout = RecordingStreamWrapper(sys.stdout)
 
 Now we actually call our test.  If you open the file to which we are referring
-here (zope/testing/testrunner-ex/sampletests_buffering.py) you will see two test
-suites, each with its own layer that does not know how to tear down.  This
-forces the second suite to be run in a subprocess.
+here (zope/testrunner/tests/testrunner-ex/sampletests_buffering.py) you will
+see two test suites, each with its own layer that does not know how to tear
+down.  This forces the second suite to be run in a subprocess.
 
 That second suite has two tests.  Both sleep for half a second each.
 
@@ -96,10 +96,14 @@ test will not be a source of spurious errors.  If it is, we will have to
 readdress.
 
 Now let's do the same thing, but with multiple processes at once.  We'll get
-a different result that has similar characteristics.
+a different result that has similar characteristics.  Note that we don't have
+to use a special layer that doesn't support teardown to force the layer we're
+interested in to run in a subprocess: the test runner now does that when you
+ask for parallel execution.  The other layer now just makes the test output
+non-deterministic, so we'll skip it.
 
     >>> sys.stdout = RecordingStreamWrapper(sys.stdout)
-    >>> argv.extend(['-j', '2'])
+    >>> argv.extend(['-j', '2', '--layer=sampletests_buffering.Layer2'])
     >>> try:
     ...     testrunner.run_internal(defaults, argv)
     ...     record = sys.stdout.record
@@ -111,13 +115,6 @@ a different result that has similar characteristics.
       Set up .EmptyLayer in N.NNN seconds.
       Running:
       Ran 0 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
-    [Parallel tests running in sampletests_buffering.Layer1:
-      . LAYER FINISHED]
-    Running sampletests_buffering.Layer1 tests:
-      Running in a subprocess.
-      Set up sampletests_buffering.Layer1 in N.NNN seconds.
-      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
-      Tear down sampletests_buffering.Layer1 ... not supported
     [Parallel tests running in sampletests_buffering.Layer2:
       .. LAYER FINISHED]
     Running sampletests_buffering.Layer2 tests:
@@ -127,7 +124,7 @@ a different result that has similar characteristics.
       Tear down sampletests_buffering.Layer2 ... not supported
     Tearing down left over layers:
       Tear down .EmptyLayer in N.NNN seconds.
-    Total: 3 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Total: 2 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
 Notice that, with a -vv (or greater) verbosity, the parallel test run includes
