@@ -4,14 +4,17 @@ zope.testrunner Changelog
 4.4.9 (unreleased)
 ==================
 
-- Nothing changed yet.
+- When using ``-j``, parallelize all the tests, including the first test layer
+  (`#28 <https://github.com/zopefoundation/zope.testrunner/issues/28>`_).
 
 
 4.4.8 (2015-05-01)
 ==================
 
 - Support skipped tests in subunit output
+  (`#25 <https://github.com/zopefoundation/zope.testrunner/pull/25>`_).
 - More efficient test filtering
+  (`#26 <https://github.com/zopefoundation/zope.testrunner/pull/26>`_).
 
 
 4.4.7 (2015-04-02)
@@ -43,7 +46,6 @@ zope.testrunner Changelog
 
 - When looking for the right location of test code, start with longest
   location paths first. This fixes problems with nested code locations.
-
 
 
 4.4.3 (2014-03-19)
@@ -259,6 +261,7 @@ zope.testrunner Changelog
 ====================
 
 - Initial release of the testrunner from zope.testrunner as its own module.
+  (Previously it was part of zope.testing.)
 
 
 .. _six: http://pypi.python.org/pypi/six
