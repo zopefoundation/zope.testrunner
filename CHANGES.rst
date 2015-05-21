@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.4.9 (unreleased)
+4.4.9 (2015-05-21)
 ==================
 
 - When using ``-j``, parallelize all the tests, including the first test layer
