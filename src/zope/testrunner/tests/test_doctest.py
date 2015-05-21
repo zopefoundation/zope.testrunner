@@ -207,6 +207,7 @@ def test_suite():
         'testrunner-layers-api.txt',
         'testrunner-layers-instances.txt',
         'testrunner-layers-buff.txt',
+        'testrunner-subprocess-errors.txt',
         'testrunner-layers-cantfind.txt',
         'testrunner-layers-cwd.txt',
         'testrunner-layers-ntd.txt',
