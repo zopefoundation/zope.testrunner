@@ -125,12 +125,19 @@ Or we can explicitly say that we want both unit and non-unit tests.
     False
 
 It is possible to force the layers to run in subprocesses and parallelize them.
+``EmptyLayer`` will be inserted as first to start spreading out
+subprocesses ASAP.
 
     >>> sys.argv = [testrunner_script, '-j2']
     >>> testrunner.run_internal(defaults)
+    Running .EmptyLayer tests:
+      Set up .EmptyLayer in N.NNN seconds.
+      Ran 0 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running zope.testrunner.layer.UnitTests tests:
+      Running in a subprocess.
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Ran 156 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     Running samplelayers.Layer1 tests:
       Running in a subprocess.
       Set up samplelayers.Layer1 in N.NNN seconds.
@@ -191,6 +198,6 @@ It is possible to force the layers to run in subprocesses and parallelize them.
       Tear down samplelayers.Layer12 in N.NNN seconds.
       Tear down samplelayers.Layer1 in N.NNN seconds.
     Tearing down left over layers:
-      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Tear down .EmptyLayer in N.NNN seconds.
     Total: 321 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False

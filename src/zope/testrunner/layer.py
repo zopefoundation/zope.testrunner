@@ -13,7 +13,21 @@
 ##############################################################################
 """Layer definitions
 """
+import unittest
 
 
 class UnitTests(object):
     """A layer for gathering all unit tests."""
+
+
+class EmptyLayer(object):
+    """An empty layer to start spreading out subprocesses."""
+
+    __bases__ = ()
+    __module__ = ''
+
+
+def EmptySuite():
+    suite = unittest.TestSuite()
+    suite.layer = EmptyLayer()
+    return suite
