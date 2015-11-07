@@ -4,7 +4,7 @@ zope.testrunner Changelog
 4.4.10 (unreleased)
 ===================
 
-- Nothing changed yet.
+- Added support for Python 3.5.
 
 
 4.4.9 (2015-05-21)
