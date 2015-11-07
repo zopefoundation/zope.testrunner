@@ -20,8 +20,10 @@ import zope.exceptions.exceptionformatter
 import zope.testrunner.feature
 
 
-# Python 3.5 compatibility
-if not hasattr(traceback, "_iter_chain"):
+try:
+    _iter_chain = traceback._iter_chain
+except AttributeError:
+    # Python 3.5
     def _iter_chain(exc, custom_tb=None, seen=None):
         if seen is None:
             seen = set()
@@ -42,12 +44,10 @@ if not hasattr(traceback, "_iter_chain"):
             for x in it:
                 yield x
 
-    traceback._iter_chain = _iter_chain
-
 
 def format_exception(t, v, tb, limit=None, chain=None):
     if chain:
-        values = traceback._iter_chain(v, tb)
+        values = _iter_chain(v, tb)
     else:
         values = [(v, tb)]
     fmt = zope.exceptions.exceptionformatter.TextExceptionFormatter(
@@ -58,7 +58,7 @@ def format_exception(t, v, tb, limit=None, chain=None):
 
 def print_exception(t, v, tb, limit=None, file=None, chain=None):
     if chain:
-        values = traceback._iter_chain(v, tb)
+        values = _iter_chain(v, tb)
     else:
         values = [(v, tb)]
     if file is None:
