@@ -29,15 +29,16 @@ except AttributeError:
             seen = set()
         seen.add(exc)
         its = []
+        context = exc.__context__
         cause = exc.__cause__
         if cause is not None and cause not in seen:
-            its.append(_iter_chain(cause, None, seen))
+            its.append(_iter_chain(cause, False, seen))
             its.append([(traceback._cause_message, None)])
-        else:
-            context = exc.__context__
-            if context is not None and context not in seen:
-                its.append(_iter_chain(context, None, seen))
-                its.append([(traceback._context_message, None)])
+        elif (context is not None and
+              not exc.__suppress_context__ and
+              context not in seen):
+            its.append(_iter_chain(context, None, seen))
+            its.append([(traceback._context_message, None)])
         its.append([(exc, custom_tb or exc.__traceback__)])
         # itertools.chain is in an extension module and may be unavailable
         for it in its:
