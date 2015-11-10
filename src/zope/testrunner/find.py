@@ -472,9 +472,9 @@ class Find(zope.testrunner.feature.Feature):
 
     def global_setup(self):
         # Add directories to the path
-        for path in self.runner.options.path:
+        for path in reversed(self.runner.options.path):
             if path not in sys.path:
-                sys.path.append(path)
+                sys.path.insert(0, path)
 
         tests = find_tests(self.runner.options, self.runner.found_suites)
         self.import_errors = tests.pop(None, None)
