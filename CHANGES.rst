@@ -4,7 +4,11 @@ zope.testrunner Changelog
 4.4.10 (unreleased)
 ===================
 
-- Added support for Python 3.5.
+- Added support for Python 3.5
+  (`#31 <https://github.com/zopefoundation/zope.testrunner/pull/31>`_).
+
+- Insert extra paths (from ``--path``) to the front of sys.argv
+  (`#32 <https://github.com/zopefoundation/zope.testrunner/issues/32>`_).
 
 
 4.4.9 (2015-05-21)
