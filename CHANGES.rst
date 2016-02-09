@@ -1,10 +1,10 @@
 zope.testrunner Changelog
 *************************
 
-4.4.11 (unreleased)
-===================
+4.5.0 (unreleased)
+==================
 
-- Nothing changed yet.
+- Dropped support for Python 3.2.
 
 
 4.4.10 (2015-11-10)
