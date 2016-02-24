@@ -30,17 +30,14 @@ if sys.version_info < (2,6) or sys.version_info[:2] == (3,0):
 
 
 
-if sys.version_info >= (3,):
-    tests_require = ['zope.testing']
-    extra = dict(# XXX:  python-subunit is not yet ported to Python3.
-                 extras_require = {'test': ['zope.testing']},
-                 )
+tests_require = ['zope.testing']
+if sys.version_info[0:2] == (2, 6):
+    tests_require.append('unittest2')
+    tests_require.append('python-subunit < 1.0dev')
 else:
-    tests_require = ['zope.testing', 'python-subunit']
-    if sys.version_info[0:2] == (2, 6):
-        tests_require.append('unittest2')
-    extra = dict(tests_require = tests_require,
-                 extras_require = {'test': tests_require})
+    tests_require.append('python-subunit')
+extra = dict(tests_require = tests_require,
+                extras_require = {'test': tests_require})
 
 
 
