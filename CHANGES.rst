@@ -4,13 +4,13 @@ zope.testrunner Changelog
 4.5.0 (unreleased)
 ==================
 
-- Dropped support for Python 3.2.
+- Drop support for Python 2.6 and 3.2.
 
 
 4.4.10 (2015-11-10)
 ===================
 
-- Added support for Python 3.5
+- Add support for Python 3.5
   (`#31 <https://github.com/zopefoundation/zope.testrunner/pull/31>`_).
 
 - Insert extra paths (from ``--path``) to the front of sys.argv
@@ -29,6 +29,7 @@ zope.testrunner Changelog
 
 - Support skipped tests in subunit output
   (`#25 <https://github.com/zopefoundation/zope.testrunner/pull/25>`_).
+
 - More efficient test filtering
   (`#26 <https://github.com/zopefoundation/zope.testrunner/pull/26>`_).
 
@@ -53,6 +54,7 @@ zope.testrunner Changelog
 - Sort related layers close to each other to reduce the number of unnecessary
   teardowns (fixes `#14
   <https://github.com/zopefoundation/zope.testrunner/issues/14>`_).
+
 - Run the unit test layer first (fixes `LP #497871
   <https://bugs.launchpad.net/zope.testrunner/+bug/497871>`__).
 
