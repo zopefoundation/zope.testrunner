@@ -4,6 +4,9 @@ zope.testrunner Changelog
 4.5.0 (unreleased)
 ==================
 
+- Stop tests for all layers when test fails/errors when started with
+  -x/--stop-on-error
+
 - Drop support for Python 2.6 and 3.2.
 
 

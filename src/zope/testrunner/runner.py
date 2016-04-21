@@ -264,6 +264,9 @@ class Runner(object):
                 should_resume = True
                 break
 
+            if self.options.stop_on_error and (self.failures or self.errors):
+                break
+
         if should_resume:
             if layers_to_run:
                 self.ran += resume_tests(
