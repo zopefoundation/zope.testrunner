@@ -20,7 +20,7 @@ class FailureTestCase1(unittest.TestCase):
 
     def test(self):
         # We want to have an error, not a failure
-        raise StandardError
+        raise Exception
 
 
 class FailureTestCase2(unittest.TestCase):
@@ -28,4 +28,4 @@ class FailureTestCase2(unittest.TestCase):
 
     def test(self):
         # We want to have an error, not a failure
-        raise StandardError
+        raise Exception

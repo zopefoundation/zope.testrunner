@@ -70,8 +70,8 @@ Same for failures, without the flag, we see two layers
     Error in test test (stop_on_failure.FailureTestCase1)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_failure.py", Line NNN, in test
-        raise StandardError
-    StandardError
+        raise Exception
+    Exception
       Ran 1 tests with 0 failures, 1 errors and 0 skipped in N.NNN seconds.
     Running layers.LayerB tests:
       Tear down layers.LayerA in N.NNN seconds.
@@ -79,8 +79,8 @@ Same for failures, without the flag, we see two layers
     Error in test test (stop_on_failure.FailureTestCase2)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_failure.py", Line NNN, in test
-        raise StandardError
-    StandardError
+        raise Exception
+    Exception
       Ran 1 tests with 0 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down layers.LayerB in N.NNN seconds.
@@ -96,8 +96,8 @@ When we do pass the flag we see only one layer is tested
     Error in test test (stop_on_failure.FailureTestCase1)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_failure.py", Line NNN, in test
-        raise StandardError
-    StandardError
+        raise Exception
+    Exception
       Ran 1 tests with 0 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down layers.LayerA in N.NNN seconds.
