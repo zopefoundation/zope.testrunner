@@ -223,6 +223,7 @@ def test_suite():
         'testrunner-knit.txt',
         'testrunner-shuffle.txt',
         'testrunner-eggsupport.txt',
+        'testrunner-stops-when-stop-on-error.txt',
         setUp=setUp, tearDown=tearDown,
         optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
         checker=checker),
