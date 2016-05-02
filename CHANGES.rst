@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.5.0 (unreleased)
+4.5.0 (2016-05-02)
 ==================
 
 - Stop tests for all layers when test fails/errors when started with
