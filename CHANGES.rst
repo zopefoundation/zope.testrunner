@@ -6,6 +6,7 @@ zope.testrunner Changelog
 
 - Stop tests for all layers when test fails/errors when started with
   -x/--stop-on-error
+  (`#37 <https://github.com/zopefoundation/zope.testrunner/pull/37>`_).
 
 - Drop support for Python 2.6 and 3.2.
 
