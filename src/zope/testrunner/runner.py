@@ -959,3 +959,6 @@ class FakeInputContinueGenerator:
         print('*'*70)
         print()
         return 'c\n'
+
+    def close(self):
+        pass

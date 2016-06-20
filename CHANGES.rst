@@ -4,7 +4,10 @@ zope.testrunner Changelog
 4.5.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fixed: Using the ``-j`` option to run tests in multiple processes
+  caused tests that used the ``multiprocessing`` package to hang
+  (because the testrunner replaced ``sys.stdin`` with an unclosable
+  object).
 
 
 4.5.0 (2016-05-02)
