@@ -15,20 +15,15 @@
 """
 from __future__ import print_function
 
-import collections
 import subprocess
 import errno
 import gc
-import inspect
 import re
 import sys
 import threading
 import time
 import traceback
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from six import StringIO
 from zope.testrunner.find import import_name
@@ -353,9 +348,6 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
             # Python versions prior to 2.7 do not have the concept of
             # unexpectedSuccesses.
             failures.extend(result.unexpectedSuccesses)
-        if not hasattr(result, 'skipped'):
-            # Only in Python >= 2.7, Python >= 3.1, and when using unittest2
-            result.skipped = []
         skipped.extend(result.skipped)
         errors.extend(result.errors)
         output.summary(n_tests=result.testsRun,
