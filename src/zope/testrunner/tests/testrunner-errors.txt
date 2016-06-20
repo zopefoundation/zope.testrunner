@@ -724,7 +724,7 @@ Then run the tests:
     >>> sys.argv = ('test --tests-pattern ^sampletests(f|_i)?$ --layer 1 '
     ...            ).split()
     >>> testrunner.run_internal(defaults)
-    ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF
+    ... # doctest: +NORMALIZE_WHITESPACE
     Test-module import failures:
     <BLANKLINE>
     Module: sample2.sampletests_i
