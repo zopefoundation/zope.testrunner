@@ -66,7 +66,7 @@ if sys.platform == 'win32':
         #this is a magic to put linefeeds into the doctest
         (re.compile('##r##\n'), '\r'),
 
-        (re.compile(r'\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
+        (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
         (re.compile(r'\d+[.]\d\d\d s'), 'N.NNN s'),
         (re.compile(r'\d+[.]\d\d\d{'), 'N.NNN{'),
         (re.compile(r'\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\.\d+'),
@@ -125,7 +125,7 @@ else:
         (re.compile('##r##'), r'\r'),
         (re.compile(r'\r'), '\\\\r\n'),
 
-        (re.compile(r'\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
+        (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
         (re.compile(r'\d+[.]\d\d\d s'), 'N.NNN s'),
         (re.compile(r'\d+[.]\d\d\d{'), 'N.NNN{'),
         (re.compile(r'\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\.\d+'),
@@ -322,7 +322,7 @@ def test_suite():
             setUp=setUp, tearDown=tearDown,
             optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
             checker = renormalizing.RENormalizing([
-              (re.compile(r'\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
+              (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
               (re.compile(r'sys refcount=\d+ +change=\d+'),
                'sys refcount=NNNNNN change=NN'),
               (re.compile(r'sum detail refcount=\d+ +'),
