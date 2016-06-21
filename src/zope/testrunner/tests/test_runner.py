@@ -171,3 +171,12 @@ class TestLayerOrdering(unittest.TestCase):
         # Sorting by reverse MRO, as computed by Python's MRO algorithm,
         # would put the layers in a different order: K3, K1, K2, ZZ.
         # Does that matter?  The class diagram is symmetric, so I think not.
+
+    def test_FakeInputContinueGenerator_close(self):
+        # multiprocessing (and likely other forkful frameworks want to
+        # close sys.stdin.  The test runner replaces sys.stdin with a
+        # FakeInputContinueGenerator for some reason. It should be
+        # closeable.
+
+        f = runner.FakeInputContinueGenerator()
+        f.close()
