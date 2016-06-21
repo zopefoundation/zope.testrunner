@@ -9,6 +9,9 @@ zope.testrunner Changelog
   (because the testrunner replaced ``sys.stdin`` with an unclosable
   object).
 
+- Drop conditional dependency on ``unittest2`` (redundant after dropping
+  support for Python 2.6).
+
 
 4.5.0 (2016-05-02)
 ==================

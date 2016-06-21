@@ -36,8 +36,6 @@ if sys.version_info >= (3,):
                  )
 else:
     tests_require = ['zope.testing', 'python-subunit']
-    if sys.version_info[0:2] == (2, 6):
-        tests_require.append('unittest2')
     extra = dict(tests_require = tests_require,
                  extras_require = {'test': tests_require})
 
