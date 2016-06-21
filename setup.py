@@ -16,8 +16,7 @@
 # When developing and releasing this package, please follow the documented
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
-"""Setup for zope.testrunner package
-"""
+version='4.5.1'
 
 import os
 import sys
@@ -122,7 +121,7 @@ long_description=(
 
 setup(
     name='zope.testrunner',
-    version='4.5.1.dev0',
+    version=version,
     url='http://pypi.python.org/pypi/zope.testrunner',
     license='ZPL 2.1',
     description='Zope testrunner script.',

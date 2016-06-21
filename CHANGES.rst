@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.5.1 (unreleased)
+4.5.1 (2016-06-20)
 ==================
 
 - Fixed: Using the ``-j`` option to run tests in multiple processes
