@@ -2,7 +2,15 @@ Subunit Output
 ==============
 
 Subunit is a streaming protocol for interchanging test results. More
-information can be found at https://launchpad.net/subunit.
+information can be found at https://launchpad.net/subunit.  To enable
+support for ``subunit``, install it and its dependencies via the
+``zope.testrunner`` extra:
+
+    $ pip install zope.testrunner[subunit]
+
+or directly:
+
+    $ pip install python-subunit
 
 First we need to make a temporary copy of the entire testing directory:
 

@@ -16,44 +16,32 @@
 # When developing and releasing this package, please follow the documented
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
-version='4.5.1'
+version='4.6.0.dev0'
 
 import os
 import sys
 from setuptools import setup
 from setuptools.command.test import test
 
-if sys.version_info < (2,6) or sys.version_info[:2] == (3,0):
-    raise ValueError("zope.testrunner requires Python 2.6 or higher, "
-                     "or 3.1 or higher.")
+
+INSTALL_REQUIRES = [
+    'setuptools',
+    'six',
+    'zope.exceptions',
+    'zope.interface',
+]
+
+TESTS_REQUIRE = [
+    'zope.testing',
+]
+
+EXTRAS_REQUIRE = {
+    'test': TESTS_REQUIRE,
+    'subunit': TESTS_REQUIRE + ['python-subunit'],
+}
 
 
-
-if sys.version_info >= (3,):
-    tests_require = ['zope.testing']
-    extra = dict(# XXX:  python-subunit is not yet ported to Python3.
-                 extras_require = {'test': ['zope.testing']},
-                 )
-else:
-    tests_require = ['zope.testing', 'python-subunit']
-    extra = dict(tests_require = tests_require,
-                 extras_require = {'test': tests_require})
-
-
-
-class custom_test(test):
-    # The zope.testrunner tests MUST be run using its own testrunner. This is
-    # because its subprocess testing will call the script it was run with. We
-    # therefore create a script to run the testrunner, and call that.
-    def run(self):
-        if self.distribution.install_requires:
-            self.distribution.fetch_build_eggs(self.distribution.install_requires)
-        if self.distribution.tests_require:
-            self.distribution.fetch_build_eggs(self.distribution.tests_require)
-        self.with_project_on_sys_path(self.run_tests)
-
-    def run_tests(self):
-        template = """
+CUSTOM_TEST_TEMPLATE = """\
 import sys
 sys.path = %s
 
@@ -65,11 +53,29 @@ if __name__ == '__main__':
     zope.testrunner.run([
         '--test-path', '%s', '-c'
         ])
-        """
+"""
+
+class custom_test(test):
+    # The zope.testrunner tests MUST be run using its own testrunner. This is
+    # because its subprocess testing will call the script it was run with. We
+    # therefore create a script to run the testrunner, and call that.
+    def run(self):
+        dist = self.distribution
+
+        if dist.install_requires:
+            dist.fetch_build_eggs(dist.install_requires)
+
+        if dist.tests_require:
+            dist.fetch_build_eggs(dist.tests_require)
+
+        self.with_project_on_sys_path(self.run_tests)
+
+    def run_tests(self):
         import tempfile
         fd, filename = tempfile.mkstemp(prefix='temprunner', text=True)
         scriptfile = open(filename, 'w')
-        script = template % (sys.path, os.path.abspath(os.curdir), os.path.abspath('src'))
+        script = CUSTOM_TEST_TEMPLATE % (
+            sys.path, os.path.abspath(os.curdir), os.path.abspath('src'))
         scriptfile.write(script)
         scriptfile.close()
 
@@ -101,6 +107,7 @@ chapters = '\n'.join([
         'testrunner-leaks.txt',
         'testrunner-knit.txt',
         'testrunner-edge-cases.txt',
+        'testrunner-subunit.txt',
 
         # The following seems to cause weird unicode in the output: :(
              'testrunner-errors.txt',
@@ -148,13 +155,9 @@ setup(
         "Topic :: Software Development :: Testing",
         ],
     namespace_packages=['zope',],
-    tests_require = tests_require,
-    extras_require = {'test': tests_require},
-    install_requires = ['setuptools',
-                        'six',
-                        'zope.exceptions',
-                        'zope.interface',
-                       ],
+    install_requires = INSTALL_REQUIRES,
+    tests_require = TESTS_REQUIRE,
+    extras_require = EXTRAS_REQUIRE,
     entry_points = {
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',],
@@ -163,5 +166,7 @@ setup(
         },
     include_package_data = True,
     zip_safe = False,
-    cmdclass = {'test': custom_test},
+    cmdclass = {
+        'test': custom_test,
+    },
 )

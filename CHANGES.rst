@@ -1,6 +1,14 @@
 zope.testrunner Changelog
 *************************
 
+4.6.0 (unreleased)
+==================
+
+- Make the ``subunit`` support purely optional: applications which have
+  been getting the dependencies via ``zope.testrunner`` should either add
+  ``zope.testrunner[subunit]`` to their ``install_requires`` or else
+  depend directly on ``python-subunit``.
+
 4.5.1 (2016-06-20)
 ==================
 
