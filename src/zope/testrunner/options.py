@@ -243,6 +243,16 @@ reporting.add_option(
 When there is a doctest failure, show it as a context diff.
 """)
 
+reporting.add_option(
+    '--ignore_new_thread',
+    action="append",
+    default=[],
+    dest='ignore_new_threads',
+    help="""\
+If a thread with this name is left behind, don't report this at the end.
+""")
+
+
 parser.add_option_group(reporting)
 
 ######################################################################

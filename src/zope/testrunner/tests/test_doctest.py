@@ -233,6 +233,7 @@ def test_suite():
         'testrunner-shuffle.txt',
         'testrunner-eggsupport.txt',
         'testrunner-stops-when-stop-on-error.txt',
+        'testrunner-new-threads.txt',
         setUp=setUp, tearDown=tearDown,
         optionflags=optionflags,
         checker=checker),
