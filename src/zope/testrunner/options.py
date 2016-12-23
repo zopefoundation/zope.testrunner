@@ -250,6 +250,9 @@ reporting.add_option(
     dest='ignore_new_threads',
     help="""\
 If a thread with this name is left behind, don't report this at the end.
+This is a case-sensitive regular expression, used in match mode.
+This option can be used multiple times. If a thread name matches any of them,
+it will be ignored.
 """)
 
 
