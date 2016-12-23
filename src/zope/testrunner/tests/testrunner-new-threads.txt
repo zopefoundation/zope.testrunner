@@ -1,9 +1,9 @@
 Threads Reporting
-=============================
+=================
 
 For each test zope.testrunner checks if new threads are left behind.
 
-	>>> import time
+    >>> import time
     >>> import os
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> defaults = ['--path', directory_with_tests]
@@ -19,12 +19,12 @@ For each test zope.testrunner checks if new threads are left behind.
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-	>>> time.sleep(1)
+    >>> time.sleep(1)
 
 
 It is possible to ignore this reporting for known threads.
 
-	>>> import time
+    >>> import time
     >>> import os
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
     >>> defaults = ['--path', directory_with_tests]
@@ -37,4 +37,4 @@ It is possible to ignore this reporting for known threads.
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
-	>>> time.sleep(1)
+    >>> time.sleep(1)
