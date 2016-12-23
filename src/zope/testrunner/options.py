@@ -244,7 +244,7 @@ When there is a doctest failure, show it as a context diff.
 """)
 
 reporting.add_option(
-    '--ignore_new_thread',
+    '--ignore-new-thread',
     action="append",
     default=[],
     dest='ignore_new_threads',

@@ -30,7 +30,7 @@ It is possible to ignore this reporting for known threads.
     >>> defaults = ['--path', directory_with_tests]
 
     >>> from zope import testrunner
-    >>> args = ['test', '--tests-pattern', '^new_threads$', '--ignore_new_thread=t1']
+    >>> args = ['test', '--tests-pattern', '^new_threads$', '--ignore-new-thread=t1']
     >>> _ = testrunner.run_internal(defaults, args)
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
