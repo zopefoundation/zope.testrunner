@@ -4,6 +4,8 @@ matrix:
   include:
     - python: 3.5
       env: TOXENV=py35
+    - python: pypy3.3-5.2-alpha1
+      env: TOXENV=pypy3
 env:
     - TOXENV=py27
     - TOXENV=py27-subunit
@@ -11,7 +13,6 @@ env:
     - TOXENV=pypy-subunit
     - TOXENV=py33
     - TOXENV=py34
-    - TOXENV=pypy3
 install:
     - pip install tox
 script:
