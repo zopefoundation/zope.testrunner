@@ -6,15 +6,15 @@ matrix:
       env: TOXENV=py35
     - python: pypy3.3-5.2-alpha1
       env: TOXENV=pypy3
-env:
-    - TOXENV=py27
-    - TOXENV=py27-subunit
-    - TOXENV=pypy
-    - TOXENV=pypy-subunit
-    - TOXENV=py33
-    - TOXENV=py34
+      ##env:
+      ##    - TOXENV=py27
+      ##    - TOXENV=py27-subunit
+      ##    - TOXENV=pypy
+      ##    - TOXENV=pypy-subunit
+      ##    - TOXENV=py33
+      ##    - TOXENV=py34
 install:
-    - pip install tox
+    - pip install -U pip setuptools tox virtualenv
 script:
     - tox
 notifications:
