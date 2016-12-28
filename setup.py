@@ -48,9 +48,6 @@ sys.path = %r
 import os
 os.chdir(%r)
 
-import zope
-print(zope.__path__)
-
 # The following unused imports are dark magic that makes the tests pass on
 # Python 3.5 on Travis CI.  I do not understand why.
 import zope.exceptions.exceptionformatter
