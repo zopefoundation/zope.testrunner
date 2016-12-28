@@ -37,7 +37,7 @@ affecting the Python path:
     <BLANKLINE>
     Error in test test_ef (sampletestsf.TestUnexpectedSuccess)
     Traceback (most recent call last):
-    ..._UnexpectedSuccess
+    ...UnexpectedSuccess
     <BLANKLINE>
       Ran 1 tests with 1 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:

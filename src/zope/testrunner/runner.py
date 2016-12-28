@@ -55,14 +55,8 @@ except ImportError:
     # Python 3
     import queue as Queue # Python 3
 
-try:
-    from unittest import _UnexpectedSuccess # Python 3.1
-except ImportError:
-    try:
-        from unittest.case import _UnexpectedSuccess # Python 2.7 and 3.2
-    except ImportError:
-        class _UnexpectedSuccess(Exception):
-            pass
+class UnexpectedSuccess(Exception):
+    pass
 
 
 PYREFCOUNT_PATTERN = re.compile('\[[0-9]+ refs\]')
@@ -825,8 +819,9 @@ class TestResult(unittest.TestResult):
         unittest.TestResult.addExpectedFailure(self, test, exc_info)
 
     def addUnexpectedSuccess(self, test):
-        self.options.output.test_error(test, time.time() - self._start_time,
-                                       (_UnexpectedSuccess, None, None))
+        self.options.output.test_error(
+            test, time.time() - self._start_time,
+            (UnexpectedSuccess, UnexpectedSuccess(), None))
 
         unittest.TestResult.addUnexpectedSuccess(self, test)
 
