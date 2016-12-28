@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.6.0 (unreleased)
+4.6.0 (2016-12-28)
 ==================
 
 - Make the ``subunit`` support purely optional: applications which have
