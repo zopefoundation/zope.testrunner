@@ -95,6 +95,9 @@ if sys.platform == 'win32':
         (re.compile(r'builtins\.(SyntaxError|TypeError)'),
          r'exceptions.\1'),
 
+        # Python 3.6 introduces ImportError subclasses
+        (re.compile(r'ModuleNotFoundError:'), 'ImportError:'),
+
         # Python 3.3 has better exception messages
         (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
          r'ImportError: No module named \1'),
@@ -160,6 +163,9 @@ else:
         (re.compile(r'builtins\.(SyntaxError|TypeError)'),
          r'exceptions.\1'),
 
+        # Python 3.6 introduces ImportError subclasses
+        (re.compile(r'ModuleNotFoundError:'), 'ImportError:'),
+
         # Python 3.3 has better exception messages
         (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
          r'ImportError: No module named \1'),
@@ -194,6 +200,9 @@ def tearDown(test):
 
 
 def test_suite():
+    optionflags = (doctest.ELLIPSIS |
+                   doctest.NORMALIZE_WHITESPACE |
+                   doctest.REPORT_NDIFF)
     suites = [
         doctest.DocFileSuite(
         'testrunner-arguments.txt',
@@ -225,11 +234,11 @@ def test_suite():
         'testrunner-eggsupport.txt',
         'testrunner-stops-when-stop-on-error.txt',
         setUp=setUp, tearDown=tearDown,
-        optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+        optionflags=optionflags,
         checker=checker),
         doctest.DocTestSuite('zope.testrunner'),
         doctest.DocTestSuite('zope.testrunner.coverage',
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE),
+            optionflags=optionflags),
         doctest.DocTestSuite('zope.testrunner.options'),
         doctest.DocTestSuite('zope.testrunner.find'),
         ]
@@ -240,7 +249,7 @@ def test_suite():
             doctest.DocFileSuite(
             'testrunner-gc.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker=checker))
 
     # PyPy does not support sourceless imports, apparently (tried version 1.9)
@@ -249,7 +258,7 @@ def test_suite():
             doctest.DocFileSuite(
             'testrunner-wo-source.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker=checker))
 
     if sys.platform == 'win32':
@@ -257,7 +266,7 @@ def test_suite():
             doctest.DocFileSuite(
             'testrunner-coverage-win32.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker=checker))
 
     # Python <= 2.4.1 had a bug that prevented hotshot from running in
@@ -274,7 +283,7 @@ def test_suite():
                 doctest.DocFileSuite(
                     'testrunner-profiling.txt',
                     setUp=setUp, tearDown=tearDown,
-                    optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+                    optionflags=optionflags,
                     checker = renormalizing.RENormalizing([
                         (re.compile(r'tests_profile[.]\S*[.]prof'),
                          'tests_profile.*.prof'),
@@ -291,7 +300,7 @@ def test_suite():
                 doctest.DocFileSuite(
                     'testrunner-profiling-cprofiler.txt',
                     setUp=setUp, tearDown=tearDown,
-                    optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+                    optionflags=optionflags,
                     checker = renormalizing.RENormalizing([
                         (re.compile(r'tests_profile[.]\S*[.]prof'),
                          'tests_profile.*.prof'),
@@ -303,7 +312,7 @@ def test_suite():
         doctest.DocFileSuite(
             'testrunner-report-skipped.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker=checker)
     )
 
@@ -312,7 +321,7 @@ def test_suite():
             doctest.DocFileSuite(
             'testrunner-leaks.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker = renormalizing.RENormalizing([
               (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
               (re.compile(r'sys refcount=\d+ +change=\d+'),
@@ -332,7 +341,7 @@ def test_suite():
             doctest.DocFileSuite(
             'testrunner-leaks-err.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker=checker,
             )
         )
@@ -344,23 +353,21 @@ def test_suite():
             doctest.DocFileSuite(
                 'testrunner-subunit-err.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
+                optionflags=optionflags,
                 checker=checker))
     else:
         suites.append(
             doctest.DocFileSuite(
                 'testrunner-subunit.txt',
                 setUp=setUp, tearDown=tearDown,
-                optionflags=doctest.ELLIPSIS +
-                            doctest.NORMALIZE_WHITESPACE +
-                            doctest.REPORT_NDIFF,
+                optionflags=optionflags,
                 checker=checker))
         if hasattr(sys, 'gettotalrefcount'):
             suites.append(
                 doctest.DocFileSuite(
                     'testrunner-subunit-leaks.txt',
                     setUp=setUp, tearDown=tearDown,
-                    optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE,
+                    optionflags=optionflags,
                     checker=checker))
 
     if sys.version_info[:3] >= (2,7,0):
@@ -368,7 +375,7 @@ def test_suite():
         suites.append(doctest.DocFileSuite(
             'testrunner-unexpected-success.txt',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE,
+            optionflags=optionflags,
             checker=checker))
 
     return unittest.TestSuite(suites)

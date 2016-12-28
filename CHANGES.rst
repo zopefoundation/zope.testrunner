@@ -9,6 +9,9 @@ zope.testrunner Changelog
   ``zope.testrunner[subunit]`` to their ``install_requires`` or else
   depend directly on ``python-subunit``.
 
+- Support Python 3.6.
+
+
 4.5.1 (2016-06-20)
 ==================
 
