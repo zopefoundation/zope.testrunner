@@ -849,10 +849,13 @@ class TestResult(unittest.TestResult):
                 #       printed for every subsequent test.
 
         # Did the test leave any new threads behind?
-        new_threads = [t for t in threading.enumerate()
-                         if (t.isAlive()
-                             and
-                             t not in self._threads)]
+        new_threads = []
+        for t in threading.enumerate():
+            if t.isAlive() and t not in self._threads:
+                if not any([re.match(p, t.name)
+                            for p in self.options.ignore_new_threads]):
+                    new_threads.append(t)
+
         if new_threads:
             self.options.output.test_threads(test, new_threads)
 
