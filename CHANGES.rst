@@ -9,6 +9,9 @@ zope.testrunner Changelog
   ``zope.testrunner[subunit]`` to their ``install_requires`` or else
   depend directly on ``python-subunit``.
 
+- New option ``--ignore-new-thread=<regexp>`` to suppress "New thread(s)"
+  warnings.
+
 - Support Python 3.6.
 
 
