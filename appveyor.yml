@@ -16,7 +16,7 @@ environment:
 
 install:
   - "SET PATH=C:\\Python%PYTHON%;c:\\Python%PYTHON%\\scripts;%PATH%"
-  - pip install -e .[test]
+  - pip install .[test]
   - ps: if($env:SUBUNIT -eq 1) { pip install python-subunit }
 
 build: false
