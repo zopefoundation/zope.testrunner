@@ -85,10 +85,6 @@ class custom_test(test):
         scriptfile.write(script)
         scriptfile.close()
 
-        print("=== temprunner script ===")
-        print(script)
-        print("=== temprunner script ===")
-
         import subprocess
         process = subprocess.Popen([sys.executable, filename])
         rc = process.wait()
