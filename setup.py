@@ -43,10 +43,10 @@ EXTRAS_REQUIRE = {
 
 CUSTOM_TEST_TEMPLATE = """\
 import sys
-sys.path = %s
+sys.path = %r
 
 import os
-os.chdir('%s')
+os.chdir(%r)
 
 # The following unused imports are dark magic that makes the tests pass on
 # Python 3.5 on Travis CI.  I do not understand why.
@@ -56,9 +56,10 @@ import zope.testing
 import zope.testrunner
 if __name__ == '__main__':
     zope.testrunner.run([
-        '--test-path', '%s', '-c'
+        '--test-path', %r, '-c'
         ])
 """
+
 
 class custom_test(test):
     # The zope.testrunner tests MUST be run using its own testrunner. This is
@@ -87,7 +88,13 @@ class custom_test(test):
         import subprocess
         process = subprocess.Popen([sys.executable, filename])
         rc = process.wait()
-        os.unlink(filename)
+        try:
+            os.unlink(filename)
+        except OSError as e:
+            # This happens on Windows and I don't understand _why_.
+            sys.stderr.write("Failed to clean up temporary script %s:\n%s: %s"
+                             % (filename, e.__class__.__name__, e))
+            sys.stderr.flush()
         sys.exit(rc)
 
 chapters = '\n'.join([
