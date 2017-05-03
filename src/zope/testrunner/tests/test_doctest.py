@@ -254,7 +254,7 @@ def test_suite():
             checker=checker))
 
     # PyPy does not support sourceless imports, apparently (tried version 1.9)
-    if 'PyPy' not in sys.version:
+    if 'PyPy' not in sys.version and not sys.dont_write_bytecode:
         suites.append(
             doctest.DocFileSuite(
             'testrunner-wo-source.txt',
