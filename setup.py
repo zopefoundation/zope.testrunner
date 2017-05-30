@@ -37,7 +37,6 @@ TESTS_REQUIRE = [
 
 EXTRAS_REQUIRE = {
     'test': TESTS_REQUIRE,
-    'subunit': TESTS_REQUIRE + ['python-subunit'],
 }
 
 
@@ -119,7 +118,6 @@ chapters = '\n'.join([
         'testrunner-leaks.txt',
         'testrunner-knit.txt',
         'testrunner-edge-cases.txt',
-        'testrunner-subunit.txt',
 
         # The following seems to cause weird unicode in the output: :(
              'testrunner-errors.txt',
