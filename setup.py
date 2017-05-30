@@ -16,7 +16,7 @@
 # When developing and releasing this package, please follow the documented
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
-version = '4.6.1.dev0'
+version = '4.7.0'
 
 import os
 import sys

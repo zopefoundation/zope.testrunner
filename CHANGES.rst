@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.7.0 (unreleased)
+4.7.0 (2017-05-30)
 ==================
 
 - Drop all support for ``subunit``.
