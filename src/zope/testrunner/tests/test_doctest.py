@@ -347,30 +347,6 @@ def test_suite():
             )
         )
 
-    try:
-        import subunit
-    except ImportError:
-        suites.append(
-            doctest.DocFileSuite(
-                'testrunner-subunit-err.txt',
-                setUp=setUp, tearDown=tearDown,
-                optionflags=optionflags,
-                checker=checker))
-    else:
-        suites.append(
-            doctest.DocFileSuite(
-                'testrunner-subunit.txt',
-                setUp=setUp, tearDown=tearDown,
-                optionflags=optionflags,
-                checker=checker))
-        if hasattr(sys, 'gettotalrefcount'):
-            suites.append(
-                doctest.DocFileSuite(
-                    'testrunner-subunit-leaks.txt',
-                    setUp=setUp, tearDown=tearDown,
-                    optionflags=optionflags,
-                    checker=checker))
-
     if sys.version_info[:3] >= (2,7,0):
         # Python 2.7 adds support for unittest.expectedFailure
         suites.append(doctest.DocFileSuite(

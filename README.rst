@@ -146,15 +146,14 @@ Other features
 ==============
 
 zope.testrunner can profile your tests, measure test coverage,
-check for memory leaks, integrate with subunit_, shuffle the
-test execution order, and run multiple tests in parallel.
+check for memory leaks, shuffle the test execution order, and run
+multiple tests in parallel.
 
 For more details please see the `detailed documentation`_.
 
 .. _buildout: http://www.buildout.org/
 .. _virtualenv: http://www.virtualenv.org/
 .. _zc.recipe.testrunner: http://pypi.python.org/pypi/zc.recipe.testrunner
-.. _subunit: http://pypi.python.org/pypi/subunit
 .. _detailed documentation: http://docs.zope.org/zope.testrunner/
 
 .. |buildstatus| image:: https://api.travis-ci.org/zopefoundation/zope.testrunner.png?branch=master
