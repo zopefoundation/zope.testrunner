@@ -24,6 +24,7 @@ import threading
 import time
 import traceback
 import unittest
+import warnings
 
 from six import StringIO
 from zope.testrunner.find import import_name
@@ -59,7 +60,7 @@ class UnexpectedSuccess(Exception):
     pass
 
 
-PYREFCOUNT_PATTERN = re.compile('\[[0-9]+ refs\]')
+PYREFCOUNT_PATTERN = re.compile(r'\[[0-9]+ refs\]')
 
 is_jython = sys.platform.startswith('java')
 
@@ -87,10 +88,19 @@ class Runner(object):
     executing tests as well as configuring itself from the (command-line)
     options passed into it.
 
+    .. versionchanged:: 4.8.0
+       Add the *warnings* keyword argument. If this is ``None`` (the default)
+       and the user hasn't configured Python otherwise with command-line arguments
+       or environment variables, we will enable the default warnings, including
+       ``DeprecationWarning``, when running tests. Otherwise, it can be any
+       string acceptable to :func:`warnings.simplefilter` and that filter will
+       be in effect while running tests.
+
     """
 
     def __init__(self, defaults=None, args=None, found_suites=None,
-                 options=None, script_parts=None, cwd=None):
+                 options=None, script_parts=None, cwd=None,
+                 warnings=None):
         if defaults is None:
             self.defaults = []
         else:
@@ -101,6 +111,18 @@ class Runner(object):
         self.script_parts = script_parts
         self.cwd = cwd
         self.failed = True
+        if warnings is None and not sys.warnoptions:
+            # even if DeprecationWarnings are ignored by default
+            # print them anyway unless other warnings settings are
+            # specified by the warnings arg or the -W python flag
+            self.warnings = 'default'
+        else:
+            # here self.warnings is set either to the value passed
+            # to the warnings args or to None.
+            # If the user didn't pass a value self.warnings will
+            # be None. This means that the behavior is unchanged
+            # and depends on the values passed to -W.
+            self.warnings = warnings
 
         self.ran = 0
         self.skipped = []
@@ -157,7 +179,7 @@ class Runner(object):
 
         try:
             if self.do_run_tests:
-                self.run_tests()
+                self.run_tests_with_warnings()
         finally:
             # Early teardown
             for feature in reversed(self.features):
@@ -221,6 +243,24 @@ class Runner(object):
 
         # Remove all features that aren't activated
         self.features = [f for f in self.features if f.active]
+
+    def run_tests_with_warnings(self):
+        """Enables warnings as configured, then calls :meth:`run_tests`.
+        """
+        with warnings.catch_warnings():
+            if self.warnings:
+                # if self.warnings is set, use it to filter all the warnings
+                warnings.simplefilter(self.warnings)
+                # if the filter is 'default' or 'always', special-case the
+                # warnings from the deprecated unittest methods to show them
+                # no more than once per module, because they can be fairly
+                # noisy.  The -Wd and -Wa flags can be used to bypass this
+                # only when self.warnings is None.
+                if self.warnings in ['default', 'always']:
+                    warnings.filterwarnings('module',
+                                            category=DeprecationWarning,
+                                            message=r'Please use assert\w+ instead.')
+            return self.run_tests()
 
     def run_tests(self):
         """Run all tests that were registered.
@@ -429,7 +469,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
                               layer_name, layer, failures, errors, skipped,
                               resume_number, cwd=None):
     output = options.output
-
+    child = None
     try:
         # BBB
         if script_parts is None:
@@ -533,6 +573,14 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
 
     finally:
         result.done = True
+        if child is not None:
+            # Regardless of whether the process ran to completion, we
+            # must properly cleanup the process to avoid
+            # `ResourceWarning: subprocess XXX is still alive` and
+            # `ResourceWarning: unclosed file` for its stdout and
+            # stderr.
+            child.kill()
+            child.communicate()
 
 
 class AbstractSubprocessResult(object):

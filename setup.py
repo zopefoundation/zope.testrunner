@@ -16,13 +16,12 @@
 # When developing and releasing this package, please follow the documented
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
-version = '4.7.1.dev0'
-
 import os
 import sys
 from setuptools import setup
 from setuptools.command.test import test
 
+version = '4.8.0.dev0'
 
 INSTALL_REQUIRES = [
     'setuptools',
@@ -55,7 +54,7 @@ import zope.testing
 import zope.testrunner
 if __name__ == '__main__':
     zope.testrunner.run([
-        '--test-path', %r, '-c'
+        '--test-path', %r, '-c',
         ])
 """
 
@@ -77,12 +76,12 @@ class custom_test(test):
 
     def run_tests(self):
         import tempfile
-        fd, filename = tempfile.mkstemp(prefix='temprunner', text=True)
-        scriptfile = open(filename, 'w')
         script = CUSTOM_TEST_TEMPLATE % (
             sys.path, os.path.abspath(os.curdir), os.path.abspath('src'))
-        scriptfile.write(script)
-        scriptfile.close()
+        _fd, filename = tempfile.mkstemp(prefix='temprunner', text=True)
+        with open(filename, 'w') as scriptfile:
+            scriptfile.write(script)
+            scriptfile.close()
 
         import subprocess
         process = subprocess.Popen([sys.executable, filename])
@@ -96,8 +95,12 @@ class custom_test(test):
             sys.stderr.flush()
         sys.exit(rc)
 
+def read(*names):
+    with open(os.path.join(*names)) as f:
+        return f.read()
+
 chapters = '\n'.join([
-    open(os.path.join('src', 'zope', 'testrunner', 'tests', name)).read()
+    read('src', 'zope', 'testrunner', 'tests', name)
     for name in (
         'testrunner.txt',
         'testrunner-simple.txt',
@@ -120,14 +123,14 @@ chapters = '\n'.join([
         'testrunner-edge-cases.txt',
 
         # The following seems to cause weird unicode in the output: :(
-             'testrunner-errors.txt',
+        'testrunner-errors.txt',
 
     )])
 
-long_description=(
-    open('README.rst').read()
+long_description = (
+    read('README.rst')
     + '\n' +
-    open('CHANGES.rst').read()
+    read('CHANGES.rst')
     + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
@@ -137,14 +140,14 @@ long_description=(
 setup(
     name='zope.testrunner',
     version=version,
-    url='http://pypi.python.org/pypi/zope.testrunner',
+    url='https://github.com/zopefoundation/zope.testrunner',
     license='ZPL 2.1',
     description='Zope testrunner script.',
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     packages=["zope", "zope.testrunner", "zope.testrunner.tests.testrunner-ex"],
-    package_dir = {'': 'src'},
+    package_dir={'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
@@ -164,20 +167,20 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
-        ],
+    ],
     namespace_packages=['zope',],
-    install_requires = INSTALL_REQUIRES,
-    tests_require = TESTS_REQUIRE,
-    extras_require = EXTRAS_REQUIRE,
-    entry_points = {
+    install_requires=INSTALL_REQUIRES,
+    tests_require=TESTS_REQUIRE,
+    extras_require=EXTRAS_REQUIRE,
+    entry_points={
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run',],
         'distutils.commands': [
             'ftest = zope.testrunner.eggsupport:ftest',],
-        },
-    include_package_data = True,
-    zip_safe = False,
-    cmdclass = {
+    },
+    include_package_data=True,
+    zip_safe=False,
+    cmdclass={
         'test': custom_test,
     },
 )

@@ -23,6 +23,9 @@ reporting of that error:
     ...     def __init__(self, out, err):
     ...         self.stdout = FakeStdout(out)
     ...         self.stderr = FakeStderr(err)
+    ...     def kill(self):
+    ...         pass
+    ...     communicate = kill
 
     >>> class FakePopen(object):
     ...     def __init__(self, out, err):

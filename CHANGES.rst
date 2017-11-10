@@ -1,10 +1,15 @@
 zope.testrunner Changelog
 *************************
 
-4.7.1 (unreleased)
+4.8.0 (unreleased)
 ==================
 
-- TBD
+- Automatically enable ``DeprecationWarning`` when running tests. This
+  is recommended by the Python core developers and matches the
+  behaviour of the ``unittest`` module. This can be overridden with
+  Python command-line options (``-W``) or environment variables
+  (``PYTHONWARNINGS``). See `issue 54
+  <https://github.com/zopefoundation/zope.testrunner/issues/54>`_.
 
 4.7.0 (2017-05-30)
 ==================
