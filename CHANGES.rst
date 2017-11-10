@@ -4,7 +4,10 @@ zope.testrunner Changelog
 4.8.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Enable ``DeprecationWarning`` earlier, when discovering test
+  modules. This lets warnings that are raised on import (such as those
+  produced by ``zope.deprecation.moved``) be reported. See `issue 57
+  <https://github.com/zopefoundation/zope.testrunner/issues/57>`_.
 
 
 4.8.0 (2017-11-10)

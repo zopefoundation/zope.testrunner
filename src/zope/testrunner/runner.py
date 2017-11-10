@@ -26,6 +26,8 @@ import traceback
 import unittest
 import warnings
 
+from contextlib import contextmanager
+
 from six import StringIO
 from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer, _layer_name_cache
@@ -165,32 +167,37 @@ class Runner(object):
         self.layer_name_cache = _layer_name_cache
         self.layer_name_cache.clear()
 
-        # Global setup
-        for feature in self.features:
-            feature.global_setup()
+        with self._enabled_warnings():
+            # Enable warnings during setup so that
+            # warnings raised on import (which we do for test
+            # discover) can be reported.
 
-        # Late setup
-        #
-        # Some system tools like profilers are really bad with stack frames.
-        # E.g. hotshot doesn't like it when we leave the stack frame that we
-        # called start() from.
-        for feature in self.features:
-            feature.late_setup()
-
-        try:
-            if self.do_run_tests:
-                self.run_tests_with_warnings()
-        finally:
-            # Early teardown
-            for feature in reversed(self.features):
-                feature.early_teardown()
-            # Global teardown
-            for feature in reversed(self.features):
-                feature.global_teardown()
-
-        if self.show_report:
+            # Global setup
             for feature in self.features:
-                feature.report()
+                feature.global_setup()
+
+            # Late setup
+            #
+            # Some system tools like profilers are really bad with stack frames.
+            # E.g. hotshot doesn't like it when we leave the stack frame that we
+            # called start() from.
+            for feature in self.features:
+                feature.late_setup()
+
+            try:
+                if self.do_run_tests:
+                    self.run_tests()
+            finally:
+                # Early teardown
+                for feature in reversed(self.features):
+                    feature.early_teardown()
+                # Global teardown
+                for feature in reversed(self.features):
+                    feature.global_teardown()
+
+            if self.show_report:
+                for feature in self.features:
+                    feature.report()
 
     def configure(self):
         if self.args is None:
@@ -244,8 +251,10 @@ class Runner(object):
         # Remove all features that aren't activated
         self.features = [f for f in self.features if f.active]
 
-    def run_tests_with_warnings(self):
-        """Enables warnings as configured, then calls :meth:`run_tests`.
+    @contextmanager
+    def _enabled_warnings(self):
+        """
+        A context manager to enable warnings as configured.
         """
         with warnings.catch_warnings():
             if self.warnings:
@@ -260,7 +269,7 @@ class Runner(object):
                     warnings.filterwarnings('module',
                                             category=DeprecationWarning,
                                             message=r'Please use assert\w+ instead.')
-            return self.run_tests()
+            yield
 
     def run_tests(self):
         """Run all tests that were registered.
