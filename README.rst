@@ -2,8 +2,16 @@
 zope.testrunner
 ***************
 
-|buildstatus|_
-|winbotstatus|_
+.. image:: https://img.shields.io/pypi/v/zope.testrunner.svg
+        :target: https://pypi.python.org/pypi/zope.testrunner/
+        :alt: Latest release
+
+.. image:: https://img.shields.io/pypi/pyversions/zope.testrunner.svg
+        :target: https://pypi.org/project/zope.testrunner/
+        :alt: Supported Python versions
+
+.. image:: https://travis-ci.org/zopefoundation/zope.testrunner.svg?branch=master
+        :target: https://travis-ci.org/zopefoundation/zope.testrunner
 
 .. contents::
 
@@ -155,9 +163,3 @@ For more details please see the `detailed documentation`_.
 .. _virtualenv: http://www.virtualenv.org/
 .. _zc.recipe.testrunner: http://pypi.python.org/pypi/zc.recipe.testrunner
 .. _detailed documentation: http://docs.zope.org/zope.testrunner/
-
-.. |buildstatus| image:: https://api.travis-ci.org/zopefoundation/zope.testrunner.png?branch=master
-.. _buildstatus: https://travis-ci.org/zopefoundation/zope.testrunner
-
-.. |winbotstatus| image:: http://winbot.zope.org/buildstatusimage?builder=zope.testrunner_py_265_32&number=-1
-.. _winbotstatus: http://winbot.zope.org/builders/zope.testrunner_py_265_32/builds/-1
