@@ -181,9 +181,9 @@ class TestLayerOrdering(unittest.TestCase):
         f = runner.FakeInputContinueGenerator()
         f.close()
 
+@unittest.skipIf(sys.warnoptions, "Only done if no user override")
 class TestWarnings(unittest.TestCase):
 
-    @unittest.skipIf(sys.warnoptions, "Only done if no user override")
     def test_warning_filter_default(self):
         # When we run tests, we run them with a 'default' simplefilter.
         # Note that this test will fail if PYTHONWARNINGS is set,
@@ -203,4 +203,22 @@ class TestWarnings(unittest.TestCase):
         # For some reason, catch_warnings doesn't fully reset things,
         # and we wind up with some duplicate entries in new_filters
         self.assertEqual(set(old_filters), set(new_filters))
-        warnings.warn("This should be visible by default", DeprecationWarning)
+
+
+    def test_warnings_are_shown(self):
+        import warnings
+        import logging
+        from zope.testing.loggingsupport import InstalledHandler
+
+        handler = InstalledHandler("py.warnings", level=logging.WARNING)
+        self.addCleanup(handler.uninstall)
+
+        logging.captureWarnings(True)
+        self.addCleanup(logging.captureWarnings, False)
+
+        msg = "This should be visible by default"
+        warnings.warn(msg, DeprecationWarning)
+
+        self.assertEqual(1, len(handler.records))
+        self.assertIn('DeprecationWarning', handler.records[0].getMessage())
+        self.assertIn(msg, handler.records[0].getMessage())

@@ -81,7 +81,6 @@ class custom_test(test):
         _fd, filename = tempfile.mkstemp(prefix='temprunner', text=True)
         with open(filename, 'w') as scriptfile:
             scriptfile.write(script)
-            scriptfile.close()
 
         import subprocess
         process = subprocess.Popen([sys.executable, filename])
