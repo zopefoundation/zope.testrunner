@@ -13,7 +13,7 @@
 ##############################################################################
 """Unit tests for the testrunner's runner logic
 """
-
+import sys
 import unittest
 
 from zope.testrunner import runner
@@ -173,10 +173,52 @@ class TestLayerOrdering(unittest.TestCase):
         # Does that matter?  The class diagram is symmetric, so I think not.
 
     def test_FakeInputContinueGenerator_close(self):
-        # multiprocessing (and likely other forkful frameworks want to
+        # multiprocessing (and likely other forkful frameworks) want to
         # close sys.stdin.  The test runner replaces sys.stdin with a
         # FakeInputContinueGenerator for some reason. It should be
         # closeable.
 
         f = runner.FakeInputContinueGenerator()
         f.close()
+
+@unittest.skipIf(sys.warnoptions, "Only done if no user override")
+class TestWarnings(unittest.TestCase):
+
+    def test_warning_filter_default(self):
+        # When we run tests, we run them with a 'default' simplefilter.
+        # Note that this test will fail if PYTHONWARNINGS is set,
+        # or a -W option was given, so we skip it
+        import warnings
+        # Save the current filters, ignoring the compiled regexes,
+        # which can't be compared.
+        old_filters = [(f[0], f[2], 4) for f in warnings.filters]
+        with warnings.catch_warnings():
+            # Set up just like the runner does
+            warnings.simplefilter('default')
+            warnings.filterwarnings('module',
+                                    category=DeprecationWarning,
+                                    message=r'Please use assert\w+ instead.')
+            new_filters = [(f[0], f[2], 4) for f in warnings.filters]
+
+        # For some reason, catch_warnings doesn't fully reset things,
+        # and we wind up with some duplicate entries in new_filters
+        self.assertEqual(set(old_filters), set(new_filters))
+
+
+    def test_warnings_are_shown(self):
+        import warnings
+        import logging
+        from zope.testing.loggingsupport import InstalledHandler
+
+        handler = InstalledHandler("py.warnings", level=logging.WARNING)
+        self.addCleanup(handler.uninstall)
+
+        logging.captureWarnings(True)
+        self.addCleanup(logging.captureWarnings, False)
+
+        msg = "This should be visible by default"
+        warnings.warn(msg, DeprecationWarning)
+
+        self.assertEqual(1, len(handler.records))
+        self.assertIn('DeprecationWarning', handler.records[0].getMessage())
+        self.assertIn(msg, handler.records[0].getMessage())
