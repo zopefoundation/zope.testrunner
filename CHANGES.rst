@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.8.0 (unreleased)
+4.8.0 (2017-11-10)
 ==================
 
 - Automatically enable ``DeprecationWarning`` when running tests. This
