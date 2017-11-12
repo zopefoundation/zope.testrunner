@@ -1,7 +1,7 @@
 zope.testrunner Changelog
 *************************
 
-4.8.1 (unreleased)
+4.8.1 (2017-11-12)
 ==================
 
 - Enable ``DeprecationWarning`` earlier, when discovering test
