@@ -1,6 +1,12 @@
 zope.testrunner Changelog
 *************************
 
+4.8.2 (unreleased)
+==================
+
+- Nothing changed yet.
+
+
 4.8.1 (2017-11-12)
 ==================
 
