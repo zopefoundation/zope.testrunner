@@ -12,7 +12,7 @@ install:
     - pip install -U coverage coveralls
     - pip install -U -e .[test]
 script:
-    - coverage run setup.py -q test -q
+    - COVERAGE_PROCESS_START=`pwd`/.coveragerc coverage run setup.py -q test -q
 after_success:
     - coverage combine
     - coveralls
