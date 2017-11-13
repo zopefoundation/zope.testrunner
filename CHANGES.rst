@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-4.8.2 (unreleased)
+4.9.0 (unreleased)
 ==================
 
 - Drop support for Python 3.3.
