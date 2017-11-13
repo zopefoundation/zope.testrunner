@@ -1,5 +1,6 @@
-zope.testrunner Changelog
-*************************
+===========================
+ zope.testrunner Changelog
+===========================
 
 4.8.2 (unreleased)
 ==================

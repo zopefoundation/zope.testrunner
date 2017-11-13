@@ -1,6 +1,6 @@
-***************
-zope.testrunner
-***************
+=================
+ zope.testrunner
+=================
 
 .. image:: https://img.shields.io/pypi/v/zope.testrunner.svg
         :target: https://pypi.python.org/pypi/zope.testrunner/
@@ -16,20 +16,22 @@ zope.testrunner
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.testrunner/badge.svg?branch=master
         :target: https://coveralls.io/github/zopefoundation/zope.testrunner?branch=master
 
+.. image:: https://readthedocs.org/projects/zopetestrunner/badge/?version=latest
+        :target: http://zopetestrunner.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
 
 .. contents::
 
 This package provides a flexible test runner with layer support.
 
-You can find more `detailed documentation`_ on PyPI or in the ``src/``
-directory.
+Detailed documentation is hosted at https://zopetestrunner.readthedocs.io
 
 
 Getting started
-***************
+===============
 
 Buildout-based projects
-=======================
+-----------------------
 
 zope.testrunner is often used for projects that use buildout_::
 
@@ -57,7 +59,7 @@ creates a ``bin/test`` script that will run the tests for *mypackage*.
 
 
 Virtualenv-based projects
-=========================
+-------------------------
 
 ``pip install zope.testrunner`` and you'll get a ``zope-testrunner``
 script.  Run your tests with ::
@@ -70,7 +72,7 @@ so you need to run ``python setup.py install`` or ``pip install -e
 
 
 Some useful command-line options to get you started
-===================================================
+---------------------------------------------------
 
 -p              show a percentage indicator
 -v              increase verbosity
@@ -128,7 +130,7 @@ Example::
 
     def test_suite():
         return unittest.TestSuite([
-            unittest.makeSuite(TestArithmetic),
+            unittest.defaultTestLoader.loadTestsFromName(__name__),
             doctest.DocTestSuite(),
             doctest.DocFileSuite('../README.txt',
                                  optionflags=doctest.ELLIPSIS),
@@ -166,4 +168,4 @@ For more details please see the `detailed documentation`_.
 .. _buildout: http://www.buildout.org/
 .. _virtualenv: http://www.virtualenv.org/
 .. _zc.recipe.testrunner: http://pypi.python.org/pypi/zc.recipe.testrunner
-.. _detailed documentation: http://docs.zope.org/zope.testrunner/
+.. _detailed documentation: https://zopetestrunner.readthedocs.io
