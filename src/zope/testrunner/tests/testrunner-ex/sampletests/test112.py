@@ -31,7 +31,7 @@ class TestA(unittest.TestCase):
         global x
         x = 1
         self.clean = getattr(self, 'clean', 0) + 1
-        
+
     def tearDown(self):
         global x
         x = 0
@@ -131,7 +131,7 @@ def test_suite():
     s = doctest.DocTestSuite(setUp=setUp)
     s.layer = layer
     suite.addTest(s)
-    s = doctest.DocFileSuite('../sampletestsl.txt', setUp=setUp)
+    s = doctest.DocFileSuite('../sampletestsl.rst', setUp=setUp)
     s.layer = layer
     suite.addTest(s)
     return suite

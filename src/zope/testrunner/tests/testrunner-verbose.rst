@@ -68,7 +68,7 @@ each test is printed as it is run:
         test_x0 (sample1.sampletests.test122)
         test_y0 (sample1.sampletests.test122)
         test_z1 (sample1.sampletests.test122)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.txt
+        testrunner-ex/sample1/sampletests/../../sampletestsl.rst
         test_x1 (sampletests.test122.TestA)
         test_y0 (sampletests.test122.TestA)
         test_z0 (sampletests.test122.TestA)
@@ -81,7 +81,7 @@ each test is printed as it is run:
         test_x0 (sampletests.test122)
         test_y0 (sampletests.test122)
         test_z1 (sampletests.test122)
-        testrunner-ex/sampletests/../sampletestsl.txt
+        testrunner-ex/sampletests/../sampletestsl.rst
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.009 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -112,7 +112,7 @@ test-execution times are printed:
         test_x0 (sample1.sampletests.test122) (0.001 s)
         test_y0 (sample1.sampletests.test122) (0.001 s)
         test_z1 (sample1.sampletests.test122) (0.001 s)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.txt (0.001 s)
+        testrunner-ex/sample1/sampletests/../../sampletestsl.rst (0.001 s)
         test_x1 (sampletests.test122.TestA) (0.000 s)
         test_y0 (sampletests.test122.TestA) (0.000 s)
         test_z0 (sampletests.test122.TestA) (0.000 s)
@@ -125,7 +125,7 @@ test-execution times are printed:
         test_x0 (sampletests.test122) (0.001 s)
         test_y0 (sampletests.test122) (0.001 s)
         test_z1 (sampletests.test122) (0.001 s)
-        testrunner-ex/sampletests/../sampletestsl.txt (0.001 s)
+        testrunner-ex/sampletests/../sampletestsl.rst (0.001 s)
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.009 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.

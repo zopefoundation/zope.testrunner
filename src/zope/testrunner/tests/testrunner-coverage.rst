@@ -117,7 +117,7 @@ We can now ask whether a particular module should be ignored:
 When running the test runner, modules are sometimes created from text
 strings. Those should *always* be ignored:
 
-  >>> ignore.names('/myproject/src/blah/hello.txt', '<string>')
+  >>> ignore.names('/myproject/src/blah/hello.rst', '<string>')
   True
 
 To make this check fast, the class implements a cache. In an early

@@ -205,35 +205,35 @@ def test_suite():
                    doctest.REPORT_NDIFF)
     suites = [
         doctest.DocFileSuite(
-            'testrunner-arguments.txt',
-            'testrunner-coverage.txt',
-            'testrunner-debugging-layer-setup.test',
-            'testrunner-debugging-import-failure.test',
-            'testrunner-debugging-nonprintable-exc.test',
-            'testrunner-debugging.txt',
-            'testrunner-edge-cases.txt',
-            'testrunner-errors.txt',
-            'testrunner-layers-api.txt',
-            'testrunner-layers-instances.txt',
-            'testrunner-layers-buff.txt',
-            'testrunner-subprocess-errors.txt',
-            'testrunner-layers-cantfind.txt',
-            'testrunner-layers-cwd.txt',
-            'testrunner-layers-ntd.txt',
-            'testrunner-layers-topological-sort.txt',
-            'testrunner-layers.txt',
-            'testrunner-progress.txt',
-            'testrunner-colors.txt',
-            'testrunner-simple.txt',
-            'testrunner-nestedcode.txt',
-            'testrunner-test-selection.txt',
-            'testrunner-verbose.txt',
-            'testrunner-repeat.txt',
-            'testrunner-knit.txt',
-            'testrunner-shuffle.txt',
-            'testrunner-eggsupport.txt',
-            'testrunner-stops-when-stop-on-error.txt',
-            'testrunner-new-threads.txt',
+            'testrunner-arguments.rst',
+            'testrunner-coverage.rst',
+            'testrunner-debugging-layer-setup.rst',
+            'testrunner-debugging-import-failure.rst',
+            'testrunner-debugging-nonprintable-exc.rst',
+            'testrunner-debugging.rst',
+            'testrunner-edge-cases.rst',
+            'testrunner-errors.rst',
+            'testrunner-layers-api.rst',
+            'testrunner-layers-instances.rst',
+            'testrunner-layers-buff.rst',
+            'testrunner-subprocess-errors.rst',
+            'testrunner-layers-cantfind.rst',
+            'testrunner-layers-cwd.rst',
+            'testrunner-layers-ntd.rst',
+            'testrunner-layers-topological-sort.rst',
+            'testrunner-layers.rst',
+            'testrunner-progress.rst',
+            'testrunner-colors.rst',
+            'testrunner-simple.rst',
+            'testrunner-nestedcode.rst',
+            'testrunner-test-selection.rst',
+            'testrunner-verbose.rst',
+            'testrunner-repeat.rst',
+            'testrunner-knit.rst',
+            'testrunner-shuffle.rst',
+            'testrunner-eggsupport.rst',
+            'testrunner-stops-when-stop-on-error.rst',
+            'testrunner-new-threads.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=optionflags,
             checker=checker),
@@ -248,7 +248,7 @@ def test_suite():
     if hasattr(gc, 'get_threshold'):
         suites.append(
             doctest.DocFileSuite(
-                'testrunner-gc.txt',
+                'testrunner-gc.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=checker))
@@ -257,7 +257,7 @@ def test_suite():
     if 'PyPy' not in sys.version and not sys.dont_write_bytecode:
         suites.append(
             doctest.DocFileSuite(
-                'testrunner-wo-source.txt',
+                'testrunner-wo-source.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=checker))
@@ -265,14 +265,14 @@ def test_suite():
     if sys.platform == 'win32':
         suites.append(
             doctest.DocFileSuite(
-                'testrunner-coverage-win32.txt',
+                'testrunner-coverage-win32.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=checker))
 
     suites.append(
         doctest.DocFileSuite(
-            'testrunner-profiling.txt',
+            'testrunner-profiling.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=optionflags,
             checker=renormalizing.RENormalizing([
@@ -281,6 +281,7 @@ def test_suite():
             ]),
         )
     )
+
     suites.append(
         doctest.DocFileSuite(
             'testrunner-profiling-cprofiler.txt',
@@ -295,7 +296,7 @@ def test_suite():
 
     suites.append(
         doctest.DocFileSuite(
-            'testrunner-report-skipped.txt',
+            'testrunner-report-skipped.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=optionflags,
             checker=checker)
@@ -304,7 +305,7 @@ def test_suite():
     if hasattr(sys, 'gettotalrefcount'):
         suites.append(
             doctest.DocFileSuite(
-                'testrunner-leaks.txt',
+                'testrunner-leaks.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=renormalizing.RENormalizing([
@@ -323,7 +324,7 @@ def test_suite():
     else:
         suites.append(
             doctest.DocFileSuite(
-                'testrunner-leaks-err.txt',
+                'testrunner-leaks-err.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=checker,
@@ -331,7 +332,7 @@ def test_suite():
         )
 
     suites.append(doctest.DocFileSuite(
-        'testrunner-unexpected-success.txt',
+        'testrunner-unexpected-success.rst',
         setUp=setUp, tearDown=tearDown,
         optionflags=optionflags,
         checker=checker))

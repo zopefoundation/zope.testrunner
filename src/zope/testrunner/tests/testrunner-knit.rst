@@ -55,7 +55,7 @@ package name and file path.
         ...
         test_y0 (sampletests.test111)
         test_z1 (sampletests.test111)
-        testrunner-ex/sampletests/../sampletestsl.txt
+        testrunner-ex/sampletests/../sampletestsl.rst
         test_extra_test_in_products (sample4.products.sampletests.Test)
         test_another_test_in_products (sample4.products.more.sampletests.Test)
       Ran 28 tests with 0 failures, 0 errors and 0 skipped in 0.008 seconds.

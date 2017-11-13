@@ -32,7 +32,7 @@ other ways we can select tests.  We can select tests by package:
         test_x0 (sample1.sampletests.test122)
         test_y0 (sample1.sampletests.test122)
         test_z1 (sample1.sampletests.test122)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.txt
+        testrunner-ex/sample1/sampletests/../../sampletestsl.rst
       Ran 13 tests with 0 failures, 0 errors and 0 skipped in 0.005 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -60,7 +60,7 @@ You can specify multiple packages:
      test_x0 (sample1.sampletestsf)
      test_y0 (sample1.sampletestsf)
      test_z1 (sample1.sampletestsf)
-     testrunner-ex/sample1/../sampletests.txt
+     testrunner-ex/sample1/../sampletests.rst
      test_x1 (sample1.sample11.sampletests.TestA)
      test_y0 (sample1.sample11.sampletests.TestA)
      test_z0 (sample1.sample11.sampletests.TestA)
@@ -73,7 +73,7 @@ You can specify multiple packages:
      test_x0 (sample1.sample11.sampletests)
      test_y0 (sample1.sample11.sampletests)
      test_z1 (sample1.sample11.sampletests)
-     testrunner-ex/sample1/sample11/../../sampletests.txt
+     testrunner-ex/sample1/sample11/../../sampletests.rst
      test_x1 (sample1.sample13.sampletests.TestA)
      test_y0 (sample1.sample13.sampletests.TestA)
      test_z0 (sample1.sample13.sampletests.TestA)
@@ -86,7 +86,7 @@ You can specify multiple packages:
      test_x0 (sample1.sample13.sampletests)
      test_y0 (sample1.sample13.sampletests)
      test_z1 (sample1.sample13.sampletests)
-     testrunner-ex/sample1/sample13/../../sampletests.txt
+     testrunner-ex/sample1/sample13/../../sampletests.rst
      test_x1 (sample1.sampletests.test1.TestA)
      test_y0 (sample1.sampletests.test1.TestA)
      test_z0 (sample1.sampletests.test1.TestA)
@@ -99,7 +99,7 @@ You can specify multiple packages:
      test_x0 (sample1.sampletests.test1)
      test_y0 (sample1.sampletests.test1)
      test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
      test_x1 (sample1.sampletests.test_one.TestA)
      test_y0 (sample1.sampletests.test_one.TestA)
      test_z0 (sample1.sampletests.test_one.TestA)
@@ -112,7 +112,7 @@ You can specify multiple packages:
      test_x0 (sample1.sampletests.test_one)
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
      test_x1 (sample2.sample21.sampletests.TestA)
      test_y0 (sample2.sample21.sampletests.TestA)
      test_z0 (sample2.sample21.sampletests.TestA)
@@ -125,7 +125,7 @@ You can specify multiple packages:
      test_x0 (sample2.sample21.sampletests)
      test_y0 (sample2.sample21.sampletests)
      test_z1 (sample2.sample21.sampletests)
-     testrunner-ex/sample2/sample21/../../sampletests.txt
+     testrunner-ex/sample2/sample21/../../sampletests.rst
      test_x1 (sample2.sampletests.test_1.TestA)
      test_y0 (sample2.sampletests.test_1.TestA)
      test_z0 (sample2.sampletests.test_1.TestA)
@@ -138,7 +138,7 @@ You can specify multiple packages:
      test_x0 (sample2.sampletests.test_1)
      test_y0 (sample2.sampletests.test_1)
      test_z1 (sample2.sampletests.test_1)
-     testrunner-ex/sample2/sampletests/../../sampletests.txt
+     testrunner-ex/sample2/sampletests/../../sampletests.rst
      test_x1 (sample2.sampletests.testone.TestA)
      test_y0 (sample2.sampletests.testone.TestA)
      test_z0 (sample2.sampletests.testone.TestA)
@@ -151,7 +151,7 @@ You can specify multiple packages:
      test_x0 (sample2.sampletests.testone)
      test_y0 (sample2.sampletests.testone)
      test_z1 (sample2.sampletests.testone)
-     testrunner-ex/sample2/sampletests/../../sampletests.txt
+     testrunner-ex/sample2/sampletests/../../sampletests.rst
       Ran 104 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -182,7 +182,7 @@ tab-completion):
         test_x0 (sample1.sampletests.test122)
         test_y0 (sample1.sampletests.test122)
         test_z1 (sample1.sampletests.test122)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.txt
+        testrunner-ex/sample1/sampletests/../../sampletestsl.rst
       Ran 13 tests with 0 failures, 0 errors and 0 skipped in 0.005 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -210,7 +210,7 @@ We can select by test module name using the --module (-m) option:
      test_x0 (sample1.sampletests.test1)
      test_y0 (sample1.sampletests.test1)
      test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
      test_x1 (sample1.sampletests.test_one.TestA)
      test_y0 (sample1.sampletests.test_one.TestA)
      test_z0 (sample1.sampletests.test_one.TestA)
@@ -223,7 +223,7 @@ We can select by test module name using the --module (-m) option:
      test_x0 (sample1.sampletests.test_one)
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -252,17 +252,17 @@ and by test within the module using the --test (-t) option:
     False
 
 
-    >>> sys.argv = 'test -u  -vv -ssample1 -ttxt'.split()
+    >>> sys.argv = 'test -u  -vv -ssample1 -trst'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     testrunner-ex/sample1/../sampletests.txt
-     testrunner-ex/sample1/sample11/../../sampletests.txt
-     testrunner-ex/sample1/sample13/../../sampletests.txt
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/../sampletests.rst
+     testrunner-ex/sample1/sample11/../../sampletests.rst
+     testrunner-ex/sample1/sample13/../../sampletests.rst
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
       Ran 5 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -291,7 +291,7 @@ match the regular expression are selected:
      test_x0 (sample1.sampletestsf)
      test_y0 (sample1.sampletestsf)
      test_z1 (sample1.sampletestsf)
-     testrunner-ex/sample1/../sampletests.txt
+     testrunner-ex/sample1/../sampletests.rst
      test_x1 (sample1.sampletests.test1.TestA)
      test_y0 (sample1.sampletests.test1.TestA)
      test_z0 (sample1.sampletests.test1.TestA)
@@ -304,7 +304,7 @@ match the regular expression are selected:
      test_x0 (sample1.sampletests.test1)
      test_y0 (sample1.sampletests.test1)
      test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
      test_x1 (sample1.sampletests.test_one.TestA)
      test_y0 (sample1.sampletests.test_one.TestA)
      test_z0 (sample1.sampletests.test_one.TestA)
@@ -317,7 +317,7 @@ match the regular expression are selected:
      test_x0 (sample1.sampletests.test_one)
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
       Ran 39 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -345,7 +345,7 @@ Module and test filters can also be given as positional arguments:
      test_x0 (sample1.sampletestsf)
      test_y0 (sample1.sampletestsf)
      test_z1 (sample1.sampletestsf)
-     testrunner-ex/sample1/../sampletests.txt
+     testrunner-ex/sample1/../sampletests.rst
      test_x1 (sample1.sampletests.test1.TestA)
      test_y0 (sample1.sampletests.test1.TestA)
      test_z0 (sample1.sampletests.test1.TestA)
@@ -358,7 +358,7 @@ Module and test filters can also be given as positional arguments:
      test_x0 (sample1.sampletests.test1)
      test_y0 (sample1.sampletests.test1)
      test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
      test_x1 (sample1.sampletests.test_one.TestA)
      test_y0 (sample1.sampletests.test_one.TestA)
      test_z0 (sample1.sampletests.test_one.TestA)
@@ -371,24 +371,24 @@ Module and test filters can also be given as positional arguments:
      test_x0 (sample1.sampletests.test_one)
      test_y0 (sample1.sampletests.test_one)
      test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
       Ran 39 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
 
-    >>> sys.argv = 'test -u  -vv -ssample1 . txt'.split()
+    >>> sys.argv = 'test -u  -vv -ssample1 . rst'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     testrunner-ex/sample1/../sampletests.txt
-     testrunner-ex/sample1/sample11/../../sampletests.txt
-     testrunner-ex/sample1/sample13/../../sampletests.txt
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
-     testrunner-ex/sample1/sampletests/../../sampletests.txt
+     testrunner-ex/sample1/../sampletests.rst
+     testrunner-ex/sample1/sample11/../../sampletests.rst
+     testrunner-ex/sample1/sample13/../../sampletests.rst
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     testrunner-ex/sample1/sampletests/../../sampletests.rst
       Ran 5 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.

@@ -66,21 +66,21 @@ be read only):
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Failure in test testrunner-ex/sample2/e.txt
-    Failed doctest test for e.txt
-      File "testrunner-ex/sample2/e.txt", line 0
+    Failure in test testrunner-ex/sample2/e.rst
+    Failed doctest test for e.rst
+      File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/e.txt", line 4, in e.txt
+    File "testrunner-ex/sample2/e.rst", line 4, in e.rst
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
           File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[1]>", line 1, in ?
+          File "<doctest e.rst[1]>", line 1, in ?
             f()
-          File "<doctest e.txt[0]>", line 2, in f
+          File "<doctest e.rst[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     <BLANKLINE>
@@ -153,21 +153,21 @@ there'll be a summary of the errors at the end of the test:
     <BLANKLINE>
     ...
     <BLANKLINE>
-    Failure in test testrunner-ex/sample2/e.txt
-    Failed doctest test for e.txt
-      File "testrunner-ex/sample2/e.txt", line 0
+    Failure in test testrunner-ex/sample2/e.rst
+    Failed doctest test for e.rst
+      File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/e.txt", line 4, in e.txt
+    File "testrunner-ex/sample2/e.rst", line 4, in e.rst
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
           File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[1]>", line 1, in ?
+          File "<doctest e.rst[1]>", line 1, in ?
             f()
-          File "<doctest e.txt[0]>", line 2, in f
+          File "<doctest e.rst[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     <BLANKLINE>
@@ -191,7 +191,7 @@ there'll be a summary of the errors at the end of the test:
     <BLANKLINE>
     Tests with failures:
        eek (sample2.sampletests_e)
-       testrunner-ex/sample2/e.txt
+       testrunner-ex/sample2/e.rst
        test (sample2.sampletests_f.Test)
     True
 
@@ -250,21 +250,21 @@ Similarly for progress output, the progress ticker will be interrupted:
                     \r
         7/47 (14.9%)
     <BLANKLINE>
-    Failure in test testrunner-ex/sample2/e.txt
-    Failed doctest test for e.txt
-      File "testrunner-ex/sample2/e.txt", line 0
+    Failure in test testrunner-ex/sample2/e.rst
+    Failed doctest test for e.rst
+      File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
     ----------------------------------------------------------------------
-    File "testrunner-ex/sample2/e.txt", line 4, in e.txt
+    File "testrunner-ex/sample2/e.rst", line 4, in e.rst
     Failed example:
         f()
     Exception raised:
         Traceback (most recent call last):
           File ".../doctest.py", line 1256, in __run
             compileflags, 1) in test.globs
-          File "<doctest e.txt[1]>", line 1, in ?
+          File "<doctest e.rst[1]>", line 1, in ?
             f()
-          File "<doctest e.txt[0]>", line 2, in f
+          File "<doctest e.rst[0]>", line 2, in f
             return x
         NameError: global name 'x' is not defined
     <BLANKLINE>
@@ -840,4 +840,3 @@ Passing tests exit with code 0 according to UNIX practices:
 And remove the temporary directory:
 
     >>> shutil.rmtree(tmpdir)
-

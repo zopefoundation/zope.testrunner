@@ -124,7 +124,7 @@ def test_suite():
     s = doctest.DocTestSuite(setUp=setUp)
     s.layer = layer
     suite.addTest(s)
-    s = doctest.DocFileSuite('../../sampletestsl.txt', setUp=setUp)
+    s = doctest.DocFileSuite('../../sampletestsl.rst', setUp=setUp)
     s.layer = layer
     suite.addTest(s)
     return suite

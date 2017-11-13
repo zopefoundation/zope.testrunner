@@ -157,7 +157,7 @@ Using pdb.set_trace in a doc file:
     ... finally: sys.stdin = real_stdin
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    > <doctest set_trace5.txt[1]>(3)?()
+    > <doctest set_trace5.rst[1]>(3)?()
     -> y = x
     (Pdb) n
     --Return--
@@ -292,13 +292,13 @@ Post-mortem debugging file-based doctest:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
     <BLANKLINE>
-    Error testrunner-ex/sample3/post_mortem5.txt
+    Error testrunner-ex/sample3/post_mortem5.rst
     Traceback (most recent call last):
-    ...UnexpectedException: testrunner-ex/sample3/post_mortem5.txt:0 (2 examples)>
+    ...UnexpectedException: testrunner-ex/sample3/post_mortem5.rst:0 (2 examples)>
     <BLANKLINE>
     ...ValueError
     <BLANKLINE>
-    > <doctest post_mortem5.txt[1]>(1)?()
+    > <doctest post_mortem5.rst[1]>(1)?()
     (Pdb) p x
     1
     (Pdb) c
@@ -320,7 +320,7 @@ Post-mortem debugging function called from file-based doctest:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
     <BLANKLINE>
-    Error testrunner-ex/sample3/post_mortem6.txt
+    Error testrunner-ex/sample3/post_mortem6.rst
     Traceback (most recent call last):
       File ".../zope/testing/doctest/__init__.py", Line NNN, in debug
         runner.run(self._dt_test, clear_globs=False)
@@ -332,7 +332,7 @@ Post-mortem debugging function called from file-based doctest:
         exc_info)
       File ".../zope/testing/doctest/__init__.py", Line NNN, in report_unexpected_exception
         raise UnexpectedException(test, example, exc_info)
-    ...UnexpectedException: testrunner-ex/sample3/post_mortem6.txt:0 (2 examples)>
+    ...UnexpectedException: testrunner-ex/sample3/post_mortem6.rst:0 (2 examples)>
     <BLANKLINE>
     ...ValueError
     <BLANKLINE>
@@ -385,17 +385,17 @@ Post-mortem debugging of a docfile doctest failure:
 
     >>> sys.stdin = Input('p x\nc')
     >>> sys.argv = ('test -ssample3 --tests-pattern ^sampletests_d$'
-    ...             ' -t post_mortem_failure.txt -D').split()
+    ...             ' -t post_mortem_failure.rst -D').split()
     >>> try: testrunner.run_internal(defaults)
     ... finally: sys.stdin = real_stdin
     ... # doctest: +NORMALIZE_WHITESPACE
     Running zope.testrunner.layer.UnitTests tests:...
     <BLANKLINE>
     <BLANKLINE>
-    Error in test /home/jim/z3/zope.testrunner/src/zope/testing/testrunner-ex/sample3/post_mortem_failure.txt
+    Error in test /home/jim/z3/zope.testrunner/src/zope/testing/testrunner-ex/sample3/post_mortem_failure.rst
     <BLANKLINE>
-    File "testrunner-ex/sample3/post_mortem_failure.txt",
-                                      line 2, in post_mortem_failure.txt
+    File "testrunner-ex/sample3/post_mortem_failure.rst",
+                                      line 2, in post_mortem_failure.rst
     <BLANKLINE>
     x
     <BLANKLINE>
@@ -406,7 +406,7 @@ Post-mortem debugging of a docfile doctest failure:
     1
     <BLANKLINE>
     <BLANKLINE>
-    > testrunner-ex/sample3/post_mortem_failure.txt(2)_()
+    > testrunner-ex/sample3/post_mortem_failure.rst(2)_()
     ...ValueError:
     Expected and actual output are different
     > <string>(1)...()
@@ -519,7 +519,7 @@ Several tests can be excluded using the '!' notation:
      test_2 (sample1.sample13.sampletests.TestNotMuch)
      test_3 (sample1.sample13.sampletests.TestNotMuch)
      test_z1 (sample1.sample13.sampletests)
-     testrunner-ex/sample1/sample13/../../sampletests.txt
+     testrunner-ex/sample1/sample13/../../sampletests.rst
       Ran 7 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.

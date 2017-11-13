@@ -82,8 +82,8 @@ properly skipped.
   >>> T3 = doctest.DocTestSuite('zope.testrunner.find')
   >>> T4 = doctest.DocTestSuite('zope.testrunner.options')
   >>> T4.layer = 'layer'
-  >>> T5 = doctest.DocFileSuite('testrunner.txt', package='zope.testrunner.tests')
-  >>> T6 = doctest.DocFileSuite('testrunner-gc.txt', package='zope.testrunner.tests')
+  >>> T5 = doctest.DocFileSuite('testrunner.rst', package='zope.testrunner.tests')
+  >>> T6 = doctest.DocFileSuite('testrunner-gc.rst', package='zope.testrunner.tests')
   >>> T6.layer = 'layer'
 
   >>> all = unittest.TestSuite((
@@ -107,7 +107,7 @@ Now we can retrieve the modules from the layer skipping loader:
   >>> pprint(filtered._tests)
   [<...T1 testMethod=test_t1>,
    StartUpFailure (zope.testrunner.find),
-   .../zope/testrunner/tests/testrunner.txt]
+   .../zope/testrunner/tests/testrunner.rst]
 
 Cleanup:
 
@@ -131,7 +131,7 @@ Now we can retrieve the modules from the layer skipping loader:
   >>> pprint(filtered._tests)
   [<...T1 testMethod=test_t1>,
    StartUpFailure (zope.testrunner.find),
-   .../zope/testrunner/tests/testrunner.txt]
+   .../zope/testrunner/tests/testrunner.rst]
 
 Cleanup:
 

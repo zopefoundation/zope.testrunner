@@ -120,7 +120,7 @@ width, when the terminal width can't be determined, is 80:
                                                            ##r##
         12/26 (46.2%) test_z1 (sample1.sampletests.test122)##r##
                                                            ##r##
-     testrunner-ex/sample1/sampletests/../../sampletestsl.txt##r##
+     testrunner-ex/sample1/sampletests/../../sampletestsl.rst##r##
                                                                                    ##r##
         14/26 (53.8%) test_x1 (sampletests.test122.TestA)##r##
                                                          ##r##
@@ -146,7 +146,7 @@ width, when the terminal width can't be determined, is 80:
                                                    ##r##
         25/26 (96.2%) test_z1 (sampletests.test122)##r##
                                                    ##r##
-     testrunner-ex/sampletests/../sampletestsl.txt##r##
+     testrunner-ex/sampletests/../sampletestsl.rst##r##
                                                                                    ##r##
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
@@ -199,7 +199,7 @@ that, we'll provide a fake curses module:
                                                            ##r##
         12/26 (46.2%) test_z1 (sample1.sampletests.test122)##r##
                                                            ##r##
-        13/26 (50.0%) ... e1/sampletests/../../sampletestsl.txt##r##
+        13/26 (50.0%) ... e1/sampletests/../../sampletestsl.rst##r##
                                                                ##r##
         14/26 (53.8%) test_x1 (sampletests.test122.TestA)##r##
                                                          ##r##
@@ -225,7 +225,7 @@ that, we'll provide a fake curses module:
                                                    ##r##
         25/26 (96.2%) test_z1 (sampletests.test122)##r##
                                                    ##r##
-        26/26 (100.0%) ... r-ex/sampletests/../sampletestsl.txt##r##
+        26/26 (100.0%) ... r-ex/sampletests/../sampletestsl.rst##r##
                                                                ##r##
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
@@ -239,7 +239,7 @@ that, we'll provide a fake curses module:
 If a second or third level of verbosity are added, we get additional
 information.
 
-    >>> sys.argv = 'test --layer 122 -pvv -t !txt'.split()
+    >>> sys.argv = 'test --layer 122 -pvv -t !rst'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running samplelayers.Layer122 tests:
@@ -303,9 +303,9 @@ information.
     False
 
 Note that, in this example, we used a test-selection pattern starting
-with '!' to exclude tests containing the string "txt".
+with '!' to exclude tests containing the string "rst".
 
-    >>> sys.argv = 'test --layer 122 -pvvv -t!(txt|NotMuch)'.split()
+    >>> sys.argv = 'test --layer 122 -pvvv -t!(rst|NotMuch)'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running samplelayers.Layer122 tests:

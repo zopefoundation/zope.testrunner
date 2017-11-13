@@ -114,21 +114,21 @@ A failed test run highlights the failures in red:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    {boldred}Failure in test testrunner-ex/sample2/e.txt{normal}
-    Failed doctest test for e.txt
-      File "testrunner-ex/sample2/e.txt", line 0
+    {boldred}Failure in test testrunner-ex/sample2/e.rst{normal}
+    Failed doctest test for e.rst
+      File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
     ----------------------------------------------------------------------
-    {normal}File "{boldblue}testrunner-ex/sample2/e.txt{normal}", line {boldred}4{normal}, in {boldcyan}e.txt{normal}
+    {normal}File "{boldblue}testrunner-ex/sample2/e.rst{normal}", line {boldred}4{normal}, in {boldcyan}e.rst{normal}
     Failed example:
     {cyan}    f(){normal}
     Exception raised:
     {red}    Traceback (most recent call last):{normal}
     {red}      File ".../doctest.py", line 1356, in __run{normal}
     {red}        compileflags, 1)...{normal}
-    {red}      File "<doctest e.txt[1]>", line 1, in ?{normal}
+    {red}      File "<doctest e.rst[1]>", line 1, in ?{normal}
     {red}        f(){normal}
-    {red}      File "<doctest e.txt[0]>", line 2, in f{normal}
+    {red}      File "<doctest e.rst[0]>", line 2, in f{normal}
     {red}        return x{normal}
     {red}    NameError: global name 'x' is not defined{normal}
     <BLANKLINE>
@@ -244,7 +244,7 @@ them are highlighted correctly.
     >>> import zope.testrunner.formatter
     >>> formatter = zope.testrunner.formatter.ColorfulOutputFormatter(None)
     >>> formatter.print_doctest_failure("""\
-    ...     File "sometest.txt", line 221, in sometest.txt
+    ...     File "sometest.rst", line 221, in sometest.rst
     ... Failed example:
     ...     foo()
     ... Expected:
@@ -255,7 +255,7 @@ them are highlighted correctly.
     ...     Output that still contains
     ...
     ...     blank lines.""")
-    {normal}    File "sometest.txt", line 221, in sometest.txt{normal}
+    {normal}    File "sometest.rst", line 221, in sometest.rst{normal}
     Failed example:
     {cyan}    foo(){normal}
     Expected:

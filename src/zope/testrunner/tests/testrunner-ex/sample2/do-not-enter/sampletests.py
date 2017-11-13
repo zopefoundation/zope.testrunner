@@ -52,5 +52,5 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(doctest.DocTestSuite())
     suite.addTest(unittest.makeSuite(Test))
-    suite.addTest(doctest.DocFileSuite('e.txt'))
+    suite.addTest(doctest.DocFileSuite('e.rst'))
     return suite
