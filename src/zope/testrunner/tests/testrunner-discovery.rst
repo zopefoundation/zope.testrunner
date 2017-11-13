@@ -1,11 +1,13 @@
-Automatically discovering tests
-===============================
+=================================
+ Automatically Discovering Tests
+=================================
 
-You can explicitly specify which tests to run by providing a function that
-returns a unittest.TestSuite in the test modules (the name of the function can
-be configured with the --suite-name parameter, it defaults to 'test_suite'). If
-no such function is present, testrunner will use all classes in the module that
-inherit from unittest.TestCase as tests:
+You can explicitly specify which tests to run by providing a function
+that returns a `unittest.TestSuite` in the test modules (the name of the
+function can be configured with the ``--suite-name parameter``, it
+defaults to ``test_suite``). If no such function is present,
+testrunner will use all classes in the module that inherit from
+`unittest.TestCase` as tests:
 
     >>> import os, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -28,7 +30,8 @@ inherit from unittest.TestCase as tests:
     False
 
 If the module neither provides a TestSuite nor has discoverable tests,
-testrunner will exit with an error to prevent acidentally missing test cases:
+testrunner will exit with an error to prevent acidentally missing test
+cases:
 
     >>> sys.argv = ['test',
     ...             '--tests-pattern', '^sampletests_discover_notests$',

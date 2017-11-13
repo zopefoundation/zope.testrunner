@@ -1,9 +1,20 @@
-Code Coverage
-=============
+===============
+ Code Coverage
+===============
+
+.. caution:: The coverage reports described here are in a format specific to
+			 zope.testrunner. They are not compatible with those
+			 produced by `coverage <https://coverage.readthedocs.io>`_.
+
+.. note::
+   You can run zope.testrunner with the common `coverage
+   <https://coverage.readthedocs.io>`_ tool to take advantage of its
+   speed and integration with other tools:
+
+       coverage run -m zope.testrunner --test-path src ...other options...
 
 If the --coverage option is used, test coverage reports will be generated.  The
 directory name given as the parameter will be used to hold the reports.
-
 
     >>> import os.path, sys, tempfile
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -83,7 +94,7 @@ will hold the coverage reports.
 
 
 Ignoring Tests
---------------
+==============
 
 The ``trace`` module supports ignoring directories and modules based the test
 selection. Only directories selected for testing should report coverage. The

@@ -17,7 +17,8 @@ provides the following additional features:
 
   o regular expression patterns for individual tests
 
-- Organization of tests into levels and :doc:`layers <testrunner-layers-api>`
+- Organization of tests into :doc:`levels <testrunner-test-selection>`
+  and :doc:`layers <testrunner-layers-api>`
 
   Sometimes, tests take so long to run that you don't want to run them
   on every run of the test runner. Tests can be defined at different

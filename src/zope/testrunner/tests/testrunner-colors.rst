@@ -1,9 +1,11 @@
-Colorful output
-===============
+=================
+ Colorful output
+=================
 
-If you're on a Unix-like system, you can ask for colorized output.  The test
-runner emits terminal control sequences to highlight important pieces of
-information (such as the names of failing tests) in different colors.
+If you're on a Unix-like system, you can ask for colorized output. The
+test runner emits terminal control sequences to highlight important
+pieces of information (such as the names of failing tests) in
+different colors.
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -47,7 +49,7 @@ test file, let's wrap sys.stdout in a simple terminal interpreter
 
 
 Successful test
----------------
+===============
 
 A successful test run soothes the developer with warm green colors:
 
@@ -66,7 +68,7 @@ A successful test run soothes the developer with warm green colors:
 
 
 Failed test
------------
+===========
 
 A failed test run highlights the failures in red:
 
@@ -151,7 +153,7 @@ A failed test run highlights the failures in red:
 
 
 Skipped tests
--------------
+=============
 
 Tests which are skipped are colorized::
 
@@ -172,7 +174,7 @@ Tests which are skipped are colorized::
 
 
 Doctest failures
-----------------
+================
 
 The expected and actual outputs of failed doctests are shown in different
 colors:
@@ -270,7 +272,7 @@ them are highlighted correctly.
 
 
 Timing individual tests
------------------------
+=======================
 
 At very high verbosity levels you can see the time taken by each test
 
@@ -292,9 +294,10 @@ At very high verbosity levels you can see the time taken by each test
     False
 
 
-If we had very slow tests we would see their times highlighted in a different color.
-Instead of creating a test that waits 10 seconds, let's lower the slow test threshold
-in the test runner to 0 seconds to make all of the tests seem slow.
+If we had very slow tests we would see their times highlighted in a
+different color. Instead of creating a test that waits 10 seconds,
+let's lower the slow test threshold in the test runner to 0 seconds to
+make all of the tests seem slow.
 
     >>> sys.argv = 'test -u -t test_one.TestNotMuch -c -vvv --slow-test 0'.split()
     >>> testrunner.run_internal(defaults)
@@ -316,7 +319,7 @@ in the test runner to 0 seconds to make all of the tests seem slow.
 
 
 Disabling colors
-----------------
+================
 
 If -c or --color have been previously provided on the command line (perhaps by
 a test runner wrapper script), but no colorized output is desired, the -C or
@@ -350,7 +353,7 @@ a test runner wrapper script), but no colorized output is desired, the -C or
 
 
 Autodetecting colors
---------------------
+====================
 
 The --auto-color option will determine if stdout is a terminal that supports
 colors, and only enable colorized output if so.  Our ``Terminal`` wrapper

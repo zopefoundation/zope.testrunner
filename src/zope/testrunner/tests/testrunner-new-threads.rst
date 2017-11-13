@@ -1,5 +1,6 @@
-Threads Reporting
-=================
+===================
+ Threads Reporting
+===================
 
 For each test zope.testrunner checks if new threads are left behind.
 

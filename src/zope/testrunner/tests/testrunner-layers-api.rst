@@ -1,55 +1,60 @@
-Layers
-======
+============================================
+ Layers To Organize and Share Test Fixtures
+============================================
 
-A Layer is an object providing setup and teardown methods used to setup
+A *layer* is an object providing setup and teardown methods used to setup
 and teardown the environment provided by the layer. It may also provide
 setup and teardown methods used to reset the environment provided by the
 layer between each test.
 
 Layers are generally implemented as classes using class methods.
 
->>> class BaseLayer:
+>>> class BaseLayer(object):
+...     @classmethod
 ...     def setUp(cls):
 ...         log('BaseLayer.setUp')
-...     setUp = classmethod(setUp)
 ...
+...     @classmethod
 ...     def tearDown(cls):
 ...         log('BaseLayer.tearDown')
-...     tearDown = classmethod(tearDown)
 ...
+...     @classmethod
 ...     def testSetUp(cls):
 ...         log('BaseLayer.testSetUp')
-...     testSetUp = classmethod(testSetUp)
 ...
+...     @classmethod
 ...     def testTearDown(cls):
 ...         log('BaseLayer.testTearDown')
-...     testTearDown = classmethod(testTearDown)
-...
 
-Layers can extend other layers. Note that they do not explicitly
-invoke the setup and teardown methods of other layers - the test runner
-does this for us in order to minimize the number of invocations.
+
+Layers can extend other layers.
+
+.. important::
+
+   Layers do not explicitly invoke the setup and teardown methods of
+   other layers -- the test runner does this for us in order to
+   minimize the number of invocations.
 
 >>> class TopLayer(BaseLayer):
+...     @classmethod
 ...     def setUp(cls):
 ...         log('TopLayer.setUp')
-...     setUp = classmethod(setUp)
 ...
+...     @classmethod
 ...     def tearDown(cls):
 ...         log('TopLayer.tearDown')
-...     tearDown = classmethod(tearDown)
 ...
+...     @classmethod
 ...     def testSetUp(cls):
 ...         log('TopLayer.testSetUp')
-...     testSetUp = classmethod(testSetUp)
 ...
+...     @classmethod
 ...     def testTearDown(cls):
 ...         log('TopLayer.testTearDown')
-...     testTearDown = classmethod(testTearDown)
 ...
 
 Tests or test suites specify what layer they need by storing a reference
-in the 'layer' attribute.
+in the ``layer`` attribute.
 
 >>> import unittest
 >>> class TestSpecifyingBaseLayer(unittest.TestCase):
@@ -209,22 +214,22 @@ methods are called in the correct order.
 
 >>> from zope.testrunner.find import name_from_layer
 >>> class A(object):
+...     @classmethod
 ...     def setUp(cls):
 ...         log('%s.setUp' % name_from_layer(cls))
-...     setUp = classmethod(setUp)
 ...
+...     @classmethod
 ...     def tearDown(cls):
 ...         log('%s.tearDown' % name_from_layer(cls))
-...     tearDown = classmethod(tearDown)
 ...
+...     @classmethod
 ...     def testSetUp(cls):
 ...         log('%s.testSetUp' % name_from_layer(cls))
-...     testSetUp = classmethod(testSetUp)
 ...
+...     @classmethod
 ...     def testTearDown(cls):
 ...         log('%s.testTearDown' % name_from_layer(cls))
-...     testTearDown = classmethod(testTearDown)
-...         
+...
 >>> class B(A): pass
 >>> class C(B): pass
 >>> class D(A): pass
@@ -282,4 +287,3 @@ Report:
 ...C.tearDown
 ...B.tearDown
 ...A.tearDown
-

@@ -1,10 +1,13 @@
-Simple Usage
-============
+=================
+ Basic API Usage
+=================
 
-The test runner consists of an importable module.  The test runner is
+.. currentmodule:: zope.testrunner
+
+The test runner consists of an importable module. The test runner is
 used by providing scripts that import and invoke the `run` method from
-the module.  The `testrunner` module is controlled via command-line
-options.  Test scripts supply base and default options by supplying a
+the module. The `testrunner` module is controlled via command-line
+options. Test scripts supply base and default options by supplying a
 list of default command-line options that are processed before the
 user-supplied command-line options are provided.
 
@@ -20,8 +23,8 @@ Typically, a test script does 2 things:
   uses `sys.argv` to get the user's input.
 
 This testrunner_ex subdirectory contains a number of sample packages
-with tests.  Let's run the tests found here. First though, we'll set
-up our default options:
+with tests. Let's run the tests found here. First though, we'll set up
+our default options:
 
     >>> import os.path
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -31,7 +34,7 @@ up our default options:
     ...     ]
 
 The default options are used by a script to customize the test runner
-for a particular application.  In this case, we use two options:
+for a particular application. In this case, we use two options:
 
 path
   Set the path where the test runner should look for tests.  This path
@@ -85,13 +88,13 @@ Now, if we run the tests, without any other options:
     Total: 321 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     False
 
-we see the normal testrunner output, which summarizes the tests run for
-each layer.  For each layer, we see what layers had to be torn down or
-set up to run the layer and we see the number of tests run, with
+we see the normal testrunner output, which summarizes the tests run
+for each layer. For each layer, we see what layers had to be torn down
+or set up to run the layer and we see the number of tests run, with
 results.
 
 The test runner returns a boolean indicating whether there were
-errors.  In this example, there were no errors, so it returned False.
+errors. In this example, there were no errors, so it returned False.
 
-(Of course, the times shown in these examples are just examples.
-Times will vary depending on system speed.)
+(Of course, the times shown in these examples are just examples. Times
+will vary depending on system speed.)

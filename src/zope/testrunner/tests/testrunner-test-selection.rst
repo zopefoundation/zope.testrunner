@@ -1,8 +1,15 @@
-Test Selection
-==============
+===============================================
+ Selecting Tests By Package, Module, and Level
+===============================================
 
-We've already seen that we can select tests by layer.  There are three
-other ways we can select tests.  We can select tests by package:
+We've :doc:`already seen <testrunner-layers>` that we can select tests
+by layer. There are three other ways we can select tests: by package,
+by module and test, and by level.
+
+Packages
+========
+
+We can select tests by package:
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -157,6 +164,9 @@ You can specify multiple packages:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
+Directory Names
+---------------
+
 You can specify directory names instead of packages (useful for
 tab-completion):
 
@@ -189,6 +199,9 @@ tab-completion):
       Tear down samplelayers.Layer12 in 0.000 seconds.
       Tear down samplelayers.Layer1 in 0.000 seconds.
     False
+
+Modules And Tests
+=================
 
 We can select by test module name using the --module (-m) option:
 
@@ -269,8 +282,11 @@ and by test within the module using the --test (-t) option:
     False
 
 
-The --module and --test options take regular expressions.  If the
-regular expressions specified begin with '!', then tests that don't
+Regular Expressions
+-------------------
+
+The ``--module`` and ``--test`` options take regular expressions.  If the
+regular expressions specified begin with ``!``, then tests that don't
 match the regular expression are selected:
 
     >>> sys.argv = 'test -u  -vv -ssample1 -m!sample1[.]sample1'.split()
@@ -323,6 +339,9 @@ match the regular expression are selected:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
+
+Positional Arguments
+--------------------
 
 Module and test filters can also be given as positional arguments:
 
@@ -393,6 +412,9 @@ Module and test filters can also be given as positional arguments:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
+
+Levels
+======
 
 Sometimes, There are tests that you don't want to run by default.
 For example, you might have tests that take a long time.  Tests can
@@ -557,7 +579,7 @@ We can use the --all option to run tests at all levels:
 
 
 Listing Selected Tests
-----------------------
+======================
 
 When you're trying to figure out why the test you want is not matched by the
 pattern you specified, it is convenient to see which tests match your

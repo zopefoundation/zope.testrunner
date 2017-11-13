@@ -1,14 +1,16 @@
-Shuffling tests
-===============
+=================
+ Shuffling tests
+=================
 
-By default, every time you launch the testrunner it will run the tests in a
-specific order.  However, if you want to ensure that your tests are well
-isolated then running them in a varying order can be helpful. (Proper
-isolation meaning your tests don't depend on each others outcomes or side
-effects and thus the setup and tear down methods are written properly.)
+By default, every time you launch the testrunner it will run the tests
+in a specific order. However, if you want to ensure that your tests
+are well isolated then running them in a varying order can be helpful.
+(Proper isolation meaning your tests don't depend on each others
+outcomes or side effects and thus the setup and tear down methods are
+written properly.)
 
-The ``--shuffle`` option tells the test runner to shuffle the list of tests
-before running them:
+The ``--shuffle`` option tells the test runner to shuffle the list of
+tests before running them:
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -21,7 +23,7 @@ before running them:
     >>> default_argv = 'test -u -m sample1 -t test_y0 --list-tests '
 
 Running shuffled tests
-----------------------
+======================
 
 When specifying the ``--shuffle`` option tests are ordered differently each
 time you run the tests:
@@ -33,19 +35,22 @@ time you run the tests:
     ...
     False
 
-Note: The runner prints out a new piece of information which is the seed number used
-to generate the shuffled list of tests. This seed number can later be used to
-re-run the tests in exactly the same order to support debugging.
+.. note::
+   The runner prints out a new piece of information which is the seed number used
+   to generate the shuffled list of tests. This seed number can later be used to
+   re-run the tests in exactly the same order to support debugging.
 
 Specifying a seed number to control tests shuffling
----------------------------------------------------
+===================================================
 
-Along with the ``--shuffle`` option comes the ``--shuffle-seed`` option which
-takes a seed number as an argument. If you want to reproduce test failures
-that happened during a randomly shuffled test run then simply write down the
-seed number that was printed out and run it again using the ``--shuffle-seed``
-option. The order is guaranteed to be the same.
+Along with the ``--shuffle`` option comes the ``--shuffle-seed``
+option which takes a seed number as an argument. If you want to
+reproduce test failures that happened during a randomly shuffled test
+run then simply write down the seed number that was printed out and
+run it again using the ``--shuffle-seed`` option. The order is
+guaranteed to be the same.
 
+.. note::
     There was an issue with the guaranteed order in zope.testrunner before
     4.0.2: the order could change depending on dictionary iteration order, if
     you had multiple test layers.  This bug was fixed in 4.0.2, but a side
@@ -85,8 +90,8 @@ tests:
       test_y0 (sample1.sampletests.test1)
     False
 
-Whereas using the seed number 42 will give us the following, different but
-stable, list of tests:
+Whereas using the seed number 42 will give us the following, different
+but stable, list of tests:
 
     >>> argv = (default_argv + '--shuffle --shuffle-seed 42').split()
     >>> testrunner.run_internal(defaults, argv)
@@ -119,7 +124,7 @@ stable, list of tests:
     False
 
 Selecting a seed number without ``--shuffle``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------
 
 Note that the ``--shuffle-seed`` option must be used along with ``--shuffle``
 option or tests will not be re-ordered:

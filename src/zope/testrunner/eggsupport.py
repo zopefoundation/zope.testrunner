@@ -27,29 +27,30 @@ def skipLayers(suite, _result=None):
     return _result
 
 class SkipLayers(ScanningLoader):
-    """ Load only unit tests (those which have no layer associated with them).
+    """Load only unit tests (those which have no layer associated with
+    them).
 
-    o Running the tests using 'setup.py test' cannot, by default, drive the
-      full testrunner, with its support for layers (in functional tests).
-      This loader allows the command to work, by running only those tests
-      which don't need the layer support.
+    o Running the tests using 'setup.py test' cannot, by default,
+    drive the full testrunner, with its support for layers (in
+    functional tests).  This loader allows the command to work, by
+    running only those tests which don't need the layer support.
 
-    o To run layer-dependent tests, use 'setup.py ftest' (see below for
-      adding the command to your setup.py).
+    o To run layer-dependent tests, use 'setup.py ftest' (see below
+    for adding the command to your setup.py).
 
     o To use this loader your package add the following your 'setup()'
-      call::
+    call::
 
-      setup(
-      ...
-      setup_requires=['eggtestinfo' # captures testing metadata in EGG-INFO
-                     ],
-      tests_require=['zope.testrunner',
-                    ],
-      ...
-      test_loader='zope.testrunner.eggsupport:SkipLayers',
-      ...
-      )
+        setup(
+            ...
+            setup_requires=[
+                'eggtestinfo' # captures testing metadata in EGG-INFO
+            ],
+            tests_require=['zope.testrunner', ],
+            ...
+            test_loader='zope.testrunner.eggsupport:SkipLayers',
+            ...
+        )
     """
     def loadTestsFromModule(self, module):
         return skipLayers(
@@ -66,7 +67,8 @@ def print_usage():
     print(ftest.__doc__)
 
 class ftest(BaseCommand):
-    """ Run unit and functional tests after an in-place build.
+    """
+    Run unit and functional tests after an in-place build.
 
     o Note that this command runs *all* tests (unit *and* functional).
 
@@ -83,13 +85,14 @@ class ftest(BaseCommand):
     o To use this in your pacakge add the following to the 'entry_points'
       section::
 
-      setup(
-      ...
-      setup_requires=['zope.testrunner',
-                      'eggtestinfo' # captures testing metadata in EGG-INFO
-                     ],
-      ...
-      )
+          setup(
+              ...
+              setup_requires=[
+                  'zope.testrunner',
+                   'eggtestinfo' # captures testing metadata in EGG-INFO
+              ],
+              ...
+          )
     """
     description = "Run all functional and unit tests after in-place build"
     user_options = []
@@ -119,4 +122,3 @@ class ftest(BaseCommand):
             run(args=args)
 
         self.with_project_on_sys_path(_run)
-

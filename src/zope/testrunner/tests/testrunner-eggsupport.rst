@@ -1,12 +1,13 @@
-Egg Support
-===========
+====================
+ Setuptools Support
+====================
 
 
-The `ftest` Setup Command
--------------------------
+The ``ftest`` Setup Command
+===========================
 
-The `ftest` class is a proper `distutils` command and `zope.testrunner`
-exposes it as such via an entry point.
+The `.ftest` class is a proper `distutils` command and
+`zope.testrunner` exposes it as such via an entry point.
 
   >>> import pkg_resources
   >>> ws = pkg_resources.WorkingSet()
@@ -47,25 +48,27 @@ Cleanup:
 
 
 Skipping Tests with Layers
---------------------------
+==========================
 
-The ``SkipLayers`` scanning test loader can replace the standard test loader,
+The `.SkipLayers` scanning test loader can replace the standard test loader,
 so that any tests that require layers are skipped. This is necessary, since
 the standard setuptools testing facility does not handle layers. It can be
 used as follows::
 
       setup(
-      ...
-      setup_requires=['eggtestinfo' # captures testing metadata in EGG-INFO
-                     ],
-      tests_require=['zope.testrunner',
-                    ],
-      ...
-      test_loader='zope.testrunner.eggsupport:SkipLayers',
-      ...
+          ...
+          setup_requires=[
+		      'eggtestinfo' # captures testing metadata in EGG-INFO
+          ],
+          tests_require=[
+		      'zope.testrunner',
+          ],
+          ...
+          test_loader='zope.testrunner.eggsupport:SkipLayers',
+          ...
       )
 
-Let's now crete some test suites to make sure that all tests with layers are
+Let's now create some test suites to make sure that all tests with layers are
 properly skipped.
 
   >>> import doctest

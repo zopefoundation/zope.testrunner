@@ -1,11 +1,12 @@
-Layers implemented via object instances
-=======================================
+=========================================
+ Layers Implemented via Object Instances
+=========================================
 
 Layers are generally implemented as classes using class methods, but
-regular objects can be used as well.  They need to provide __module__,
-__name__, and __bases__ attributes.
+regular objects can be used as well. They need to provide ``__module__``,
+``__name__``, and ``__bases__`` attributes.
 
->>> class TestLayer:
+>>> class TestLayer(object):
 ...     def __init__(self, name, *bases):
 ...         self.__name__ = name
 ...         self.__bases__ = bases
@@ -26,7 +27,7 @@ __name__, and __bases__ attributes.
 >>> TopLayer = TestLayer('TopLayer', BaseLayer)
 
 Tests or test suites specify what layer they need by storing a reference
-in the 'layer' attribute.
+in the `layer` attribute.
 
 >>> import unittest
 >>> class TestSpecifyingBaseLayer(unittest.TestCase):
@@ -84,8 +85,8 @@ Before we can run the tests, we need to setup some helpers.
 ...     opts.resume_number = 0
 ...     return opts
 
-Now we run the tests. Note that the BaseLayer was not setup when
-the TestSpecifyingNoLayer was run and setup/torn down around the
+Now we run the tests. Note that the BaseLayer was not setup when the
+TestSpecifyingNoLayer was run and setup/torn down around the
 TestSpecifyingBaseLayer tests.
 
 >>> from zope.testrunner.runner import Runner
@@ -104,8 +105,9 @@ Total: 4 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 
 Now lets specify a layer in the suite containing TestSpecifyingNoLayer
-and run the tests again. This demonstrates the other method of specifying
-a layer. This is generally how you specify what layer doctests need.
+and run the tests again. This demonstrates the other method of
+specifying a layer. This is generally how you specify what layer
+doctests need.
 
 >>> no_layer_suite.layer = BaseLayer
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[umbrella_suite])
@@ -120,11 +122,11 @@ Clear our logged output, as we want to inspect it shortly.
 
 >>> log_handler.clear()
 
-Now lets also specify a layer in the TestSpecifyingNoLayer class and rerun
-the tests. This demonstrates that the most specific layer is used. It also
-shows the behavior of nested layers - because TopLayer extends BaseLayer,
-both the BaseLayer and TopLayer environments are setup when the
-TestSpecifyingNoLayer tests are run.
+Now lets also specify a layer in the TestSpecifyingNoLayer class and
+rerun the tests. This demonstrates that the most specific layer is
+used. It also shows the behavior of nested layers - because TopLayer
+extends BaseLayer, both the BaseLayer and TopLayer environments are
+setup when the TestSpecifyingNoLayer tests are run.
 
 >>> TestSpecifyingNoLayer.layer = TopLayer
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[umbrella_suite])
@@ -141,10 +143,10 @@ Tearing down left over layers:
 Total: 4 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 
-If we inspect our trace of what methods got called in what order, we can
-see that the layer setup and teardown methods only got called once. We can
-also see that the layer's test setup and teardown methods got called for
-each test using that layer in the right order.
+If we inspect our trace of what methods got called in what order, we
+can see that the layer setup and teardown methods only got called
+once. We can also see that the layer's test setup and teardown methods
+got called for each test using that layer in the right order.
 
 >>> def report():
 ...     print("Report:")
@@ -180,4 +182,3 @@ TopLayer.testTearDown
 BaseLayer.testTearDown
 TopLayer.tearDown
 BaseLayer.tearDown
-

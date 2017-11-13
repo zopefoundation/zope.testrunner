@@ -23,29 +23,66 @@ To get started testing right away, see :doc:`getting-started`
 
 .. toctree::
    :maxdepth: 2
+   :caption: Usage
 
    testrunner
    getting-started
    cli
-   testrunner-simple
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Writing Tests
+
    testrunner-layers-api
-   testrunner-layers
-   testrunner-arguments
-   testrunner-verbose
-   testrunner-test-selection
-   testrunner-progress
-   testrunner-debugging
    testrunner-layers-ntd
-   testrunner-eggsupport
+   testrunner-layers-instances
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Running Tests
+
+   testrunner-discovery
+   testrunner-layers
+   testrunner-test-selection
+   testrunner-shuffle
+   testrunner-debugging
    testrunner-coverage
    testrunner-profiling
    testrunner-wo-source
    testrunner-repeat
    testrunner-gc
    testrunner-leaks
+   testrunner-new-threads
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Output Control
+
+   testrunner-verbose
+   testrunner-progress
+   testrunner-colors
+   testrunner-errors
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Advanced
+
    testrunner-knit
    testrunner-edge-cases
-   testrunner-errors
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: zope.testrunner API
+
+   testrunner-simple
+   testrunner-arguments
+   testrunner-eggsupport
+   api
+
 
 .. toctree::
    :maxdepth: 2

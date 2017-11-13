@@ -1,9 +1,10 @@
-Debugging
-=========
+=========================
+ Debugging Test Failures
+=========================
 
 The testrunner module supports post-mortem debugging and debugging
-using `pdb.set_trace`.  Let's look first at using `pdb.set_trace`.
-To demonstrate this, we'll provide input via helper Input objects:
+using `pdb.set_trace`. Let's look first at using `pdb.set_trace`. To
+demonstrate this, we'll provide input via helper Input objects:
 
     >>> class Input:
     ...     def __init__(self, src):
@@ -43,11 +44,8 @@ runner will enter pdb at that point:
     ...
     False
 
-Note that, prior to Python 2.4, calling pdb.set_trace caused pdb to
-break in the pdb.set_trace function.  It was necessary to use 'next'
-or 'up' to get to the application code that called pdb.set_trace.  In
-Python 2.4, pdb.set_trace causes pdb to stop right after the call to
-pdb.set_trace.
+Post-Mortem Dubigging
+=====================
 
 You can also do post-mortem debugging, using the --post-mortem (-D)
 option:
@@ -80,7 +78,7 @@ option:
 
 Note that the test runner exits after post-mortem debugging.
 
-In the example above, we debugged an error.  Failures are actually
+In the example above, we debugged an error. Failures are actually
 converted to errors and can be debugged the same way:
 
     >>> sys.stdin = Input('p x\np y\nc')
@@ -112,4 +110,3 @@ converted to errors and can be debugged the same way:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
-
