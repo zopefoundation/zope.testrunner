@@ -25,7 +25,7 @@ available_profilers = {}
 try:
     import cProfile
     import pstats
-except ImportError:
+except ImportError: # pragma: no cover (Where could this fail?)
     pass
 else:
     class CProfiler(object):

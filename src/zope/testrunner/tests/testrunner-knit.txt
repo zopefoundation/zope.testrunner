@@ -18,7 +18,7 @@ It isn't enough to add the containing directory to the test path
 because then we wouldn't be able to determine the package name
 properly.  We might be able to use the --package option to run the
 tests from the sample4/products package, but we want to run tests in
-testrunner-ex that aren't in this package.  
+testrunner-ex that aren't in this package.
 
 We can use the --package-path option in this case.  The --package-path
 option is like the --test-path option in that it defines a path to be
@@ -39,7 +39,8 @@ package name and file path.
     ...     ]
 
     >>> from zope import testrunner
-    
+    >>> old_argv = sys.argv
+
     >>> sys.argv = 'test --layer Layer111 -vv'.split()
     >>> _ = testrunner.run_internal(defaults)
     Running tests at level 1
@@ -103,3 +104,6 @@ or individual packages within knit-in packages:
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Tear down samplelayers.Layer1 in 0.000 seconds.
 
+Restore the arguments::
+
+    >>> sys.argv = old_argv

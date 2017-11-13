@@ -1,6 +1,12 @@
 [run]
 source = zope.testrunner
 parallel = true
+omit =
+    # These files are definitely imported and executed,
+    # but for some reason don't show up as such.
+    # See testrunner-knit
+    src/zope/testrunner/tests/testrunner-ex-pp-products/more/sampletests.py
+    src/zope/testrunner/tests/testrunner-ex-pp-products/sampletests.py
 
 [report]
 precision = 2
@@ -10,3 +16,5 @@ exclude_lines =
     raise NotImplementedError
     self.fail
     raise AssertionError
+    if is_jython:
+    if sys.platform == 'win32':

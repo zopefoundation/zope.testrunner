@@ -20,6 +20,7 @@ class Test(unittest.TestCase):
 
     def test_extra_test_in_products(self):
         pass
-        
+
+
 def test_suite():
     return unittest.makeSuite(Test)
