@@ -16,7 +16,6 @@
 
 import os
 import glob
-import sys
 import tempfile
 import zope.testrunner.feature
 
@@ -52,55 +51,10 @@ else:
     available_profilers['cProfile'] = CProfiler
 
 
-# some Linux distributions don't include the profiler, which hotshot uses
-if not sys.hexversion >= 0x02060000:
-    # Hotshot is not maintained any longer in 2.6. It does not support 
-    # merging to hotshot files. Thus we won't use it in python2.6 and
-    # onwards
-    try:
-        import hotshot
-        import hotshot.stats
-    except ImportError:
-        pass
-    else:
-        class HotshotProfiler(object):
-            """hotshot interface"""
-
-            def __init__(self, filepath):
-                self.profiler = hotshot.Profile(filepath)
-                self.enable = self.profiler.start
-                self.disable = self.profiler.stop
- 
-            def finish(self):
-                self.profiler.close()
-
-            def loadStats(self, prof_glob):
-                stats = None
-                for file_name in glob.glob(prof_glob):
-                    loaded = hotshot.stats.load(file_name)
-                    if stats is None:
-                        stats = loaded
-                    else:
-                        stats.add(loaded)
-                return stats
-
-        available_profilers['hotshot'] = HotshotProfiler
-
-
 class Profiling(zope.testrunner.feature.Feature):
 
     def __init__(self, runner):
         super(Profiling, self).__init__(runner)
-
-        if (self.runner.options.profile
-            and sys.version_info[:3] <= (2,4,1)
-            and __debug__):
-            self.runner.options.output.error(
-                'Because of a bug in Python < 2.4.1, profiling '
-                'during tests requires the -O option be passed to '
-                'Python (not the test runner).')
-            sys.exit()
-
         self.active = bool(self.runner.options.profile)
         self.profiler = self.runner.options.profile
 
