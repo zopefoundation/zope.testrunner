@@ -12,3 +12,4 @@ parts/
 .coverage
 .coverage.*
 htmlcov/
+docs/_build/

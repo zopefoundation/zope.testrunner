@@ -6,3 +6,6 @@ include *.yml
 include .coveragerc
 
 recursive-include src *.py *.txt *.test
+
+recursive-include docs *.rst
+recursive-include docs *.py

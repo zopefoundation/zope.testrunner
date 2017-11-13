@@ -36,6 +36,10 @@ TESTS_REQUIRE = [
 
 EXTRAS_REQUIRE = {
     'test': TESTS_REQUIRE,
+    'docs': [
+        'Sphinx',
+        'sphinxcontrib-programoutput',
+    ],
 }
 
 
