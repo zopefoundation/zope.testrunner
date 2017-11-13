@@ -1,5 +1,6 @@
-Test Runner
-===========
+=============
+ Test Runner
+=============
 
 The testrunner module is used to run automated tests defined using the
 unittest framework.  Its primary feature is that it *finds* tests by
@@ -8,7 +9,7 @@ concatenation of specific test suites.  It is highly customizable and
 should be usable with any project.  In addition to finding and running
 tests, it provides the following additional features:
 
-- Test filtering using specifications of:
+- :doc:`Test filtering <testrunner-test-selection>` using specifications of:
 
   o test packages within a larger tree
 
@@ -16,7 +17,7 @@ tests, it provides the following additional features:
 
   o regular expression patterns for individual tests
 
-- Organization of tests into levels and layers
+- Organization of tests into levels and :doc:`layers <testrunner-layers-api>`
 
   Sometimes, tests take so long to run that you don't want to run them
   on every run of the test runner.  Tests can be defined at different
@@ -24,7 +25,7 @@ tests, it provides the following additional features:
   specific level or below by default.  Command-line options can be
   used to specify a minimum level to use for a specific run, or to run
   all tests.  Individual tests or test suites can specify their level
-  via a 'level' attribute. where levels are integers increasing from 1.
+  via a ``level`` attribute. where levels are integers increasing from 1.
 
   Most tests are unit tests.  They don't depend on other facilities, or
   set up whatever dependencies they have.  For larger applications,
@@ -43,27 +44,36 @@ tests, it provides the following additional features:
   The test runner introduces test layers, which are objects that can
   set up environments for tests within the layers to use.  A layer is
   set up before running the tests in it.  Individual tests or test
-  suites can define a layer by defining a `layer` attribute, which is
+  suites can define a layer by defining a ``layer`` attribute, which is
   a test layer.
 
 - Reporting
 
-  - progress meter
+  - :doc:`progress meter <testrunner-progress>`
 
   - summaries of tests run
 
 - Analysis of test execution
 
-  - post-mortem debugging of test failures
+  - :doc:`post-mortem debugging <testrunner-debugging>` of test failures
 
-  - memory leaks
+  - :doc:`memory leaks <testrunner-leaks>`
 
-  - code coverage
+  - :doc:`code coverage <testrunner-coverage>`
 
   - source analysis using pychecker
 
   - memory errors
 
-  - execution times
+  - :doc:`execution times <verbose-output>`
 
-  - profiling
+  - :doc:`profiling <testrunner-profiling>`
+
+Command Line
+============
+
+This package provides a script, ``zope-testrunner``, that's available when
+installed via pip. It can also be used as a Python module with the
+``-m`` option.
+
+.. command-output:: python -m zope.testrunner --help

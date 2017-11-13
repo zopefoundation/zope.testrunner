@@ -284,7 +284,7 @@ def test_suite():
 
     suites.append(
         doctest.DocFileSuite(
-            'testrunner-profiling-cprofiler.txt',
+            'testrunner-profiling-cprofiler.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=optionflags,
             checker=renormalizing.RENormalizing([
