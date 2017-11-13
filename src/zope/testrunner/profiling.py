@@ -13,42 +13,39 @@
 ##############################################################################
 """Profiler support for the test runner
 """
-
-import os
+import cProfile
 import glob
+import os
+import pstats
 import tempfile
+
 import zope.testrunner.feature
 
 available_profilers = {}
 
 
-try:
-    import cProfile
-    import pstats
-except ImportError: # pragma: no cover (Where could this fail?)
-    pass
-else:
-    class CProfiler(object):
-        """cProfiler"""
-        def __init__(self, filepath):
-            self.filepath = filepath
-            self.profiler = cProfile.Profile()
-            self.enable = self.profiler.enable
-            self.disable = self.profiler.disable
 
-        def finish(self):
-            self.profiler.dump_stats(self.filepath)
+class CProfiler(object):
+    """cProfiler"""
+    def __init__(self, filepath):
+        self.filepath = filepath
+        self.profiler = cProfile.Profile()
+        self.enable = self.profiler.enable
+        self.disable = self.profiler.disable
 
-        def loadStats(self, prof_glob):
-            stats = None
-            for file_name in glob.glob(prof_glob):
-                if stats is None:
-                    stats = pstats.Stats(file_name)
-                else:
-                    stats.add(file_name)
-            return stats
+    def finish(self):
+        self.profiler.dump_stats(self.filepath)
 
-    available_profilers['cProfile'] = CProfiler
+    def loadStats(self, prof_glob):
+        stats = None
+        for file_name in glob.glob(prof_glob):
+            if stats is None:
+                stats = pstats.Stats(file_name)
+            else:
+                stats.add(file_name)
+        return stats
+
+available_profilers['cProfile'] = CProfiler
 
 
 class Profiling(zope.testrunner.feature.Feature):

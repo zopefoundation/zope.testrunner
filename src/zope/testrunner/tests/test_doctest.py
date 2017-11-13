@@ -281,23 +281,17 @@ def test_suite():
             ]),
         )
     )
-    try:
-        import cProfile
-        import pstats
-    except ImportError: # pragma: no cover (where is this true?)
-        pass
-    else:
-        suites.append(
-            doctest.DocFileSuite(
-                'testrunner-profiling-cprofiler.txt',
-                setUp=setUp, tearDown=tearDown,
-                optionflags=optionflags,
-                checker=renormalizing.RENormalizing([
-                    (re.compile(r'tests_profile[.]\S*[.]prof'),
-                     'tests_profile.*.prof'),
-                ]),
-            )
+    suites.append(
+        doctest.DocFileSuite(
+            'testrunner-profiling-cprofiler.txt',
+            setUp=setUp, tearDown=tearDown,
+            optionflags=optionflags,
+            checker=renormalizing.RENormalizing([
+                (re.compile(r'tests_profile[.]\S*[.]prof'),
+                 'tests_profile.*.prof'),
+            ]),
         )
+    )
 
     suites.append(
         doctest.DocFileSuite(
