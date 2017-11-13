@@ -112,6 +112,8 @@ def read(*names):
 long_description = (
     read('README.rst')
     + '\n\n' +
+    read("docs", 'getting-started.rst')
+    + '\n\n' +
     read('CHANGES.rst')
 )
 
