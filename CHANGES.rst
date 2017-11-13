@@ -4,7 +4,9 @@ zope.testrunner Changelog
 4.8.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Drop support for Python 3.3.
+
+- Enable test coverage reporting on coveralls.io and in tox.ini.
 
 
 4.8.1 (2017-11-12)

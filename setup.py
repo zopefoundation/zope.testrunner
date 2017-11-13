@@ -43,6 +43,13 @@ CUSTOM_TEST_TEMPLATE = """\
 import sys
 sys.path = %r
 
+try:
+    import coverage
+except ImportError:
+    pass
+else:
+    coverage.process_startup()
+
 import os
 os.chdir(%r)
 
@@ -158,7 +165,6 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
