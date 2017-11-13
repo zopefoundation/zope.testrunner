@@ -31,7 +31,7 @@ if sys.platform == 'win32':
     checker = renormalizing.RENormalizing([
         # 2.5 changed the way pdb reports exceptions
         (re.compile(r"<class 'exceptions.(\w+)Error'>:"),
-                    r'exceptions.\1Error:'),
+         r'exceptions.\1Error:'),
 
         #rewrite pdb prompt to ... the current location
         #windows, py2.4 pdb seems not to put the '>' on doctest locations
@@ -41,9 +41,9 @@ if sys.platform == 'win32':
         #rewrite pdb prompt to ... the current location
         (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
 
-        (re.compile(r"<module>"),(r'?')),
+        (re.compile(r"<module>"), (r'?')),
         (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
-                    r'exceptions.\1Error:'),
+         r'exceptions.\1Error:'),
 
         # testtools content formatter is used to mime-encode
         # tracebacks when the SubunitOutputFormatter is used, and the
@@ -74,7 +74,7 @@ if sys.platform == 'win32':
         (re.compile('( |")[^\n]+testrunner-ex'), r'\1testrunner-ex'),
         (re.compile('( |")[^\n]+testrunner.py'), r'\1testrunner.py'),
         (re.compile(r'> [^\n]*(doc|unit)test[.]py\(\d+\)'),
-                    r'\1test.py(NNN)'),
+         r'\1test.py(NNN)'),
         (re.compile(r'[.]py\(\d+\)'), r'.py(NNN)'),
         (re.compile(r'[.]py:\d+'), r'.py:NNN'),
         (re.compile(r' line \d+,', re.IGNORECASE), r' Line NNN,'),
@@ -114,14 +114,14 @@ else:
     checker = renormalizing.RENormalizing([
         # 2.5 changed the way pdb reports exceptions
         (re.compile(r"<class 'exceptions.(\w+)Error'>:"),
-                    r'exceptions.\1Error:'),
+         r'exceptions.\1Error:'),
 
         #rewrite pdb prompt to ... the current location
         (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
 
-        (re.compile(r"<module>"),(r'?')),
+        (re.compile(r"<module>"), (r'?')),
         (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
-                    r'exceptions.\1Error:'),
+         r'exceptions.\1Error:'),
 
         #this is a magic to put linefeeds into the doctest
         #on win it takes one step, linux is crazy about the same...
@@ -136,7 +136,7 @@ else:
         (re.compile('( |"|\')[^\'\n]+testrunner-ex'), r'\1testrunner-ex'),
         (re.compile('( |"|\')[^\'\n]+testrunner.py'), r'\1testrunner.py'),
         (re.compile(r'> [^\n]*(doc|unit)test[.]py\(\d+\)'),
-                    r'\1test.py(NNN)'),
+         r'\1test.py(NNN)'),
         (re.compile(r'[.]py\(\d+\)'), r'.py(NNN)'),
         (re.compile(r'[.]py:\d+'), r'.py:NNN'),
         (re.compile(r' line \d+,', re.IGNORECASE), r' Line NNN,'),
@@ -205,109 +205,93 @@ def test_suite():
                    doctest.REPORT_NDIFF)
     suites = [
         doctest.DocFileSuite(
-        'testrunner-arguments.txt',
-        'testrunner-coverage.txt',
-        'testrunner-debugging-layer-setup.test',
-        'testrunner-debugging-import-failure.test',
-        'testrunner-debugging-nonprintable-exc.test',
-        'testrunner-debugging.txt',
-        'testrunner-edge-cases.txt',
-        'testrunner-errors.txt',
-        'testrunner-layers-api.txt',
-        'testrunner-layers-instances.txt',
-        'testrunner-layers-buff.txt',
-        'testrunner-subprocess-errors.txt',
-        'testrunner-layers-cantfind.txt',
-        'testrunner-layers-cwd.txt',
-        'testrunner-layers-ntd.txt',
-        'testrunner-layers-topological-sort.txt',
-        'testrunner-layers.txt',
-        'testrunner-progress.txt',
-        'testrunner-colors.txt',
-        'testrunner-simple.txt',
-        'testrunner-nestedcode.txt',
-        'testrunner-test-selection.txt',
-        'testrunner-verbose.txt',
-        'testrunner-repeat.txt',
-        'testrunner-knit.txt',
-        'testrunner-shuffle.txt',
-        'testrunner-eggsupport.txt',
-        'testrunner-stops-when-stop-on-error.txt',
-        'testrunner-new-threads.txt',
-        setUp=setUp, tearDown=tearDown,
-        optionflags=optionflags,
-        checker=checker),
+            'testrunner-arguments.txt',
+            'testrunner-coverage.txt',
+            'testrunner-debugging-layer-setup.test',
+            'testrunner-debugging-import-failure.test',
+            'testrunner-debugging-nonprintable-exc.test',
+            'testrunner-debugging.txt',
+            'testrunner-edge-cases.txt',
+            'testrunner-errors.txt',
+            'testrunner-layers-api.txt',
+            'testrunner-layers-instances.txt',
+            'testrunner-layers-buff.txt',
+            'testrunner-subprocess-errors.txt',
+            'testrunner-layers-cantfind.txt',
+            'testrunner-layers-cwd.txt',
+            'testrunner-layers-ntd.txt',
+            'testrunner-layers-topological-sort.txt',
+            'testrunner-layers.txt',
+            'testrunner-progress.txt',
+            'testrunner-colors.txt',
+            'testrunner-simple.txt',
+            'testrunner-nestedcode.txt',
+            'testrunner-test-selection.txt',
+            'testrunner-verbose.txt',
+            'testrunner-repeat.txt',
+            'testrunner-knit.txt',
+            'testrunner-shuffle.txt',
+            'testrunner-eggsupport.txt',
+            'testrunner-stops-when-stop-on-error.txt',
+            'testrunner-new-threads.txt',
+            setUp=setUp, tearDown=tearDown,
+            optionflags=optionflags,
+            checker=checker),
         doctest.DocTestSuite('zope.testrunner'),
         doctest.DocTestSuite('zope.testrunner.coverage',
-            optionflags=optionflags),
+                             optionflags=optionflags),
         doctest.DocTestSuite('zope.testrunner.options'),
         doctest.DocTestSuite('zope.testrunner.find'),
-        ]
+    ]
 
     # PyPy uses a different garbage collector
     if hasattr(gc, 'get_threshold'):
         suites.append(
             doctest.DocFileSuite(
-            'testrunner-gc.txt',
-            setUp=setUp, tearDown=tearDown,
-            optionflags=optionflags,
-            checker=checker))
+                'testrunner-gc.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker))
 
     # PyPy does not support sourceless imports, apparently (tried version 1.9)
     if 'PyPy' not in sys.version and not sys.dont_write_bytecode:
         suites.append(
             doctest.DocFileSuite(
-            'testrunner-wo-source.txt',
-            setUp=setUp, tearDown=tearDown,
-            optionflags=optionflags,
-            checker=checker))
+                'testrunner-wo-source.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker))
 
     if sys.platform == 'win32':
         suites.append(
             doctest.DocFileSuite(
-            'testrunner-coverage-win32.txt',
+                'testrunner-coverage-win32.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker))
+
+    suites.append(
+        doctest.DocFileSuite(
+            'testrunner-profiling.txt',
             setUp=setUp, tearDown=tearDown,
             optionflags=optionflags,
-            checker=checker))
-
-    # Python <= 2.4.1 had a bug that prevented hotshot from running in
-    # non-optimize mode
-    if sys.version_info[:3] > (2,4,1) or not __debug__:
-        # some Linux distributions don't include the profiling module (which
-        # hotshot.stats depends on)
-        try:
-            import hotshot.stats
-        except ImportError:
-            pass
-        else:
-            suites.append(
-                doctest.DocFileSuite(
-                    'testrunner-profiling.txt',
-                    setUp=setUp, tearDown=tearDown,
-                    optionflags=optionflags,
-                    checker = renormalizing.RENormalizing([
-                        (re.compile(r'tests_profile[.]\S*[.]prof'),
-                         'tests_profile.*.prof'),
-                        ]),
-                    )
-                )
-        try:
-            import cProfile
-            import pstats
-        except ImportError:
-            pass
-        else:
-            suites.append(
-                doctest.DocFileSuite(
-                    'testrunner-profiling-cprofiler.txt',
-                    setUp=setUp, tearDown=tearDown,
-                    optionflags=optionflags,
-                    checker = renormalizing.RENormalizing([
-                        (re.compile(r'tests_profile[.]\S*[.]prof'),
-                         'tests_profile.*.prof'),
-                        ]),
-                    )
-                )
+            checker=renormalizing.RENormalizing([
+                (re.compile(r'tests_profile[.]\S*[.]prof'),
+                 'tests_profile.*.prof'),
+            ]),
+        )
+    )
+    suites.append(
+        doctest.DocFileSuite(
+            'testrunner-profiling-cprofiler.txt',
+            setUp=setUp, tearDown=tearDown,
+            optionflags=optionflags,
+            checker=renormalizing.RENormalizing([
+                (re.compile(r'tests_profile[.]\S*[.]prof'),
+                 'tests_profile.*.prof'),
+            ]),
+        )
+    )
 
     suites.append(
         doctest.DocFileSuite(
@@ -320,39 +304,36 @@ def test_suite():
     if hasattr(sys, 'gettotalrefcount'):
         suites.append(
             doctest.DocFileSuite(
-            'testrunner-leaks.txt',
-            setUp=setUp, tearDown=tearDown,
-            optionflags=optionflags,
-            checker = renormalizing.RENormalizing([
-              (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
-              (re.compile(r'sys refcount=\d+ +change=\d+'),
-               'sys refcount=NNNNNN change=NN'),
-              (re.compile(r'sum detail refcount=\d+ +'),
-               'sum detail refcount=NNNNNN '),
-              (re.compile(r'total +\d+ +\d+'),
-               'total               NNNN    NNNN'),
-              (re.compile(r"^ +(int|type) +-?\d+ +-?\d+ *\n", re.M),
-               ''),
-              ]),
-
+                'testrunner-leaks.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=renormalizing.RENormalizing([
+                    (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
+                    (re.compile(r'sys refcount=\d+ +change=\d+'),
+                     'sys refcount=NNNNNN change=NN'),
+                    (re.compile(r'sum detail refcount=\d+ +'),
+                     'sum detail refcount=NNNNNN '),
+                    (re.compile(r'total +\d+ +\d+'),
+                     'total               NNNN    NNNN'),
+                    (re.compile(r"^ +(int|type) +-?\d+ +-?\d+ *\n", re.M),
+                     ''),
+                ]),
             )
         )
     else:
         suites.append(
             doctest.DocFileSuite(
-            'testrunner-leaks-err.txt',
-            setUp=setUp, tearDown=tearDown,
-            optionflags=optionflags,
-            checker=checker,
+                'testrunner-leaks-err.txt',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker,
             )
         )
 
-    if sys.version_info[:3] >= (2,7,0):
-        # Python 2.7 adds support for unittest.expectedFailure
-        suites.append(doctest.DocFileSuite(
-            'testrunner-unexpected-success.txt',
-            setUp=setUp, tearDown=tearDown,
-            optionflags=optionflags,
-            checker=checker))
+    suites.append(doctest.DocFileSuite(
+        'testrunner-unexpected-success.txt',
+        setUp=setUp, tearDown=tearDown,
+        optionflags=optionflags,
+        checker=checker))
 
     return unittest.TestSuite(suites)

@@ -28,7 +28,7 @@ from zope.testrunner.find import test_dirs
 # trace can be set, so that debugging still works.
 osettrace = sys.settrace
 def settrace(trace):
-    if trace is None:
+    if trace is None: # pragma: no cover
         return
     osettrace(trace)
 
@@ -81,7 +81,7 @@ class TestTrace(trace.Trace):
         self.started = False
 
 
-class TestIgnore:
+class TestIgnore(object):
 
     def __init__(self, directories):
         self._test_dirs = [self._filenameFormat(d[0]) + os.path.sep

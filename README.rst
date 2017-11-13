@@ -13,6 +13,10 @@ zope.testrunner
 .. image:: https://travis-ci.org/zopefoundation/zope.testrunner.svg?branch=master
         :target: https://travis-ci.org/zopefoundation/zope.testrunner
 
+.. image:: https://coveralls.io/repos/github/zopefoundation/zope.testrunner/badge.svg?branch=master
+        :target: https://coveralls.io/github/zopefoundation/zope.testrunner?branch=master
+
+
 .. contents::
 
 This package provides a flexible test runner with layer support.

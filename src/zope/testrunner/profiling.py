@@ -13,94 +13,45 @@
 ##############################################################################
 """Profiler support for the test runner
 """
-
-import os
+import cProfile
 import glob
-import sys
+import os
+import pstats
 import tempfile
+
 import zope.testrunner.feature
 
 available_profilers = {}
 
 
-try:
-    import cProfile
-    import pstats
-except ImportError:
-    pass
-else:
-    class CProfiler(object):
-        """cProfiler"""
-        def __init__(self, filepath):
-            self.filepath = filepath
-            self.profiler = cProfile.Profile()
-            self.enable = self.profiler.enable
-            self.disable = self.profiler.disable
 
-        def finish(self):
-            self.profiler.dump_stats(self.filepath)
+class CProfiler(object):
+    """cProfiler"""
+    def __init__(self, filepath):
+        self.filepath = filepath
+        self.profiler = cProfile.Profile()
+        self.enable = self.profiler.enable
+        self.disable = self.profiler.disable
 
-        def loadStats(self, prof_glob):
-            stats = None
-            for file_name in glob.glob(prof_glob):
-                if stats is None:
-                    stats = pstats.Stats(file_name)
-                else:
-                    stats.add(file_name)
-            return stats
+    def finish(self):
+        self.profiler.dump_stats(self.filepath)
 
-    available_profilers['cProfile'] = CProfiler
+    def loadStats(self, prof_glob):
+        stats = None
+        for file_name in glob.glob(prof_glob):
+            if stats is None:
+                stats = pstats.Stats(file_name)
+            else:
+                stats.add(file_name)
+        return stats
 
-
-# some Linux distributions don't include the profiler, which hotshot uses
-if not sys.hexversion >= 0x02060000:
-    # Hotshot is not maintained any longer in 2.6. It does not support 
-    # merging to hotshot files. Thus we won't use it in python2.6 and
-    # onwards
-    try:
-        import hotshot
-        import hotshot.stats
-    except ImportError:
-        pass
-    else:
-        class HotshotProfiler(object):
-            """hotshot interface"""
-
-            def __init__(self, filepath):
-                self.profiler = hotshot.Profile(filepath)
-                self.enable = self.profiler.start
-                self.disable = self.profiler.stop
- 
-            def finish(self):
-                self.profiler.close()
-
-            def loadStats(self, prof_glob):
-                stats = None
-                for file_name in glob.glob(prof_glob):
-                    loaded = hotshot.stats.load(file_name)
-                    if stats is None:
-                        stats = loaded
-                    else:
-                        stats.add(loaded)
-                return stats
-
-        available_profilers['hotshot'] = HotshotProfiler
+available_profilers['cProfile'] = CProfiler
 
 
 class Profiling(zope.testrunner.feature.Feature):
 
     def __init__(self, runner):
         super(Profiling, self).__init__(runner)
-
-        if (self.runner.options.profile
-            and sys.version_info[:3] <= (2,4,1)
-            and __debug__):
-            self.runner.options.output.error(
-                'Because of a bug in Python < 2.4.1, profiling '
-                'during tests requires the -O option be passed to '
-                'Python (not the test runner).')
-            sys.exit()
-
         self.active = bool(self.runner.options.profile)
         self.profiler = self.runner.options.profile
 

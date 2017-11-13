@@ -9,3 +9,6 @@ develop-eggs/
 tags
 .tox
 parts/
+.coverage
+.coverage.*
+htmlcov/

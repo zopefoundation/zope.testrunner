@@ -1,2 +1,8 @@
-include *.rst *.py buildout.cfg tox.ini *.yml
+include *.rst
+include *.py
+include buildout.cfg
+include tox.ini
+include *.yml
+include .coveragerc
+
 recursive-include src *.py *.txt *.test

@@ -21,7 +21,7 @@ import sys
 from setuptools import setup
 from setuptools.command.test import test
 
-version = '4.8.2.dev0'
+version = '4.9.0.dev0'
 
 INSTALL_REQUIRES = [
     'setuptools',
@@ -42,6 +42,13 @@ EXTRAS_REQUIRE = {
 CUSTOM_TEST_TEMPLATE = """\
 import sys
 sys.path = %r
+
+try:
+    import coverage
+except ImportError:
+    pass
+else:
+    coverage.process_startup()
 
 import os
 os.chdir(%r)
@@ -158,7 +165,6 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
