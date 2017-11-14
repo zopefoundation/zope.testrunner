@@ -34,8 +34,12 @@ parser = argparse.ArgumentParser(
     description="Discover and run unittest tests")
 
 
-parser.add_argument("filters", nargs="*",
-                    help="Module or test filter")
+parser.add_argument("legacy_module_filter", nargs="?",
+                    help="DEPRECATED: Prefer to use --module.")
+
+
+parser.add_argument("legacy_test_filter", nargs="?",
+                    help="DEPRECATED: Prefer to use --test.")
 
 ######################################################################
 # Searching and filtering
@@ -544,7 +548,6 @@ def get_options(args=None, defaults=None):
         args = sys.argv
 
     options = parser.parse_args(args[1:], defaults)
-    positional = options.filters
     options.original_testrunner_args = args
 
     if options.showversion:
@@ -561,27 +564,24 @@ def get_options(args=None, defaults=None):
 
     options.fail = False
 
-    if positional:
-        module_filter = positional.pop(0)
+    if options.legacy_module_filter:
+        module_filter = options.legacy_module_filter
         if module_filter != '.':
             if options.module:
                 options.module.append(module_filter)
             else:
                 options.module = [module_filter]
 
-        if positional:
-            test_filter = positional.pop(0)
+        if options.legacy_test_filter:
+            test_filter = options.legacy_test_filter
             if options.test:
                 options.test.append(test_filter)
             else:
                 options.test = [test_filter]
 
-            if positional:
-                parser.error("Too many positional arguments")
-
     options.ignore_dir = {d: 1 for d in options.ignore_dir}
-    options.test = [t for t in options.test or ('.')]
-    options.module = [m for m in options.module or ('.')]
+    options.test = options.test or ['.']
+    options.module = options.module or ['.']
 
     options.path = options.path or []
     options.test_path = options.test_path or []
