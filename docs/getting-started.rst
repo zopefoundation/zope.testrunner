@@ -139,6 +139,6 @@ zope.testrunner can profile your tests, measure test coverage,
 check for memory leaks, shuffle the test execution order, and run
 multiple tests in parallel.
 
-.. _buildout: http://www.buildout.org/
-.. _virtualenv: http://www.virtualenv.org/
-.. _zc.recipe.testrunner: http://pypi.python.org/pypi/zc.recipe.testrunner
+.. _buildout: https://buildout.readthedocs.io
+.. _virtualenv: https://virtualenv.pypa.io/
+.. _zc.recipe.testrunner: https://pypi.python.org/pypi/zc.recipe.testrunner

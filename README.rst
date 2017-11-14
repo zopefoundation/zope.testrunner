@@ -17,7 +17,7 @@
         :target: https://coveralls.io/github/zopefoundation/zope.testrunner?branch=master
 
 .. image:: https://readthedocs.org/projects/zopetestrunner/badge/?version=latest
-        :target: http://zopetestrunner.readthedocs.io/en/latest/?badge=latest
+        :target: https://zopetestrunner.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 .. contents::
