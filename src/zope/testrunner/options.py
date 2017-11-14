@@ -15,7 +15,7 @@
 """
 from __future__ import print_function
 
-import optparse
+import argparse
 import re
 import os
 import sys
@@ -27,17 +27,24 @@ from zope.testrunner.formatter import OutputFormatter
 from zope.testrunner.formatter import terminal_has_colors
 from zope.testrunner.profiling import available_profilers
 
+def _regex_search(s):
+    return re.compile(s).search
 
-parser = optparse.OptionParser("Usage: %prog [options] [MODULE] [TEST]")
+parser = argparse.ArgumentParser(
+    description="Discover and run unittest tests")
+
+
+parser.add_argument("filters", nargs="*",
+                    help="Module or test filter")
 
 ######################################################################
 # Searching and filtering
 
-searching = optparse.OptionGroup(parser, "Searching and filtering", """\
+searching = parser.add_argument_group("Searching and filtering", """\
 Options in this group are used to define which tests to run.
 """)
 
-searching.add_option(
+searching.add_argument(
     '--package', '--dir', '-s', action="append", dest='package',
     help="""\
 Search the given package's directories for tests.  This can be
@@ -56,7 +63,7 @@ only directories within the test search path are searched. See the
 
 """)
 
-searching.add_option(
+searching.add_argument(
     '--module', '-m', action="append", dest='module',
     help="""\
 Specify a test-module filter as a regular expression.  This is a
@@ -71,7 +78,7 @@ the test filters are searched.  If no test-module filter is specified,
 then all test modules are used.
 """)
 
-searching.add_option(
+searching.add_argument(
     '--test', '-t', action="append", dest='test',
     help="""\
 Specify a test filter as a regular expression.  This is a
@@ -84,19 +91,19 @@ Tests matching any of the test filters are included.  If no test
 filter is specified, then all tests are run.
 """)
 
-searching.add_option(
+searching.add_argument(
     '--unit', '-u', action="store_true", dest='unit',
     help="""\
 Run only unit tests, ignoring any layer options.
 """)
 
-searching.add_option(
+searching.add_argument(
     '--non-unit', '-f', action="store_true", dest='non_unit',
     help="""\
 Run tests other than unit tests.
 """)
 
-searching.add_option(
+searching.add_argument(
     '--layer', action="append", dest='layer',
     help="""\
 Specify a test layer to run.  The option can be given multiple times
@@ -111,96 +118,99 @@ layer named 'zope.testrunner.layer.UnitTests' is reserved for
 unit tests, however, take note of the --unit and non-unit options.
 """)
 
-searching.add_option(
-    '-a', '--at-level', type='int', dest='at_level',
+searching.add_argument(
+    '-a', '--at-level', type=int, dest='at_level',
+    default=1,
     help="""\
 Run the tests at the given level.  Any test at a level at or below
 this is run, any test at a level above this is not run.  Level 0
 runs all tests.
 """)
 
-searching.add_option(
+searching.add_argument(
     '--all', action="store_true", dest='all',
     help="Run tests at all levels.")
 
-searching.add_option(
+searching.add_argument(
     '--list-tests', action="store_true", dest='list_tests',
+    default=False,
     help="List all tests that matched your filters.  Do not run any tests.")
 
-parser.add_option_group(searching)
 
 ######################################################################
 # Reporting
 
-reporting = optparse.OptionGroup(parser, "Reporting", """\
+reporting = parser.add_argument_group("Reporting", """\
 Reporting options control basic aspects of test-runner output
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--verbose', '-v', action="count", dest='verbose',
+    default=0,
     help="""\
 Make output more verbose.
 Increment the verbosity level.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--quiet', '-q', action="store_true", dest='quiet',
     help="""\
 Make the output minimal, overriding any verbosity options.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--progress', '-p', action="store_true", dest='progress',
     help="""\
 Output progress status
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--no-progress', action="store_false", dest='progress',
     help="""\
 Do not output progress status.  This is the default, but can be used to
 counter a previous use of --progress or -p.
 """)
 
-# We use a noop callback because the actual processing will be done in the
-# get_options function, but we want optparse to generate appropriate help info
-# for us, so we add an option anyway.
-reporting.add_option(
-    '--auto-progress', action="callback", callback=lambda *args: None,
+# The actual processing will be done in the get_options function, but
+# we want argparse to generate appropriate help info for us, so we add
+# an option anyway.
+reporting.add_argument(
+    '--auto-progress', action="store_const", const=None,
     help="""\
 Output progress status, but only when stdout is a terminal.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--color', '-c', action="store_true", dest='color',
     help="""\
 Colorize the output.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--no-color', '-C', action="store_false", dest='color',
     help="""\
 Do not colorize the output.  This is the default, but can be used to
 counter a previous use of --color or -c.
 """)
 
-# We use a noop callback because the actual processing will be done in the
-# get_options function, but we want optparse to generate appropriate help info
-# for us, so we add an option anyway.
-reporting.add_option(
-    '--auto-color', action="callback", callback=lambda *args: None,
+# The actual processing will be done in the get_options function, but
+# we want argparse to generate appropriate help info for us, so we add
+# an option anyway.
+reporting.add_argument(
+    '--auto-color', action="store_const", const=None,
     help="""\
 Colorize the output, but only when stdout is a terminal.
 """)
 
-reporting.add_option(
-    '--slow-test', type='float', dest='slow_test_threshold', metavar='N',
+reporting.add_argument(
+    '--slow-test', type=float, dest='slow_test_threshold', metavar='N',
+    default=10,
     help="""\
 With -c and -vvv, highlight tests that take longer than N seconds (default:
-%default).
+%(default)s).
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '-1', '--hide-secondary-failures',
     action="store_true", dest='report_only_first_failure',
     help="""\
@@ -208,7 +218,7 @@ Report only the first failure in a doctest. (Examples after the
 failure are still executed, in case they do any cleanup.)
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--show-secondary-failures',
     action="store_false", dest='report_only_first_failure',
     help="""\
@@ -216,25 +226,25 @@ Report all failures in a doctest.  This is the default, but can
 be used to counter a default use of -1 or --hide-secondary-failures.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--ndiff', action="store_true", dest="ndiff",
     help="""\
 When there is a doctest failure, show it as a diff using the ndiff.py utility.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--udiff', action="store_true", dest="udiff",
     help="""\
 When there is a doctest failure, show it as a unified diff.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--cdiff', action="store_true", dest="cdiff",
     help="""\
 When there is a doctest failure, show it as a context diff.
 """)
 
-reporting.add_option(
+reporting.add_argument(
     '--ignore-new-thread',
     metavar='REGEXP',
     action="append",
@@ -248,30 +258,28 @@ it will be ignored.
 """)
 
 
-parser.add_option_group(reporting)
-
 ######################################################################
 # Analysis
 
-analysis = optparse.OptionGroup(parser, "Analysis", """\
+analysis = parser.add_argument_group("Analysis", """\
 Analysis options provide tools for analysing test output.
 """)
 
 
-analysis.add_option(
+analysis.add_argument(
     '--stop-on-error', '--stop', '-x', action="store_true",
     dest='stop_on_error',
     help="Stop running tests after first test failure or error."
     )
 
-analysis.add_option(
+analysis.add_argument(
     '--post-mortem', '--pdb', '-D', action="store_true", dest='post_mortem',
     help="Enable post-mortem debugging of test failures"
     )
 
 
-analysis.add_option(
-    '--gc', '-g', action="append", dest='gc', type="int",
+analysis.add_argument(
+    '--gc', '-g', action="append", dest='gc', type=int,
     help="""\
 Set the garbage collector generation threshold.  This can be used
 to stress memory and gc correctness.  Some crashes are only
@@ -283,25 +291,26 @@ Python gc_threshold settings.
 
 """)
 
-analysis.add_option(
-    '--gc-option', '-G', action="append", dest='gc_option', type="choice",
-    choices=['DEBUG_STATS', 'DEBUG_COLLECTABLE', 'DEBUG_UNCOLLECTABLE',
+analysis.add_argument(
+    '--gc-option', '-G', action="append", dest='gc_option',
+    choices={'DEBUG_STATS', 'DEBUG_COLLECTABLE', 'DEBUG_UNCOLLECTABLE',
              'DEBUG_INSTANCES', 'DEBUG_OBJECTS', 'DEBUG_SAVEALL',
-             'DEBUG_LEAK'],
+             'DEBUG_LEAK'},
     help="""\
 Set a Python gc-module debug flag.  This option can be used more than
 once to set multiple flags.
 """)
 
-analysis.add_option(
-    '--repeat', '-N', action="store", type="int", dest='repeat',
+analysis.add_argument(
+    '--repeat', '-N', action="store", type=int, dest='repeat',
+    default=1,
     help="""\
 Repeat the tests the given number of times.  This option is used to
 make sure that tests leave their environment in the state they found
 it and, with the --report-refcounts option to look for memory leaks.
 """)
 
-analysis.add_option(
+analysis.add_argument(
     '--report-refcounts', '-r', action="store_true", dest='report_refcounts',
     help="""\
 After each run of the tests, output a report summarizing changes in
@@ -309,22 +318,22 @@ refcounts by object type.  This option that requires that Python was
 built with the --with-pydebug option to configure.
 """)
 
-analysis.add_option(
-    '--coverage', action="store", type='string', dest='coverage',
+analysis.add_argument(
+    '--coverage', action="store", dest='coverage',
     help="""\
 Perform code-coverage analysis, saving trace data to the directory
 with the given name.  A code coverage summary is printed to standard
 out.
 """)
 
-analysis.add_option(
-    '--profile', action="store", dest='profile', type="choice",
-    choices=list(available_profilers),
+analysis.add_argument(
+    '--profile', action="store", dest='profile',
+    choices=set(available_profilers),
     help="""\
-Run the tests under cProfiler or hotshot and display the top 50 stats, sorted
+Run the tests under cProfiler and display the top 50 stats, sorted
 by cumulative time and number of calls.
 """)
-analysis.add_option(
+analysis.add_argument(
     '--profile-directory', action="store", dest='prof_dir', default='.',
     help="""\
 Directory for temporary profiler files.  All files named tests_profile.*.prof
@@ -333,18 +342,17 @@ of the test runner in parallel, be sure to tell them to use different
 directories, so they won't step on each other's toes.
 """)
 
-parser.add_option_group(analysis)
-
 ######################################################################
 # Setup
 
-setup = optparse.OptionGroup(parser, "Setup", """\
+setup = parser.add_argument_group("Setup", """\
 Setup options are normally supplied by the testrunner script, although
 they can be overridden by users.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--path', action="append", dest='path',
+    type=os.path.abspath,
     help="""\
 Specify a path to be added to Python's search path.  This option can
 be used multiple times to specify multiple search paths.  The path is
@@ -356,8 +364,9 @@ This option also specifies directories to be searched for tests.
 See the search_directory.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--test-path', action="append", dest='test_path',
+    type=os.path.abspath,
     help="""\
 Specify a path to be searched for tests, but not added to the Python
 search path.  This option can be used multiple times to specify
@@ -367,7 +376,7 @@ although it can be overridden by users.  Only tests found in the path
 will be run.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--package-path', action="append", dest='package_path', nargs=2,
     help="""\
 Specify a path to be searched for tests, but not added to the Python
@@ -385,8 +394,10 @@ although it can be overridden by users.  Only tests found in the path
 will be run.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--tests-pattern', action="store", dest='tests_pattern',
+    default=_regex_search('^tests$'),
+    type=_regex_search,
     help="""\
 The test runner looks for modules containing tests.  It uses this
 pattern to identify these modules.  The modules may be either packages
@@ -397,58 +408,62 @@ test-file-pattern to identify python files within the package
 containing tests.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--suite-name', action="store", dest='suite_name',
+    default='test_suite',
     help="""\
 Specify the name of the object in each test_module that contains the
 module's test suite.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--test-file-pattern', action="store", dest='test_file_pattern',
+    default=_regex_search('^test'),
+    type=_regex_search,
     help="""\
 Specify a pattern for identifying python files within a tests package.
 See the documentation for the --tests-pattern option.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--ignore_dir', action="append", dest='ignore_dir',
+    default=['.git', '.svn', 'CVS', '{arch}', '.arch-ids', '_darcs'],
     help="""\
 Specifies the name of a directory to ignore when looking for tests.
 """)
 
-setup.add_option(
+setup.add_argument(
     '--shuffle', action="store_true", dest='shuffle',
     help="""\
 Shuffles the order in which tests are ran.
 """)
 
-setup.add_option(
-    '--shuffle-seed', action="store", dest='shuffle_seed', type="int",
+setup.add_argument(
+    '--shuffle-seed', action="store", dest='shuffle_seed', type=int,
     help="""\
 Value used to initialize the tests shuffler. Specify a value to create
 repeatable random ordered tests.
 """)
 
-parser.add_option_group(setup)
 
 ######################################################################
 # Other
 
-other = optparse.OptionGroup(parser, "Other", "Other options")
+other = parser.add_argument_group("Other", "Other options")
 
-other.add_option(
+other.add_argument(
     '--version', action="store_true", dest='showversion',
     help="Print the version of the testrunner, and exit.")
 
-other.add_option(
-    '-j', action="store", type="int", dest='processes',
+other.add_argument(
+    '-j', action="store", type=int, dest='processes',
+    default=1,
     help="""\
 Use up to given number of parallel processes to execute tests.  May decrease
-test run time substantially.  Defaults to %default.
+test run time substantially.  Defaults to %(default)s.
 """)
 
-other.add_option(
+other.add_argument(
     '--keepbytecode', '-k', action="store_true", dest='keepbytecode',
     help="""\
 Normally, the test runner scans the test paths and the test
@@ -460,7 +475,7 @@ scan.  If you know you haven't removed any modules since last running
 the tests, can make the test run go much faster.
 """)
 
-other.add_option(
+other.add_argument(
     '--usecompiled', action="store_true", dest='usecompiled',
     help="""\
 Normally, a package must contain an __init__.py file, and only .py files
@@ -473,29 +488,10 @@ tests against a tree where the .py files have been removed after
 compilation to .pyc/.pyo.  Use of this option implies --keepbytecode.
 """)
 
-other.add_option(
+other.add_argument(
     '--exit-with-status', action="store_true", dest='exitwithstatus',
     help="""DEPRECATED: The test runner will always exit with a status.\
 """)
-
-
-parser.add_option_group(other)
-
-######################################################################
-# Default values
-
-parser.set_defaults(
-    ignore_dir=['.git', '.svn', 'CVS', '{arch}', '.arch-ids', '_darcs'],
-    tests_pattern='^tests$',
-    at_level=1,
-    test_file_pattern='^test',
-    suite_name='test_suite',
-    list_tests=False,
-    slow_test_threshold=10,
-    processes=1,
-    verbose=0,
-    repeat=1,
-    )
 
 
 ######################################################################
@@ -540,15 +536,15 @@ def get_options(args=None, defaults=None):
     apply_auto_progress(defaults)
 
     if defaults:
-        defaults, _ = parser.parse_args(defaults)
-        assert not _
+        defaults = parser.parse_args(defaults)
     else:
         defaults = None
 
     if args is None:
         args = sys.argv
 
-    options, positional = parser.parse_args(args[1:], defaults)
+    options = parser.parse_args(args[1:], defaults)
+    positional = options.filters
     options.original_testrunner_args = args
 
     if options.showversion:
@@ -583,14 +579,12 @@ def get_options(args=None, defaults=None):
             if positional:
                 parser.error("Too many positional arguments")
 
-    options.ignore_dir = dict([(d, 1) for d in options.ignore_dir])
-    options.test_file_pattern = re.compile(options.test_file_pattern).search
-    options.tests_pattern = re.compile(options.tests_pattern).search
+    options.ignore_dir = {d: 1 for d in options.ignore_dir}
     options.test = [t for t in options.test or ('.')]
     options.module = [m for m in options.module or ('.')]
 
-    options.path = [os.path.abspath(p) for p in options.path or ()]
-    options.test_path = [os.path.abspath(p) for p in options.test_path or ()]
+    options.path = options.path or []
+    options.test_path = options.test_path or []
     options.test_path += options.path
 
     options.test_path = ([(path, '') for path in options.test_path]
@@ -626,7 +620,7 @@ def get_options(args=None, defaults=None):
         # XXX Argh.
         options.layer = ['zope.testrunner.layer.UnitTests']
 
-    options.layer = options.layer and dict([(l, 1) for l in options.layer])
+    options.layer = options.layer and {l: 1 for l in options.layer}
 
     if options.usecompiled:
         options.keepbytecode = options.usecompiled

@@ -14,6 +14,10 @@
 - Remove untested support for the ``--pychecker`` option. See
   `issue 63 <https://github.com/zopefoundation/zope.testrunner/issues/63>`_.
 
+- Update the command line interface to use ``argparse`` instead of
+  ``optparse``. See `issue 61
+  <https://github.com/zopefoundation/zope.testrunner/issues/61>`_.
+
 4.8.1 (2017-11-12)
 ==================
 
