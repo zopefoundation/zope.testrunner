@@ -1,14 +1,15 @@
-Garbage Collection Control
-==========================
+============================
+ Garbage Collection Control
+============================
 
-When having problems that seem to be caused my memory-management
+When having problems that seem to be caused by memory-management
 errors, it can be helpful to adjust Python's cyclic garbage collector
-or to get garbage colection statistics.  The --gc option can be used
+or to get garbage colection statistics.  The ``--gc`` option can be used
 for this purpose.
 
 If you think you are getting a test failure due to a garbage
 collection problem, you can try disabling garbage collection by
-using the --gc option with a value of zero.
+using the ``--gc`` option with a value of zero.
 
     >>> import os.path, sys
     >>> directory_with_tests = os.path.join(this_directory, 'testrunner-ex')
@@ -32,7 +33,7 @@ using the --gc option with a value of zero.
 Alternatively, if you think you are having a garbage collection
 related problem, you can cause garbage collection to happen more often
 by providing a low threshold:
-    
+
     >>> sys.argv = 'test --tests-pattern ^gc1$ --gc 1 -vv'.split()
     >>> _ = testrunner.run_internal(defaults)
     Cyclic garbage collection threshold set to: (1,)
@@ -45,10 +46,10 @@ by providing a low threshold:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 
-You can specify up to 3 --gc options to set each of the 3 gc threshold
+You can specify up to 3 ``--gc`` options to set each of the 3 gc threshold
 values:
 
-    
+
     >>> sys.argv = ('test --tests-pattern ^gcset$ --gc 701 --gc 11 --gc 9 -vv'
     ...             .split())
     >>> _ = testrunner.run_internal(defaults)
@@ -62,7 +63,7 @@ values:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
 
-Specifying more than 3 --gc options is not allowed:
+Specifying more than 3 ``--gc`` options is not allowed:
 
 
     >>> from six import StringIO
@@ -83,11 +84,11 @@ Specifying more than 3 --gc options is not allowed:
     Too many --gc options
 
 Garbage Collection Statistics
------------------------------
+=============================
 
-You can enable gc debugging statistics using the --gc-options (-G)
-option.  You should provide names of one or more of the flags
-described in the library documentation for the gc module.
+You can enable gc debugging statistics using the ``--gc-options`` (``-G``)
+option. You should provide names of one or more of the flags described
+in the library documentation for the gc module.
 
 The output statistics are written to standard error.
 
@@ -112,4 +113,3 @@ The output statistics are written to standard error.
 
     >>> print(err.getvalue())        # doctest: +ELLIPSIS
     gc: collecting generation ...
-

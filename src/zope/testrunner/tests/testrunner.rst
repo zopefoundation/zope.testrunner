@@ -3,7 +3,7 @@
 ==========
 
 The testrunner module is used to run automated tests defined using the
-unittest framework. Its primary feature is that it *finds* tests by
+`unittest` framework. Its primary feature is that it *finds* tests by
 searching directory trees. It doesn't require the manual concatenation
 of specific test suites. It is highly customizable and should be
 usable with any project. In addition to finding and running tests, it
@@ -11,11 +11,11 @@ provides the following additional features:
 
 - :doc:`Test filtering <testrunner-test-selection>` using specifications of:
 
-  o test packages within a larger tree
+  * test packages within a larger tree
 
-  o regular expression patterns for test modules
+  * regular expression patterns for test modules
 
-  o regular expression patterns for individual tests
+  * regular expression patterns for individual tests
 
 - Organization of tests into :doc:`levels <testrunner-test-selection>`
   and :doc:`layers <testrunner-layers-api>`
@@ -60,11 +60,11 @@ provides the following additional features:
 
   - :doc:`memory leaks <testrunner-leaks>`
 
+  - :doc:`memory management errors <testrunner-gc>`
+
   - :doc:`code coverage <testrunner-coverage>`
 
   - source analysis using pychecker
-
-  - memory errors
 
   - :doc:`execution times <testrunner-verbose>`
 
