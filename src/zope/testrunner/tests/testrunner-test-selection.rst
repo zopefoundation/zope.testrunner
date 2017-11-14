@@ -416,12 +416,12 @@ Module and test filters can also be given as positional arguments:
 Levels
 ======
 
-Sometimes, There are tests that you don't want to run by default.
-For example, you might have tests that take a long time.  Tests can
-have a level attribute.  If no level is specified, a level of 1 is
-assumed and, by default, only tests at level one are run.  to run
-tests at a higher level, use the --at-level (-a) option to specify a higher
-level.  For example, with the following options:
+Sometimes there are tests that you don't want to run by default. For
+example, you might have tests that take a long time. Tests can have a
+level attribute. If no level is specified, a level of 1 is assumed
+and, by default, only tests at level one are run. to run tests at a
+higher level, use the ``--at-level`` (``-a``) option to specify a higher
+level. For example, with the following options:
 
 
     >>> sys.argv = 'test -u  -vv -t test_y1 -t test_y0'.split()

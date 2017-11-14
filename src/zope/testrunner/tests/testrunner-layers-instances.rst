@@ -27,7 +27,7 @@ regular objects can be used as well. They need to provide ``__module__``,
 >>> TopLayer = TestLayer('TopLayer', BaseLayer)
 
 Tests or test suites specify what layer they need by storing a reference
-in the `layer` attribute.
+in the ``layer`` attribute.
 
 >>> import unittest
 >>> class TestSpecifyingBaseLayer(unittest.TestCase):
@@ -71,7 +71,7 @@ TestSpecifyingBaseLayer and TestSpecifyingNoLayer.
 >>> no_layer_suite = unittest.makeSuite(TestSpecifyingNoLayer)
 >>> umbrella_suite.addTest(no_layer_suite)
 
-Before we can run the tests, we need to setup some helpers.
+Before we can run the tests, we need to set up some helpers.
 
 >>> from zope.testrunner import options
 >>> from zope.testing.loggingsupport import InstalledHandler
@@ -85,8 +85,8 @@ Before we can run the tests, we need to setup some helpers.
 ...     opts.resume_number = 0
 ...     return opts
 
-Now we run the tests. Note that the BaseLayer was not setup when the
-TestSpecifyingNoLayer was run and setup/torn down around the
+Now we run the tests. Note that the BaseLayer was not set up when the
+TestSpecifyingNoLayer was run and set up/torn down around the
 TestSpecifyingBaseLayer tests.
 
 >>> from zope.testrunner.runner import Runner
@@ -126,7 +126,7 @@ Now lets also specify a layer in the TestSpecifyingNoLayer class and
 rerun the tests. This demonstrates that the most specific layer is
 used. It also shows the behavior of nested layers - because TopLayer
 extends BaseLayer, both the BaseLayer and TopLayer environments are
-setup when the TestSpecifyingNoLayer tests are run.
+set up when the TestSpecifyingNoLayer tests are run.
 
 >>> TestSpecifyingNoLayer.layer = TopLayer
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[umbrella_suite])
@@ -144,8 +144,8 @@ Total: 4 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
 
 
 If we inspect our trace of what methods got called in what order, we
-can see that the layer setup and teardown methods only got called
-once. We can also see that the layer's test setup and teardown methods
+can see that the layer setUp and tearDown methods only got called
+once. We can also see that the layer's test setUp and tearDown methods
 got called for each test using that layer in the right order.
 
 >>> def report():

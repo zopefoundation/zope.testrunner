@@ -58,10 +58,10 @@ used as follows::
       setup(
           ...
           setup_requires=[
-		      'eggtestinfo' # captures testing metadata in EGG-INFO
+              'eggtestinfo' # captures testing metadata in EGG-INFO
           ],
           tests_require=[
-		      'zope.testrunner',
+              'zope.testrunner',
           ],
           ...
           test_loader='zope.testrunner.eggsupport:SkipLayers',
