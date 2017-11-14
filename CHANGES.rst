@@ -9,6 +9,10 @@
 
 - Enable test coverage reporting on coveralls.io and in tox.ini.
 
+- Host documentation at https://zopetestrunner.readthedocs.io
+
+- Remove undocumented support for the ``--pychecker`` option. See
+  `issue 63 <https://github.com/zopefoundation/zope.testrunner/issues/63>`_.
 
 4.8.1 (2017-11-12)
 ==================
