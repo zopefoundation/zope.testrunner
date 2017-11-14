@@ -82,13 +82,12 @@ def test_suite():
     return unittest.TestSuite((
         doctest.DocTestSuite(),
         unittest.makeSuite(TestSomething),
-        doctest.DocFileSuite('set_trace5.txt'),
-        doctest.DocFileSuite('set_trace6.txt'),
-        doctest.DocFileSuite('post_mortem5.txt'),
-        doctest.DocFileSuite('post_mortem6.txt'),
-        doctest.DocFileSuite('post_mortem_failure.txt'),
+        doctest.DocFileSuite('set_trace5.rst'),
+        doctest.DocFileSuite('set_trace6.rst'),
+        doctest.DocFileSuite('post_mortem5.rst'),
+        doctest.DocFileSuite('post_mortem6.rst'),
+        doctest.DocFileSuite('post_mortem_failure.rst'),
         ))
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')
-

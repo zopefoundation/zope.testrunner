@@ -957,7 +957,7 @@ def layer_sort_key(layer):
         # We make the simplifying assumption that the order of initialization
         # of base layers does not matter.  Given that, traversing the bases
         # in reverse order here keeps the ordering of layers in
-        # testrunner-layers.txt the same as it was in older versions of
+        # testrunner-layers.rst the same as it was in older versions of
         # zope.testrunner, so let's use that.
         for base in layer.__bases__[::-1]:
             if base is not object and base not in seen:

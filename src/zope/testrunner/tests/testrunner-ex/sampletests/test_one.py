@@ -85,6 +85,6 @@ def test_suite():
     suite.addTest(unittest.makeSuite(TestB))
     suite.addTest(unittest.makeSuite(TestNotMuch))
     suite.addTest(doctest.DocTestSuite(setUp=setUp))
-    suite.addTest(doctest.DocFileSuite('../sampletests.txt',
+    suite.addTest(doctest.DocFileSuite('../sampletests.rst',
                                        setUp=setUp))
     return suite

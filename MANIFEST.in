@@ -4,5 +4,10 @@ include buildout.cfg
 include tox.ini
 include *.yml
 include .coveragerc
+include *.txt
 
-recursive-include src *.py *.txt *.test
+recursive-include src *.py
+recursive-include src *.rst
+
+recursive-include docs *.rst
+recursive-include docs *.py
