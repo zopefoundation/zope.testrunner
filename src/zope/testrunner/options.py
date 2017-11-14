@@ -579,7 +579,7 @@ def get_options(args=None, defaults=None):
             else:
                 options.test = [test_filter]
 
-    options.ignore_dir = {d: 1 for d in options.ignore_dir}
+    options.ignore_dir = set(options.ignore_dir)
     options.test = options.test or ['.']
     options.module = options.module or ['.']
 
