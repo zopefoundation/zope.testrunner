@@ -156,7 +156,7 @@ Output progress status
 """)
 
 reporting.add_option(
-    '--no-progress',action="store_false", dest='progress',
+    '--no-progress', action="store_false", dest='progress',
     help="""\
 Do not output progress status.  This is the default, but can be used to
 counter a previous use of --progress or -p.
@@ -594,7 +594,7 @@ def get_options(args=None, defaults=None):
             if positional:
                 parser.error("Too many positional arguments")
 
-    options.ignore_dir = dict([(d,1) for d in options.ignore_dir])
+    options.ignore_dir = dict([(d, 1) for d in options.ignore_dir])
     options.test_file_pattern = re.compile(options.test_file_pattern).search
     options.tests_pattern = re.compile(options.tests_pattern).search
     options.test = [t for t in options.test or ('.')]
@@ -608,7 +608,7 @@ def get_options(args=None, defaults=None):
                          +
                          [(os.path.abspath(path), package)
                           for (path, package) in options.package_path or ()
-                          ])
+                         ])
 
     if options.package:
         pkgmap = dict(options.test_path)
@@ -666,7 +666,7 @@ def get_options(args=None, defaults=None):
 
     return options
 
-def normalize_package(package, package_map={}):
+def normalize_package(package, package_map=None):
     r"""Normalize package name passed to the --package option.
 
         >>> normalize_package('zope.testrunner')
@@ -697,6 +697,7 @@ def normalize_package(package, package_map={}):
         'zope.something.tests'
 
     """
+    package_map = {} if package_map is None else package_map
     package = package.replace('\\', '/')
     if package.endswith('/'):
         package = package[:-1]

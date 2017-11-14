@@ -13,7 +13,7 @@ def skipLayers(suite, _result=None):
     if _result is None:
         _result = TestSuite()
     # Sometimes test suites do not have tests, like DocFileSuite.
-    if len(suite._tests) == 0:
+    if not suite._tests:
         _result.addTest(suite)
         return _result
     for test in suite._tests:
@@ -27,19 +27,20 @@ def skipLayers(suite, _result=None):
     return _result
 
 class SkipLayers(ScanningLoader):
-    """Load only unit tests (those which have no layer associated with
+    """
+    Load only unit tests (those which have no layer associated with
     them).
 
-    o Running the tests using 'setup.py test' cannot, by default,
-    drive the full testrunner, with its support for layers (in
-    functional tests).  This loader allows the command to work, by
-    running only those tests which don't need the layer support.
+    * Running the tests using 'setup.py test' cannot, by default,
+      drive the full testrunner, with its support for layers (in
+      functional tests).  This loader allows the command to work, by
+      running only those tests which don't need the layer support.
 
-    o To run layer-dependent tests, use 'setup.py ftest' (see below
-    for adding the command to your setup.py).
+    * To run layer-dependent tests, use 'setup.py ftest' (see below
+      for adding the command to your setup.py).
 
-    o To use this loader your package add the following your 'setup()'
-    call::
+    * To use this loader your package add the following your 'setup()'
+      call::
 
         setup(
             ...
@@ -70,26 +71,26 @@ class ftest(BaseCommand):
     """
     Run unit and functional tests after an in-place build.
 
-    o Note that this command runs *all* tests (unit *and* functional).
+    * Note that this command runs *all* tests (unit *and* functional).
 
-    o This command does not provide any of the configuration options which
+    * This command does not provide any of the configuration options which
       the usual testrunner provided by 'zope.testrunner' offers:  it is intended
       to allow easy verification that a package has been installed correctly
       via setuptools, but is not likely to be useful for developers working
       on the package.
 
-    o Developers working on the package will likely prefer to work with
+    * Developers working on the package will likely prefer to work with
       the stock testrunner, e.g., by using buildout with a recipe which
       configures the testrunner as a standalone script.
 
-    o To use this in your pacakge add the following to the 'entry_points'
+    * To use this in your pacakge add the following to the 'entry_points'
       section::
 
           setup(
               ...
               setup_requires=[
                   'zope.testrunner',
-                   'eggtestinfo' # captures testing metadata in EGG-INFO
+                  'eggtestinfo' # captures testing metadata in EGG-INFO
               ],
               ...
           )
