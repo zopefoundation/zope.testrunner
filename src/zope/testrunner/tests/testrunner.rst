@@ -64,8 +64,6 @@ provides the following additional features:
 
   - :doc:`code coverage <testrunner-coverage>`
 
-  - source analysis using pychecker
-
   - :doc:`execution times <testrunner-verbose>`
 
   - :doc:`profiling <testrunner-profiling>`

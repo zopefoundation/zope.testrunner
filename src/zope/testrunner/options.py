@@ -333,17 +333,6 @@ of the test runner in parallel, be sure to tell them to use different
 directories, so they won't step on each other's toes.
 """)
 
-def do_pychecker(*args):
-    if not os.environ.get("PYCHECKER"):
-        os.environ["PYCHECKER"] = "-q"
-    import pychecker.checker
-
-analysis.add_option(
-    '--pychecker', action="callback", callback=do_pychecker,
-    help="""\
-Run the tests under pychecker
-""")
-
 parser.add_option_group(analysis)
 
 ######################################################################
