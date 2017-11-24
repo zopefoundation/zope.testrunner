@@ -245,7 +245,7 @@ We can select by test module name using the --module (-m) option:
 
 and by test within the module using the --test (-t) option:
 
-    >>> sys.argv = 'test -u  -vv -ssample1 -m_one -mtest1 -tx0 -ty0'.split()
+    >>> sys.argv = 'test -u  -vv -ssample1 -m_one -mtest1 -t_x0 -t_y0'.split()
     >>> testrunner.run_internal(defaults)
     Running tests at level 1
     Running zope.testrunner.layer.UnitTests tests:
