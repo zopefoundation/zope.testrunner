@@ -28,6 +28,10 @@ from zope.testrunner.filter import build_filtering_func
 identifier = re.compile(r'[_a-zA-Z]\w*$').match
 
 
+class DuplicateTestIDError(Exception):
+    """Raised whenever a test ID is encountered twice during loading."""
+
+
 class StartUpFailure(unittest.TestCase):
     """Empty test case added to the test suite to indicate import failures.
 
@@ -159,6 +163,7 @@ def find_tests(options, found_suites=None):
     """
     remove_stale_bytecode(options)
     suites = {}
+    dupe_ids = set()
 
     test_accept = build_filtering_func(options.test)
     module_accept = build_filtering_func(options.module)
@@ -167,11 +172,21 @@ def find_tests(options, found_suites=None):
         found_suites = find_suites(options, accept=module_accept)
     for suite in found_suites:
         for test, layer_name in tests_from_suite(suite, options,
-                                                 accept=test_accept):
+                                                 accept=test_accept,
+                                                 duplicated_test_ids=dupe_ids):
+            if dupe_ids:
+                # If there are any duplicated test IDs, we stop trying to
+                # load tests; we'll raise an error later on with all the
+                # duplicates in it.
+                continue
             suite = suites.get(layer_name)
             if not suite:
                 suite = suites[layer_name] = unittest.TestSuite()
             suite.addTest(test)
+    if dupe_ids:
+        message_lines = ['Duplicate test IDs found:'] + sorted(dupe_ids)
+        message = '\n  '.join(message_lines)
+        raise DuplicateTestIDError(message)
     return suites
 
 
@@ -398,7 +413,8 @@ def import_name(name):
 
 def tests_from_suite(suite, options, dlevel=1,
                      dlayer=zope.testrunner.layer.UnitTests,
-                     accept=None):
+                     accept=None,
+                     seen_test_ids=None, duplicated_test_ids=None):
     """Returns a sequence of (test, layer_name)
 
     The tree of suites is recursively visited, with the most specific
@@ -410,6 +426,14 @@ def tests_from_suite(suite, options, dlevel=1,
     accept is a function, returning boolean for given test name (see also
     build_filtering_func()).
     """
+    # We use this to track the test IDs that have been registered.
+    # tests_from_suite will complain if it encounters the same test ID
+    # twice.
+    if seen_test_ids is None:
+        seen_test_ids = set()
+    if duplicated_test_ids is None:
+        duplicated_test_ids = set()
+
     level = getattr(suite, 'level', dlevel)
     layer = getattr(suite, 'layer', dlayer)
     if not isinstance(layer, six.string_types):
@@ -418,11 +442,19 @@ def tests_from_suite(suite, options, dlevel=1,
     if isinstance(suite, unittest.TestSuite):
         for possible_suite in suite:
             for r in tests_from_suite(possible_suite, options, level, layer,
-                                      accept=accept):
+                                      accept=accept,
+                                      seen_test_ids=seen_test_ids,
+                                      duplicated_test_ids=duplicated_test_ids):
                 yield r
     elif isinstance(suite, StartUpFailure):
         yield (suite, None)
     else:
+        if options.require_unique_ids:
+            suite_id = suite.id()
+            if suite_id in seen_test_ids:
+                duplicated_test_ids.add(suite_id)
+            else:
+                seen_test_ids.add(suite_id)
         if level <= options.at_level:
             if accept is None or accept(str(suite)):
                 yield (suite, layer)
