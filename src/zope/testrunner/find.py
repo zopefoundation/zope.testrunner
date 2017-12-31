@@ -450,7 +450,7 @@ def tests_from_suite(suite, options, dlevel=1,
         yield (suite, None)
     else:
         if options.require_unique_ids:
-            suite_id = suite.id()
+            suite_id = str(suite)
             if suite_id in seen_test_ids:
                 duplicated_test_ids.add(suite_id)
             else:

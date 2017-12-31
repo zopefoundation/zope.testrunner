@@ -75,5 +75,5 @@ class TestUniqueness(unittest.TestCase):
         # contains all the duplicate test IDs it found.
         with self.assertRaises(find.DuplicateTestIDError) as e:
             find.find_tests(UniquenessOptions(), [self.test_suites])
-        self.assertIn('sampletests_rst', str(e.exception))
-        self.assertIn('sampletestsl_rst', str(e.exception))
+        self.assertIn('testrunner-ex/sampletests.rst', str(e.exception))
+        self.assertIn('testrunner-ex/sampletestsl.rst', str(e.exception))
