@@ -17,11 +17,36 @@
 from __future__ import print_function
 
 import doctest
-import sys
+import io
 import pdb
+import sys
+import threading
 import traceback
 
+try:
+    import ipdb
+    _ipdb_state = threading.local()
+except ImportError:
+    ipdb = None
+
 import zope.testrunner.interfaces
+
+
+def _use_ipdb():
+    """Check whether ipdb is usable."""
+    global _ipdb_ok
+    if ipdb is None:
+        return False
+    if getattr(_ipdb_state, 'ok', None) is None:
+        _ipdb_state.ok = False
+        if hasattr(sys.stdin, 'isatty') and sys.stdin.isatty():
+            try:
+                sys.stdin.fileno()
+            except (AttributeError, io.UnsupportedOperation):
+                pass
+            else:
+                _ipdb_state.ok = True
+    return _ipdb_state.ok
 
 
 def post_mortem(exc_info):
@@ -47,7 +72,10 @@ def post_mortem(exc_info):
                 exc_info = sys.exc_info()
 
     print(''.join(traceback.format_exception_only(exc_info[0], exc_info[1])))
-    pdb.post_mortem(exc_info[2])
+    if _use_ipdb():
+        ipdb.post_mortem(exc_info[2])
+    else:
+        pdb.post_mortem(exc_info[2])
     raise zope.testrunner.interfaces.EndRun()
 
 
