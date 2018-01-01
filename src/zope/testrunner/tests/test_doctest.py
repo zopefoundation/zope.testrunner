@@ -206,7 +206,7 @@ if sys.version_info[0] >= 3:
             # that a trailing newline is missing.
             if result and not result.endswith("\n"):
                 result += "\n"
-            return result
+            return result.replace('\n', os.linesep)
 
         def truncate(self, size=None):
             self.seek(size)
