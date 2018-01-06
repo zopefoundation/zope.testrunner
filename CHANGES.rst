@@ -18,6 +18,9 @@
   ``optparse``. See `issue 61
   <https://github.com/zopefoundation/zope.testrunner/issues/61>`_.
 
+- Use ipdb instead of pdb for post-mortem debugging if available
+  (`#10 <https://github.com/zopefoundation/zope.testrunner/issues/10>`_).
+
 4.8.1 (2017-11-12)
 ==================
 
