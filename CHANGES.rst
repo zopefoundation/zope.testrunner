@@ -21,6 +21,10 @@
 - Use ipdb instead of pdb for post-mortem debugging if available
   (`#10 <https://github.com/zopefoundation/zope.testrunner/issues/10>`_).
 
+- Add a --require-unique option to check for duplicate test IDs. See
+  `LP #682771
+  <https://bugs.launchpad.net/launchpad/+bug/682771>`_.
+
 4.8.1 (2017-11-12)
 ==================
 

@@ -140,6 +140,14 @@ searching.add_argument(
     default=False,
     help="List all tests that matched your filters.  Do not run any tests.")
 
+searching.add_argument(
+    '--require-unique', action="store_true", dest='require_unique_ids',
+    default=False,
+    help="""\
+Require that all test IDs be unique and raise an error if duplicates are
+encountered.
+""")
+
 
 ######################################################################
 # Reporting
@@ -646,6 +654,15 @@ def get_options(args=None, defaults=None):
         """)
         options.fail = True
         return options
+
+    if options.module and options.require_unique_ids:
+        # We warn if --module and --require-unique are specified at the same
+        # time, though we don't exit.
+        print("""\
+        You specified a module along with --require-unique;
+        --require-unique will not try to enforce test ID uniqueness when
+        working with a specific module.
+        """)
 
     return options
 
