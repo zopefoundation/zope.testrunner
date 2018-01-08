@@ -15,10 +15,12 @@
 """
 from __future__ import print_function
 
-import subprocess
 import errno
 import gc
+import io
+import os
 import re
+import subprocess
 import sys
 import threading
 import time
@@ -592,6 +594,25 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             child.communicate()
 
 
+def _get_output_buffer(stream):
+    """Get a binary-safe version of a stream."""
+    try:
+        fileno = stream.fileno()
+    except (io.UnsupportedOperation, AttributeError):
+        pass
+    else:
+        # Win32 mangles \r\n to \n and that breaks streams.  See
+        # https://bugs.launchpad.net/bugs/505078.
+        if sys.platform == 'win32':
+            import msvcrt
+            msvcrt.setmode(fileno, os.O_BINARY)
+    try:
+        stream.write(b'')
+    except TypeError:
+        return stream.buffer
+    return stream
+
+
 class AbstractSubprocessResult(object):
     """A result of a subprocess layer run."""
 
@@ -611,8 +632,6 @@ class DeferredSubprocessResult(AbstractSubprocessResult):
     """Keeps stdout around for later processing,"""
 
     def write(self, out):
-        if not isinstance(out, str): # It's binary, which means it's Python 3
-            out = out.decode()
         if not _is_dots(out):
             self.stdout.append(out)
 
@@ -620,18 +639,17 @@ class DeferredSubprocessResult(AbstractSubprocessResult):
 class ImmediateSubprocessResult(AbstractSubprocessResult):
     """Sends complete output to queue."""
 
+    def __init__(self, layer_name, queue):
+        super(ImmediateSubprocessResult, self).__init__(layer_name, queue)
+        self.stream = _get_output_buffer(sys.stdout)
+
     def write(self, out):
-        if not isinstance(out, str):
-            # In Python 3, a Popen process stdout uses bytes,
-            # While normal stdout uses strings. So we need to convert
-            # from bytes to strings here.
-            out = out.decode()
-        sys.stdout.write(out)
+        self.stream.write(out)
         # Help keep-alive monitors (human or automated) keep up-to-date.
-        sys.stdout.flush()
+        self.stream.flush()
 
 
-_is_dots = re.compile(r'\.+(\r\n?|\n)').match # Windows sneaks in a \r\n.
+_is_dots = re.compile(br'\.+(\r\n?|\n)').match # Windows sneaks in a \r\n.
 class KeepaliveSubprocessResult(AbstractSubprocessResult):
     "Keeps stdout for later processing; sends marks to queue to show activity."
 
@@ -644,8 +662,6 @@ class KeepaliveSubprocessResult(AbstractSubprocessResult):
     done = property(lambda self: self._done, _set_done)
 
     def write(self, out):
-        if not isinstance(out, str): # It's binary, which means it's Python 3
-            out = out.decode()
         if _is_dots(out):
             self.queue.put((self.layer_name, out.strip()))
         else:
@@ -680,6 +696,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
     current_result = next(results_iter)
     last_layer_intermediate_output = None
     output = None
+    stdout = _get_output_buffer(sys.stdout)
     while ready_threads or running_threads:
         while len(running_threads) < options.processes and ready_threads:
             thread = ready_threads.pop(0)
@@ -700,18 +717,19 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
             if layer_name != last_layer_intermediate_output:
                 # Clarify what layer is reporting activity.
                 if previous_output is not None:
-                    sys.stdout.write(']\n')
-                sys.stdout.write(
-                    '[Parallel tests running in %s:\n  ' % (layer_name,))
+                    stdout.write(b']\n')
+                stdout.write(
+                    ('[Parallel tests running in '
+                     '%s:\n  ' % (layer_name,)).encode('utf-8'))
                 last_layer_intermediate_output = layer_name
-            sys.stdout.write(output)
+            stdout.write(output)
         # Display results in the order they would have been displayed, had the
         # work not been done in parallel.
         while current_result and current_result.done:
             if output is not None:
-                sys.stdout.write(']\n')
+                stdout.write(b']\n')
                 output = None
-            sys.stdout.writelines(current_result.stdout)
+            stdout.writelines(current_result.stdout)
 
             try:
                 current_result = next(results_iter)
@@ -719,7 +737,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
                 current_result = None
 
         # Help keep-alive monitors (human or automated) keep up-to-date.
-        sys.stdout.flush()
+        stdout.flush()
         time.sleep(0.01) # Keep the loop from being too tight.
 
     # Return the total number of tests run.

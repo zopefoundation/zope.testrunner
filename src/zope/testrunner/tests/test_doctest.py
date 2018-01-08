@@ -15,13 +15,13 @@
 """
 from __future__ import print_function
 
-import re
+import doctest
 import gc
 import os
+import re
 import sys
 import unittest
 
-import doctest
 from zope.testing import renormalizing
 
 
@@ -178,6 +178,43 @@ else:
 
         ])
 
+
+# On Python 3, monkey-patch doctest with our own _SpoofOut replacement.  We
+# need sys.stdout to be binary-capable so that we can pass through binary
+# output from test formatters cleanly, which is in particular required for
+# subunit.  We don't expect to be able to do actual binary comparisons in
+# doctests, but that's OK.
+# See https://github.com/zopefoundation/zope.testrunner/pull/23 for the
+# background.
+if sys.version_info[0] >= 3:
+    import io
+
+    class _SpoofOut(io.TextIOWrapper):
+        def __init__(self):
+            super(_SpoofOut, self).__init__(io.BytesIO(), encoding='utf-8')
+
+        def write(self, s):
+            super(_SpoofOut, self).write(s)
+            # Always flush immediately so that getvalue() never returns
+            # short results.
+            self.flush()
+
+        def getvalue(self):
+            result = self.buffer.getvalue().decode('utf-8', 'replace')
+            # If anything at all was written, make sure there's a trailing
+            # newline.  There's no way for the expected output to indicate
+            # that a trailing newline is missing.
+            if result and not result.endswith("\n"):
+                result += "\n"
+            # We're reading bytes, so we have to do universal newlines
+            # conversion by hand.
+            return result.replace(os.linesep, '\n')
+
+        def truncate(self, size=None):
+            self.seek(size)
+            super(_SpoofOut, self).truncate()
+
+
 def setUp(test):
     test.globs['print_function'] = print_function
     test.globs['saved-sys-info'] = (
@@ -187,6 +224,9 @@ def setUp(test):
     )
     if hasattr(gc, 'get_threshold'):
         test.globs['saved-gc-threshold'] = gc.get_threshold()
+    if sys.version_info[0] >= 3:
+        test.globs['saved-doctest-SpoofOut'] = doctest._SpoofOut
+        doctest._SpoofOut = _SpoofOut
     test.globs['this_directory'] = os.path.split(__file__)[0]
     test.globs['testrunner_script'] = sys.argv[0]
 
@@ -197,6 +237,8 @@ def tearDown(test):
         gc.set_threshold(*test.globs['saved-gc-threshold'])
     sys.modules.clear()
     sys.modules.update(test.globs['saved-sys-info'][2])
+    if sys.version_info[0] >= 3:
+        doctest._SpoofOut = test.globs['saved-doctest-SpoofOut']
 
 
 def test_suite():

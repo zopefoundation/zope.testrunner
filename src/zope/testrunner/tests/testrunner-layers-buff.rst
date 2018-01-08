@@ -14,6 +14,10 @@ which a given line was written.
     ...         self.record = []
     ...         self.wrapped = wrapped
     ...     def write(self, out):
+    ...         # Not very accurate, but it will do as long as we don't
+    ...         # actually need to be binary-clean.
+    ...         if not isinstance(out, str):
+    ...             out = out.decode('utf-8')
     ...         self.record.append((out, datetime.datetime.now()))
     ...         self.wrapped.write(out)
     ...     def writelines(self, lines):
