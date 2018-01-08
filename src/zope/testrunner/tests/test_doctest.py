@@ -206,7 +206,9 @@ if sys.version_info[0] >= 3:
             # that a trailing newline is missing.
             if result and not result.endswith("\n"):
                 result += "\n"
-            return result.replace('\n', os.linesep)
+            # We're reading bytes, so we have to do universal newlines
+            # conversion by hand.
+            return result.replace(os.linesep, '\n')
 
         def truncate(self, size=None):
             self.seek(size)
