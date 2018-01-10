@@ -142,4 +142,4 @@ test execution order, and run multiple tests in parallel.
 .. _buildout: https://buildout.readthedocs.io
 .. _virtualenv: https://virtualenv.pypa.io/
 .. _zc.recipe.testrunner: https://pypi.python.org/pypi/zc.recipe.testrunner
-.. _subunit: http://pypi.python.org/pypi/subunit
+.. _subunit: https://pypi.python.org/pypi/python-subunit
