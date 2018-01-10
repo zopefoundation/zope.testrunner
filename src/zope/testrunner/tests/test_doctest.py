@@ -375,6 +375,7 @@ def test_suite():
 
     try:
         import subunit
+        subunit
     except ImportError:
         suites.append(
             doctest.DocFileSuite(
@@ -386,6 +387,7 @@ def test_suite():
         suites.append(
             doctest.DocFileSuite(
                 'testrunner-subunit.rst',
+                'testrunner-subunit-v2.rst',
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=checker))

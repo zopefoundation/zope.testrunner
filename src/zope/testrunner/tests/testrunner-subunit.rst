@@ -719,4 +719,3 @@ Support skipped tests
 And remove the temporary directory:
 
     >>> shutil.rmtree(tmpdir)
-

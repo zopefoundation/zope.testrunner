@@ -22,13 +22,14 @@ import sys
 
 import pkg_resources
 
-from zope.testrunner.profiling import available_profilers
 from zope.testrunner.formatter import (
-    OutputFormatter,
     ColorfulOutputFormatter,
+    OutputFormatter,
     SubunitOutputFormatter,
-    )
+    SubunitV2OutputFormatter,
+)
 from zope.testrunner.formatter import terminal_has_colors
+from zope.testrunner.profiling import available_profilers
 
 def _regex_search(s):
     return re.compile(s).search
@@ -220,7 +221,13 @@ Colorize the output, but only when stdout is a terminal.
 reporting.add_argument(
     '--subunit', action="store_true", dest='subunit',
     help="""\
-Use subunit output. Will not be colorized.
+Use subunit v1 output.  Will not be colorized.
+""")
+
+reporting.add_argument(
+    '--subunit-v2', action="store_true", dest='subunit_v2',
+    help="""\
+Use subunit v2 output.  Will not be colorized.
 """)
 
 reporting.add_argument(
@@ -573,9 +580,10 @@ def get_options(args=None, defaults=None):
         options.fail = True
         return options
 
-    if options.subunit:
+    if options.subunit or options.subunit_v2:
         try:
             import subunit
+            subunit
         except ImportError:
             print("""\
         Subunit is not installed. Please install Subunit
@@ -583,8 +591,18 @@ def get_options(args=None, defaults=None):
         """)
             options.fail = True
             return options
-        else:
-            options.output = SubunitOutputFormatter(options)
+
+    if options.subunit and options.subunit_v2:
+        print("""\
+        You may only use one of --subunit and --subunit-v2.
+        """)
+        options.fail = True
+        return options
+
+    if options.subunit:
+        options.output = SubunitOutputFormatter(options)
+    elif options.subunit_v2:
+        options.output = SubunitV2OutputFormatter(options)
     elif options.color:
         options.output = ColorfulOutputFormatter(options)
         options.output.slow_test_threshold = options.slow_test_threshold

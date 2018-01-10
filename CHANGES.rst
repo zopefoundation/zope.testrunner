@@ -25,6 +25,9 @@
   `LP #682771
   <https://bugs.launchpad.net/launchpad/+bug/682771>`_.
 
+- Reintroduce optional support for ``subunit``, now with support for both
+  version 1 and version 2 of its protocol.
+
 4.8.1 (2017-11-12)
 ==================
 
