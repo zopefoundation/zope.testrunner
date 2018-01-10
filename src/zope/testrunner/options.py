@@ -22,10 +22,13 @@ import sys
 
 import pkg_resources
 
-from zope.testrunner.formatter import ColorfulOutputFormatter
-from zope.testrunner.formatter import OutputFormatter
-from zope.testrunner.formatter import terminal_has_colors
 from zope.testrunner.profiling import available_profilers
+from zope.testrunner.formatter import (
+    OutputFormatter,
+    ColorfulOutputFormatter,
+    SubunitOutputFormatter,
+    )
+from zope.testrunner.formatter import terminal_has_colors
 
 def _regex_search(s):
     return re.compile(s).search
@@ -212,6 +215,12 @@ reporting.add_argument(
     '--auto-color', action="store_const", const=None,
     help="""\
 Colorize the output, but only when stdout is a terminal.
+""")
+
+reporting.add_argument(
+    '--subunit', action="store_true", dest='subunit',
+    help="""\
+Use subunit output. Will not be colorized.
 """)
 
 reporting.add_argument(
@@ -564,7 +573,19 @@ def get_options(args=None, defaults=None):
         options.fail = True
         return options
 
-    if options.color:
+    if options.subunit:
+        try:
+            import subunit
+        except ImportError:
+            print("""\
+        Subunit is not installed. Please install Subunit
+        to generate subunit output.
+        """)
+            options.fail = True
+            return options
+        else:
+            options.output = SubunitOutputFormatter(options)
+    elif options.color:
         options.output = ColorfulOutputFormatter(options)
         options.output.slow_test_threshold = options.slow_test_threshold
     else:

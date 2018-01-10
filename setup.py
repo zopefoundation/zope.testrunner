@@ -40,6 +40,7 @@ EXTRAS_REQUIRE = {
         'Sphinx',
         'sphinxcontrib-programoutput',
     ],
+    'subunit': TESTS_REQUIRE + ['python-subunit'],
 }
 
 
