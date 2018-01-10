@@ -14,7 +14,7 @@ install:
     - pip install -U pip setuptools
     - pip install -U coverage coveralls
     - pip install -U -e .[test]
-    - [ "$SUBUNIT" != true ] || pip install -U -e .[subunit]
+    - test "$SUBUNIT" != true || pip install -U -e .[subunit]
 script:
     - COVERAGE_PROCESS_START=`pwd`/.coveragerc coverage run setup.py -q test -q
 after_success:
