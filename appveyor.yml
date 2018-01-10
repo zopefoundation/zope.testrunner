@@ -13,6 +13,14 @@ environment:
     - python: 36-x64
     - { python: 27, SUBUNIT: 1 }
     - { python: 27-x64, SUBUNIT: 1 }
+    - { python: 33, SUBUNIT: 1 }
+    - { python: 33-x64, SUBUNIT: 1 }
+    - { python: 34, SUBUNIT: 1 }
+    - { python: 34-x64, SUBUNIT: 1 }
+    - { python: 35, SUBUNIT: 1 }
+    - { python: 35-x64, SUBUNIT: 1 }
+    - { python: 36, SUBUNIT: 1 }
+    - { python: 36-x64, SUBUNIT: 1 }
 
 install:
   - "SET PATH=C:\\Python%PYTHON%;c:\\Python%PYTHON%\\scripts;%PATH%"
@@ -20,7 +28,7 @@ install:
   - pip install -U setuptools
   # NB: pip install -e .[test] fails for obscure namespace package reasons
   - pip install -U .[test]
-  - ps: if($env:SUBUNIT -eq 1) { pip install python-subunit }
+  - ps: if($env:SUBUNIT -eq 1) { pip install -U .[subunit] }
 
 build: false
 
