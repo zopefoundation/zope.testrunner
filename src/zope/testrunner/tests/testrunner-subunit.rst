@@ -299,8 +299,7 @@ Layers that can't be torn down
 ------------------------------
 
 A layer can have a tearDown method that raises NotImplementedError. If this is
-the case and there are no remaining tests to run, the subunit stream will say
-that the layer skipped its tearDown.
+the case, the subunit stream will say that the layer skipped its tearDown.
 
     >>> defaults = [
     ...     '--subunit',
