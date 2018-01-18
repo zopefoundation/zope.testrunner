@@ -64,19 +64,22 @@ For easier doctesting, we use a helper that summarizes the output.
 
     >>> def subunit_summarize(func, *args, **kwargs):
     ...     orig_stdout = sys.stdout
-    ...     if sys.version_info[0] >= 3:
-    ...         import io
-    ...         sys.stdout = io.TextIOWrapper(io.BytesIO(), encoding='utf-8')
-    ...     else:
-    ...         import StringIO
-    ...         sys.stdout = StringIO.StringIO()
-    ...     ret = func(*args, **kwargs)
-    ...     sys.stdout.flush()
-    ...     buf = sys.stdout
-    ...     if sys.version_info[0] >= 3:
-    ...         buf = buf.detach()
-    ...     buf.seek(0)
-    ...     sys.stdout = orig_stdout
+    ...     try:
+    ...         if sys.version_info[0] >= 3:
+    ...             import io
+    ...             sys.stdout = io.TextIOWrapper(
+    ...                 io.BytesIO(), encoding='utf-8')
+    ...         else:
+    ...             import StringIO
+    ...             sys.stdout = StringIO.StringIO()
+    ...         ret = func(*args, **kwargs)
+    ...         sys.stdout.flush()
+    ...         buf = sys.stdout
+    ...         if sys.version_info[0] >= 3:
+    ...             buf = buf.detach()
+    ...         buf.seek(0)
+    ...     finally:
+    ...         sys.stdout = orig_stdout
     ...     case = ByteStreamToStreamResult(buf, non_subunit_name='stdout')
     ...     case.run(SummarizeResult(sys.stdout))
     ...     return ret
