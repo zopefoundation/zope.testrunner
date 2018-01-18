@@ -12,22 +12,13 @@ or directly:
 
     $ pip install python-subunit
 
-First we need to make a temporary copy of the entire testing directory:
+First we set up some defaults:
 
-    >>> import os.path, sys, tempfile, shutil
-    >>> tmpdir = tempfile.mkdtemp(prefix='zope.testrunner-test-')
-    >>> directory_with_tests = os.path.join(tmpdir, 'testrunner-ex')
-    >>> source = os.path.join(this_directory, 'testrunner-ex')
-    >>> n = len(source) + 1
-    >>> for root, dirs, files in os.walk(source):
-    ...     dirs[:] = [d for d in dirs if d != ".svn"] # prune cruft
-    ...     os.mkdir(os.path.join(directory_with_tests, root[n:]))
-    ...     for f in files:
-    ...         _ = shutil.copy(os.path.join(root, f),
-    ...                         os.path.join(directory_with_tests, root[n:], f))
+    >>> import os.path, sys
 
     >>> defaults = [
-    ...     '--path', directory_with_tests,
+    ...     '--subunit',
+    ...     '--path', os.path.join(this_directory, 'testrunner-ex'),
     ...     '--tests-pattern', '^sampletestsf?$',
     ...     ]
 
@@ -48,7 +39,7 @@ to include error information if necessary.
 Once the layer is set up, all future tests are tagged with
 'zope:layer:LAYER_NAME'.
 
-    >>> sys.argv = 'test --layer 122 --subunit -t TestNotMuch'.split()
+    >>> sys.argv = 'test --layer 122 -t TestNotMuch'.split()
     >>> testrunner.run_internal(defaults)
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: samplelayers.Layer1:setUp
@@ -126,8 +117,7 @@ tear down, because it simply doesn't happen.
 We also don't include the dependent layers in the stream (in this case Layer1
 and Layer12), since they are not provided to the reporter.
 
-    >>> sys.argv = (
-    ...     'test --layer 122 --list-tests --subunit -t TestNotMuch').split()
+    >>> sys.argv = 'test --layer 122 --list-tests -t TestNotMuch'.split()
     >>> testrunner.run_internal(defaults)
     tags: zope:layer:samplelayers.Layer122
     test: sample1.sampletests.test122.TestNotMuch.test_1
@@ -157,7 +147,7 @@ good to be able to profile a test run.
     >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-test-')
 
     >>> sys.argv = [
-    ...     'test', '--layer=122', '--profile=cProfile', '--subunit',
+    ...     'test', '--layer=122', '--profile=cProfile',
     ...     '--profile-directory', tempdir,
     ...     '-t', 'TestNotMuch']
     >>> testrunner.run_internal(defaults)
@@ -187,9 +177,7 @@ Errors
 
 Errors are recorded in the subunit stream as MIME-encoded chunks of text.
 
-    >>> sys.argv = [
-    ...     'test', '--subunit' , '--tests-pattern', '^sampletests_e$',
-    ...     ]
+    >>> sys.argv = ['test', '--tests-pattern', '^sampletests_e$']
     >>> testrunner.run_internal(defaults)
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: zope.testrunner.layer.UnitTests:setUp
@@ -301,12 +289,6 @@ Layers that can't be torn down
 A layer can have a tearDown method that raises NotImplementedError. If this is
 the case, the subunit stream will say that the layer skipped its tearDown.
 
-    >>> defaults = [
-    ...     '--subunit',
-    ...     '--path', directory_with_tests,
-    ...     '--tests-pattern', '^sampletestsf?$',
-    ...     ]
-
     >>> sys.argv = 'test -ssample2 --tests-pattern sampletests_ntd$'.split()
     >>> testrunner.run_internal(defaults)
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -338,25 +320,17 @@ name of the test is the module that could not be imported, the test's result
 is an error containing the traceback. These "tests" are tagged with
 zope:import_error.
 
-Let's create a module with some bad syntax:
+Let's run tests including a module with some bad syntax:
 
-    >>> badsyntax_path = os.path.join(directory_with_tests,
-    ...                               "sample2", "sampletests_i.py")
-    >>> f = open(badsyntax_path, "w")
-    >>> print("importx unittest", file=f)  # syntax error
-    >>> f.close()
-
-And then run the tests:
-
-    >>> sys.argv = (
-    ...     'test --subunit --tests-pattern ^sampletests(f|_i)?$ --layer 1 '
-    ...     ).split()
+    >>> sys.argv = [
+    ...     'test', '--tests-pattern', '^(badsyntax|sampletests(f|_i)?)$',
+    ...     '--layer', '1']
     >>> testrunner.run_internal(defaults)
-    test: sample2.sampletests_i
+    test: sample2.badsyntax
     tags: zope:import_error
-    error: sample2.sampletests_i [
+    error: sample2.badsyntax [
     Traceback (most recent call last):
-      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sampletests_i.py", line 1
+      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/badsyntax.py", line 16
         importx unittest
                        ^
     SyntaxError: invalid syntax
@@ -384,12 +358,6 @@ And then run the tests:
     tags: zope:layer
     ...
     True
-
-Of course, because we care deeply about test isolation, we're going to have to
-delete the module with bad syntax now, lest it contaminate other tests or even
-future test runs.
-
-    >>> os.unlink(badsyntax_path)
 
 
 Tests in subprocesses
@@ -713,8 +681,3 @@ Support skipped tests
     time: ...
     successful: zope.testrunner.layer.UnitTests:tearDown
     False
-
-
-And remove the temporary directory:
-
-    >>> shutil.rmtree(tmpdir)
