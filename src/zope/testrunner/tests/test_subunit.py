@@ -74,7 +74,7 @@ else:
             # '\xef\xbf\xbd'.decode('utf-8') = unichr(0xFFFD)
 
     class TestSubunitTracebackPrinting(
-            unittest.TestCase, TestSubunitTracebackPrintingMixin):
+            TestSubunitTracebackPrintingMixin, unittest.TestCase):
 
         def setUp(self):
             class FormatterOptions:
@@ -86,7 +86,7 @@ else:
                 options, stream=self.output)
 
     class TestSubunitV2TracebackPrinting(
-            unittest.TestCase, TestSubunitTracebackPrintingMixin):
+            TestSubunitTracebackPrintingMixin, unittest.TestCase):
 
         def setUp(self):
             class FormatterOptions:
@@ -98,7 +98,4 @@ else:
                 options, stream=self.output)
 
     def test_suite():
-        return unittest.TestSuite((
-            unittest.makeSuite(TestSubunitTracebackPrinting),
-            unittest.makeSuite(TestSubunitV2TracebackPrinting),
-        ))
+        return unittest.defaultTestLoader.loadTestsFromName(__name__)
