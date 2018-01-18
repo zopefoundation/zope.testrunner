@@ -1236,7 +1236,7 @@ class SubunitV2OutputFormatter(SubunitOutputFormatter):
         # XXX: Mostly used for user errors, sometimes used for errors in the
         # test framework, sometimes used to record layer setUp failure (!!!).
         self._subunit.status(
-            file_name='error', file_bytes=str(message).encode('utf-8'),
+            file_name='error', file_bytes=unicode(message).encode('utf-8'),
             eof=True, mime_type=repr(self.PLAIN_TEXT))
 
     def _emit_exists(self, test):
