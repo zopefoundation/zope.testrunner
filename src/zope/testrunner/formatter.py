@@ -1038,7 +1038,7 @@ class SubunitOutputFormatter(object):
         self._subunit.startTest(test)
         self._subunit.tags([self.TAG_THREADS], [])
         self._subunit.addError(
-            test, details={'garbage': text_content(unicode(new_threads))})
+            test, details={'threads': text_content(unicode(new_threads))})
         self._subunit.stopTest(test)
 
     def refcounts(self, rc, prev):
