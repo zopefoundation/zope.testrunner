@@ -15,7 +15,7 @@ or directly:
 First we need to make a temporary copy of the entire testing directory:
 
     >>> import os.path, sys, tempfile, shutil
-    >>> tmpdir = tempfile.mkdtemp()
+    >>> tmpdir = tempfile.mkdtemp(prefix='zope.testrunner-test-')
     >>> directory_with_tests = os.path.join(tmpdir, 'testrunner-ex')
     >>> source = os.path.join(this_directory, 'testrunner-ex')
     >>> n = len(source) + 1
@@ -154,7 +154,7 @@ themselves is often a critical part of the development process. Thus, it's
 good to be able to profile a test run.
 
     >>> import tempfile
-    >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-')
+    >>> tempdir = tempfile.mkdtemp(prefix='zope.testrunner-test-')
 
     >>> sys.argv = [
     ...     'test', '--layer=122', '--profile=cProfile', '--subunit',

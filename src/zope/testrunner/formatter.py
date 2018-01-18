@@ -924,7 +924,7 @@ class SubunitOutputFormatter(object):
 
     def profiler_stats(self, stats):
         """Report profiler stats."""
-        fd, filename = tempfile.mkstemp()
+        fd, filename = tempfile.mkstemp(prefix='zope.testrunner-')
         os.close(fd)
         try:
             stats.dump_stats(filename)
