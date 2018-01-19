@@ -674,7 +674,8 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
     stdout_queue = None
     if options.processes == 1:
         result_factory = ImmediateSubprocessResult
-    elif options.verbose > 1:
+    elif (options.verbose > 1 and
+            not options.subunit and not options.subunit_v2):
         result_factory = KeepaliveSubprocessResult
         stdout_queue = Queue.Queue()
     else:

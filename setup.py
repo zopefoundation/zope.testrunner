@@ -36,6 +36,10 @@ TESTS_REQUIRE = [
 
 EXTRAS_REQUIRE = {
     'test': TESTS_REQUIRE,
+    'subunit': [
+        'python-subunit >= 0.0.11',
+        'testtools >= 0.9.30',
+    ],
     'docs': [
         'Sphinx',
         'sphinxcontrib-programoutput',

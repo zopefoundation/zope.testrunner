@@ -7,10 +7,14 @@ python:
   - 3.6
   - pypy
   - pypy3
+env:
+  - SUBUNIT=true
+  - SUBUNIT=false
 install:
     - pip install -U pip setuptools
     - pip install -U coverage coveralls
     - pip install -U -e .[test]
+    - test "$SUBUNIT" != true || pip install -U -e .[subunit]
 script:
     - COVERAGE_PROCESS_START=`pwd`/.coveragerc coverage run setup.py -q test -q
 after_success:

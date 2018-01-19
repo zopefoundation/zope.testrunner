@@ -373,6 +373,32 @@ def test_suite():
             )
         )
 
+    try:
+        import subunit
+        subunit
+    except ImportError:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-subunit-err.rst',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker))
+    else:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-subunit.rst',
+                'testrunner-subunit-v2.rst',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker))
+        if hasattr(sys, 'gettotalrefcount'):
+            suites.append(
+                doctest.DocFileSuite(
+                    'testrunner-subunit-leaks.rst',
+                    setUp=setUp, tearDown=tearDown,
+                    optionflags=optionflags,
+                    checker=checker))
+
     suites.append(doctest.DocFileSuite(
         'testrunner-unexpected-success.rst',
         setUp=setUp, tearDown=tearDown,
