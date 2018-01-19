@@ -5,7 +5,8 @@
 5.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Recover more gracefully when layer setUp or tearDown fails, producing
+  useful subunit output.
 
 
 5.0 (2019-03-19)

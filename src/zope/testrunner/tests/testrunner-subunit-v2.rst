@@ -291,8 +291,8 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
     True
 
 
-Layers that can't be torn down
-------------------------------
+Layer failures
+--------------
 
 A layer can have a tearDown method that raises NotImplementedError. If this is
 the case, the subunit stream will say that the layer skipped its tearDown.
@@ -312,6 +312,30 @@ the case, the subunit stream will say that the layer skipped its tearDown.
     id=sample2.sampletests_ntd.Layer:tearDown status=skip tags=(zope:layer)
       !runnable
     False
+
+If a layer's setUp or tearDown method fails in some other way, this is shown
+in the subunit stream.
+
+    >>> sys.argv = 'test --tests-pattern ^brokenlayer$'.split()
+    >>> subunit_summarize(testrunner.run_internal, defaults)
+    id=brokenlayer.BrokenSetUpLayer:setUp status=inprogress !runnable
+    id=brokenlayer.BrokenSetUpLayer:setUp
+    traceback (text/x-traceback...)
+    Traceback (most recent call last):
+    ...
+    ValueError: No value is good enough for me!
+    <BLANKLINE>
+    id=brokenlayer.BrokenSetUpLayer:setUp status=fail tags=(zope:layer)
+    ...
+    id=brokenlayer.BrokenTearDownLayer:tearDown status=inprogress !runnable
+    id=brokenlayer.BrokenTearDownLayer:tearDown
+    traceback (text/x-traceback...)
+    Traceback (most recent call last):
+    ...
+    TypeError: You are not my type.  No-one is my type!
+    <BLANKLINE>
+    id=brokenlayer.BrokenTearDownLayer:tearDown status=fail tags=(zope:layer)
+    True
 
 
 Module import errors
