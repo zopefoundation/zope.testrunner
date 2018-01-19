@@ -82,7 +82,7 @@ Basic output
 There is an 'inprogress' status event for the start of each test and a
 'success' status event for each successful test.
 
-Zope layer set up and tear down events are represented as tests tagged with
+Zope layer setup and teardown events are represented as tests tagged with
 'zope:layer'. This allows them to be distinguished from actual tests, provides
 a place for the layer timing information in the subunit stream and allows us
 to include error information if necessary.
