@@ -453,8 +453,12 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         raise
     except Exception:
         f = StringIO()
-        traceback.print_exc(file=f)
-        output.error(f.getvalue())
+        try:
+            traceback.print_exc(file=f)
+            output.error(f.getvalue())
+        except Exception:
+            output.error(
+                '*** An exception occurred, but could not be formatted ***')
         errors.append((SetUpLayerFailure(layer), sys.exc_info()))
         return 0
     else:
