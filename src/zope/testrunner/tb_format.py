@@ -54,6 +54,8 @@ def format_exception(t, v, tb, limit=None, chain=None):
     fmt = zope.exceptions.exceptionformatter.TextExceptionFormatter(
         limit=None, with_filenames=True)
     for v, tb in values:
+        if isinstance(v, str):
+            return v
         return fmt.formatException(t, v, tb)
 
 
