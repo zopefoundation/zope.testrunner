@@ -12,6 +12,11 @@ include:
         - python: "3.7"
           dist: xenial
           sudo: true
+          env: SUBUNIT=true
+        - python: "3.7"
+          dist: xenial
+          sudo: true
+          env: SUBUNIT=false
 env:
   - SUBUNIT=true
   - SUBUNIT=false
