@@ -28,6 +28,8 @@
 - Reintroduce optional support for ``subunit``, now with support for both
   version 1 and version 2 of its protocol.
 
+- Added support for Python 3.7.
+
 4.8.1 (2017-11-12)
 ==================
 

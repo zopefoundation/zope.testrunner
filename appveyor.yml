@@ -9,6 +9,8 @@ environment:
     - python: 35-x64
     - python: 36
     - python: 36-x64
+    - python: 37
+    - python: 37-x64
     - { python: 27, SUBUNIT: 1 }
     - { python: 27-x64, SUBUNIT: 1 }
     - { python: 34, SUBUNIT: 1 }
