@@ -7,6 +7,11 @@ python:
   - 3.6
   - pypy
   - pypy3
+include:
+    matrix:
+        - python: "3.7"
+          dist: xenial
+          sudo: true
 env:
   - SUBUNIT=true
   - SUBUNIT=false
