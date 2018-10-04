@@ -7,6 +7,8 @@
 
 - Drop support for Python 3.3.
 
+- Add support for Python 3.7.
+
 - Enable test coverage reporting on coveralls.io and in tox.ini.
 
 - Host documentation at https://zopetestrunner.readthedocs.io
@@ -27,8 +29,6 @@
 
 - Reintroduce optional support for ``subunit``, now with support for both
   version 1 and version 2 of its protocol.
-
-- Added support for Python 3.7.
 
 4.8.1 (2017-11-12)
 ==================
