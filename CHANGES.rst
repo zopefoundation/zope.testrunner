@@ -30,6 +30,10 @@
 - Reintroduce optional support for ``subunit``, now with support for both
   version 1 and version 2 of its protocol.
 
+- Handle string in exception values when formatting chained exceptions.
+  (`#74 <https://github.com/zopefoundation/zope.testrunner/pull/74>`_)
+
+
 4.8.1 (2017-11-12)
 ==================
 
