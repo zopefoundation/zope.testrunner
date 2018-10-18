@@ -135,7 +135,7 @@ setup(
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
-        "Framework :: Zope3",
+        "Framework :: Zope :: 3",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
