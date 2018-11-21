@@ -705,7 +705,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
             running_threads.append(thread)
 
         for index, thread in reversed(list(enumerate(running_threads))):
-            if not thread.isAlive():
+            if not thread.is_alive():
                 del running_threads[index]
 
         # Clear out any messages in queue
@@ -927,7 +927,7 @@ class TestResult(unittest.TestResult):
         # Did the test leave any new threads behind?
         new_threads = []
         for t in threading.enumerate():
-            if t.isAlive() and t not in self._threads:
+            if t.is_alive() and t not in self._threads:
                 if not any([re.match(p, t.name)
                             for p in self.options.ignore_new_threads]):
                     new_threads.append(t)
