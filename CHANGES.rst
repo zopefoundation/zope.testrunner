@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-4.9.1 (unreleased)
+4.9.1 (2018-11-21)
 ==================
 
 - Fix AssertionError in _DummyThread.isAlive on Python 3 (`#81
