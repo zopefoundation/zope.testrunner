@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-4.9.2 (unreleased)
+4.9.2 (2018-11-24)
 ==================
 
 - Fix ``TypeError: a bytes-like object is required, not 'str'``
