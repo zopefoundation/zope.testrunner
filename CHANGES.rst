@@ -5,7 +5,9 @@
 4.9.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix ``TypeError: a bytes-like object is required, not 'str'``
+  running tests in parallel on Python 3. See `issue 80
+  <https://github.com/zopefoundation/zope.testrunner/issues/80>`_.
 
 
 4.9.1 (2018-11-21)

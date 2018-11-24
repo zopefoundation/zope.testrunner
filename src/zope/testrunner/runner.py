@@ -697,6 +697,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
     current_result = next(results_iter)
     last_layer_intermediate_output = None
     output = None
+    # Get an object that (only) accepts bytes
     stdout = _get_output_buffer(sys.stdout)
     while ready_threads or running_threads:
         while len(running_threads) < options.processes and ready_threads:
@@ -723,6 +724,8 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
                     ('[Parallel tests running in '
                      '%s:\n  ' % (layer_name,)).encode('utf-8'))
                 last_layer_intermediate_output = layer_name
+            if not isinstance(output, bytes):
+                output = output.encode('utf-8')
             stdout.write(output)
         # Display results in the order they would have been displayed, had the
         # work not been done in parallel.

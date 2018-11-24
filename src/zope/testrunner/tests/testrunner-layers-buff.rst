@@ -9,15 +9,32 @@ First, we wrap stdout with an object that instruments it. It notes the time at
 which a given line was written.
 
     >>> import os, sys, datetime
-    >>> class RecordingStreamWrapper:
+    >>> class RecordingStreamWrapper(object):
     ...     def __init__(self, wrapped):
     ...         self.record = []
     ...         self.wrapped = wrapped
+    ...     @property
+    ...     def buffer(self):
+    ...         # runner._get_output_buffer attempts to write b''
+    ...         # to us, and when that fails (see write()), accesses our .buffer directly.
+    ...         # That object deals in bytes.
+    ...         wrapper = self
+    ...         class buffer(object):
+    ...             def write(self, data):
+    ...                  assert isinstance(data, bytes)
+    ...                  wrapper.write(data.decode('utf-8'))
+    ...             def writelines(self, lines):
+    ...                  for line in lines:
+    ...                      self.write(line)
+    ...             def flush(self):
+    ...                  wrapper.flush()
+    ...         return buffer()
     ...     def write(self, out):
-    ...         # Not very accurate, but it will do as long as we don't
-    ...         # actually need to be binary-clean.
+    ...         # sys.stdout deals with native strings;
+    ...         # and raises TypeError for other things. We must do
+    ...         # the same.
     ...         if not isinstance(out, str):
-    ...             out = out.decode('utf-8')
+    ...              raise TypeError
     ...         self.record.append((out, datetime.datetime.now()))
     ...         self.wrapped.write(out)
     ...     def writelines(self, lines):
@@ -80,7 +97,7 @@ more than a second after the second suite ran.
     ...         if time-last_time >= pause:
     ...             # We paused!
     ...             print('PAUSE FOUND BETWEEN THESE LINES:')
-    ...             print(''.join([last_line, line, '-'*70]))
+    ...             print(''.join([last_line, line, '-' * 70]))
     ...         last_line, last_time = line, time
 
     >>> assert_progressive_output() # doctest: +ELLIPSIS
