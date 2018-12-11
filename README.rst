@@ -3,7 +3,7 @@
 =================
 
 .. image:: https://img.shields.io/pypi/v/zope.testrunner.svg
-        :target: https://pypi.python.org/pypi/zope.testrunner/
+        :target: https://pypi.org/project/zope.testrunner/
         :alt: Latest release
 
 .. image:: https://img.shields.io/pypi/pyversions/zope.testrunner.svg
