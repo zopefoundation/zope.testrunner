@@ -21,7 +21,7 @@ test file, let's wrap sys.stdout in a simple terminal interpreter
 
     >>> import re
     >>> class Terminal(object):
-    ...     _color_regexp = re.compile('\033[[]([0-9;]*)m')
+    ...     _color_regexp = re.compile('\033\\[([0-9;]*)m')
     ...     _colors = {'0': 'normal', '1': 'bold', '30': 'black', '31': 'red',
     ...                '32': 'green', '33': 'yellow', '34': 'blue',
     ...                '35': 'magenta', '36': 'cyan', '37': 'grey'}
