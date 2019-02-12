@@ -65,8 +65,8 @@ Post-mortem debugging also works when the test suite is invalid:
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS +REPORT_NDIFF
     TypeError: Invalid test_suite, None, in tests2
-    > ...find.py(217)find_suites()
-    -> % (suite, module_name)
+    > ...find.py(243)find_suites()
+    -> raise TypeError(bad_test_suite_msg)
     (Pdb) c
     EndRun raised
 
