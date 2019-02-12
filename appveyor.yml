@@ -28,7 +28,7 @@ install:
   - python -m pip install -U setuptools pip
   # NB: pip install -e .[test] fails for obscure namespace package reasons
   - pip install -U .[test]
-  - ps: if($env:SUBUNIT -eq 1) { pip install -U .[subunit] }
+  - if %SUBUNIT%==1 pip install -U .[subunit]
 
 build: false
 
