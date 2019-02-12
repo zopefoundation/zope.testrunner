@@ -1,5 +1,7 @@
 environment:
 
+  SUBUNIT: 0
+
   matrix:
     - python: 27
     - python: 27-x64
