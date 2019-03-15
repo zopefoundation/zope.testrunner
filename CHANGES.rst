@@ -8,6 +8,7 @@
 - Fix test failures and deprecation warnings occurring when using Python 3.8a1.
   (`#89 <https://github.com/zopefoundation/zope.testrunner/pull/89>`_)
 
+- Drop support for Python 3.4.
 
 4.9.2 (2018-11-24)
 ==================
