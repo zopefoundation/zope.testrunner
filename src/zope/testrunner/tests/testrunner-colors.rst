@@ -21,7 +21,7 @@ test file, let's wrap sys.stdout in a simple terminal interpreter
 
     >>> import re
     >>> class Terminal(object):
-    ...     _color_regexp = re.compile('\033[[]([0-9;]*)m')
+    ...     _color_regexp = re.compile('\033\\[([0-9;]*)m')
     ...     _colors = {'0': 'normal', '1': 'bold', '30': 'black', '31': 'red',
     ...                '32': 'green', '33': 'yellow', '34': 'blue',
     ...                '35': 'magenta', '36': 'cyan', '37': 'grey'}
@@ -89,7 +89,7 @@ A failed test run highlights the failures in red:
     Exception raised:
     {red}    Traceback (most recent call last):{normal}
     {red}      File ".../doctest.py", line 1356, in __run{normal}
-    {red}        compileflags, 1)...{normal}
+    {red}        ...{normal}
     {red}      File "<doctest sample2.sampletests_e.eek[0]>", line 1, in ?{normal}
     {red}        f(){normal}
     {red}      File "testrunner-ex/sample2/sampletests_e.py", line 19, in f{normal}
@@ -127,7 +127,7 @@ A failed test run highlights the failures in red:
     Exception raised:
     {red}    Traceback (most recent call last):{normal}
     {red}      File ".../doctest.py", line 1356, in __run{normal}
-    {red}        compileflags, 1)...{normal}
+    {red}        ...{normal}
     {red}      File "<doctest e.rst[1]>", line 1, in ?{normal}
     {red}        f(){normal}
     {red}      File "<doctest e.rst[0]>", line 2, in f{normal}

@@ -230,10 +230,17 @@ def find_suites(options, accept=None):
                         if isinstance(suite, unittest.TestSuite):
                             check_suite(suite, module_name)
                         else:
-                            raise TypeError(
+                            # We extract the error message expression into a
+                            # local variable because we want the `raise`
+                            # statement to fit on a single line, to make the
+                            # testrunner-debugging-import-failure.rst doctest
+                            # see the same pdb output on Python 3.8 as on older
+                            # Python versions.
+                            bad_test_suite_msg = (
                                 "Invalid test_suite, %r, in %s"
                                 % (suite, module_name)
-                                )
+                            )
+                            raise TypeError(bad_test_suite_msg)
                     except KeyboardInterrupt:
                         raise
                     except:
