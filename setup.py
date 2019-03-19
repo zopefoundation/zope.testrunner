@@ -158,6 +158,7 @@ setup(
         "Topic :: Software Development :: Testing",
     ],
     namespace_packages=['zope'],
+    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
     install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
     extras_require=EXTRAS_REQUIRE,
