@@ -109,9 +109,11 @@ class custom_test(test):
             sys.stderr.flush()
         sys.exit(rc)
 
+
 def read(*names):
     with open(os.path.join(*names)) as f:
         return f.read()
+
 
 long_description = (
     read('README.rst')
@@ -130,7 +132,11 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
-    packages=["zope", "zope.testrunner", "zope.testrunner.tests.testrunner-ex"],
+    packages=[
+        "zope",
+        "zope.testrunner",
+        "zope.testrunner.tests.testrunner-ex",
+    ],
     package_dir={'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -151,15 +157,15 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
     ],
-    namespace_packages=['zope',],
+    namespace_packages=['zope'],
     install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
     extras_require=EXTRAS_REQUIRE,
     entry_points={
         'console_scripts':
-            ['zope-testrunner = zope.testrunner:run',],
+            ['zope-testrunner = zope.testrunner:run'],
         'distutils.commands': [
-            'ftest = zope.testrunner.eggsupport:ftest',],
+            'ftest = zope.testrunner.eggsupport:ftest'],
     },
     include_package_data=True,
     zip_safe=False,
