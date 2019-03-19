@@ -2,8 +2,8 @@
  zope.testrunner Changelog
 ===========================
 
-4.9.3 (unreleased)
-==================
+5.0 (unreleased)
+================
 
 - Fix test failures and deprecation warnings occurring when using Python 3.8a1.
   (`#89 <https://github.com/zopefoundation/zope.testrunner/pull/89>`_)
