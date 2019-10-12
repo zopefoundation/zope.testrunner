@@ -283,8 +283,8 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     True
 
 
-Layer failures
---------------
+Layers that can't be torn down
+------------------------------
 
 A layer can have a tearDown method that raises NotImplementedError. If this is
 the case, the subunit stream will say that the layer skipped its tearDown.
@@ -310,6 +310,10 @@ the case, the subunit stream will say that the layer skipped its tearDown.
     tearDown not supported
     ]
     False
+
+
+Layer failures
+--------------
 
 If a layer's setUp or tearDown method fails in some other way, this is shown
 in the subunit stream.

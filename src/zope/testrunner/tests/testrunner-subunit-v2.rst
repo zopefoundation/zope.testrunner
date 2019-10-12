@@ -291,8 +291,8 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
     True
 
 
-Layer failures
---------------
+Layers that can't be torn down
+------------------------------
 
 A layer can have a tearDown method that raises NotImplementedError. If this is
 the case, the subunit stream will say that the layer skipped its tearDown.
@@ -312,6 +312,10 @@ the case, the subunit stream will say that the layer skipped its tearDown.
     id=sample2.sampletests_ntd.Layer:tearDown status=skip tags=(zope:layer)
       !runnable
     False
+
+
+Layer failures
+--------------
 
 If a layer's setUp or tearDown method fails in some other way, this is shown
 in the subunit stream.
