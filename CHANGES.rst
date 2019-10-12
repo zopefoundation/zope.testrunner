@@ -8,6 +8,9 @@
 - Recover more gracefully when layer setUp or tearDown fails, producing
   useful subunit output.
 
+- Prevent a spurious warning from the ``--require-unique`` option if the
+  ``--module`` option was not used.
+
 
 5.0 (2019-03-19)
 ================

@@ -628,6 +628,7 @@ def get_options(args=None, defaults=None):
 
     options.ignore_dir = set(options.ignore_dir)
     options.test = options.test or ['.']
+    module_set = bool(options.module)
     options.module = options.module or ['.']
 
     options.path = options.path or []
@@ -694,7 +695,7 @@ def get_options(args=None, defaults=None):
         options.fail = True
         return options
 
-    if options.module and options.require_unique_ids:
+    if module_set and options.require_unique_ids:
         # We warn if --module and --require-unique are specified at the same
         # time, though we don't exit.
         print("""\
