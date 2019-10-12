@@ -312,6 +312,33 @@ the case, the subunit stream will say that the layer skipped its tearDown.
     False
 
 
+Layer failures
+--------------
+
+If a layer's setUp or tearDown method fails in some other way, this is shown
+in the subunit stream.
+
+    >>> sys.argv = 'test --tests-pattern ^brokenlayer$'.split()
+    >>> testrunner.run_internal(defaults)
+    time: ...
+    test: brokenlayer.BrokenSetUpLayer:setUp
+    tags: zope:layer
+    failure: brokenlayer.BrokenSetUpLayer:setUp [
+    Traceback (most recent call last):
+    ...
+    ValueError: No value is good enough for me!
+    ]
+    time: ...
+    test: brokenlayer.BrokenTearDownLayer:tearDown
+    tags: zope:layer
+    failure: brokenlayer.BrokenTearDownLayer:tearDown [
+    Traceback (most recent call last):
+    ...
+    TypeError: You are not my type.  No-one is my type!
+    ]
+    True
+
+
 Module import errors
 --------------------
 

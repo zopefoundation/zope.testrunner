@@ -317,9 +317,20 @@ class Runner(object):
         if setup_layers:
             if self.options.resume_layer is None:
                 self.options.output.info("Tearing down left over layers:")
-            tear_down_unneeded(self.options, (), setup_layers, True)
+            tear_down_unneeded(
+                self.options, (), setup_layers, self.errors, optional=True)
 
         self.failed = bool(self.import_errors or self.failures or self.errors)
+
+
+def handle_layer_failure(failure_type, output, errors):
+    if hasattr(output, 'layer_failure'):
+        output.layer_failure(failure_type.subunit_label, sys.exc_info())
+    else:
+        f = StringIO()
+        traceback.print_exc(file=f)
+        output.error(f.getvalue())
+    errors.append((failure_type, sys.exc_info()))
 
 
 def run_tests(options, tests, name, failures, errors, skipped, import_errors):
@@ -442,7 +453,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
     needed = dict([(l, 1) for l in gathered])
     if options.resume_number != 0:
         output.info("Running %s tests:" % layer_name)
-    tear_down_unneeded(options, needed, setup_layers)
+    tear_down_unneeded(options, needed, setup_layers, errors)
 
     if options.resume_layer is not None:
         output.info_suboptimal("  Running in a subprocess.")
@@ -451,11 +462,10 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         setup_layer(options, layer, setup_layers)
     except zope.testrunner.interfaces.EndRun:
         raise
+    except MemoryError:
+        raise
     except Exception:
-        f = StringIO()
-        traceback.print_exc(file=f)
-        output.error(f.getvalue())
-        errors.append((SetUpLayerFailure(layer), sys.exc_info()))
+        handle_layer_failure(SetUpLayerFailure(layer), output, errors)
         return 0
     else:
         return run_tests(options, tests, layer_name, failures, errors, skipped,
@@ -463,6 +473,8 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
 
 
 class SetUpLayerFailure(unittest.TestCase):
+
+    subunit_label = 'setUp'
 
     def __init__(self, layer):
         super(SetUpLayerFailure, self).__init__()
@@ -472,8 +484,22 @@ class SetUpLayerFailure(unittest.TestCase):
         pass
 
     def __str__(self):
-        return "Layer: %s" % (name_from_layer(self.layer))
+        return "Layer: %s.setUp" % (name_from_layer(self.layer))
 
+
+class TearDownLayerFailure(unittest.TestCase):
+
+    subunit_label = 'tearDown'
+
+    def __init__(self, layer):
+        super(TearDownLayerFailure, self).__init__()
+        self.layer = layer
+
+    def runTest(self):
+        pass
+
+    def __str__(self):
+        return "Layer: %s.tearDown" % (name_from_layer(self.layer))
 
 
 def spawn_layer_in_subprocess(result, script_parts, options, features,
@@ -748,7 +774,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
     return sum(r.num_ran for r in results)
 
 
-def tear_down_unneeded(options, needed, setup_layers, optional=False):
+def tear_down_unneeded(options, needed, setup_layers, errors, optional=False):
     # Tear down any layers not needed for these tests. The unneeded layers
     # might interfere.
     unneeded = [l for l in setup_layers if l not in needed]
@@ -766,6 +792,10 @@ def tear_down_unneeded(options, needed, setup_layers, optional=False):
                 output.tear_down_not_supported()
                 if not optional:
                     raise CanNotTearDown(l)
+            except MemoryError:
+                raise
+            except Exception:
+                handle_layer_failure(TearDownLayerFailure(l), output, errors)
             else:
                 output.stop_tear_down(time.time() - t)
         finally:
@@ -790,6 +820,8 @@ def setup_layer(options, layer, setup_layers):
         if hasattr(layer, 'setUp'):
             try:
                 layer.setUp()
+            except MemoryError:
+                raise
             except Exception:
                 if options.post_mortem:
                     if options.resume_layer:

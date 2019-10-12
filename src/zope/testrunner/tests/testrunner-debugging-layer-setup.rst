@@ -131,7 +131,7 @@ a subprocess:
     <BLANKLINE>
     <BLANKLINE>
     Tests with errors:
-       Layer: tests2.Layer2
+       Layer: tests2.Layer2.setUp
     Total: 1 tests, 0 failures, 1 errors and 0 skipped in 0.210 seconds.
     True
 

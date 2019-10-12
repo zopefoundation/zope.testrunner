@@ -885,6 +885,15 @@ class SubunitOutputFormatter(object):
             self._subunit.addError(test, exc_info)
             self._subunit.stopTest(test)
 
+    def _emit_failure(self, failure_id, tag, exc_info):
+        """Emit an failure to the subunit stream.
+
+        Use this to pass on information about failures that occur outside of
+        tests.
+        """
+        test = FakeTest(failure_id)
+        self._subunit.addFailure(test, exc_info)
+
     def _enter_layer(self, layer_name):
         """Tell subunit that we are entering a layer."""
         self._subunit.tags(['zope:layer:%s' % (layer_name,)], [])
@@ -1088,6 +1097,11 @@ class SubunitOutputFormatter(object):
             self._subunit.addSuccess(test)
             self._subunit.stopTest(test)
         self._enter_layer(layer_name)
+
+    def layer_failure(self, failure_type, exc_info):
+        layer_name, start_time = self._last_layer
+        self._emit_failure(
+            '%s:%s' % (layer_name, failure_type), self.TAG_LAYER, exc_info)
 
     def start_tear_down(self, layer_name):
         """Report that we're tearing down a layer.
