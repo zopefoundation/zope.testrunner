@@ -64,7 +64,6 @@ class UnexpectedSuccess(Exception):
     pass
 
 
-EXPLOSIVE_ERRORS = (MemoryError, KeyboardInterrupt, SystemExit)
 PYREFCOUNT_PATTERN = re.compile(r'\[[0-9]+ refs\]')
 
 is_jython = sys.platform.startswith('java')
@@ -463,7 +462,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
         setup_layer(options, layer, setup_layers)
     except zope.testrunner.interfaces.EndRun:
         raise
-    except EXPLOSIVE_ERRORS:
+    except MemoryError:
         raise
     except Exception:
         handle_layer_failure(SetUpLayerFailure(layer), output, errors)
@@ -793,7 +792,7 @@ def tear_down_unneeded(options, needed, setup_layers, errors, optional=False):
                 output.tear_down_not_supported()
                 if not optional:
                     raise CanNotTearDown(l)
-            except EXPLOSIVE_ERRORS:
+            except MemoryError:
                 raise
             except Exception:
                 handle_layer_failure(TearDownLayerFailure(l), output, errors)
@@ -821,7 +820,7 @@ def setup_layer(options, layer, setup_layers):
         if hasattr(layer, 'setUp'):
             try:
                 layer.setUp()
-            except EXPLOSIVE_ERRORS:
+            except MemoryError:
                 raise
             except Exception:
                 if options.post_mortem:
