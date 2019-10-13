@@ -524,3 +524,30 @@ Several tests can be excluded using the '!' notation:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
+
+
+Requiring unique test IDs
+-------------------------
+
+The --require-unique option causes the test runner to require that all test
+IDs be unique.  Its behaviour is tested in zope.testrunner.tests.test_find;
+here we check its interaction with other options.
+
+The --require-unique option does not issue any warnings on its own.
+
+    >>> sys.argv = 'test --require-unique'.split()
+    >>> testrunner.run_internal(defaults)
+    ... # doctest: +ELLIPSIS
+    Running zope.testrunner.layer.UnitTests tests:
+    ...
+
+Attempting to use both --module and --require-unique issues a warning.
+
+    >>> sys.argv = 'test --module sample --require-unique'.split()
+    >>> testrunner.run_internal(defaults)
+    ... # doctest: +ELLIPSIS
+    You specified a module along with --require-unique;
+    --require-unique will not try to enforce test ID uniqueness when
+    working with a specific module.
+    Running zope.testrunner.layer.UnitTests tests:
+    ...
