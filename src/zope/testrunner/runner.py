@@ -853,6 +853,10 @@ class TestResult(unittest.TestResult):
         for test in tests:
             count += test.countTestCases()
         self.count = count
+        self._stdout_buffer = None
+        self._stderr_buffer = None
+        self._original_stdout = sys.stdout
+        self._original_stderr = sys.stderr
 
     def testSetUp(self):
         """A layer may define a setup method to be called before each
@@ -874,7 +878,33 @@ class TestResult(unittest.TestResult):
             if hasattr(layer, 'testTearDown'):
                 layer.testTearDown()
 
+    def _setUpStdStreams(self):
+        """Set up buffered standard streams, if requested."""
+        if self.options.buffer:
+            if self._stdout_buffer is None:
+                self._stdout_buffer = StringIO()
+            if self._stderr_buffer is None:
+                self._stderr_buffer = StringIO()
+            sys.stdout = self._stdout_buffer
+            sys.stderr = self._stderr_buffer
+
+    def _restoreStdStreams(self):
+        """Restore the buffered standard streams and return any contents."""
+        if self.options.buffer:
+            stdout = sys.stdout.getvalue()
+            stderr = sys.stderr.getvalue()
+            sys.stdout = self._original_stdout
+            sys.stderr = self._original_stderr
+            self._stdout_buffer.seek(0)
+            self._stdout_buffer.truncate(0)
+            self._stderr_buffer.seek(0)
+            self._stderr_buffer.truncate(0)
+            return stdout, stderr
+        else:
+            return None, None
+
     def startTest(self, test):
+        self._setUpStdStreams()
         self.testSetUp()
         unittest.TestResult.startTest(self, test)
         testsRun = self.testsRun - 1 # subtract the one the base class added
@@ -887,16 +917,20 @@ class TestResult(unittest.TestResult):
         self._start_time = time.time()
 
     def addSuccess(self, test):
+        self._restoreStdStreams()
         t = max(time.time() - self._start_time, 0.0)
         self.options.output.test_success(test, t)
 
     def addSkip(self, test, reason):
+        self._restoreStdStreams()
         unittest.TestResult.addSkip(self, test, reason)
         self.options.output.test_skipped(test, reason)
 
     def addError(self, test, exc_info):
+        stdout, stderr = self._restoreStdStreams()
         self.options.output.test_error(test, time.time() - self._start_time,
-                                       exc_info)
+                                       exc_info,
+                                       stdout=stdout, stderr=stderr)
 
         unittest.TestResult.addError(self, test, exc_info)
 
@@ -911,8 +945,10 @@ class TestResult(unittest.TestResult):
             self.stop()
 
     def addFailure(self, test, exc_info):
+        stdout, stderr = self._restoreStdStreams()
         self.options.output.test_failure(test, time.time() - self._start_time,
-                                         exc_info)
+                                         exc_info,
+                                         stdout=stdout, stderr=stderr)
 
         unittest.TestResult.addFailure(self, test, exc_info)
 
@@ -924,15 +960,18 @@ class TestResult(unittest.TestResult):
             self.stop()
 
     def addExpectedFailure(self, test, exc_info):
+        self._restoreStdStreams()
         t = max(time.time() - self._start_time, 0.0)
         self.options.output.test_success(test, t)
 
         unittest.TestResult.addExpectedFailure(self, test, exc_info)
 
     def addUnexpectedSuccess(self, test):
+        stdout, stderr = self._restoreStdStreams()
         self.options.output.test_error(
             test, time.time() - self._start_time,
-            (UnexpectedSuccess, UnexpectedSuccess(), None))
+            (UnexpectedSuccess, UnexpectedSuccess(), None),
+            stdout=stdout, stderr=stderr)
 
         unittest.TestResult.addUnexpectedSuccess(self, test)
 
@@ -948,7 +987,12 @@ class TestResult(unittest.TestResult):
             self.stop()
 
     def stopTest(self, test):
+        # We had to restore the standard streams in order to produce output,
+        # but buffer them again briefly in case testTearDown produces output
+        # and confuses (e.g.) subunit.
+        self._setUpStdStreams()
         self.testTearDown()
+        self._restoreStdStreams()
         self.options.output.stop_test(test)
 
         if is_jython:

@@ -283,6 +283,122 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     True
 
 
+Capturing output
+----------------
+
+To avoid corrupting subunit streams, any output on stdout and stderr is
+buffered; for failing and erroring tests, it is recorded in the subunit
+stream as MIME-encoded chunks of text.
+
+    >>> sys.argv = 'test -ssample2 --tests-pattern ^stdstreamstest$'.split()
+    >>> testrunner.run_internal(defaults)
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    successful: zope.testrunner.layer.UnitTests:setUp
+    tags: zope:layer:zope.testrunner.layer.UnitTests
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: sample2.stdstreamstest.Test.test_stderr_error
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    error: sample2.stdstreamstest.Test.test_stderr_error [ multipart
+    Content-Type: text/plain;charset=utf8
+    test-stderr
+    17\r
+    stderr output on error
+    0\r
+    <BLANKLINE>
+    Content-Type: text/x-traceback...
+    traceback
+    NNN\r
+    <BLANKLINE>
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_error
+        raise Exception("boom")
+    Exception: boom
+    0\r
+    <BLANKLINE>
+    ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: sample2.stdstreamstest.Test.test_stderr_failure
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    failure: sample2.stdstreamstest.Test.test_stderr_failure [ multipart
+    Content-Type: text/plain;charset=utf8
+    test-stderr
+    19\r
+    stderr output on failure
+    0\r
+    <BLANKLINE>
+    Content-Type: text/x-traceback...
+    traceback
+    NNN\r
+    <BLANKLINE>
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_failure
+        self.assertTrue(False)
+    AssertionError: False is not true
+    0\r
+    <BLANKLINE>
+    ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: sample2.stdstreamstest.Test.test_stderr_success
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    successful: sample2.stdstreamstest.Test.test_stderr_success
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: sample2.stdstreamstest.Test.test_stdout_error
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    error: sample2.stdstreamstest.Test.test_stdout_error [ multipart
+    Content-Type: text/plain;charset=utf8
+    test-stdout
+    17\r
+    stdout output on error
+    0\r
+    <BLANKLINE>
+    Content-Type: text/x-traceback...
+    traceback
+    NNN\r
+    <BLANKLINE>
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_error
+        raise Exception("boom")
+    Exception: boom
+    0\r
+    <BLANKLINE>
+    ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: sample2.stdstreamstest.Test.test_stdout_failure
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    failure: sample2.stdstreamstest.Test.test_stdout_failure [ multipart
+    Content-Type: text/plain;charset=utf8
+    test-stdout
+    19\r
+    stdout output on failure
+    0\r
+    <BLANKLINE>
+    Content-Type: text/x-traceback...
+    traceback
+    NNN\r
+    <BLANKLINE>
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_failure
+        self.assertTrue(False)
+    AssertionError: False is not true
+    0\r
+    <BLANKLINE>
+    ]
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: sample2.stdstreamstest.Test.test_stdout_success
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    successful: sample2.stdstreamstest.Test.test_stdout_success
+    tags: -zope:layer:zope.testrunner.layer.UnitTests
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    test: zope.testrunner.layer.UnitTests:tearDown
+    tags: zope:layer
+    time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
+    successful: zope.testrunner.layer.UnitTests:tearDown
+    True
+
+
 Layers that can't be torn down
 ------------------------------
 
