@@ -991,8 +991,10 @@ class TestResult(unittest.TestResult):
         # but buffer them again briefly in case testTearDown produces output
         # and confuses (e.g.) subunit.
         self._setUpStdStreams()
-        self.testTearDown()
-        self._restoreStdStreams()
+        try:
+            self.testTearDown()
+        finally:
+            self._restoreStdStreams()
         self.options.output.stop_test(test)
 
         if is_jython:
