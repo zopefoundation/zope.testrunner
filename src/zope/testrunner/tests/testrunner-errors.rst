@@ -373,13 +373,16 @@ We can ask for output on stdout and stderr to be buffered, and emitted only
 for failing and erroring tests.
 
     >>> sys.argv = (
-    ...     'test --buffer -ssample2 --tests-pattern ^stdstreamstest$'.split())
+    ...     'test -vv --buffer -ssample2'
+    ...     ' --tests-pattern ^stdstreamstest$'.split())
     >>> orig_stderr = sys.stderr
     >>> sys.stderr = sys.stdout
     >>> testrunner.run_internal(defaults) # doctest: +NORMALIZE_WHITESPACE
+    Running tests at level 1
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    <BLANKLINE>
+      Running:
+     test_stderr_error (sample2.stdstreamstest.Test)
     <BLANKLINE>
     Error in test test_stderr_error (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
@@ -391,6 +394,8 @@ for failing and erroring tests.
     stderr output on error
     <BLANKLINE>
     <BLANKLINE>
+     test_stderr_failure (sample2.stdstreamstest.Test)
+    <BLANKLINE>
     Failure in test test_stderr_failure (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_failure
@@ -400,6 +405,9 @@ for failing and erroring tests.
     Stderr:
     stderr output on failure
     <BLANKLINE>
+    <BLANKLINE>
+     test_stderr_success (sample2.stdstreamstest.Test)
+     test_stdout_error (sample2.stdstreamstest.Test)
     <BLANKLINE>
     Error in test test_stdout_error (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
@@ -411,6 +419,8 @@ for failing and erroring tests.
     stdout output on error
     <BLANKLINE>
     <BLANKLINE>
+     test_stdout_failure (sample2.stdstreamstest.Test)
+    <BLANKLINE>
     Failure in test test_stdout_failure (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_failure
@@ -419,9 +429,20 @@ for failing and erroring tests.
     <BLANKLINE>
     Stdout:
     stdout output on failure
+    <BLANKLINE>
+    <BLANKLINE>
+     test_stdout_success (sample2.stdstreamstest.Test)
       Ran 6 tests with 2 failures, 2 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    <BLANKLINE>
+    Tests with errors:
+       test_stderr_error (sample2.stdstreamstest.Test)
+       test_stdout_error (sample2.stdstreamstest.Test)
+    <BLANKLINE>
+    Tests with failures:
+       test_stderr_failure (sample2.stdstreamstest.Test)
+       test_stdout_failure (sample2.stdstreamstest.Test)
     True
     >>> sys.stderr = orig_stderr
 

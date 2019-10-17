@@ -904,7 +904,6 @@ class TestResult(unittest.TestResult):
             return None, None
 
     def startTest(self, test):
-        self._setUpStdStreams()
         self.testSetUp()
         unittest.TestResult.startTest(self, test)
         testsRun = self.testsRun - 1 # subtract the one the base class added
@@ -915,6 +914,8 @@ class TestResult(unittest.TestResult):
 
         self._threads = threading.enumerate()
         self._start_time = time.time()
+
+        self._setUpStdStreams()
 
     def addSuccess(self, test):
         self._restoreStdStreams()
@@ -987,14 +988,7 @@ class TestResult(unittest.TestResult):
             self.stop()
 
     def stopTest(self, test):
-        # We had to restore the standard streams in order to produce output,
-        # but buffer them again briefly in case testTearDown produces output
-        # and confuses (e.g.) subunit.
-        self._setUpStdStreams()
-        try:
-            self.testTearDown()
-        finally:
-            self._restoreStdStreams()
+        self.testTearDown()
         self.options.output.stop_test(test)
 
         if is_jython:
