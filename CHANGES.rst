@@ -14,6 +14,8 @@
 - Add optional buffering of standard output and standard error during tests,
   requested via the ``--buffer`` option or enabled by default for subunit.
 
+- Fix incorrect failure counts in per-layer summary output, broken in 4.0.1.
+
 
 5.0 (2019-03-19)
 ================
