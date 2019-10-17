@@ -285,6 +285,16 @@ This option can be used multiple times. If a thread name matches any of them,
 it will be ignored.
 """)
 
+reporting.add_argument(
+    '--buffer', action="store_true", dest="buffer",
+    help="""\
+Buffer the standard output and standard error streams during each test.
+Output during a passing test is discarded.
+Output during failing or erroring tests is echoed.
+This option is enabled by default if --subunit or --subunit-v2 is in use, to
+avoid corrupting the subunit stream.
+""")
+
 
 ######################################################################
 # Analysis
@@ -591,6 +601,7 @@ def get_options(args=None, defaults=None):
         """)
             options.fail = True
             return options
+        options.buffer = True
 
     if options.subunit and options.subunit_v2:
         print("""\

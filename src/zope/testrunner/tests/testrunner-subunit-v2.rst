@@ -291,6 +291,86 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
     True
 
 
+Capturing output
+----------------
+
+To avoid corrupting subunit streams, any output on stdout and stderr is
+buffered; for failing and erroring tests, it is recorded in the subunit
+stream as MIME-encoded chunks of text.
+
+    >>> sys.argv = 'test -ssample2 --tests-pattern ^stdstreamstest$'.split()
+    >>> subunit_summarize(testrunner.run_internal, defaults)
+    id=zope.testrunner.layer.UnitTests:setUp status=inprogress !runnable
+    id=zope.testrunner.layer.UnitTests:setUp status=success tags=(zope:layer)
+      !runnable
+    id=sample2.stdstreamstest.Test.test_stderr_error status=inprogress
+    id=sample2.stdstreamstest.Test.test_stderr_error
+    test-stderr (text/plain; charset="utf8")
+    stderr output on error
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stderr_error
+    traceback (text/x-traceback...)
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_error
+        raise Exception("boom")
+    Exception: boom
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stderr_error status=fail
+      tags=(zope:layer:zope.testrunner.layer.UnitTests)
+    id=sample2.stdstreamstest.Test.test_stderr_failure status=inprogress
+    id=sample2.stdstreamstest.Test.test_stderr_failure
+    test-stderr (text/plain; charset="utf8")
+    stderr output on failure
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stderr_failure
+    traceback (text/x-traceback...)
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_failure
+        self.assertTrue(False)
+    AssertionError: False is not true
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stderr_failure status=fail
+      tags=(zope:layer:zope.testrunner.layer.UnitTests)
+    id=sample2.stdstreamstest.Test.test_stderr_success status=inprogress
+    id=sample2.stdstreamstest.Test.test_stderr_success status=success
+      tags=(zope:layer:zope.testrunner.layer.UnitTests)
+    id=sample2.stdstreamstest.Test.test_stdout_error status=inprogress
+    id=sample2.stdstreamstest.Test.test_stdout_error
+    test-stdout (text/plain; charset="utf8")
+    stdout output on error
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stdout_error
+    traceback (text/x-traceback...)
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_error
+        raise Exception("boom")
+    Exception: boom
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stdout_error status=fail
+      tags=(zope:layer:zope.testrunner.layer.UnitTests)
+    id=sample2.stdstreamstest.Test.test_stdout_failure status=inprogress
+    id=sample2.stdstreamstest.Test.test_stdout_failure
+    test-stdout (text/plain; charset="utf8")
+    stdout output on failure
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stdout_failure
+    traceback (text/x-traceback...)
+    Traceback (most recent call last):
+     testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_failure
+        self.assertTrue(False)
+    AssertionError: False is not true
+    <BLANKLINE>
+    id=sample2.stdstreamstest.Test.test_stdout_failure status=fail
+      tags=(zope:layer:zope.testrunner.layer.UnitTests)
+    id=sample2.stdstreamstest.Test.test_stdout_success status=inprogress
+    id=sample2.stdstreamstest.Test.test_stdout_success status=success
+      tags=(zope:layer:zope.testrunner.layer.UnitTests)
+    id=zope.testrunner.layer.UnitTests:tearDown status=inprogress !runnable
+    id=zope.testrunner.layer.UnitTests:tearDown status=success
+      tags=(zope:layer) !runnable
+    True
+
+
 Layers that can't be torn down
 ------------------------------
 

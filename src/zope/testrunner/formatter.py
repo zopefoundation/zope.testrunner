@@ -15,6 +15,10 @@
 """
 from __future__ import print_function
 
+try:
+    from collections.abc import MutableMapping
+except ImportError:
+    from collections import MutableMapping
 from contextlib import contextmanager
 import doctest
 import os
@@ -323,7 +327,7 @@ class OutputFormatter(object):
         sys.stdout.write(s)
         self.test_width += len(s) + 1
 
-    def test_error(self, test, seconds, exc_info):
+    def test_error(self, test, seconds, exc_info, stdout=None, stderr=None):
         """Report that an error occurred while running a test.
 
         Should be called right after start_test().
@@ -334,9 +338,10 @@ class OutputFormatter(object):
             print(" (%s)" % self.format_seconds_short(seconds))
         print()
         self.print_traceback("Error in test %s" % test, exc_info)
+        self.print_std_streams(stdout, stderr)
         self.test_width = self.last_width = 0
 
-    def test_failure(self, test, seconds, exc_info):
+    def test_failure(self, test, seconds, exc_info, stdout=None, stderr=None):
         """Report that a test failed.
 
         Should be called right after start_test().
@@ -347,6 +352,7 @@ class OutputFormatter(object):
             print(" (%s)" % self.format_seconds_short(seconds))
         print()
         self.print_traceback("Failure in test %s" % test, exc_info)
+        self.print_std_streams(stdout, stderr)
         self.test_width = self.last_width = 0
 
     def print_traceback(self, msg, exc_info):
@@ -354,6 +360,21 @@ class OutputFormatter(object):
         print()
         print(msg)
         print(self.format_traceback(exc_info))
+
+    def print_std_streams(self, stdout, stderr):
+        """Emit contents of buffered standard streams."""
+        if stdout:
+            sys.stdout.write("Stdout:\n")
+            sys.stdout.write(stdout)
+            if not stdout.endswith("\n"):
+                sys.stdout.write("\n")
+            sys.stdout.write("\n")
+        if stderr:
+            sys.stderr.write("Stderr:\n")
+            sys.stderr.write(stderr)
+            if not stderr.endswith("\n"):
+                sys.stderr.write("\n")
+            sys.stderr.write("\n")
 
     def format_traceback(self, exc_info):
         """Format the traceback."""
@@ -792,6 +813,37 @@ class _RunnableDecorator(object):
         self.decorated.status(**kwargs)
 
 
+class _SortedDict(MutableMapping, object):
+    """A dict that always returns items in sorted order.
+
+    This differs from collections.OrderedDict in that it returns items in
+    *sorted* order, not in insertion order.
+
+    We use this as a workaround for the fact that
+    testtools.ExtendedToStreamDecorator doesn't sort the details dict when
+    encoding it, which makes it difficult to write stable doctests for
+    subunit v2 output.
+    """
+
+    def __init__(self, items):
+        self._dict = dict(items)
+
+    def __getitem__(self, key):
+        return self._dict[key]
+
+    def __setitem__(self, key, value):
+        self._dict[key] = value
+
+    def __delitem__(self, key):
+        del self._dict[key]
+
+    def __iter__(self):
+        return iter(sorted(self._dict))
+
+    def __len__(self):
+        return len(self._dict)
+
+
 class SubunitOutputFormatter(object):
     """A subunit output formatter.
 
@@ -1052,20 +1104,20 @@ class SubunitOutputFormatter(object):
 
     def refcounts(self, rc, prev):
         """Report a change in reference counts."""
-        details = {
+        details = _SortedDict({
             'sys-refcounts': text_content(str(rc)),
             'changes': text_content(str(rc - prev)),
-        }
+        })
         # XXX: Emit the details dict as JSON?
         self._emit_fake_test(self.TAG_REFCOUNTS, self.TAG_REFCOUNTS, details)
 
     def detailed_refcounts(self, track, rc, prev):
         """Report a change in reference counts, with extra detail."""
-        details = {
+        details = _SortedDict({
             'sys-refcounts': text_content(str(rc)),
             'changes': text_content(str(rc - prev)),
             'track': text_content(str(track.delta)),
-        }
+        })
         self._emit_fake_test(self.TAG_REFCOUNTS, self.TAG_REFCOUNTS, details)
 
     def start_set_up(self, layer_name):
@@ -1194,13 +1246,26 @@ class SubunitOutputFormatter(object):
         else:
             unicode_tb = traceback
 
-        return {
+        return _SortedDict({
             'traceback': Content(
                 self.TRACEBACK_CONTENT_TYPE,
                 lambda: [unicode_tb.encode('utf8')]),
-        }
+        })
 
-    def test_error(self, test, seconds, exc_info):
+    def _add_std_streams_to_details(self, details, stdout, stderr):
+        """Add buffered standard stream contents to a subunit details dict."""
+        if stdout:
+            if isinstance(stdout, bytes):
+                stdout = stdout.decode('utf-8', 'replace')
+            details['test-stdout'] = Content(
+                self.PLAIN_TEXT, lambda: [stdout.encode('utf-8')])
+        if stderr:
+            if isinstance(stderr, bytes):
+                stderr = stderr.decode('utf-8', 'replace')
+            details['test-stderr'] = Content(
+                self.PLAIN_TEXT, lambda: [stderr.encode('utf-8')])
+
+    def test_error(self, test, seconds, exc_info, stdout=None, stderr=None):
         """Report that an error occurred while running a test.
 
         Should be called right after start_test().
@@ -1209,9 +1274,10 @@ class SubunitOutputFormatter(object):
         """
         self._emit_timestamp()
         details = self._exc_info_to_details(exc_info)
+        self._add_std_streams_to_details(details, stdout, stderr)
         self._subunit.addError(test, details=details)
 
-    def test_failure(self, test, seconds, exc_info):
+    def test_failure(self, test, seconds, exc_info, stdout=None, stderr=None):
         """Report that a test failed.
 
         Should be called right after start_test().
@@ -1220,6 +1286,7 @@ class SubunitOutputFormatter(object):
         """
         self._emit_timestamp()
         details = self._exc_info_to_details(exc_info)
+        self._add_std_streams_to_details(details, stdout, stderr)
         self._subunit.addFailure(test, details=details)
 
     def stop_test(self, test):
