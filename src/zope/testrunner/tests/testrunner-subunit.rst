@@ -107,32 +107,19 @@ Once the layer is set up, all future tests are tagged with
 Listing tests
 -------------
 
-A subunit stream is a stream of test results, more or less, so the most
-natural way of listing tests in subunit is to simply emit successful test
-results without actually running the tests.
-
-Note that in this stream, we don't emit fake tests for the layer set up and
-tear down, because it simply doesn't happen.
-
-We also don't include the dependent layers in the stream (in this case Layer1
-and Layer12), since they are not provided to the reporter.
+This version of zope.testrunner is customized to list tests by just printing
+all their IDs to stdout even in subunit mode.  This is not really correct
+and should be fixed at some point, but it simplifies Launchpad's
+testrepository plumbing.
 
     >>> sys.argv = 'test --layer 122 --list-tests -t TestNotMuch'.split()
     >>> testrunner.run_internal(defaults)
-    tags: zope:layer:samplelayers.Layer122
-    test: sample1.sampletests.test122.TestNotMuch.test_1
-    successful: sample1.sampletests.test122.TestNotMuch.test_1
-    test: sample1.sampletests.test122.TestNotMuch.test_2
-    successful: sample1.sampletests.test122.TestNotMuch.test_2
-    test: sample1.sampletests.test122.TestNotMuch.test_3
-    successful: sample1.sampletests.test122.TestNotMuch.test_3
-    test: sampletests.test122.TestNotMuch.test_1
-    successful: sampletests.test122.TestNotMuch.test_1
-    test: sampletests.test122.TestNotMuch.test_2
-    successful: sampletests.test122.TestNotMuch.test_2
-    test: sampletests.test122.TestNotMuch.test_3
-    successful: sampletests.test122.TestNotMuch.test_3
-    tags: -zope:layer:samplelayers.Layer122
+    sample1.sampletests.test122.TestNotMuch.test_1
+    sample1.sampletests.test122.TestNotMuch.test_2
+    sample1.sampletests.test122.TestNotMuch.test_3
+    sampletests.test122.TestNotMuch.test_1
+    sampletests.test122.TestNotMuch.test_2
+    sampletests.test122.TestNotMuch.test_3
     False
 
 
