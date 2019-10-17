@@ -24,7 +24,7 @@ using the ``--gc`` option with a value of zero.
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     make_sure_gc_is_disabled (gc0)
+     gc0.make_sure_gc_is_disabled
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -41,7 +41,7 @@ by providing a low threshold:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     make_sure_gc_threshold_is_one (gc1)
+     gc1.make_sure_gc_threshold_is_one
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -58,7 +58,7 @@ values:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     make_sure_gc_threshold_is_701_11_9 (gcset)
+     gcset.make_sure_gc_threshold_is_701_11_9
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -104,7 +104,7 @@ The output statistics are written to standard error.
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     generate_some_gc_statistics (gcstats)
+     gcstats.generate_some_gc_statistics
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.

@@ -56,32 +56,32 @@ each test is printed as it is run:
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        test_x1 (sample1.sampletests.test122.TestA)
-        test_y0 (sample1.sampletests.test122.TestA)
-        test_z0 (sample1.sampletests.test122.TestA)
-        test_x0 (sample1.sampletests.test122.TestB)
-        test_y1 (sample1.sampletests.test122.TestB)
-        test_z0 (sample1.sampletests.test122.TestB)
-        test_1 (sample1.sampletests.test122.TestNotMuch)
-        test_2 (sample1.sampletests.test122.TestNotMuch)
-        test_3 (sample1.sampletests.test122.TestNotMuch)
-        test_x0 (sample1.sampletests.test122)
-        test_y0 (sample1.sampletests.test122)
-        test_z1 (sample1.sampletests.test122)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.rst
-        test_x1 (sampletests.test122.TestA)
-        test_y0 (sampletests.test122.TestA)
-        test_z0 (sampletests.test122.TestA)
-        test_x0 (sampletests.test122.TestB)
-        test_y1 (sampletests.test122.TestB)
-        test_z0 (sampletests.test122.TestB)
-        test_1 (sampletests.test122.TestNotMuch)
-        test_2 (sampletests.test122.TestNotMuch)
-        test_3 (sampletests.test122.TestNotMuch)
-        test_x0 (sampletests.test122)
-        test_y0 (sampletests.test122)
-        test_z1 (sampletests.test122)
-        testrunner-ex/sampletests/../sampletestsl.rst
+        sample1.sampletests.test122.TestA.test_x1
+        sample1.sampletests.test122.TestA.test_y0
+        sample1.sampletests.test122.TestA.test_z0
+        sample1.sampletests.test122.TestB.test_x0
+        sample1.sampletests.test122.TestB.test_y1
+        sample1.sampletests.test122.TestB.test_z0
+        sample1.sampletests.test122.TestNotMuch.test_1
+        sample1.sampletests.test122.TestNotMuch.test_2
+        sample1.sampletests.test122.TestNotMuch.test_3
+        sample1.sampletests.test122.test_x0
+        sample1.sampletests.test122.test_y0
+        sample1.sampletests.test122.test_z1
+        sampletestsl_rst
+        sampletests.test122.TestA.test_x1
+        sampletests.test122.TestA.test_y0
+        sampletests.test122.TestA.test_z0
+        sampletests.test122.TestB.test_x0
+        sampletests.test122.TestB.test_y1
+        sampletests.test122.TestB.test_z0
+        sampletests.test122.TestNotMuch.test_1
+        sampletests.test122.TestNotMuch.test_2
+        sampletests.test122.TestNotMuch.test_3
+        sampletests.test122.test_x0
+        sampletests.test122.test_y0
+        sampletests.test122.test_z1
+        sampletestsl_rst
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.009 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -100,32 +100,32 @@ test-execution times are printed:
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        test_x1 (sample1.sampletests.test122.TestA) (0.000 s)
-        test_y0 (sample1.sampletests.test122.TestA) (0.000 s)
-        test_z0 (sample1.sampletests.test122.TestA) (0.000 s)
-        test_x0 (sample1.sampletests.test122.TestB) (0.000 s)
-        test_y1 (sample1.sampletests.test122.TestB) (0.000 s)
-        test_z0 (sample1.sampletests.test122.TestB) (0.000 s)
-        test_1 (sample1.sampletests.test122.TestNotMuch) (0.000 s)
-        test_2 (sample1.sampletests.test122.TestNotMuch) (0.000 s)
-        test_3 (sample1.sampletests.test122.TestNotMuch) (0.000 s)
-        test_x0 (sample1.sampletests.test122) (0.001 s)
-        test_y0 (sample1.sampletests.test122) (0.001 s)
-        test_z1 (sample1.sampletests.test122) (0.001 s)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.rst (0.001 s)
-        test_x1 (sampletests.test122.TestA) (0.000 s)
-        test_y0 (sampletests.test122.TestA) (0.000 s)
-        test_z0 (sampletests.test122.TestA) (0.000 s)
-        test_x0 (sampletests.test122.TestB) (0.000 s)
-        test_y1 (sampletests.test122.TestB) (0.000 s)
-        test_z0 (sampletests.test122.TestB) (0.000 s)
-        test_1 (sampletests.test122.TestNotMuch) (0.000 s)
-        test_2 (sampletests.test122.TestNotMuch) (0.000 s)
-        test_3 (sampletests.test122.TestNotMuch) (0.000 s)
-        test_x0 (sampletests.test122) (0.001 s)
-        test_y0 (sampletests.test122) (0.001 s)
-        test_z1 (sampletests.test122) (0.001 s)
-        testrunner-ex/sampletests/../sampletestsl.rst (0.001 s)
+        sample1.sampletests.test122.TestA.test_x1 (0.000 s)
+        sample1.sampletests.test122.TestA.test_y0 (0.000 s)
+        sample1.sampletests.test122.TestA.test_z0 (0.000 s)
+        sample1.sampletests.test122.TestB.test_x0 (0.000 s)
+        sample1.sampletests.test122.TestB.test_y1 (0.000 s)
+        sample1.sampletests.test122.TestB.test_z0 (0.000 s)
+        sample1.sampletests.test122.TestNotMuch.test_1 (0.000 s)
+        sample1.sampletests.test122.TestNotMuch.test_2 (0.000 s)
+        sample1.sampletests.test122.TestNotMuch.test_3 (0.000 s)
+        sample1.sampletests.test122.test_x0 (0.001 s)
+        sample1.sampletests.test122.test_y0 (0.001 s)
+        sample1.sampletests.test122.test_z1 (0.001 s)
+        sampletestsl_rst (0.001 s)
+        sampletests.test122.TestA.test_x1 (0.000 s)
+        sampletests.test122.TestA.test_y0 (0.000 s)
+        sampletests.test122.TestA.test_z0 (0.000 s)
+        sampletests.test122.TestB.test_x0 (0.000 s)
+        sampletests.test122.TestB.test_y1 (0.000 s)
+        sampletests.test122.TestB.test_z0 (0.000 s)
+        sampletests.test122.TestNotMuch.test_1 (0.000 s)
+        sampletests.test122.TestNotMuch.test_2 (0.000 s)
+        sampletests.test122.TestNotMuch.test_3 (0.000 s)
+        sampletests.test122.test_x0 (0.001 s)
+        sampletests.test122.test_y0 (0.001 s)
+        sampletests.test122.test_z1 (0.001 s)
+        sampletestsl_rst (0.001 s)
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.009 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.

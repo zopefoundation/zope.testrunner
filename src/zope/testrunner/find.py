@@ -457,13 +457,13 @@ def tests_from_suite(suite, options, dlevel=1,
         yield (suite, None)
     else:
         if options.require_unique_ids:
-            suite_id = str(suite)
+            suite_id = suite.id()
             if suite_id in seen_test_ids:
                 duplicated_test_ids.add(suite_id)
             else:
                 seen_test_ids.add(suite_id)
         if level <= options.at_level:
-            if accept is None or accept(str(suite)):
+            if accept is None or accept(str(suite)) or accept(suite.id()):
                 yield (suite, layer)
 
 

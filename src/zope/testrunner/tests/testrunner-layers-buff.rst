@@ -70,15 +70,15 @@ That second suite has two tests.  Both sleep for half a second each.
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
-     test_something (sampletests_buffering.TestSomething1)
+     sampletests_buffering.TestSomething1.test_something
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running sampletests_buffering.Layer2 tests:
       Tear down sampletests_buffering.Layer1 ... not supported
       Running in a subprocess.
       Set up sampletests_buffering.Layer2 in N.NNN seconds.
       Running:
-     test_something (sampletests_buffering.TestSomething2)
-     test_something2 (sampletests_buffering.TestSomething2)
+     sampletests_buffering.TestSomething2.test_something
+     sampletests_buffering.TestSomething2.test_something2
       Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
       Tear down sampletests_buffering.Layer2 ... not supported
     Total: 3 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
@@ -104,11 +104,11 @@ more than a second after the second suite ran.
     ---...
     PAUSE FOUND BETWEEN THESE LINES:...
       Running:
-     test_something (sampletests_buffering.TestSomething2)
+     sampletests_buffering.TestSomething2.test_something
     ----------------------------------------------------------------------
     PAUSE FOUND BETWEEN THESE LINES:
-     test_something (sampletests_buffering.TestSomething2)
-     test_something2 (sampletests_buffering.TestSomething2)
+     sampletests_buffering.TestSomething2.test_something
+     sampletests_buffering.TestSomething2.test_something2
     ---...
 
 Because this is a test based on timing, it may be somewhat fragile.  However,

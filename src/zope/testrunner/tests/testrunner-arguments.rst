@@ -40,30 +40,30 @@ different default, that one takes effect.
     >>> from zope import testrunner
     >>> testrunner.run_internal(defaults, 'test --layer 111'.split())
     Listing samplelayers.Layer111 tests:
-      test_x1 (sample1.sampletests.test111.TestA)
-      test_y0 (sample1.sampletests.test111.TestA)
-      test_z0 (sample1.sampletests.test111.TestA)
-      test_x0 (sample1.sampletests.test111.TestB)
-      test_y1 (sample1.sampletests.test111.TestB)
-      test_z0 (sample1.sampletests.test111.TestB)
-      test_1 (sample1.sampletests.test111.TestNotMuch)
-      test_2 (sample1.sampletests.test111.TestNotMuch)
-      test_3 (sample1.sampletests.test111.TestNotMuch)
-      test_x0 (sample1.sampletests.test111)
-      test_y0 (sample1.sampletests.test111)
-      test_z1 (sample1.sampletests.test111)
-      /home/benji/workspace/zope.testrunner/1/src/zope/testing/testrunner/testrunner-ex/sample1/sampletests/../../sampletestsl.rst
-      test_x1 (sampletests.test111.TestA)
-      test_y0 (sampletests.test111.TestA)
-      test_z0 (sampletests.test111.TestA)
-      test_x0 (sampletests.test111.TestB)
-      test_y1 (sampletests.test111.TestB)
-      test_z0 (sampletests.test111.TestB)
-      test_1 (sampletests.test111.TestNotMuch)
-      test_2 (sampletests.test111.TestNotMuch)
-      test_3 (sampletests.test111.TestNotMuch)
-      test_x0 (sampletests.test111)
-      test_y0 (sampletests.test111)
-      test_z1 (sampletests.test111)
-      /home/benji/workspace/zope.testrunner/1/src/zope/testing/testrunner/testrunner-ex/sampletests/../sampletestsl.rst
+      sample1.sampletests.test111.TestA.test_x1
+      sample1.sampletests.test111.TestA.test_y0
+      sample1.sampletests.test111.TestA.test_z0
+      sample1.sampletests.test111.TestB.test_x0
+      sample1.sampletests.test111.TestB.test_y1
+      sample1.sampletests.test111.TestB.test_z0
+      sample1.sampletests.test111.TestNotMuch.test_1
+      sample1.sampletests.test111.TestNotMuch.test_2
+      sample1.sampletests.test111.TestNotMuch.test_3
+      sample1.sampletests.test111.test_x0
+      sample1.sampletests.test111.test_y0
+      sample1.sampletests.test111.test_z1
+      sampletestsl_rst
+      sampletests.test111.TestA.test_x1
+      sampletests.test111.TestA.test_y0
+      sampletests.test111.TestA.test_z0
+      sampletests.test111.TestB.test_x0
+      sampletests.test111.TestB.test_y1
+      sampletests.test111.TestB.test_z0
+      sampletests.test111.TestNotMuch.test_1
+      sampletests.test111.TestNotMuch.test_2
+      sampletests.test111.TestNotMuch.test_3
+      sampletests.test111.test_x0
+      sampletests.test111.test_y0
+      sampletests.test111.test_z1
+      sampletestsl_rst
     False

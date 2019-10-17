@@ -54,7 +54,7 @@ reporting of that error:
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
-     test_something (sampletests_buffering.TestSomething1)
+     sampletests_buffering.TestSomething1.test_something
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running sampletests_buffering.Layer2 tests:
       Tear down sampletests_buffering.Layer1 ... not supported
@@ -82,7 +82,7 @@ communicating with the subprocess:
     Running sampletests_buffering.Layer1 tests:
       Set up sampletests_buffering.Layer1 in N.NNN seconds.
       Running:
-     test_something (sampletests_buffering.TestSomething1)
+     sampletests_buffering.TestSomething1.test_something
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Running sampletests_buffering.Layer2 tests:
       Tear down sampletests_buffering.Layer1 ... not supported

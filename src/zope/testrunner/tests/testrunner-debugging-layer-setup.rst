@@ -111,7 +111,7 @@ a subprocess:
     Running tests2.Layer1 tests:
       Set up tests2.Layer1 in 0.000 seconds.
       Running:
-     a_test (tests2)
+     tests2.a_test
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.001 seconds.
     Running tests2.Layer2 tests:
       Tear down tests2.Layer1 ... not supported

@@ -96,58 +96,58 @@ width, when the terminal width can't be determined, is 80:
       Set up samplelayers.Layer12 in N.NNN seconds.
       Set up samplelayers.Layer122 in N.NNN seconds.
       Running:
-        1/26 (3.8%) test_x1 (sample1.sampletests.test122.TestA)##r##
-                                                               ##r##
-        2/26 (7.7%) test_y0 (sample1.sampletests.test122.TestA)##r##
-                                                               ##r##
-        3/26 (11.5%) test_z0 (sample1.sampletests.test122.TestA)##r##
-                                                                ##r##
-        4/26 (15.4%) test_x0 (sample1.sampletests.test122.TestB)##r##
-                                                                ##r##
-        5/26 (19.2%) test_y1 (sample1.sampletests.test122.TestB)##r##
-                                                                ##r##
-        6/26 (23.1%) test_z0 (sample1.sampletests.test122.TestB)##r##
-                                                                ##r##
-        7/26 (26.9%) test_1 (sample1.sampletests.test122.TestNotMuch)##r##
-                                                                     ##r##
-        8/26 (30.8%) test_2 (sample1.sampletests.test122.TestNotMuch)##r##
-                                                                     ##r##
-        9/26 (34.6%) test_3 (sample1.sampletests.test122.TestNotMuch)##r##
-                                                                     ##r##
-        10/26 (38.5%) test_x0 (sample1.sampletests.test122)##r##
-                                                           ##r##
-        11/26 (42.3%) test_y0 (sample1.sampletests.test122)##r##
-                                                           ##r##
-        12/26 (46.2%) test_z1 (sample1.sampletests.test122)##r##
-                                                           ##r##
-     testrunner-ex/sample1/sampletests/../../sampletestsl.rst##r##
-                                                                                   ##r##
-        14/26 (53.8%) test_x1 (sampletests.test122.TestA)##r##
-                                                         ##r##
-        15/26 (57.7%) test_y0 (sampletests.test122.TestA)##r##
-                                                         ##r##
-        16/26 (61.5%) test_z0 (sampletests.test122.TestA)##r##
-                                                         ##r##
-        17/26 (65.4%) test_x0 (sampletests.test122.TestB)##r##
-                                                         ##r##
-        18/26 (69.2%) test_y1 (sampletests.test122.TestB)##r##
-                                                         ##r##
-        19/26 (73.1%) test_z0 (sampletests.test122.TestB)##r##
-                                                         ##r##
-        20/26 (76.9%) test_1 (sampletests.test122.TestNotMuch)##r##
+        1/26 (3.8%) sample1.sampletests.test122.TestA.test_x1##r##
+                                                             ##r##
+        2/26 (7.7%) sample1.sampletests.test122.TestA.test_y0##r##
+                                                             ##r##
+        3/26 (11.5%) sample1.sampletests.test122.TestA.test_z0##r##
                                                               ##r##
-        21/26 (80.8%) test_2 (sampletests.test122.TestNotMuch)##r##
+        4/26 (15.4%) sample1.sampletests.test122.TestB.test_x0##r##
                                                               ##r##
-        22/26 (84.6%) test_3 (sampletests.test122.TestNotMuch)##r##
+        5/26 (19.2%) sample1.sampletests.test122.TestB.test_y1##r##
                                                               ##r##
-        23/26 (88.5%) test_x0 (sampletests.test122)##r##
-                                                   ##r##
-        24/26 (92.3%) test_y0 (sampletests.test122)##r##
-                                                   ##r##
-        25/26 (96.2%) test_z1 (sampletests.test122)##r##
-                                                   ##r##
-     testrunner-ex/sampletests/../sampletestsl.rst##r##
-                                                                                   ##r##
+        6/26 (23.1%) sample1.sampletests.test122.TestB.test_z0##r##
+                                                              ##r##
+        7/26 (26.9%) sample1.sampletests.test122.TestNotMuch.test_1##r##
+                                                                   ##r##
+        8/26 (30.8%) sample1.sampletests.test122.TestNotMuch.test_2##r##
+                                                                   ##r##
+        9/26 (34.6%) sample1.sampletests.test122.TestNotMuch.test_3##r##
+                                                                   ##r##
+        10/26 (38.5%) sample1.sampletests.test122.test_x0##r##
+                                                         ##r##
+        11/26 (42.3%) sample1.sampletests.test122.test_y0##r##
+                                                         ##r##
+        12/26 (46.2%) sample1.sampletests.test122.test_z1##r##
+                                                         ##r##
+        13/26 (50.0%) sampletestsl_rst##r##
+                                      ##r##
+        14/26 (53.8%) sampletests.test122.TestA.test_x1##r##
+                                                       ##r##
+        15/26 (57.7%) sampletests.test122.TestA.test_y0##r##
+                                                       ##r##
+        16/26 (61.5%) sampletests.test122.TestA.test_z0##r##
+                                                       ##r##
+        17/26 (65.4%) sampletests.test122.TestB.test_x0##r##
+                                                       ##r##
+        18/26 (69.2%) sampletests.test122.TestB.test_y1##r##
+                                                       ##r##
+        19/26 (73.1%) sampletests.test122.TestB.test_z0##r##
+                                                       ##r##
+        20/26 (76.9%) sampletests.test122.TestNotMuch.test_1##r##
+                                                            ##r##
+        21/26 (80.8%) sampletests.test122.TestNotMuch.test_2##r##
+                                                            ##r##
+        22/26 (84.6%) sampletests.test122.TestNotMuch.test_3##r##
+                                                            ##r##
+        23/26 (88.5%) sampletests.test122.test_x0##r##
+                                                 ##r##
+        24/26 (92.3%) sampletests.test122.test_y0##r##
+                                                 ##r##
+        25/26 (96.2%) sampletests.test122.test_z1##r##
+                                                 ##r##
+        26/26 (100.0%) sampletestsl_rst##r##
+                                       ##r##
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
@@ -175,58 +175,58 @@ that, we'll provide a fake curses module:
       Set up samplelayers.Layer12 in N.NNN seconds.
       Set up samplelayers.Layer122 in N.NNN seconds.
       Running:
-        1/26 (3.8%) test_x1 (sample1.sampletests.test122.TestA)##r##
-                                                               ##r##
-        2/26 (7.7%) test_y0 (sample1.sampletests.test122.TestA)##r##
-                                                               ##r##
-        3/26 (11.5%) test_z0 (...le1.sampletests.test122.TestA)##r##
-                                                               ##r##
-        4/26 (15.4%) test_x0 (...le1.sampletests.test122.TestB)##r##
-                                                               ##r##
-        5/26 (19.2%) test_y1 (...le1.sampletests.test122.TestB)##r##
-                                                               ##r##
-        6/26 (23.1%) test_z0 (...le1.sampletests.test122.TestB)##r##
-                                                               ##r##
-        7/26 (26.9%) test_1 (...ampletests.test122.TestNotMuch)##r##
-                                                               ##r##
-        8/26 (30.8%) test_2 (...ampletests.test122.TestNotMuch)##r##
-                                                               ##r##
-        9/26 (34.6%) test_3 (...ampletests.test122.TestNotMuch)##r##
-                                                               ##r##
-        10/26 (38.5%) test_x0 (sample1.sampletests.test122)##r##
-                                                           ##r##
-        11/26 (42.3%) test_y0 (sample1.sampletests.test122)##r##
-                                                           ##r##
-        12/26 (46.2%) test_z1 (sample1.sampletests.test122)##r##
-                                                           ##r##
-        13/26 (50.0%) ... e1/sampletests/../../sampletestsl.rst##r##
-                                                               ##r##
-        14/26 (53.8%) test_x1 (sampletests.test122.TestA)##r##
-                                                         ##r##
-        15/26 (57.7%) test_y0 (sampletests.test122.TestA)##r##
-                                                         ##r##
-        16/26 (61.5%) test_z0 (sampletests.test122.TestA)##r##
-                                                         ##r##
-        17/26 (65.4%) test_x0 (sampletests.test122.TestB)##r##
-                                                         ##r##
-        18/26 (69.2%) test_y1 (sampletests.test122.TestB)##r##
-                                                         ##r##
-        19/26 (73.1%) test_z0 (sampletests.test122.TestB)##r##
-                                                         ##r##
-        20/26 (76.9%) test_1 (sampletests.test122.TestNotMuch)##r##
+        1/26 (3.8%) sample1.sampletests.test122.TestA.test_x1##r##
+                                                             ##r##
+        2/26 (7.7%) sample1.sampletests.test122.TestA.test_y0##r##
+                                                             ##r##
+        3/26 (11.5%) sample1.sampletests.test122.TestA.test_z0##r##
                                                               ##r##
-        21/26 (80.8%) test_2 (sampletests.test122.TestNotMuch)##r##
+        4/26 (15.4%) sample1.sampletests.test122.TestB.test_x0##r##
                                                               ##r##
-        22/26 (84.6%) test_3 (sampletests.test122.TestNotMuch)##r##
+        5/26 (19.2%) sample1.sampletests.test122.TestB.test_y1##r##
                                                               ##r##
-        23/26 (88.5%) test_x0 (sampletests.test122)##r##
-                                                   ##r##
-        24/26 (92.3%) test_y0 (sampletests.test122)##r##
-                                                   ##r##
-        25/26 (96.2%) test_z1 (sampletests.test122)##r##
-                                                   ##r##
-        26/26 (100.0%) ... r-ex/sampletests/../sampletestsl.rst##r##
+        6/26 (23.1%) sample1.sampletests.test122.TestB.test_z0##r##
+                                                              ##r##
+        7/26 (26.9%) ... sampletests.test122.TestNotMuch.test_1##r##
                                                                ##r##
+        8/26 (30.8%) ... sampletests.test122.TestNotMuch.test_2##r##
+                                                               ##r##
+        9/26 (34.6%) ... sampletests.test122.TestNotMuch.test_3##r##
+                                                               ##r##
+        10/26 (38.5%) sample1.sampletests.test122.test_x0##r##
+                                                         ##r##
+        11/26 (42.3%) sample1.sampletests.test122.test_y0##r##
+                                                         ##r##
+        12/26 (46.2%) sample1.sampletests.test122.test_z1##r##
+                                                         ##r##
+        13/26 (50.0%) sampletestsl_rst##r##
+                                      ##r##
+        14/26 (53.8%) sampletests.test122.TestA.test_x1##r##
+                                                       ##r##
+        15/26 (57.7%) sampletests.test122.TestA.test_y0##r##
+                                                       ##r##
+        16/26 (61.5%) sampletests.test122.TestA.test_z0##r##
+                                                       ##r##
+        17/26 (65.4%) sampletests.test122.TestB.test_x0##r##
+                                                       ##r##
+        18/26 (69.2%) sampletests.test122.TestB.test_y1##r##
+                                                       ##r##
+        19/26 (73.1%) sampletests.test122.TestB.test_z0##r##
+                                                       ##r##
+        20/26 (76.9%) sampletests.test122.TestNotMuch.test_1##r##
+                                                            ##r##
+        21/26 (80.8%) sampletests.test122.TestNotMuch.test_2##r##
+                                                            ##r##
+        22/26 (84.6%) sampletests.test122.TestNotMuch.test_3##r##
+                                                            ##r##
+        23/26 (88.5%) sampletests.test122.test_x0##r##
+                                                 ##r##
+        24/26 (92.3%) sampletests.test122.test_y0##r##
+                                                 ##r##
+        25/26 (96.2%) sampletests.test122.test_z1##r##
+                                                 ##r##
+        26/26 (100.0%) sampletestsl_rst##r##
+                                       ##r##
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in N.NNN seconds.
@@ -247,54 +247,54 @@ information.
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        1/24 (4.2%) test_x1 (sample1.sampletests.test122.TestA)##r##
+        1/24 (4.2%) sample1.sampletests.test122.TestA.test_x1##r##
+                                                             ##r##
+        2/24 (8.3%) sample1.sampletests.test122.TestA.test_y0##r##
+                                                             ##r##
+        3/24 (12.5%) sample1.sampletests.test122.TestA.test_z0##r##
                                                               ##r##
-        2/24 (8.3%) test_y0 (sample1.sampletests.test122.TestA)##r##
+        4/24 (16.7%) sample1.sampletests.test122.TestB.test_x0##r##
                                                               ##r##
-        3/24 (12.5%) test_z0 (sample1.sampletests.test122.TestA)##r##
-                                                               ##r##
-        4/24 (16.7%) test_x0 (sample1.sampletests.test122.TestB)##r##
-                                                               ##r##
-        5/24 (20.8%) test_y1 (sample1.sampletests.test122.TestB)##r##
-                                                               ##r##
-        6/24 (25.0%) test_z0 (sample1.sampletests.test122.TestB)##r##
-                                                               ##r##
-        7/24 (29.2%) test_1 (sample1.sampletests.test122.TestNotMuch)##r##
-                                                                    ##r##
-        8/24 (33.3%) test_2 (sample1.sampletests.test122.TestNotMuch)##r##
-                                                                    ##r##
-        9/24 (37.5%) test_3 (sample1.sampletests.test122.TestNotMuch)##r##
-                                                                    ##r##
-        10/24 (41.7%) test_x0 (sample1.sampletests.test122)##r##
-                                                          ##r##
-        11/24 (45.8%) test_y0 (sample1.sampletests.test122)##r##
-                                                          ##r##
-        12/24 (50.0%) test_z1 (sample1.sampletests.test122)##r##
-                                                          ##r##
-        13/24 (54.2%) test_x1 (sampletests.test122.TestA)##r##
-                                                        ##r##
-        14/24 (58.3%) test_y0 (sampletests.test122.TestA)##r##
-                                                        ##r##
-        15/24 (62.5%) test_z0 (sampletests.test122.TestA)##r##
-                                                        ##r##
-        16/24 (66.7%) test_x0 (sampletests.test122.TestB)##r##
-                                                        ##r##
-        17/24 (70.8%) test_y1 (sampletests.test122.TestB)##r##
-                                                        ##r##
-        18/24 (75.0%) test_z0 (sampletests.test122.TestB)##r##
-                                                        ##r##
-        19/24 (79.2%) test_1 (sampletests.test122.TestNotMuch)##r##
-                                                             ##r##
-        20/24 (83.3%) test_2 (sampletests.test122.TestNotMuch)##r##
-                                                             ##r##
-        21/24 (87.5%) test_3 (sampletests.test122.TestNotMuch)##r##
-                                                             ##r##
-        22/24 (91.7%) test_x0 (sampletests.test122)##r##
+        5/24 (20.8%) sample1.sampletests.test122.TestB.test_y1##r##
+                                                              ##r##
+        6/24 (25.0%) sample1.sampletests.test122.TestB.test_z0##r##
+                                                              ##r##
+        7/24 (29.2%) sample1.sampletests.test122.TestNotMuch.test_1##r##
+                                                                   ##r##
+        8/24 (33.3%) sample1.sampletests.test122.TestNotMuch.test_2##r##
+                                                                   ##r##
+        9/24 (37.5%) sample1.sampletests.test122.TestNotMuch.test_3##r##
+                                                                   ##r##
+        10/24 (41.7%) sample1.sampletests.test122.test_x0##r##
+                                                         ##r##
+        11/24 (45.8%) sample1.sampletests.test122.test_y0##r##
+                                                         ##r##
+        12/24 (50.0%) sample1.sampletests.test122.test_z1##r##
+                                                         ##r##
+        13/24 (54.2%) sampletests.test122.TestA.test_x1##r##
+                                                       ##r##
+        14/24 (58.3%) sampletests.test122.TestA.test_y0##r##
+                                                       ##r##
+        15/24 (62.5%) sampletests.test122.TestA.test_z0##r##
+                                                       ##r##
+        16/24 (66.7%) sampletests.test122.TestB.test_x0##r##
+                                                       ##r##
+        17/24 (70.8%) sampletests.test122.TestB.test_y1##r##
+                                                       ##r##
+        18/24 (75.0%) sampletests.test122.TestB.test_z0##r##
+                                                       ##r##
+        19/24 (79.2%) sampletests.test122.TestNotMuch.test_1##r##
+                                                            ##r##
+        20/24 (83.3%) sampletests.test122.TestNotMuch.test_2##r##
+                                                            ##r##
+        21/24 (87.5%) sampletests.test122.TestNotMuch.test_3##r##
+                                                            ##r##
+        22/24 (91.7%) sampletests.test122.test_x0##r##
+                                                 ##r##
+        23/24 (95.8%) sampletests.test122.test_y0##r##
+                                                 ##r##
+        24/24 (100.0%) sampletests.test122.test_z1##r##
                                                   ##r##
-        23/24 (95.8%) test_y0 (sampletests.test122)##r##
-                                                  ##r##
-        24/24 (100.0%) test_z1 (sampletests.test122)##r##
-                                                   ##r##
       Ran 24 tests with 0 failures, 0 errors and 0 skipped in 0.006 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -313,42 +313,42 @@ with '!' to exclude tests containing the string "rst".
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        1/18 (5.6%) test_x1 (sample1.sampletests.test122.TestA) (0.000 s)##r##
-                                                                          ##r##
-        2/18 (11.1%) test_y0 (sample1.sampletests.test122.TestA) (0.000 s)##r##
-                                                                           ##r##
-        3/18 (16.7%) test_z0 (sample1.sampletests.test122.TestA) (0.000 s)##r##
-                                                                           ##r##
-        4/18 (22.2%) test_x0 (sample1.sampletests.test122.TestB) (0.000 s)##r##
-                                                                           ##r##
-        5/18 (27.8%) test_y1 (sample1.sampletests.test122.TestB) (0.000 s)##r##
-                                                                           ##r##
-        6/18 (33.3%) test_z0 (sample1.sampletests.test122.TestB) (0.000 s)##r##
-                                                                           ##r##
-        7/18 (38.9%) test_x0 (sample1.sampletests.test122) (0.001 s)##r##
-                                                                     ##r##
-        8/18 (44.4%) test_y0 (sample1.sampletests.test122) (0.001 s)##r##
-                                                                     ##r##
-        9/18 (50.0%) test_z1 (sample1.sampletests.test122) (0.001 s)##r##
-                                                                     ##r##
-        10/18 (55.6%) test_x1 (sampletests.test122.TestA) (0.000 s)##r##
-                                                                    ##r##
-        11/18 (61.1%) test_y0 (sampletests.test122.TestA) (0.000 s)##r##
-                                                                    ##r##
-        12/18 (66.7%) test_z0 (sampletests.test122.TestA) (0.000 s)##r##
-                                                                    ##r##
-        13/18 (72.2%) test_x0 (sampletests.test122.TestB) (0.000 s)##r##
-                                                                    ##r##
-        14/18 (77.8%) test_y1 (sampletests.test122.TestB) (0.000 s)##r##
-                                                                    ##r##
-        15/18 (83.3%) test_z0 (sampletests.test122.TestB) (0.000 s)##r##
-                                                                    ##r##
-        16/18 (88.9%) test_x0 (sampletests.test122) (0.001 s)##r##
-                                                              ##r##
-        17/18 (94.4%) test_y0 (sampletests.test122) (0.001 s)##r##
-                                                              ##r##
-        18/18 (100.0%) test_z1 (sampletests.test122) (0.001 s)##r##
-                                                               ##r##
+        1/18 (5.6%) sample1.sampletests.test122.TestA.test_x1 (0.000 s)##r##
+                                                                       ##r##
+        2/18 (11.1%) sample1.sampletests.test122.TestA.test_y0 (0.000 s)##r##
+                                                                        ##r##
+        3/18 (16.7%) sample1.sampletests.test122.TestA.test_z0 (0.000 s)##r##
+                                                                        ##r##
+        4/18 (22.2%) sample1.sampletests.test122.TestB.test_x0 (0.000 s)##r##
+                                                                        ##r##
+        5/18 (27.8%) sample1.sampletests.test122.TestB.test_y1 (0.000 s)##r##
+                                                                        ##r##
+        6/18 (33.3%) sample1.sampletests.test122.TestB.test_z0 (0.000 s)##r##
+                                                                        ##r##
+        7/18 (38.9%) sample1.sampletests.test122.test_x0 (0.001 s)##r##
+                                                                  ##r##
+        8/18 (44.4%) sample1.sampletests.test122.test_y0 (0.001 s)##r##
+                                                                  ##r##
+        9/18 (50.0%) sample1.sampletests.test122.test_z1 (0.001 s)##r##
+                                                                  ##r##
+        10/18 (55.6%) sampletests.test122.TestA.test_x1 (0.000 s)##r##
+                                                                 ##r##
+        11/18 (61.1%) sampletests.test122.TestA.test_y0 (0.000 s)##r##
+                                                                 ##r##
+        12/18 (66.7%) sampletests.test122.TestA.test_z0 (0.000 s)##r##
+                                                                 ##r##
+        13/18 (72.2%) sampletests.test122.TestB.test_x0 (0.000 s)##r##
+                                                                 ##r##
+        14/18 (77.8%) sampletests.test122.TestB.test_y1 (0.000 s)##r##
+                                                                 ##r##
+        15/18 (83.3%) sampletests.test122.TestB.test_z0 (0.000 s)##r##
+                                                                 ##r##
+        16/18 (88.9%) sampletests.test122.test_x0 (0.001 s)##r##
+                                                           ##r##
+        17/18 (94.4%) sampletests.test122.test_y0 (0.001 s)##r##
+                                                           ##r##
+        18/18 (100.0%) sampletests.test122.test_z1 (0.001 s)##r##
+                                                            ##r##
       Ran 18 tests with 0 failures, 0 errors and 0 skipped in 0.006 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.

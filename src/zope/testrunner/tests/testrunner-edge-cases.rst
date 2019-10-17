@@ -425,15 +425,15 @@ Post-mortem debugging with triple verbosity
     Running samplelayers.Layer1 tests:
       Set up samplelayers.Layer1 in 0.000 seconds.
       Running:
-        test_x1 (sampletestsf.TestA1) (0.000 s)
-        test_y0 (sampletestsf.TestA1) (0.000 s)
-        test_z0 (sampletestsf.TestA1) (0.000 s)
-        test_x0 (sampletestsf.TestB1) (0.000 s)
-        test_y1 (sampletestsf.TestB1) (0.000 s)
-        test_z0 (sampletestsf.TestB1) (0.000 s)
-        test_1 (sampletestsf.TestNotMuch1) (0.000 s)
-        test_2 (sampletestsf.TestNotMuch1) (0.000 s)
-        test_3 (sampletestsf.TestNotMuch1) (0.000 s)
+        sampletestsf.TestA1.test_x1 (0.000 s)
+        sampletestsf.TestA1.test_y0 (0.000 s)
+        sampletestsf.TestA1.test_z0 (0.000 s)
+        sampletestsf.TestB1.test_x0 (0.000 s)
+        sampletestsf.TestB1.test_y1 (0.000 s)
+        sampletestsf.TestB1.test_z0 (0.000 s)
+        sampletestsf.TestNotMuch1.test_1 (0.000 s)
+        sampletestsf.TestNotMuch1.test_2 (0.000 s)
+        sampletestsf.TestNotMuch1.test_3 (0.000 s)
       Ran 9 tests with 0 failures, 0 errors and 0 skipped in 0.001 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer1 in 0.000 seconds.
@@ -513,13 +513,13 @@ Several tests can be excluded using the '!' notation:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_z0 (sample1.sample13.sampletests.TestA)
-     test_z0 (sample1.sample13.sampletests.TestB)
-     test_1 (sample1.sample13.sampletests.TestNotMuch)
-     test_2 (sample1.sample13.sampletests.TestNotMuch)
-     test_3 (sample1.sample13.sampletests.TestNotMuch)
-     test_z1 (sample1.sample13.sampletests)
-     testrunner-ex/sample1/sample13/../../sampletests.rst
+     sample1.sample13.sampletests.TestA.test_z0
+     sample1.sample13.sampletests.TestB.test_z0
+     sample1.sample13.sampletests.TestNotMuch.test_1
+     sample1.sample13.sampletests.TestNotMuch.test_2
+     sample1.sample13.sampletests.TestNotMuch.test_3
+     sample1.sample13.sampletests.test_z1
+     sampletests_rst
       Ran 7 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.

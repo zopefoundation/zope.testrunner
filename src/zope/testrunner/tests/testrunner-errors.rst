@@ -382,7 +382,7 @@ for failing and erroring tests.
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_stderr_error (sample2.stdstreamstest.Test)
+     sample2.stdstreamstest.Test.test_stderr_error
     <BLANKLINE>
     Error in test test_stderr_error (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
@@ -394,7 +394,7 @@ for failing and erroring tests.
     stderr output on error
     <BLANKLINE>
     <BLANKLINE>
-     test_stderr_failure (sample2.stdstreamstest.Test)
+     sample2.stdstreamstest.Test.test_stderr_failure
     <BLANKLINE>
     Failure in test test_stderr_failure (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
@@ -406,8 +406,8 @@ for failing and erroring tests.
     stderr output on failure
     <BLANKLINE>
     <BLANKLINE>
-     test_stderr_success (sample2.stdstreamstest.Test)
-     test_stdout_error (sample2.stdstreamstest.Test)
+     sample2.stdstreamstest.Test.test_stderr_success
+     sample2.stdstreamstest.Test.test_stdout_error
     <BLANKLINE>
     Error in test test_stdout_error (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
@@ -419,7 +419,7 @@ for failing and erroring tests.
     stdout output on error
     <BLANKLINE>
     <BLANKLINE>
-     test_stdout_failure (sample2.stdstreamstest.Test)
+     sample2.stdstreamstest.Test.test_stdout_failure
     <BLANKLINE>
     Failure in test test_stdout_failure (sample2.stdstreamstest.Test)
     Traceback (most recent call last):
@@ -431,7 +431,7 @@ for failing and erroring tests.
     stdout output on failure
     <BLANKLINE>
     <BLANKLINE>
-     test_stdout_success (sample2.stdstreamstest.Test)
+     sample2.stdstreamstest.Test.test_stdout_success
       Ran 6 tests with 2 failures, 2 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.

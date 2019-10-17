@@ -47,10 +47,10 @@ Now run the tests in the copy:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test1 (unlikely_package_name.compiletest.Test)
-     test2 (unlikely_package_name.compiletest.Test)
-     test1 (unlikely_package_name.package.compiletest.Test)
-     test2 (unlikely_package_name.package.compiletest.Test)
+     unlikely_package_name.compiletest.Test.test1
+     unlikely_package_name.compiletest.Test.test2
+     unlikely_package_name.package.compiletest.Test.test1
+     unlikely_package_name.package.compiletest.Test.test2
       Ran 4 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -96,10 +96,10 @@ also implies ``--keepbytecode``:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test1 (unlikely_package_name.compiletest.Test)
-     test2 (unlikely_package_name.compiletest.Test)
-     test1 (unlikely_package_name.package.compiletest.Test)
-     test2 (unlikely_package_name.package.compiletest.Test)
+     unlikely_package_name.compiletest.Test.test1
+     unlikely_package_name.compiletest.Test.test2
+     unlikely_package_name.package.compiletest.Test.test1
+     unlikely_package_name.package.compiletest.Test.test2
       Ran 4 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.

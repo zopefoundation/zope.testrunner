@@ -50,14 +50,14 @@ package name and file path.
       Set up samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
       Running:
-        test_x1 (sample1.sampletests.test111.TestA)
-        test_y0 (sample1.sampletests.test111.TestA)
+        sample1.sampletests.test111.TestA.test_x1
+        sample1.sampletests.test111.TestA.test_y0
         ...
-        test_y0 (sampletests.test111)
-        test_z1 (sampletests.test111)
-        testrunner-ex/sampletests/../sampletestsl.rst
-        test_extra_test_in_products (sample4.products.sampletests.Test)
-        test_another_test_in_products (sample4.products.more.sampletests.Test)
+        sampletests.test111.test_y0
+        sampletests.test111.test_z1
+        sampletestsl_rst
+        sample4.products.sampletests.Test.test_extra_test_in_products
+        sample4.products.more.sampletests.Test.test_another_test_in_products
       Ran 28 tests with 0 failures, 0 errors and 0 skipped in 0.008 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.
@@ -78,8 +78,8 @@ or individual packages within knit-in packages:
       Set up samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
       Running:
-        test_extra_test_in_products (sample4.products.sampletests.Test)
-        test_another_test_in_products (sample4.products.more.sampletests.Test)
+        sample4.products.sampletests.Test.test_extra_test_in_products
+        sample4.products.more.sampletests.Test.test_another_test_in_products
       Ran 2 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.
@@ -96,7 +96,7 @@ or individual packages within knit-in packages:
       Set up samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer111 in 0.000 seconds.
       Running:
-        test_another_test_in_products (sample4.products.more.sampletests.Test)
+        sample4.products.more.sampletests.Test.test_another_test_in_products
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer111 in 0.000 seconds.

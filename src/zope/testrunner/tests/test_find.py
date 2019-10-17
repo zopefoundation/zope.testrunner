@@ -14,7 +14,6 @@
 """Unit tests for test discovery."""
 
 import doctest
-import os.path
 import unittest
 
 from zope.testrunner import find
@@ -76,8 +75,5 @@ class TestUniqueness(unittest.TestCase):
         # contains all the duplicate test IDs it found.
         with self.assertRaises(find.DuplicateTestIDError) as e:
             find.find_tests(UniquenessOptions(), [self.test_suites])
-        self.assertIn(
-            os.path.join('testrunner-ex', 'sampletests.rst'), str(e.exception))
-        self.assertIn(
-            os.path.join('testrunner-ex', 'sampletestsl.rst'),
-            str(e.exception))
+        self.assertIn('sampletests_rst', str(e.exception))
+        self.assertIn('sampletestsl_rst', str(e.exception))

@@ -27,19 +27,19 @@ We can select tests by package:
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        test_x1 (sample1.sampletests.test122.TestA)
-        test_y0 (sample1.sampletests.test122.TestA)
-        test_z0 (sample1.sampletests.test122.TestA)
-        test_x0 (sample1.sampletests.test122.TestB)
-        test_y1 (sample1.sampletests.test122.TestB)
-        test_z0 (sample1.sampletests.test122.TestB)
-        test_1 (sample1.sampletests.test122.TestNotMuch)
-        test_2 (sample1.sampletests.test122.TestNotMuch)
-        test_3 (sample1.sampletests.test122.TestNotMuch)
-        test_x0 (sample1.sampletests.test122)
-        test_y0 (sample1.sampletests.test122)
-        test_z1 (sample1.sampletests.test122)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.rst
+        sample1.sampletests.test122.TestA.test_x1
+        sample1.sampletests.test122.TestA.test_y0
+        sample1.sampletests.test122.TestA.test_z0
+        sample1.sampletests.test122.TestB.test_x0
+        sample1.sampletests.test122.TestB.test_y1
+        sample1.sampletests.test122.TestB.test_z0
+        sample1.sampletests.test122.TestNotMuch.test_1
+        sample1.sampletests.test122.TestNotMuch.test_2
+        sample1.sampletests.test122.TestNotMuch.test_3
+        sample1.sampletests.test122.test_x0
+        sample1.sampletests.test122.test_y0
+        sample1.sampletests.test122.test_z1
+        sampletestsl_rst
       Ran 13 tests with 0 failures, 0 errors and 0 skipped in 0.005 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -55,110 +55,110 @@ You can specify multiple packages:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_x1 (sample1.sampletestsf.TestA)
-     test_y0 (sample1.sampletestsf.TestA)
-     test_z0 (sample1.sampletestsf.TestA)
-     test_x0 (sample1.sampletestsf.TestB)
-     test_y1 (sample1.sampletestsf.TestB)
-     test_z0 (sample1.sampletestsf.TestB)
-     test_1 (sample1.sampletestsf.TestNotMuch)
-     test_2 (sample1.sampletestsf.TestNotMuch)
-     test_3 (sample1.sampletestsf.TestNotMuch)
-     test_x0 (sample1.sampletestsf)
-     test_y0 (sample1.sampletestsf)
-     test_z1 (sample1.sampletestsf)
-     testrunner-ex/sample1/../sampletests.rst
-     test_x1 (sample1.sample11.sampletests.TestA)
-     test_y0 (sample1.sample11.sampletests.TestA)
-     test_z0 (sample1.sample11.sampletests.TestA)
-     test_x0 (sample1.sample11.sampletests.TestB)
-     test_y1 (sample1.sample11.sampletests.TestB)
-     test_z0 (sample1.sample11.sampletests.TestB)
-     test_1 (sample1.sample11.sampletests.TestNotMuch)
-     test_2 (sample1.sample11.sampletests.TestNotMuch)
-     test_3 (sample1.sample11.sampletests.TestNotMuch)
-     test_x0 (sample1.sample11.sampletests)
-     test_y0 (sample1.sample11.sampletests)
-     test_z1 (sample1.sample11.sampletests)
-     testrunner-ex/sample1/sample11/../../sampletests.rst
-     test_x1 (sample1.sample13.sampletests.TestA)
-     test_y0 (sample1.sample13.sampletests.TestA)
-     test_z0 (sample1.sample13.sampletests.TestA)
-     test_x0 (sample1.sample13.sampletests.TestB)
-     test_y1 (sample1.sample13.sampletests.TestB)
-     test_z0 (sample1.sample13.sampletests.TestB)
-     test_1 (sample1.sample13.sampletests.TestNotMuch)
-     test_2 (sample1.sample13.sampletests.TestNotMuch)
-     test_3 (sample1.sample13.sampletests.TestNotMuch)
-     test_x0 (sample1.sample13.sampletests)
-     test_y0 (sample1.sample13.sampletests)
-     test_z1 (sample1.sample13.sampletests)
-     testrunner-ex/sample1/sample13/../../sampletests.rst
-     test_x1 (sample1.sampletests.test1.TestA)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_z0 (sample1.sampletests.test1.TestA)
-     test_x0 (sample1.sampletests.test1.TestB)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_z0 (sample1.sampletests.test1.TestB)
-     test_1 (sample1.sampletests.test1.TestNotMuch)
-     test_2 (sample1.sampletests.test1.TestNotMuch)
-     test_3 (sample1.sampletests.test1.TestNotMuch)
-     test_x0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test1)
-     test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     test_x1 (sample1.sampletests.test_one.TestA)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_z0 (sample1.sampletests.test_one.TestA)
-     test_x0 (sample1.sampletests.test_one.TestB)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_z0 (sample1.sampletests.test_one.TestB)
-     test_1 (sample1.sampletests.test_one.TestNotMuch)
-     test_2 (sample1.sampletests.test_one.TestNotMuch)
-     test_3 (sample1.sampletests.test_one.TestNotMuch)
-     test_x0 (sample1.sampletests.test_one)
-     test_y0 (sample1.sampletests.test_one)
-     test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     test_x1 (sample2.sample21.sampletests.TestA)
-     test_y0 (sample2.sample21.sampletests.TestA)
-     test_z0 (sample2.sample21.sampletests.TestA)
-     test_x0 (sample2.sample21.sampletests.TestB)
-     test_y1 (sample2.sample21.sampletests.TestB)
-     test_z0 (sample2.sample21.sampletests.TestB)
-     test_1 (sample2.sample21.sampletests.TestNotMuch)
-     test_2 (sample2.sample21.sampletests.TestNotMuch)
-     test_3 (sample2.sample21.sampletests.TestNotMuch)
-     test_x0 (sample2.sample21.sampletests)
-     test_y0 (sample2.sample21.sampletests)
-     test_z1 (sample2.sample21.sampletests)
-     testrunner-ex/sample2/sample21/../../sampletests.rst
-     test_x1 (sample2.sampletests.test_1.TestA)
-     test_y0 (sample2.sampletests.test_1.TestA)
-     test_z0 (sample2.sampletests.test_1.TestA)
-     test_x0 (sample2.sampletests.test_1.TestB)
-     test_y1 (sample2.sampletests.test_1.TestB)
-     test_z0 (sample2.sampletests.test_1.TestB)
-     test_1 (sample2.sampletests.test_1.TestNotMuch)
-     test_2 (sample2.sampletests.test_1.TestNotMuch)
-     test_3 (sample2.sampletests.test_1.TestNotMuch)
-     test_x0 (sample2.sampletests.test_1)
-     test_y0 (sample2.sampletests.test_1)
-     test_z1 (sample2.sampletests.test_1)
-     testrunner-ex/sample2/sampletests/../../sampletests.rst
-     test_x1 (sample2.sampletests.testone.TestA)
-     test_y0 (sample2.sampletests.testone.TestA)
-     test_z0 (sample2.sampletests.testone.TestA)
-     test_x0 (sample2.sampletests.testone.TestB)
-     test_y1 (sample2.sampletests.testone.TestB)
-     test_z0 (sample2.sampletests.testone.TestB)
-     test_1 (sample2.sampletests.testone.TestNotMuch)
-     test_2 (sample2.sampletests.testone.TestNotMuch)
-     test_3 (sample2.sampletests.testone.TestNotMuch)
-     test_x0 (sample2.sampletests.testone)
-     test_y0 (sample2.sampletests.testone)
-     test_z1 (sample2.sampletests.testone)
-     testrunner-ex/sample2/sampletests/../../sampletests.rst
+     sample1.sampletestsf.TestA.test_x1
+     sample1.sampletestsf.TestA.test_y0
+     sample1.sampletestsf.TestA.test_z0
+     sample1.sampletestsf.TestB.test_x0
+     sample1.sampletestsf.TestB.test_y1
+     sample1.sampletestsf.TestB.test_z0
+     sample1.sampletestsf.TestNotMuch.test_1
+     sample1.sampletestsf.TestNotMuch.test_2
+     sample1.sampletestsf.TestNotMuch.test_3
+     sample1.sampletestsf.test_x0
+     sample1.sampletestsf.test_y0
+     sample1.sampletestsf.test_z1
+     sampletests_rst
+     sample1.sample11.sampletests.TestA.test_x1
+     sample1.sample11.sampletests.TestA.test_y0
+     sample1.sample11.sampletests.TestA.test_z0
+     sample1.sample11.sampletests.TestB.test_x0
+     sample1.sample11.sampletests.TestB.test_y1
+     sample1.sample11.sampletests.TestB.test_z0
+     sample1.sample11.sampletests.TestNotMuch.test_1
+     sample1.sample11.sampletests.TestNotMuch.test_2
+     sample1.sample11.sampletests.TestNotMuch.test_3
+     sample1.sample11.sampletests.test_x0
+     sample1.sample11.sampletests.test_y0
+     sample1.sample11.sampletests.test_z1
+     sampletests_rst
+     sample1.sample13.sampletests.TestA.test_x1
+     sample1.sample13.sampletests.TestA.test_y0
+     sample1.sample13.sampletests.TestA.test_z0
+     sample1.sample13.sampletests.TestB.test_x0
+     sample1.sample13.sampletests.TestB.test_y1
+     sample1.sample13.sampletests.TestB.test_z0
+     sample1.sample13.sampletests.TestNotMuch.test_1
+     sample1.sample13.sampletests.TestNotMuch.test_2
+     sample1.sample13.sampletests.TestNotMuch.test_3
+     sample1.sample13.sampletests.test_x0
+     sample1.sample13.sampletests.test_y0
+     sample1.sample13.sampletests.test_z1
+     sampletests_rst
+     sample1.sampletests.test1.TestA.test_x1
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestA.test_z0
+     sample1.sampletests.test1.TestB.test_x0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.TestB.test_z0
+     sample1.sampletests.test1.TestNotMuch.test_1
+     sample1.sampletests.test1.TestNotMuch.test_2
+     sample1.sampletests.test1.TestNotMuch.test_3
+     sample1.sampletests.test1.test_x0
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test1.test_z1
+     sampletests_rst
+     sample1.sampletests.test_one.TestA.test_x1
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestA.test_z0
+     sample1.sampletests.test_one.TestB.test_x0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.TestB.test_z0
+     sample1.sampletests.test_one.TestNotMuch.test_1
+     sample1.sampletests.test_one.TestNotMuch.test_2
+     sample1.sampletests.test_one.TestNotMuch.test_3
+     sample1.sampletests.test_one.test_x0
+     sample1.sampletests.test_one.test_y0
+     sample1.sampletests.test_one.test_z1
+     sampletests_rst
+     sample2.sample21.sampletests.TestA.test_x1
+     sample2.sample21.sampletests.TestA.test_y0
+     sample2.sample21.sampletests.TestA.test_z0
+     sample2.sample21.sampletests.TestB.test_x0
+     sample2.sample21.sampletests.TestB.test_y1
+     sample2.sample21.sampletests.TestB.test_z0
+     sample2.sample21.sampletests.TestNotMuch.test_1
+     sample2.sample21.sampletests.TestNotMuch.test_2
+     sample2.sample21.sampletests.TestNotMuch.test_3
+     sample2.sample21.sampletests.test_x0
+     sample2.sample21.sampletests.test_y0
+     sample2.sample21.sampletests.test_z1
+     sampletests_rst
+     sample2.sampletests.test_1.TestA.test_x1
+     sample2.sampletests.test_1.TestA.test_y0
+     sample2.sampletests.test_1.TestA.test_z0
+     sample2.sampletests.test_1.TestB.test_x0
+     sample2.sampletests.test_1.TestB.test_y1
+     sample2.sampletests.test_1.TestB.test_z0
+     sample2.sampletests.test_1.TestNotMuch.test_1
+     sample2.sampletests.test_1.TestNotMuch.test_2
+     sample2.sampletests.test_1.TestNotMuch.test_3
+     sample2.sampletests.test_1.test_x0
+     sample2.sampletests.test_1.test_y0
+     sample2.sampletests.test_1.test_z1
+     sampletests_rst
+     sample2.sampletests.testone.TestA.test_x1
+     sample2.sampletests.testone.TestA.test_y0
+     sample2.sampletests.testone.TestA.test_z0
+     sample2.sampletests.testone.TestB.test_x0
+     sample2.sampletests.testone.TestB.test_y1
+     sample2.sampletests.testone.TestB.test_z0
+     sample2.sampletests.testone.TestNotMuch.test_1
+     sample2.sampletests.testone.TestNotMuch.test_2
+     sample2.sampletests.testone.TestNotMuch.test_3
+     sample2.sampletests.testone.test_x0
+     sample2.sampletests.testone.test_y0
+     sample2.sampletests.testone.test_z1
+     sampletests_rst
       Ran 104 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -180,19 +180,19 @@ tab-completion):
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        test_x1 (sample1.sampletests.test122.TestA)
-        test_y0 (sample1.sampletests.test122.TestA)
-        test_z0 (sample1.sampletests.test122.TestA)
-        test_x0 (sample1.sampletests.test122.TestB)
-        test_y1 (sample1.sampletests.test122.TestB)
-        test_z0 (sample1.sampletests.test122.TestB)
-        test_1 (sample1.sampletests.test122.TestNotMuch)
-        test_2 (sample1.sampletests.test122.TestNotMuch)
-        test_3 (sample1.sampletests.test122.TestNotMuch)
-        test_x0 (sample1.sampletests.test122)
-        test_y0 (sample1.sampletests.test122)
-        test_z1 (sample1.sampletests.test122)
-        testrunner-ex/sample1/sampletests/../../sampletestsl.rst
+        sample1.sampletests.test122.TestA.test_x1
+        sample1.sampletests.test122.TestA.test_y0
+        sample1.sampletests.test122.TestA.test_z0
+        sample1.sampletests.test122.TestB.test_x0
+        sample1.sampletests.test122.TestB.test_y1
+        sample1.sampletests.test122.TestB.test_z0
+        sample1.sampletests.test122.TestNotMuch.test_1
+        sample1.sampletests.test122.TestNotMuch.test_2
+        sample1.sampletests.test122.TestNotMuch.test_3
+        sample1.sampletests.test122.test_x0
+        sample1.sampletests.test122.test_y0
+        sample1.sampletests.test122.test_z1
+        sampletestsl_rst
       Ran 13 tests with 0 failures, 0 errors and 0 skipped in 0.005 seconds.
     Tearing down left over layers:
       Tear down samplelayers.Layer122 in 0.000 seconds.
@@ -211,32 +211,32 @@ We can select by test module name using the --module (-m) option:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_x1 (sample1.sampletests.test1.TestA)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_z0 (sample1.sampletests.test1.TestA)
-     test_x0 (sample1.sampletests.test1.TestB)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_z0 (sample1.sampletests.test1.TestB)
-     test_1 (sample1.sampletests.test1.TestNotMuch)
-     test_2 (sample1.sampletests.test1.TestNotMuch)
-     test_3 (sample1.sampletests.test1.TestNotMuch)
-     test_x0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test1)
-     test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     test_x1 (sample1.sampletests.test_one.TestA)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_z0 (sample1.sampletests.test_one.TestA)
-     test_x0 (sample1.sampletests.test_one.TestB)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_z0 (sample1.sampletests.test_one.TestB)
-     test_1 (sample1.sampletests.test_one.TestNotMuch)
-     test_2 (sample1.sampletests.test_one.TestNotMuch)
-     test_3 (sample1.sampletests.test_one.TestNotMuch)
-     test_x0 (sample1.sampletests.test_one)
-     test_y0 (sample1.sampletests.test_one)
-     test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     sample1.sampletests.test1.TestA.test_x1
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestA.test_z0
+     sample1.sampletests.test1.TestB.test_x0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.TestB.test_z0
+     sample1.sampletests.test1.TestNotMuch.test_1
+     sample1.sampletests.test1.TestNotMuch.test_2
+     sample1.sampletests.test1.TestNotMuch.test_3
+     sample1.sampletests.test1.test_x0
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test1.test_z1
+     sampletests_rst
+     sample1.sampletests.test_one.TestA.test_x1
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestA.test_z0
+     sample1.sampletests.test_one.TestB.test_x0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.TestB.test_z0
+     sample1.sampletests.test_one.TestNotMuch.test_1
+     sample1.sampletests.test_one.TestNotMuch.test_2
+     sample1.sampletests.test_one.TestNotMuch.test_3
+     sample1.sampletests.test_one.test_x0
+     sample1.sampletests.test_one.test_y0
+     sample1.sampletests.test_one.test_z1
+     sampletests_rst
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -251,14 +251,14 @@ and by test within the module using the --test (-t) option:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_x0 (sample1.sampletests.test1.TestB)
-     test_x0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_x0 (sample1.sampletests.test_one.TestB)
-     test_x0 (sample1.sampletests.test_one)
-     test_y0 (sample1.sampletests.test_one)
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestB.test_x0
+     sample1.sampletests.test1.test_x0
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestB.test_x0
+     sample1.sampletests.test_one.test_x0
+     sample1.sampletests.test_one.test_y0
       Ran 8 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -271,11 +271,11 @@ and by test within the module using the --test (-t) option:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     testrunner-ex/sample1/../sampletests.rst
-     testrunner-ex/sample1/sample11/../../sampletests.rst
-     testrunner-ex/sample1/sample13/../../sampletests.rst
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     sampletests_rst
+     sampletests_rst
+     sampletests_rst
+     sampletests_rst
+     sampletests_rst
       Ran 5 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -295,45 +295,45 @@ match the regular expression are selected:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_x1 (sample1.sampletestsf.TestA)
-     test_y0 (sample1.sampletestsf.TestA)
-     test_z0 (sample1.sampletestsf.TestA)
-     test_x0 (sample1.sampletestsf.TestB)
-     test_y1 (sample1.sampletestsf.TestB)
-     test_z0 (sample1.sampletestsf.TestB)
-     test_1 (sample1.sampletestsf.TestNotMuch)
-     test_2 (sample1.sampletestsf.TestNotMuch)
-     test_3 (sample1.sampletestsf.TestNotMuch)
-     test_x0 (sample1.sampletestsf)
-     test_y0 (sample1.sampletestsf)
-     test_z1 (sample1.sampletestsf)
-     testrunner-ex/sample1/../sampletests.rst
-     test_x1 (sample1.sampletests.test1.TestA)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_z0 (sample1.sampletests.test1.TestA)
-     test_x0 (sample1.sampletests.test1.TestB)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_z0 (sample1.sampletests.test1.TestB)
-     test_1 (sample1.sampletests.test1.TestNotMuch)
-     test_2 (sample1.sampletests.test1.TestNotMuch)
-     test_3 (sample1.sampletests.test1.TestNotMuch)
-     test_x0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test1)
-     test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     test_x1 (sample1.sampletests.test_one.TestA)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_z0 (sample1.sampletests.test_one.TestA)
-     test_x0 (sample1.sampletests.test_one.TestB)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_z0 (sample1.sampletests.test_one.TestB)
-     test_1 (sample1.sampletests.test_one.TestNotMuch)
-     test_2 (sample1.sampletests.test_one.TestNotMuch)
-     test_3 (sample1.sampletests.test_one.TestNotMuch)
-     test_x0 (sample1.sampletests.test_one)
-     test_y0 (sample1.sampletests.test_one)
-     test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     sample1.sampletestsf.TestA.test_x1
+     sample1.sampletestsf.TestA.test_y0
+     sample1.sampletestsf.TestA.test_z0
+     sample1.sampletestsf.TestB.test_x0
+     sample1.sampletestsf.TestB.test_y1
+     sample1.sampletestsf.TestB.test_z0
+     sample1.sampletestsf.TestNotMuch.test_1
+     sample1.sampletestsf.TestNotMuch.test_2
+     sample1.sampletestsf.TestNotMuch.test_3
+     sample1.sampletestsf.test_x0
+     sample1.sampletestsf.test_y0
+     sample1.sampletestsf.test_z1
+     sampletests_rst
+     sample1.sampletests.test1.TestA.test_x1
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestA.test_z0
+     sample1.sampletests.test1.TestB.test_x0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.TestB.test_z0
+     sample1.sampletests.test1.TestNotMuch.test_1
+     sample1.sampletests.test1.TestNotMuch.test_2
+     sample1.sampletests.test1.TestNotMuch.test_3
+     sample1.sampletests.test1.test_x0
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test1.test_z1
+     sampletests_rst
+     sample1.sampletests.test_one.TestA.test_x1
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestA.test_z0
+     sample1.sampletests.test_one.TestB.test_x0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.TestB.test_z0
+     sample1.sampletests.test_one.TestNotMuch.test_1
+     sample1.sampletests.test_one.TestNotMuch.test_2
+     sample1.sampletests.test_one.TestNotMuch.test_3
+     sample1.sampletests.test_one.test_x0
+     sample1.sampletests.test_one.test_y0
+     sample1.sampletests.test_one.test_z1
+     sampletests_rst
       Ran 39 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -352,45 +352,45 @@ Module and test filters can also be given as positional arguments:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_x1 (sample1.sampletestsf.TestA)
-     test_y0 (sample1.sampletestsf.TestA)
-     test_z0 (sample1.sampletestsf.TestA)
-     test_x0 (sample1.sampletestsf.TestB)
-     test_y1 (sample1.sampletestsf.TestB)
-     test_z0 (sample1.sampletestsf.TestB)
-     test_1 (sample1.sampletestsf.TestNotMuch)
-     test_2 (sample1.sampletestsf.TestNotMuch)
-     test_3 (sample1.sampletestsf.TestNotMuch)
-     test_x0 (sample1.sampletestsf)
-     test_y0 (sample1.sampletestsf)
-     test_z1 (sample1.sampletestsf)
-     testrunner-ex/sample1/../sampletests.rst
-     test_x1 (sample1.sampletests.test1.TestA)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_z0 (sample1.sampletests.test1.TestA)
-     test_x0 (sample1.sampletests.test1.TestB)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_z0 (sample1.sampletests.test1.TestB)
-     test_1 (sample1.sampletests.test1.TestNotMuch)
-     test_2 (sample1.sampletests.test1.TestNotMuch)
-     test_3 (sample1.sampletests.test1.TestNotMuch)
-     test_x0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test1)
-     test_z1 (sample1.sampletests.test1)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     test_x1 (sample1.sampletests.test_one.TestA)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_z0 (sample1.sampletests.test_one.TestA)
-     test_x0 (sample1.sampletests.test_one.TestB)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_z0 (sample1.sampletests.test_one.TestB)
-     test_1 (sample1.sampletests.test_one.TestNotMuch)
-     test_2 (sample1.sampletests.test_one.TestNotMuch)
-     test_3 (sample1.sampletests.test_one.TestNotMuch)
-     test_x0 (sample1.sampletests.test_one)
-     test_y0 (sample1.sampletests.test_one)
-     test_z1 (sample1.sampletests.test_one)
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     sample1.sampletestsf.TestA.test_x1
+     sample1.sampletestsf.TestA.test_y0
+     sample1.sampletestsf.TestA.test_z0
+     sample1.sampletestsf.TestB.test_x0
+     sample1.sampletestsf.TestB.test_y1
+     sample1.sampletestsf.TestB.test_z0
+     sample1.sampletestsf.TestNotMuch.test_1
+     sample1.sampletestsf.TestNotMuch.test_2
+     sample1.sampletestsf.TestNotMuch.test_3
+     sample1.sampletestsf.test_x0
+     sample1.sampletestsf.test_y0
+     sample1.sampletestsf.test_z1
+     sampletests_rst
+     sample1.sampletests.test1.TestA.test_x1
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestA.test_z0
+     sample1.sampletests.test1.TestB.test_x0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.TestB.test_z0
+     sample1.sampletests.test1.TestNotMuch.test_1
+     sample1.sampletests.test1.TestNotMuch.test_2
+     sample1.sampletests.test1.TestNotMuch.test_3
+     sample1.sampletests.test1.test_x0
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test1.test_z1
+     sampletests_rst
+     sample1.sampletests.test_one.TestA.test_x1
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestA.test_z0
+     sample1.sampletests.test_one.TestB.test_x0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.TestB.test_z0
+     sample1.sampletests.test_one.TestNotMuch.test_1
+     sample1.sampletests.test_one.TestNotMuch.test_2
+     sample1.sampletests.test_one.TestNotMuch.test_3
+     sample1.sampletests.test_one.test_x0
+     sample1.sampletests.test_one.test_y0
+     sample1.sampletests.test_one.test_z1
+     sampletests_rst
       Ran 39 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -403,11 +403,11 @@ Module and test filters can also be given as positional arguments:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     testrunner-ex/sample1/../sampletests.rst
-     testrunner-ex/sample1/sample11/../../sampletests.rst
-     testrunner-ex/sample1/sample13/../../sampletests.rst
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
-     testrunner-ex/sample1/sampletests/../../sampletests.rst
+     sampletests_rst
+     sampletests_rst
+     sampletests_rst
+     sampletests_rst
+     sampletests_rst
       Ran 5 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -430,42 +430,42 @@ level. For example, with the following options:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_y0 (sampletestsf.TestA)
-     test_y1 (sampletestsf.TestB)
-     test_y0 (sampletestsf)
-     test_y0 (sample1.sampletestsf.TestA)
-     test_y1 (sample1.sampletestsf.TestB)
-     test_y0 (sample1.sampletestsf)
-     test_y0 (sample1.sample11.sampletests.TestA)
-     test_y1 (sample1.sample11.sampletests.TestB)
-     test_y0 (sample1.sample11.sampletests)
-     test_y0 (sample1.sample13.sampletests.TestA)
-     test_y1 (sample1.sample13.sampletests.TestB)
-     test_y0 (sample1.sample13.sampletests)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_y0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_y0 (sample1.sampletests.test_one)
-     test_y0 (sample2.sample21.sampletests.TestA)
-     test_y1 (sample2.sample21.sampletests.TestB)
-     test_y0 (sample2.sample21.sampletests)
-     test_y0 (sample2.sampletests.test_1.TestA)
-     test_y1 (sample2.sampletests.test_1.TestB)
-     test_y0 (sample2.sampletests.test_1)
-     test_y0 (sample2.sampletests.testone.TestA)
-     test_y1 (sample2.sampletests.testone.TestB)
-     test_y0 (sample2.sampletests.testone)
-     test_y0 (sample3.sampletests.TestA)
-     test_y1 (sample3.sampletests.TestB)
-     test_y0 (sample3.sampletests)
-     test_y0 (sampletests.test1.TestA)
-     test_y1 (sampletests.test1.TestB)
-     test_y0 (sampletests.test1)
-     test_y0 (sampletests.test_one.TestA)
-     test_y1 (sampletests.test_one.TestB)
-     test_y0 (sampletests.test_one)
+     sampletestsf.TestA.test_y0
+     sampletestsf.TestB.test_y1
+     sampletestsf.test_y0
+     sample1.sampletestsf.TestA.test_y0
+     sample1.sampletestsf.TestB.test_y1
+     sample1.sampletestsf.test_y0
+     sample1.sample11.sampletests.TestA.test_y0
+     sample1.sample11.sampletests.TestB.test_y1
+     sample1.sample11.sampletests.test_y0
+     sample1.sample13.sampletests.TestA.test_y0
+     sample1.sample13.sampletests.TestB.test_y1
+     sample1.sample13.sampletests.test_y0
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.test_y0
+     sample2.sample21.sampletests.TestA.test_y0
+     sample2.sample21.sampletests.TestB.test_y1
+     sample2.sample21.sampletests.test_y0
+     sample2.sampletests.test_1.TestA.test_y0
+     sample2.sampletests.test_1.TestB.test_y1
+     sample2.sampletests.test_1.test_y0
+     sample2.sampletests.testone.TestA.test_y0
+     sample2.sampletests.testone.TestB.test_y1
+     sample2.sampletests.testone.test_y0
+     sample3.sampletests.TestA.test_y0
+     sample3.sampletests.TestB.test_y1
+     sample3.sampletests.test_y0
+     sampletests.test1.TestA.test_y0
+     sampletests.test1.TestB.test_y1
+     sampletests.test1.test_y0
+     sampletests.test_one.TestA.test_y0
+     sampletests.test_one.TestB.test_y1
+     sampletests.test_one.test_y0
       Ran 36 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -481,44 +481,44 @@ additional tests:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_y0 (sampletestsf.TestA)
-     test_y0 (sampletestsf.TestA2)
-     test_y1 (sampletestsf.TestB)
-     test_y0 (sampletestsf)
-     test_y0 (sample1.sampletestsf.TestA)
-     test_y1 (sample1.sampletestsf.TestB)
-     test_y0 (sample1.sampletestsf)
-     test_y0 (sample1.sample11.sampletests.TestA)
-     test_y1 (sample1.sample11.sampletests.TestB)
-     test_y1 (sample1.sample11.sampletests.TestB2)
-     test_y0 (sample1.sample11.sampletests)
-     test_y0 (sample1.sample13.sampletests.TestA)
-     test_y1 (sample1.sample13.sampletests.TestB)
-     test_y0 (sample1.sample13.sampletests)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_y0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_y0 (sample1.sampletests.test_one)
-     test_y0 (sample2.sample21.sampletests.TestA)
-     test_y1 (sample2.sample21.sampletests.TestB)
-     test_y0 (sample2.sample21.sampletests)
-     test_y0 (sample2.sampletests.test_1.TestA)
-     test_y1 (sample2.sampletests.test_1.TestB)
-     test_y0 (sample2.sampletests.test_1)
-     test_y0 (sample2.sampletests.testone.TestA)
-     test_y1 (sample2.sampletests.testone.TestB)
-     test_y0 (sample2.sampletests.testone)
-     test_y0 (sample3.sampletests.TestA)
-     test_y1 (sample3.sampletests.TestB)
-     test_y0 (sample3.sampletests)
-     test_y0 (sampletests.test1.TestA)
-     test_y1 (sampletests.test1.TestB)
-     test_y0 (sampletests.test1)
-     test_y0 (sampletests.test_one.TestA)
-     test_y1 (sampletests.test_one.TestB)
-     test_y0 (sampletests.test_one)
+     sampletestsf.TestA.test_y0
+     sampletestsf.TestA2.test_y0
+     sampletestsf.TestB.test_y1
+     sampletestsf.test_y0
+     sample1.sampletestsf.TestA.test_y0
+     sample1.sampletestsf.TestB.test_y1
+     sample1.sampletestsf.test_y0
+     sample1.sample11.sampletests.TestA.test_y0
+     sample1.sample11.sampletests.TestB.test_y1
+     sample1.sample11.sampletests.TestB2.test_y1
+     sample1.sample11.sampletests.test_y0
+     sample1.sample13.sampletests.TestA.test_y0
+     sample1.sample13.sampletests.TestB.test_y1
+     sample1.sample13.sampletests.test_y0
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.test_y0
+     sample2.sample21.sampletests.TestA.test_y0
+     sample2.sample21.sampletests.TestB.test_y1
+     sample2.sample21.sampletests.test_y0
+     sample2.sampletests.test_1.TestA.test_y0
+     sample2.sampletests.test_1.TestB.test_y1
+     sample2.sampletests.test_1.test_y0
+     sample2.sampletests.testone.TestA.test_y0
+     sample2.sampletests.testone.TestB.test_y1
+     sample2.sampletests.testone.test_y0
+     sample3.sampletests.TestA.test_y0
+     sample3.sampletests.TestB.test_y1
+     sample3.sampletests.test_y0
+     sampletests.test1.TestA.test_y0
+     sampletests.test1.TestB.test_y1
+     sampletests.test1.test_y0
+     sampletests.test_one.TestA.test_y0
+     sampletests.test_one.TestB.test_y1
+     sampletests.test_one.test_y0
       Ran 38 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -533,45 +533,45 @@ We can use the --all option to run tests at all levels:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_y0 (sampletestsf.TestA)
-     test_y0 (sampletestsf.TestA2)
-     test_y1 (sampletestsf.TestB)
-     test_y0 (sampletestsf)
-     test_y0 (sample1.sampletestsf.TestA)
-     test_y1 (sample1.sampletestsf.TestB)
-     test_y0 (sample1.sampletestsf)
-     test_y0 (sample1.sample11.sampletests.TestA)
-     test_y0 (sample1.sample11.sampletests.TestA3)
-     test_y1 (sample1.sample11.sampletests.TestB)
-     test_y1 (sample1.sample11.sampletests.TestB2)
-     test_y0 (sample1.sample11.sampletests)
-     test_y0 (sample1.sample13.sampletests.TestA)
-     test_y1 (sample1.sample13.sampletests.TestB)
-     test_y0 (sample1.sample13.sampletests)
-     test_y0 (sample1.sampletests.test1.TestA)
-     test_y1 (sample1.sampletests.test1.TestB)
-     test_y0 (sample1.sampletests.test1)
-     test_y0 (sample1.sampletests.test_one.TestA)
-     test_y1 (sample1.sampletests.test_one.TestB)
-     test_y0 (sample1.sampletests.test_one)
-     test_y0 (sample2.sample21.sampletests.TestA)
-     test_y1 (sample2.sample21.sampletests.TestB)
-     test_y0 (sample2.sample21.sampletests)
-     test_y0 (sample2.sampletests.test_1.TestA)
-     test_y1 (sample2.sampletests.test_1.TestB)
-     test_y0 (sample2.sampletests.test_1)
-     test_y0 (sample2.sampletests.testone.TestA)
-     test_y1 (sample2.sampletests.testone.TestB)
-     test_y0 (sample2.sampletests.testone)
-     test_y0 (sample3.sampletests.TestA)
-     test_y1 (sample3.sampletests.TestB)
-     test_y0 (sample3.sampletests)
-     test_y0 (sampletests.test1.TestA)
-     test_y1 (sampletests.test1.TestB)
-     test_y0 (sampletests.test1)
-     test_y0 (sampletests.test_one.TestA)
-     test_y1 (sampletests.test_one.TestB)
-     test_y0 (sampletests.test_one)
+     sampletestsf.TestA.test_y0
+     sampletestsf.TestA2.test_y0
+     sampletestsf.TestB.test_y1
+     sampletestsf.test_y0
+     sample1.sampletestsf.TestA.test_y0
+     sample1.sampletestsf.TestB.test_y1
+     sample1.sampletestsf.test_y0
+     sample1.sample11.sampletests.TestA.test_y0
+     sample1.sample11.sampletests.TestA3.test_y0
+     sample1.sample11.sampletests.TestB.test_y1
+     sample1.sample11.sampletests.TestB2.test_y1
+     sample1.sample11.sampletests.test_y0
+     sample1.sample13.sampletests.TestA.test_y0
+     sample1.sample13.sampletests.TestB.test_y1
+     sample1.sample13.sampletests.test_y0
+     sample1.sampletests.test1.TestA.test_y0
+     sample1.sampletests.test1.TestB.test_y1
+     sample1.sampletests.test1.test_y0
+     sample1.sampletests.test_one.TestA.test_y0
+     sample1.sampletests.test_one.TestB.test_y1
+     sample1.sampletests.test_one.test_y0
+     sample2.sample21.sampletests.TestA.test_y0
+     sample2.sample21.sampletests.TestB.test_y1
+     sample2.sample21.sampletests.test_y0
+     sample2.sampletests.test_1.TestA.test_y0
+     sample2.sampletests.test_1.TestB.test_y1
+     sample2.sampletests.test_1.test_y0
+     sample2.sampletests.testone.TestA.test_y0
+     sample2.sampletests.testone.TestB.test_y1
+     sample2.sampletests.testone.test_y0
+     sample3.sampletests.TestA.test_y0
+     sample3.sampletests.TestB.test_y1
+     sample3.sampletests.test_y0
+     sampletests.test1.TestA.test_y0
+     sampletests.test1.TestB.test_y1
+     sampletests.test1.test_y0
+     sampletests.test_one.TestA.test_y0
+     sampletests.test_one.TestB.test_y1
+     sampletests.test_one.test_y0
       Ran 39 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -588,33 +588,33 @@ specifications.
     >>> sys.argv = 'test --all -m sample1 -t test_y0 --list-tests'.split()
     >>> testrunner.run_internal(defaults)
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sampletestsf.TestA)
-      test_y0 (sample1.sampletestsf)
-      test_y0 (sample1.sample11.sampletests.TestA)
-      test_y0 (sample1.sample11.sampletests.TestA3)
-      test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sample13.sampletests.TestA)
-      test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sampletests.test1.TestA)
-      test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sampletests.test_one.TestA)
-      test_y0 (sample1.sampletests.test_one)
+      sample1.sampletestsf.TestA.test_y0
+      sample1.sampletestsf.test_y0
+      sample1.sample11.sampletests.TestA.test_y0
+      sample1.sample11.sampletests.TestA3.test_y0
+      sample1.sample11.sampletests.test_y0
+      sample1.sample13.sampletests.TestA.test_y0
+      sample1.sample13.sampletests.test_y0
+      sample1.sampletests.test1.TestA.test_y0
+      sample1.sampletests.test1.test_y0
+      sample1.sampletests.test_one.TestA.test_y0
+      sample1.sampletests.test_one.test_y0
     Listing samplelayers.Layer11 tests:
-      test_y0 (sample1.sampletests.test11.TestA)
-      test_y0 (sample1.sampletests.test11)
+      sample1.sampletests.test11.TestA.test_y0
+      sample1.sampletests.test11.test_y0
     Listing samplelayers.Layer111 tests:
-      test_y0 (sample1.sampletests.test111.TestA)
-      test_y0 (sample1.sampletests.test111)
+      sample1.sampletests.test111.TestA.test_y0
+      sample1.sampletests.test111.test_y0
     Listing samplelayers.Layer112 tests:
-      test_y0 (sample1.sampletests.test112.TestA)
-      test_y0 (sample1.sampletests.test112)
+      sample1.sampletests.test112.TestA.test_y0
+      sample1.sampletests.test112.test_y0
     Listing samplelayers.Layer12 tests:
-      test_y0 (sample1.sampletests.test12.TestA)
-      test_y0 (sample1.sampletests.test12)
+      sample1.sampletests.test12.TestA.test_y0
+      sample1.sampletests.test12.test_y0
     Listing samplelayers.Layer121 tests:
-      test_y0 (sample1.sampletests.test121.TestA)
-      test_y0 (sample1.sampletests.test121)
+      sample1.sampletests.test121.TestA.test_y0
+      sample1.sampletests.test121.test_y0
     Listing samplelayers.Layer122 tests:
-      test_y0 (sample1.sampletests.test122.TestA)
-      test_y0 (sample1.sampletests.test122)
+      sample1.sampletests.test122.TestA.test_y0
+      sample1.sampletests.test122.test_y0
     False
