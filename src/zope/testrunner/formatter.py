@@ -364,15 +364,17 @@ class OutputFormatter(object):
     def print_std_streams(self, stdout, stderr):
         """Emit contents of buffered standard streams."""
         if stdout:
-            sys.stdout.write("\nStdout:\n")
+            sys.stdout.write("Stdout:\n")
             sys.stdout.write(stdout)
             if not stdout.endswith("\n"):
                 sys.stdout.write("\n")
+            sys.stdout.write("\n")
         if stderr:
-            sys.stderr.write("\nStderr:\n")
+            sys.stderr.write("Stderr:\n")
             sys.stderr.write(stderr)
             if not stderr.endswith("\n"):
                 sys.stderr.write("\n")
+            sys.stderr.write("\n")
 
     def format_traceback(self, exc_info):
         """Format the traceback."""

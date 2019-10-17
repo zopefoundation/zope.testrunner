@@ -387,7 +387,6 @@ for failing and erroring tests.
         raise Exception("boom")
     Exception: boom
     <BLANKLINE>
-    <BLANKLINE>
     Stderr:
     stderr output on error
     <BLANKLINE>
@@ -397,7 +396,6 @@ for failing and erroring tests.
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_failure
         self.assertTrue(False)
     AssertionError: False is not true
-    <BLANKLINE>
     <BLANKLINE>
     Stderr:
     stderr output on failure
@@ -409,7 +407,6 @@ for failing and erroring tests.
         raise Exception("boom")
     Exception: boom
     <BLANKLINE>
-    <BLANKLINE>
     Stdout:
     stdout output on error
     <BLANKLINE>
@@ -419,7 +416,6 @@ for failing and erroring tests.
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_failure
         self.assertTrue(False)
     AssertionError: False is not true
-    <BLANKLINE>
     <BLANKLINE>
     Stdout:
     stdout output on failure
