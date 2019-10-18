@@ -11,6 +11,9 @@
 - Prevent a spurious warning from the ``--require-unique`` option if the
   ``--module`` option was not used.
 
+- Add optional buffering of standard output and standard error during tests,
+  requested via the ``--buffer`` option or enabled by default for subunit.
+
 
 5.0 (2019-03-19)
 ================
