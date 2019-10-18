@@ -35,7 +35,7 @@ When we don't pass the flag, we see two layers are tested
      testrunner-ex-37/stop_on_error.py", Line NNN, in test
         self.assertTrue(False)
     AssertionError: False is not true
-      Ran 1 tests with 2 failures, 0 errors and 0 skipped in N.NNN seconds.
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down layers.LayerB in N.NNN seconds.
     Total: 2 tests, 2 failures, 0 errors and 0 skipped in N.NNN seconds.

@@ -400,14 +400,16 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
         t = time.time() - t
         output.stop_tests()
         failures.extend(result.failures)
+        n_failures = len(result.failures)
         if hasattr(result, 'unexpectedSuccesses'):
             # Python versions prior to 2.7 do not have the concept of
             # unexpectedSuccesses.
             failures.extend(result.unexpectedSuccesses)
+            n_failures += len(result.unexpectedSuccesses)
         skipped.extend(result.skipped)
         errors.extend(result.errors)
         output.summary(n_tests=result.testsRun,
-                       n_failures=len(failures),
+                       n_failures=n_failures,
                        n_errors=len(result.errors) + len(import_errors),
                        n_seconds=t,
                        n_skipped=len(result.skipped))
