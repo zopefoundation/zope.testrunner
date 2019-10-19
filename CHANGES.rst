@@ -2,6 +2,13 @@
  zope.testrunner Changelog
 ===========================
 
+5.1+lp1 (2019-10-19)
+====================
+
+- Report tests by id rather than str(test).
+
+- Make --subunit --list-tests only print test IDs.
+
 5.1 (2019-10-19)
 ================
 
