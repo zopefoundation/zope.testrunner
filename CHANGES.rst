@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.1 (unreleased)
+5.1 (2019-10-19)
 ================
 
 - Recover more gracefully when layer setUp or tearDown fails, producing
