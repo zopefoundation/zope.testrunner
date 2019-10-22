@@ -2,6 +2,11 @@
  zope.testrunner Changelog
 ===========================
 
+5.1+lp2
+=======
+
+- Turn thread leaks into skips in subunit output.
+
 5.1+lp1 (2019-10-19)
 ====================
 

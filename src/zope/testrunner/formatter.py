@@ -1094,7 +1094,10 @@ class SubunitOutputFormatter(object):
         """
         self._subunit.startTest(test)
         self._subunit.tags([self.TAG_THREADS], [])
-        self._subunit.addError(
+        # This is a skip because it's normal for threads to not complete
+        # exactly on test boundaries.  We check for this in the LP
+        # testrunner baselayer anyway.
+        self._subunit.addSkip(
             test, details={'threads': text_content(unicode(new_threads))})
         self._subunit.stopTest(test)
 
