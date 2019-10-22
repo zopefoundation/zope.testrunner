@@ -21,7 +21,7 @@ import sys
 from setuptools import setup
 from setuptools.command.test import test
 
-version = '5.1+lp1'
+version = '5.1+lp2'
 
 INSTALL_REQUIRES = [
     'setuptools',
