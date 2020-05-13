@@ -11,6 +11,8 @@ environment:
     - python: 36-x64
     - python: 37
     - python: 37-x64
+    - python: 38
+    - python: 38-x64
     - { python: 27, SUBUNIT: 1 }
     - { python: 27-x64, SUBUNIT: 1 }
     - { python: 35, SUBUNIT: 1 }
@@ -19,6 +21,8 @@ environment:
     - { python: 36-x64, SUBUNIT: 1 }
     - { python: 37, SUBUNIT: 1 }
     - { python: 37-x64, SUBUNIT: 1 }
+    - { python: 38, SUBUNIT: 1 }
+    - { python: 38-x64, SUBUNIT: 1 }
 
 install:
   - "SET PATH=C:\\Python%PYTHON%;c:\\Python%PYTHON%\\scripts;%PATH%"

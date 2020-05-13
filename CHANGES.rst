@@ -5,7 +5,7 @@
 5.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add support for Python 3.8.
 
 
 5.1 (2019-10-19)
@@ -30,6 +30,7 @@
   (`#89 <https://github.com/zopefoundation/zope.testrunner/pull/89>`_)
 
 - Drop support for Python 3.4.
+
 
 4.9.2 (2018-11-24)
 ==================
