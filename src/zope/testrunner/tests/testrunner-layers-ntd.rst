@@ -268,4 +268,26 @@ like it once did).
 
     >>> sys.stderr = real_stderr
 
+When a layer is run in a subprocess, the test IDs of any failures and errors it
+generates are passed to the parent process via the child's stderr.  The parent
+reads these IDs in parallel with reading other output from the child, so this
+works even if there are enough failures to overflow the capacity of the stderr
+pipe.
 
+    >>> argv = [testrunner_script, '--tests-pattern', '^sampletests_many$']
+    >>> testrunner.run_internal(defaults, argv)
+    Running sampletests_many.Layer1 tests:
+      Set up sampletests_many.Layer1 in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Running sampletests_many.Layer2 tests:
+      Tear down sampletests_many.Layer1 ... not supported
+      Running in a subprocess.
+      Set up sampletests_many.Layer2 in N.NNN seconds.
+    <BLANKLINE>
+    <BLANKLINE>
+    Failure in test test_some_very_long_test_name_with_padding_000 (sampletests_many.TestMany)
+    ...
+      Ran 1000 tests with 1000 failures, 0 errors and 0 skipped in N.NNN seconds.
+      Tear down sampletests_many.Layer2 in N.NNN seconds.
+    Total: 1001 tests, 1000 failures, 0 errors and 0 skipped in N.NNN seconds.
+    True

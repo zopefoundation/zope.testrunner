@@ -7,6 +7,11 @@
 
 - Add support for Python 3.8.
 
+- When a layer is run in a subprocess, read its stderr in a thread to avoid
+  a deadlock if its stderr output (containing failing and erroring test IDs)
+  overflows the capacity of a pipe (`#105
+  <https://github.com/zopefoundation/zope.testrunner/issues/105>`_).
+
 
 5.1 (2019-10-19)
 ================
