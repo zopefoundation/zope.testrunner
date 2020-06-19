@@ -539,6 +539,17 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd,
             close_fds=not sys.platform.startswith('win'))
 
+        def reader_thread(f, buf):
+            buf.append(f.read())
+
+        # Start reading stderr in a thread.  This means we don't hang if the
+        # subprocess writes more to stderr than the pipe capacity.
+        stderr_buf = []
+        stderr_thread = threading.Thread(
+            target=reader_thread, args=(child.stderr, stderr_buf))
+        stderr_thread.daemon = True
+        stderr_thread.start()
+
         while True:
             try:
                 while True:
@@ -564,8 +575,9 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             else:
                 break
 
-        # Now stderr should be ready to read the whole thing.
-        errlines = child.stderr.read().splitlines()
+        # Now we should be able to finish reading stderr.
+        stderr_thread.join()
+        errlines = stderr_buf[0].splitlines()
         erriter = iter(errlines)
         nfail = nerr = 0
         for line in erriter:
