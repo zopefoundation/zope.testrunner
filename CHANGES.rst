@@ -2,6 +2,12 @@
  zope.testrunner Changelog
 ===========================
 
+5.2.1 (unreleased)
+==================
+
+- Nothing changed yet.
+
+
 5.2 (2020-06-29)
 ================
 
