@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.2 (unreleased)
+5.2 (2020-06-29)
 ================
 
 - Add support for Python 3.8.
