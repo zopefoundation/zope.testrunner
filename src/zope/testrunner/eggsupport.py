@@ -83,7 +83,7 @@ class ftest(BaseCommand):
       the stock testrunner, e.g., by using buildout with a recipe which
       configures the testrunner as a standalone script.
 
-    * To use this in your pacakge add the following to the 'entry_points'
+    * To use this in your package add the following to the 'entry_points'
       section::
 
           setup(
