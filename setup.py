@@ -135,7 +135,6 @@ setup(
     packages=[
         "zope",
         "zope.testrunner",
-        "zope.testrunner.tests.testrunner-ex",
     ],
     package_dir={'': 'src'},
     classifiers=[

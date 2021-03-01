@@ -5,7 +5,8 @@
 5.2.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix `package init file missing` warning
+  (`#112 <https://github.com/zopefoundation/zope.testrunner/pull/112>`_).
 
 
 5.2 (2020-06-29)
