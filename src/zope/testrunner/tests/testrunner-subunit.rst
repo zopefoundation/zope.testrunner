@@ -304,8 +304,9 @@ stream as MIME-encoded chunks of text.
     error: sample2.stdstreamstest.Test.test_stderr_error [ multipart
     Content-Type: text/plain;charset=utf8
     test-stderr
-    17\r
+    35\r
     stderr output on error
+    stderr buffer output on error
     0\r
     <BLANKLINE>
     Content-Type: text/x-traceback...
@@ -325,8 +326,9 @@ stream as MIME-encoded chunks of text.
     failure: sample2.stdstreamstest.Test.test_stderr_failure [ multipart
     Content-Type: text/plain;charset=utf8
     test-stderr
-    19\r
+    39\r
     stderr output on failure
+    stderr buffer output on failure
     0\r
     <BLANKLINE>
     Content-Type: text/x-traceback...
@@ -350,8 +352,9 @@ stream as MIME-encoded chunks of text.
     error: sample2.stdstreamstest.Test.test_stdout_error [ multipart
     Content-Type: text/plain;charset=utf8
     test-stdout
-    17\r
+    35\r
     stdout output on error
+    stdout buffer output on error
     0\r
     <BLANKLINE>
     Content-Type: text/x-traceback...
@@ -371,8 +374,9 @@ stream as MIME-encoded chunks of text.
     failure: sample2.stdstreamstest.Test.test_stdout_failure [ multipart
     Content-Type: text/plain;charset=utf8
     test-stdout
-    19\r
+    39\r
     stdout output on failure
+    stdout buffer output on failure
     0\r
     <BLANKLINE>
     Content-Type: text/x-traceback...
