@@ -25,20 +25,20 @@ import unittest
 from zope.testing import renormalizing
 
 
-#separated checkers for the different platform,
-#because it s...s to maintain just one
+# separated checkers for the different platform,
+# because it s...s to maintain just one
 if sys.platform == 'win32':
     checker = renormalizing.RENormalizing([
         # 2.5 changed the way pdb reports exceptions
         (re.compile(r"<class 'exceptions.(\w+)Error'>:"),
          r'exceptions.\1Error:'),
 
-        #rewrite pdb prompt to ... the current location
-        #windows, py2.4 pdb seems not to put the '>' on doctest locations
-        #therefore we cut it here
+        # rewrite pdb prompt to ... the current location
+        # windows, py2.4 pdb seems not to put the '>' on doctest locations
+        # therefore we cut it here
         (re.compile('^> doctest[^\n]+->None$', re.M), '...->None'),
 
-        #rewrite pdb prompt to ... the current location
+        # rewrite pdb prompt to ... the current location
         (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
 
         (re.compile(r"<module>"), (r'?')),
@@ -52,18 +52,21 @@ if sys.platform == 'win32':
         (re.compile(r'traceback\n[A-F\d]+', re.MULTILINE),
          r'traceback\nNNN'),
 
-        (re.compile("'[A-Za-z]:\\\\"), "'"), # hopefully, we'll make Windows happy
-                                             # replaces drives with nothing
+        # hopefully, we'll make Windows happy
+        # replaces drives with nothing
+        (re.compile("'[A-Za-z]:\\\\"), "'"),
 
-        (re.compile(r'\\\\'), '/'), # more Windows happiness
-                                    # double backslashes in coverage???
+        # more Windows happiness
+        # double backslashes in coverage???
+        (re.compile(r'\\\\'), '/'),
 
-        (re.compile(r'\\'), '/'), # even more Windows happiness
-                                  # replaces backslashes in paths
+        # even more Windows happiness
+        # replaces backslashes in paths
+        (re.compile(r'\\'), '/'),
 
-        (re.compile(r'/r$', re.MULTILINE), '\\r'), # undo some of that
+        (re.compile(r'/r$', re.MULTILINE), '\\r'),  # undo some of that
 
-        #this is a magic to put linefeeds into the doctest
+        # this is a magic to put linefeeds into the doctest
         (re.compile('##r##\n'), '\r'),
 
         (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
@@ -78,18 +81,21 @@ if sys.platform == 'win32':
         (re.compile(r'[.]py\(\d+\)'), r'.py(NNN)'),
         (re.compile(r'[.]py:\d+'), r'.py:NNN'),
         (re.compile(r' line \d+,', re.IGNORECASE), r' Line NNN,'),
-        (re.compile(r' line {([a-z]+)}\d+{', re.IGNORECASE), r' Line {\1}NNN{'),
+        (re.compile(r' line {([a-z]+)}\d+{', re.IGNORECASE),
+         r' Line {\1}NNN{'),
 
         # omit traceback entries for unittest.py or doctest.py (and
         # their package variants) from output:
-        (re.compile(r'^ +File "[^\n]*(doctest|unittest|case)(/__init__)?.py", [^\n]+\n[^\n]+\n',
+        (re.compile(r'^ +File "[^\n]*(doctest|unittest|case)(/__init__)?.py", '
+                    r'[^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doctest|unittest|case)(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
+        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doctest|unittest|case)'
+                    r'(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        #(re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
-        (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
+        # (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
+        (re.compile('import pdb; pdb'), 'Pdb()'),  # Py 2.3
 
         # Python 3 exceptions are from the builtins module
         (re.compile(r'builtins\.(SyntaxError|TypeError)'),
@@ -103,28 +109,29 @@ if sys.platform == 'win32':
          r'ImportError: No module named \1'),
 
         # PyPy has different exception messages too
-        (re.compile("ImportError: No module named (?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
+        (re.compile("ImportError: No module named "
+                    "(?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
          r'ImportError: No module named \1'),
         (re.compile("NameError: global name '([^']*)' is not defined"),
          r"NameError: name '\1' is not defined"),
 
         ])
 else:
-    #*nix
+    # *nix
     checker = renormalizing.RENormalizing([
         # 2.5 changed the way pdb reports exceptions
         (re.compile(r"<class 'exceptions.(\w+)Error'>:"),
          r'exceptions.\1Error:'),
 
-        #rewrite pdb prompt to ... the current location
+        # rewrite pdb prompt to ... the current location
         (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
 
         (re.compile(r"<module>"), (r'?')),
         (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
          r'exceptions.\1Error:'),
 
-        #this is a magic to put linefeeds into the doctest
-        #on win it takes one step, linux is crazy about the same...
+        # this is a magic to put linefeeds into the doctest
+        # on win it takes one step, linux is crazy about the same...
         (re.compile('##r##'), r'\r'),
         (re.compile(r'\r'), '\\\\r\n'),
 
@@ -140,7 +147,8 @@ else:
         (re.compile(r'[.]py\(\d+\)'), r'.py(NNN)'),
         (re.compile(r'[.]py:\d+'), r'.py:NNN'),
         (re.compile(r' line \d+,', re.IGNORECASE), r' Line NNN,'),
-        (re.compile(r' line {([a-z]+)}\d+{', re.IGNORECASE), r' Line {\1}NNN{'),
+        (re.compile(r' line {([a-z]+)}\d+{', re.IGNORECASE),
+         r' Line {\1}NNN{'),
 
         # testtools content formatter is used to mime-encode
         # tracebacks when the SubunitOutputFormatter is used, and the
@@ -151,13 +159,15 @@ else:
 
         # omit traceback entries for unittest.py or doctest.py (and
         # their package variants) from output:
-        (re.compile(r'^ +File "[^\n]*(doctest|unittest|case)(/__init__)?.py", [^\n]+\n[^\n]+\n',
+        (re.compile(r'^ +File "[^\n]*(doctest|unittest|case)(/__init__)?.py", '
+                    r'[^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doctest|unittest|case)(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
+        (re.compile(r'^{\w+} +File "{\w+}[^\n]*(doctest|unittest|case)'
+                    r'(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        (re.compile('import pdb; pdb'), 'Pdb()'), # Py 2.3
+        (re.compile('import pdb; pdb'), 'Pdb()'),  # Py 2.3
 
         # Python 3 exceptions are from the builtins module
         (re.compile(r'builtins\.(SyntaxError|TypeError)'),
@@ -171,7 +181,8 @@ else:
          r'ImportError: No module named \1'),
 
         # PyPy has different exception messages too
-        (re.compile("ImportError: No module named (?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
+        (re.compile("ImportError: No module named "
+                    "(?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
          r'ImportError: No module named \1'),
         (re.compile("NameError: global name '([^']*)' is not defined"),
          r"NameError: name '\1' is not defined"),
@@ -351,7 +362,8 @@ def test_suite():
                 setUp=setUp, tearDown=tearDown,
                 optionflags=optionflags,
                 checker=renormalizing.RENormalizing([
-                    (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'), 'N.NNN seconds'),
+                    (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'),
+                     'N.NNN seconds'),
                     (re.compile(r'sys refcount=\d+ +change=\d+'),
                      'sys refcount=NNNNNN change=NN'),
                     (re.compile(r'sum detail refcount=\d+ +'),

@@ -24,7 +24,8 @@ def run(defaults=None, args=None, script_parts=None, cwd=None, warnings=None):
     Will execute the tests and exit the process according to the test result.
 
     .. versionchanged:: 4.8.0
-       Add the *warnings* keyword argument. See :class:`zope.testrunner.runner.Runner`
+       Add the *warnings* keyword argument.
+       See :class:`zope.testrunner.runner.Runner`
 
     """
     failed = run_internal(defaults, args, script_parts=script_parts, cwd=cwd,
@@ -32,13 +33,15 @@ def run(defaults=None, args=None, script_parts=None, cwd=None, warnings=None):
     sys.exit(int(failed))
 
 
-def run_internal(defaults=None, args=None, script_parts=None, cwd=None, warnings=None):
+def run_internal(defaults=None, args=None, script_parts=None, cwd=None,
+                 warnings=None):
     """Execute tests.
 
     Returns whether errors or failures occured during testing.
 
     .. versionchanged:: 4.8.0
-       Add the *warnings* keyword argument. See :class:`zope.testrunner.runner.Runner`
+       Add the *warnings* keyword argument.
+       See :class:`zope.testrunner.runner.Runner`
 
     """
     if script_parts is None:
@@ -47,7 +50,8 @@ def run_internal(defaults=None, args=None, script_parts=None, cwd=None, warnings
         cwd = os.getcwd()
     # XXX Bah. Lazy import to avoid circular/early import problems
     from zope.testrunner.runner import Runner
-    runner = Runner(defaults, args, script_parts=script_parts, cwd=cwd, warnings=warnings)
+    runner = Runner(
+        defaults, args, script_parts=script_parts, cwd=cwd, warnings=warnings)
     runner.run()
     return runner.failed
 

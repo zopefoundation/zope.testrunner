@@ -14,5 +14,6 @@
 """Exceptions for zope.testrunner
 """
 
+
 class DocTestFailureException(AssertionError):
     """Use custom exception for doctest unit test failures"""

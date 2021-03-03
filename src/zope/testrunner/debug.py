@@ -68,7 +68,7 @@ def post_mortem(exc_info):
                 exec(('raise ValueError'
                       '("Expected and actual output are different")'
                       ), err.test.globs)
-            except:
+            except BaseException:
                 exc_info = sys.exc_info()
 
     print(''.join(traceback.format_exception_only(exc_info[0], exc_info[1])))

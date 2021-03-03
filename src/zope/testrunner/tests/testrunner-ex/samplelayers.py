@@ -14,8 +14,9 @@
 """Sample test layers
 """
 
-layer = '0' # Internal to samples. Not part of layer API
+layer = '0'  # Internal to samples. Not part of layer API
 layerx = '0'
+
 
 class Layer1:
     # Internal to samples. Not part of layer API:
@@ -37,8 +38,9 @@ class Layer1:
         layer = self.base
     tearDown = classmethod(tearDown)
 
+
 class Layerx:
-    layerx = '1' # Internal to samples. Not part of layer API
+    layerx = '1'  # Internal to samples. Not part of layer API
     basex = '0'
 
     def setUp(self):
@@ -55,18 +57,21 @@ class Layerx:
         layerx = self.basex
     tearDown = classmethod(tearDown)
 
+
 class Layer11(Layer1):
-    layer = '11' # Internal to samples. Not part of layer API
-    base  = '1'  # Internal to samples. Not part of layer API
+    layer = '11'  # Internal to samples. Not part of layer API
+    base = '1'    # Internal to samples. Not part of layer API
+
 
 class Layer12(Layer1):
-    layer = '12' # Internal to samples. Not part of layer API
-    base  = '1'  # Internal to samples. Not part of layer API
+    layer = '12'  # Internal to samples. Not part of layer API
+    base = '1'    # Internal to samples. Not part of layer API
+
 
 class Layer111(Layerx, Layer11):
-    layer = '111' # Internal to samples. Not part of layer API
-    base  = '11'  # Internal to samples. Not part of layer API
-    layerx = '2' # Internal to samples. Not part of layer API
+    layer = '111'  # Internal to samples. Not part of layer API
+    base = '11'    # Internal to samples. Not part of layer API
+    layerx = '2'   # Internal to samples. Not part of layer API
     basex = '1'
 
     def setUp(self):
@@ -90,15 +95,17 @@ class Layer111(Layerx, Layer11):
             raise ValueError("Bad layerx, %s, for %s." % (layerx, self))
         layerx = self.basex
     tearDown = classmethod(tearDown)
+
 
 class Layer121(Layer12):
-    layer = '121' # Internal to samples. Not part of layer API
-    base  = '12'  # Internal to samples. Not part of layer API
+    layer = '121'  # Internal to samples. Not part of layer API
+    base = '12'    # Internal to samples. Not part of layer API
+
 
 class Layer112(Layerx, Layer11):
-    layer = '112' # Internal to samples. Not part of layer API
-    base  = '11'  # Internal to samples. Not part of layer API
-    layerx = '2' # Internal to samples. Not part of layer API
+    layer = '112'  # Internal to samples. Not part of layer API
+    base = '11'    # Internal to samples. Not part of layer API
+    layerx = '2'   # Internal to samples. Not part of layer API
     basex = '1'
 
     def setUp(self):
@@ -123,6 +130,7 @@ class Layer112(Layerx, Layer11):
         layerx = self.basex
     tearDown = classmethod(tearDown)
 
+
 class Layer122(Layer12):
-    layer = '122' # Internal to samples. Not part of layer API
-    base  = '12'  # Internal to samples. Not part of layer API
+    layer = '122'  # Internal to samples. Not part of layer API
+    base = '12'    # Internal to samples. Not part of layer API

@@ -20,6 +20,7 @@ the natural resources of my %s.
 It's soils, minerals, forests, waters, and wildlife.
 """
 
+
 def pledge():
     """
     >>> def print_pledge():
@@ -32,7 +33,6 @@ def pledge():
     <BLANKLINE>
     """
 
+
 def test_suite():
     return doctest.DocTestSuite()
-
-

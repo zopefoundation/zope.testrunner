@@ -31,8 +31,10 @@ from zope.testrunner.formatter import (
 from zope.testrunner.formatter import terminal_has_colors
 from zope.testrunner.profiling import available_profilers
 
+
 def _regex_search(s):
     return re.compile(s).search
+
 
 parser = argparse.ArgumentParser(
     description="Discover and run unittest tests")
@@ -542,6 +544,7 @@ def merge_options(options, defaults):
         if (value is not None) and (odict[name] is None):
             odict[name] = value
 
+
 def get_options(args=None, defaults=None):
     # Because we want to inspect stdout and decide to colorize or not, we
     # replace the --auto-color option with the appropriate --color or
@@ -650,7 +653,7 @@ def get_options(args=None, defaults=None):
                          +
                          [(os.path.abspath(path), package)
                           for (path, package) in options.package_path or ()
-                         ])
+                          ])
 
     if options.package:
         pkgmap = dict(options.test_path)
@@ -679,7 +682,7 @@ def get_options(args=None, defaults=None):
         # XXX Argh.
         options.layer = ['zope.testrunner.layer.UnitTests']
 
-    options.layer = options.layer and {l: 1 for l in options.layer}
+    options.layer = options.layer and {layer: 1 for layer in options.layer}
 
     if options.usecompiled:
         options.keepbytecode = options.usecompiled
@@ -695,7 +698,6 @@ def get_options(args=None, defaults=None):
         """)
         options.fail = True
         return options
-
 
     if options.report_refcounts and not hasattr(sys, "gettotalrefcount"):
         print("""\
@@ -716,6 +718,7 @@ def get_options(args=None, defaults=None):
         """)
 
     return options
+
 
 def normalize_package(package, package_map=None):
     r"""Normalize package name passed to the --package option.

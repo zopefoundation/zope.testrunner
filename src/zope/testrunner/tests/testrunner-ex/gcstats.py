@@ -13,6 +13,7 @@
 ##############################################################################
 import doctest
 
+
 def generate_some_gc_statistics():
     """
     >>> import gc
@@ -20,6 +21,6 @@ def generate_some_gc_statistics():
     >>> _ = gc.collect()
     """
 
+
 def test_suite():
     return doctest.DocTestSuite()
-

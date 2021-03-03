@@ -24,7 +24,7 @@ from zope.testrunner import formatter
 try:
     unichr
 except NameError:
-    unichr = chr # Python 3
+    unichr = chr  # Python 3
 
 
 try:

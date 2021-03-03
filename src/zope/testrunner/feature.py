@@ -22,7 +22,6 @@ import zope.testrunner.interfaces
 class Feature(object):
     """A base class implementing no-op methods for the IFeature interface."""
 
-
     active = False
 
     def __init__(self, runner):

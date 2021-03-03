@@ -15,14 +15,16 @@
 import unittest
 import doctest
 
+
 def f():
     g()
+
 
 def g():
     x = 1
     x = x + 1
     __traceback_info__ = "I don't know what Y should be."
-    x = y + 1
+    x = y + 1  # noqa: F821
     x = x + 1
 
 
@@ -31,6 +33,7 @@ def eek(self):
     >>> f()
     1
     """
+
 
 class Test(unittest.TestCase):
 
@@ -48,6 +51,7 @@ class Test(unittest.TestCase):
 
     def test5(self):
         pass
+
 
 def test_suite():
     suite = unittest.TestSuite()

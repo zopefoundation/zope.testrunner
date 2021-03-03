@@ -24,7 +24,6 @@ import zope.testrunner.feature
 available_profilers = {}
 
 
-
 class CProfiler(object):
     """cProfiler"""
     def __init__(self, filepath):
@@ -45,6 +44,7 @@ class CProfiler(object):
                 stats.add(file_name)
         return stats
 
+
 available_profilers['cProfile'] = CProfiler
 
 
@@ -58,8 +58,9 @@ class Profiling(zope.testrunner.feature.Feature):
     def global_setup(self):
         self.prof_prefix = 'tests_profile.'
         self.prof_suffix = '.prof'
-        self.prof_glob = os.path.join(self.runner.options.prof_dir,
-                                      self.prof_prefix + '*' + self.prof_suffix)
+        self.prof_glob = os.path.join(
+            self.runner.options.prof_dir,
+            self.prof_prefix + '*' + self.prof_suffix)
         # if we are going to be profiling, and this isn't a subprocess,
         # clean up any stale results files
         if not self.runner.options.resume_layer:
@@ -68,7 +69,8 @@ class Profiling(zope.testrunner.feature.Feature):
         # set up the output file
         self.oshandle, self.file_path = tempfile.mkstemp(
             self.prof_suffix, self.prof_prefix, self.runner.options.prof_dir)
-        self.profiler = available_profilers[self.runner.options.profile](self.file_path)
+        self.profiler = available_profilers[self.runner.options.profile](
+            self.file_path)
 
         # Need to do this rebinding to support the stack-frame annoyance with
         # hotshot.

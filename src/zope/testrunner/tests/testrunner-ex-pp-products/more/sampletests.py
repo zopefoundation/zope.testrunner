@@ -14,12 +14,14 @@
 
 import unittest
 
+
 class Test(unittest.TestCase):
 
     layer = 'samplelayers.Layer111'
 
     def test_another_test_in_products(self):
         pass
-        
+
+
 def test_suite():
     return unittest.makeSuite(Test)

@@ -38,10 +38,10 @@ class StartUpFailure(unittest.TestCase):
     >>> class Options(object):
     ...    post_mortem = False
     >>> options = Options()
-    
+
     Normally the StartUpFailure just acts as an empty test suite to satisfy
     the test runner and statistics:
-    
+
     >>> s = StartUpFailure(options, 'fauxmodule', None)
     >>> s
     <StartUpFailure module=fauxmodule>
@@ -89,7 +89,7 @@ class StartUpFailure(unittest.TestCase):
 
     To simulate the user pressing 'c' and hitting return in the
     debugger, we use a FakeInputContinueGenerator:
-    
+
     >>> from zope.testrunner.runner import FakeInputContinueGenerator
     >>> old_stdin = sys.stdin
     >>> sys.stdin = FakeInputContinueGenerator()
@@ -97,11 +97,12 @@ class StartUpFailure(unittest.TestCase):
     Now we can see the EndRun exception that is raised by the
     postmortem debugger to indicate that debugging is finished and the
     test run should be terminated:
-    
+
     >>> from zope.testrunner.interfaces import EndRun
     >>> try: #doctest: +ELLIPSIS
     ...   try: # try...except...finally doesn't work in Python 2.4
-    ...     print("Result:") # Needed to prevent the result from starting with '...'
+    ...     # Needed to prevent the result from starting with '...'
+    ...     print("Result:")
     ...     StartUpFailure(options, None, exc_info)
     ...   except EndRun:
     ...     print("EndRun raised")
@@ -209,11 +210,12 @@ def find_suites(options, accept=None):
                     module = import_name(module_name)
                 except KeyboardInterrupt:
                     raise
-                except:
+                except BaseException:
                     exc_info = sys.exc_info()
                     if not options.post_mortem:
                         # Skip a couple of frames
-                        exc_info = exc_info[:2] + (exc_info[2].tb_next.tb_next,)
+                        exc_info = (
+                            exc_info[:2] + (exc_info[2].tb_next.tb_next,))
                     suite = StartUpFailure(
                         options, module_name, exc_info)
                 else:
@@ -221,7 +223,8 @@ def find_suites(options, accept=None):
                         if hasattr(module, options.suite_name):
                             suite = getattr(module, options.suite_name)()
                         else:
-                            suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+                            loader = unittest.defaultTestLoader
+                            suite = loader.loadTestsFromModule(module)
                             if suite.countTestCases() == 0:
                                 raise TypeError(
                                     "Module %s does not define any tests"
@@ -243,7 +246,7 @@ def find_suites(options, accept=None):
                             raise TypeError(bad_test_suite_msg)
                     except KeyboardInterrupt:
                         raise
-                    except:
+                    except BaseException:
                         exc_info = sys.exc_info()
                         if not options.post_mortem:
                             # Suppress traceback
@@ -371,6 +374,8 @@ def walk_with_symlinks(options, dir):
 
 
 compiled_suffixes = '.pyc', '.pyo'
+
+
 def remove_stale_bytecode(options):
     if options.keepbytecode:
         return
@@ -390,6 +395,7 @@ def remove_stale_bytecode(options):
                     options.output.info("Removing stale bytecode file %s"
                                         % fullname)
                     os.unlink(fullname)
+
 
 def contains_init_py(options, fnamelist):
     """Return true iff fnamelist contains a suitable spelling of __init__.py.
@@ -489,6 +495,7 @@ def check_suite(suite, module_name):
 
 _layer_name_cache = {}
 
+
 def name_from_layer(layer):
     """Determine a name for the Layer using the namespace to avoid conflicts.
 
@@ -526,4 +533,3 @@ class Find(zope.testrunner.feature.Feature):
     def report(self):
         self.runner.options.output.modules_with_import_problems(
             self.import_errors)
-

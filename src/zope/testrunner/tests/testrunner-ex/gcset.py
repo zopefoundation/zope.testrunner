@@ -13,6 +13,7 @@
 ##############################################################################
 import doctest
 
+
 def make_sure_gc_threshold_is_701_11_9():
     """
     >>> import gc
@@ -20,6 +21,6 @@ def make_sure_gc_threshold_is_701_11_9():
     (701, 11, 9)
     """
 
+
 def test_suite():
     return doctest.DocTestSuite()
-

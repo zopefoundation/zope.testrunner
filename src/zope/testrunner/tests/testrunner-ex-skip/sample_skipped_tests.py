@@ -17,6 +17,7 @@ import unittest
 
 class TestSkipppedWithLayer(unittest.TestCase):
     layer = "sample_skipped_tests.Layer"
+
     @unittest.skip('Hop, skipped')
     def test_layer_skipped(self):
         pass

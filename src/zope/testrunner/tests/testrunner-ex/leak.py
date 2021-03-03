@@ -12,22 +12,28 @@
 #
 ##############################################################################
 
-import unittest, time
+import time
+import unittest
+
 
 class ClassicLeakable:
     def __init__(self):
         self.x = 'x'
 
+
 class Leakable(object):
     def __init__(self):
         self.x = 'x'
 
+
 leaked = []
+
 
 class TestSomething(unittest.TestCase):
 
     def testleak(self):
         leaked.append((ClassicLeakable(), Leakable(), time.time()))
+
 
 def test_suite():
     suite = unittest.TestSuite()

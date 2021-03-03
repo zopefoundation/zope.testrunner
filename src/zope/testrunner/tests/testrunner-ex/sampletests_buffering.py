@@ -14,7 +14,9 @@
 """Sample tests with sleep and layers that can't be torn down
 """
 
-import unittest, time
+import time
+import unittest
+
 
 class Layer1:
 

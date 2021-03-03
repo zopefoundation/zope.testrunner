@@ -27,8 +27,10 @@ from zope.testrunner.find import test_dirs
 # disabling the coverage. Simply disallow the code from doing this. A real
 # trace can be set, so that debugging still works.
 osettrace = sys.settrace
+
+
 def settrace(trace):
-    if trace is None: # pragma: no cover
+    if trace is None:  # pragma: no cover
         return
     osettrace(trace)
 
@@ -108,12 +110,13 @@ class TestIgnore(object):
     def _filenameFormat(self, filename):
         return os.path.abspath(filename)
 
+
 if sys.platform == 'win32':
-    #on win32 drive name can be passed with different case to `names`
-    #that lets e.g. the coverage profiler skip complete files
-    #_filenameFormat will make sure that all drive and filenames get lowercased
-    #albeit trace coverage has still problems with lowercase drive letters
-    #when determining the dotted module name
+    # on win32 drive name can be passed with different case to `names`
+    # that lets e.g. the coverage profiler skip complete files
+    # _filenameFormat will make sure that all drive and filenames get
+    # lowercased albeit trace coverage has still problems with lowercase
+    # drive letters when determining the dotted module name
     OldTestIgnore = TestIgnore
 
     class TestIgnore(OldTestIgnore):
@@ -132,7 +135,8 @@ class Coverage(zope.testrunner.feature.Feature):
 
     def global_setup(self):
         """Executed once when the test runner is being set up."""
-        self.directory = os.path.join(os.getcwd(), self.runner.options.coverage)
+        self.directory = os.path.join(
+            os.getcwd(), self.runner.options.coverage)
 
         # FIXME: This shouldn't rely on the find feature directly.
         self.tracer = TestTrace(test_dirs(self.runner.options, {}),
