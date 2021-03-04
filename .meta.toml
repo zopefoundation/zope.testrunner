@@ -44,4 +44,5 @@ testenv-extras = [
     "test",
     "docs",
     "subunit: subunit",
+    "coverage: subunit",
     ]
