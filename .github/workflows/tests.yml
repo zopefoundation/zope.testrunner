@@ -26,6 +26,14 @@ jobs:
         - ["pypy3", "pypy3"]
         - ["3.8",   "docs"]
         - ["3.8",   "coverage"]
+        - ["2.7",   "py27-subunit"]
+        - ["3.5",   "py35-subunit"]
+        - ["3.6",   "py36-subunit"]
+        - ["3.7",   "py37-subunit"]
+        - ["3.8",   "py38-subunit"]
+        - ["3.9",   "py39-subunit"]
+        - ["pypy2", "pypy-subunit"]
+        - ["pypy3", "pypy3-subunit"]
 
     runs-on: ubuntu-latest
     name: ${{ matrix.config[1] }}
