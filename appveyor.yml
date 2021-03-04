@@ -2,6 +2,8 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 environment:
 
+  SUBUNIT: 0
+
   matrix:
     - python: 27
     - python: 27-x64
@@ -15,6 +17,18 @@ environment:
     - python: 38-x64
     - python: 39
     - python: 39-x64
+    - { python: 27, SUBUNIT: 1 }
+    - { python: 27-x64, SUBUNIT: 1 }
+    - { python: 35, SUBUNIT: 1 }
+    - { python: 35-x64, SUBUNIT: 1 }
+    - { python: 36, SUBUNIT: 1 }
+    - { python: 36-x64, SUBUNIT: 1 }
+    - { python: 37, SUBUNIT: 1 }
+    - { python: 37-x64, SUBUNIT: 1 }
+    - { python: 38, SUBUNIT: 1 }
+    - { python: 38-x64, SUBUNIT: 1 }
+    - { python: 39, SUBUNIT: 1 }
+    - { python: 39-x64, SUBUNIT: 1 }
 
 install:
   - "SET PYTHONVERSION=%PYTHON%"
@@ -29,7 +43,9 @@ install:
   - echo "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64 > "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64\vcvars64.bat"
   - python -m pip install -U pip
   - pip install -U setuptools wheel
-  - pip install -U -e .[test]
+  # NB: pip install -e .[test] fails for obscure namespace package reasons
+  - pip install -U .[test]
+  - if %SUBUNIT%==1 pip install -U .[subunit]
 
 build: false
 matrix:

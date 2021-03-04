@@ -58,3 +58,27 @@ additional-config = [
     "- [\"pypy2\", \"pypy-subunit\"]",
     "- [\"pypy3\", \"pypy3-subunit\"]",
     ]
+
+[appveyor]
+global-env-vars = [
+    "SUBUNIT: 0",
+    ]
+additional-matrix = [
+    "- { python: 27, SUBUNIT: 1 }",
+    "- { python: 27-x64, SUBUNIT: 1 }",
+    "- { python: 35, SUBUNIT: 1 }",
+    "- { python: 35-x64, SUBUNIT: 1 }",
+    "- { python: 36, SUBUNIT: 1 }",
+    "- { python: 36-x64, SUBUNIT: 1 }",
+    "- { python: 37, SUBUNIT: 1 }",
+    "- { python: 37-x64, SUBUNIT: 1 }",
+    "- { python: 38, SUBUNIT: 1 }",
+    "- { python: 38-x64, SUBUNIT: 1 }",
+    "- { python: 39, SUBUNIT: 1 }",
+    "- { python: 39-x64, SUBUNIT: 1 }",
+    ]
+install-steps = [
+    "# NB: pip install -e .[test] fails for obscure namespace package reasons",
+    "- pip install -U .[test]",
+    "- if %SUBUNIT%==1 pip install -U .[subunit]",
+    ]
