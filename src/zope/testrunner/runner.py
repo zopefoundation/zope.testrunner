@@ -55,10 +55,11 @@ import zope.testrunner.tb_format
 import zope.testrunner.shuffle
 
 try:
-    import Queue # Python 2
+    import Queue  # Python 2
 except ImportError:
     # Python 3
-    import queue as Queue # Python 3
+    import queue as Queue  # Python 3
+
 
 class UnexpectedSuccess(Exception):
     pass
@@ -94,11 +95,12 @@ class Runner(object):
 
     .. versionchanged:: 4.8.0
        Add the *warnings* keyword argument. If this is ``None`` (the default)
-       and the user hasn't configured Python otherwise with command-line arguments
-       or environment variables, we will enable the default warnings, including
-       ``DeprecationWarning``, when running tests. Otherwise, it can be any
-       string acceptable to :func:`warnings.simplefilter` and that filter will
-       be in effect while running tests.
+       and the user hasn't configured Python otherwise with command-line
+       arguments or environment variables, we will enable the default
+       warnings, including ``DeprecationWarning``, when running tests.
+       Otherwise, it can be any string acceptable to
+       :func:`warnings.simplefilter` and that filter will be in effect while
+       running tests.
 
     """
 
@@ -180,9 +182,9 @@ class Runner(object):
 
             # Late setup
             #
-            # Some system tools like profilers are really bad with stack frames.
-            # E.g. hotshot doesn't like it when we leave the stack frame that we
-            # called start() from.
+            # Some system tools like profilers are really bad with stack
+            # frames.  E.g. hotshot doesn't like it when we leave the stack
+            # frame that we called start() from.
             for feature in self.features:
                 feature.late_setup()
 
@@ -268,9 +270,10 @@ class Runner(object):
                 # noisy.  The -Wd and -Wa flags can be used to bypass this
                 # only when self.warnings is None.
                 if self.warnings in ['default', 'always']:
-                    warnings.filterwarnings('module',
-                                            category=DeprecationWarning,
-                                            message=r'Please use assert\w+ instead.')
+                    warnings.filterwarnings(
+                        'module',
+                        category=DeprecationWarning,
+                        message=r'Please use assert\w+ instead.')
             yield
 
     def run_tests(self):
@@ -375,7 +378,7 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
                         test.debug()
                     except KeyboardInterrupt:
                         raise
-                    except:
+                    except BaseException:
                         result.addError(
                             test,
                             sys.exc_info()[:2] + (sys.exc_info()[2].tb_next, ),
@@ -452,7 +455,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
     output = options.output
     gathered = []
     gather_layers(layer, gathered)
-    needed = dict([(l, 1) for l in gathered])
+    needed = dict([(ly, 1) for ly in gathered])
     if options.resume_number != 0:
         output.info("Running %s tests:" % layer_name)
     tear_down_unneeded(options, needed, setup_layers, errors)
@@ -523,7 +526,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
 
         # this is because of a bug in Python (http://www.python.org/sf/900092)
         if (options.profile == 'hotshot'
-            and sys.version_info[:3] <= (2, 4, 1)):
+                and sys.version_info[:3] <= (2, 4, 1)):
             args.insert(1, '-O')
 
         debugargs = args  # save them before messing up for windows
@@ -535,7 +538,8 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
         for feature in features:
             feature.layer_setup(layer)
 
-        child = subprocess.Popen(args, shell=False, stdin=subprocess.PIPE,
+        child = subprocess.Popen(
+            args, shell=False, stdin=subprocess.PIPE,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd,
             close_fds=not sys.platform.startswith('win'))
 
@@ -559,10 +563,10 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
                     # return its lines as a batch). We don't want too much
                     # buffering because this foils automatic and human monitors
                     # trying to verify that the subprocess is still alive.
-                    l = child.stdout.readline()
-                    if not l:
+                    line = child.stdout.readline()
+                    if not line:
                         break
-                    result.write(l)
+                    result.write(line)
             except IOError as e:
                 if e.errno == errno.EINTR:
                     # If the subprocess dies before we finish reading its
@@ -593,7 +597,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             if options.verbose >= 1:
                 errmsg += "\nChild command line: %s" % debugargs
             if (options.verbose >= 2 or
-                (options.verbose == 1 and len(errlines) < 20)):
+                    (options.verbose == 1 and len(errlines) < 20)):
                 errmsg += ("\nChild stderr was:\n" +
                            "\n".join("  " + line.decode('utf-8', 'replace')
                                      for line in errlines))
@@ -605,7 +609,6 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
                            "\n".join("  " + line.decode('utf-8', 'replace')
                                      for line in errlines[-10:]))
             output.error_with_banner(errmsg)
-
 
         while nfail > 0:
             nfail -= 1
@@ -689,7 +692,9 @@ class ImmediateSubprocessResult(AbstractSubprocessResult):
         self.stream.flush()
 
 
-_is_dots = re.compile(br'\.+(\r\n?|\n)').match # Windows sneaks in a \r\n.
+_is_dots = re.compile(br'\.+(\r\n?|\n)').match  # Windows sneaks in a \r\n.
+
+
 class KeepaliveSubprocessResult(AbstractSubprocessResult):
     "Keeps stdout for later processing; sends marks to queue to show activity."
 
@@ -782,7 +787,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
 
         # Help keep-alive monitors (human or automated) keep up-to-date.
         stdout.flush()
-        time.sleep(0.01) # Keep the loop from being too tight.
+        time.sleep(0.01)  # Keep the loop from being too tight.
 
     # Return the total number of tests run.
     return sum(r.num_ran for r in results)
@@ -791,29 +796,30 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
 def tear_down_unneeded(options, needed, setup_layers, errors, optional=False):
     # Tear down any layers not needed for these tests. The unneeded layers
     # might interfere.
-    unneeded = [l for l in setup_layers if l not in needed]
+    unneeded = [layer for layer in setup_layers if layer not in needed]
     unneeded = order_by_bases(unneeded)
     unneeded.reverse()
     output = options.output
-    for l in unneeded:
-        output.start_tear_down(name_from_layer(l))
+    for layer in unneeded:
+        output.start_tear_down(name_from_layer(layer))
         t = time.time()
         try:
             try:
-                if hasattr(l, 'tearDown'):
-                    l.tearDown()
+                if hasattr(layer, 'tearDown'):
+                    layer.tearDown()
             except NotImplementedError:
                 output.tear_down_not_supported()
                 if not optional:
-                    raise CanNotTearDown(l)
+                    raise CanNotTearDown(layer)
             except MemoryError:
                 raise
             except Exception:
-                handle_layer_failure(TearDownLayerFailure(l), output, errors)
+                handle_layer_failure(
+                    TearDownLayerFailure(layer), output, errors)
             else:
                 output.stop_tear_down(time.time() - t)
         finally:
-            del setup_layers[l]
+            del setup_layers[layer]
 
 
 cant_pm_in_subprocess_message = """
@@ -920,7 +926,7 @@ class TestResult(unittest.TestResult):
     def startTest(self, test):
         self.testSetUp()
         unittest.TestResult.startTest(self, test)
-        testsRun = self.testsRun - 1 # subtract the one the base class added
+        testsRun = self.testsRun - 1  # subtract the one the base class added
         count = test.countTestCases()
         self.testsRun = testsRun + count
 
@@ -997,7 +1003,8 @@ class TestResult(unittest.TestResult):
                                                       " as a subprocess!")
             else:
                 # XXX: what exc_info? there's no exc_info!
-                zope.testrunner.debug.post_mortem(exc_info)
+                # flake8 is correct, but keep it quiet for now ...
+                zope.testrunner.debug.post_mortem(exc_info)  # noqa: F821
         elif self.options.stop_on_error:
             self.stop()
 
@@ -1073,7 +1080,7 @@ def layer_sort_key(layer):
         key.append(layer)
 
     _gather(layer)
-    return tuple(name_from_layer(l) for l in key if l != UnitTests)
+    return tuple(name_from_layer(ly) for ly in key if ly != UnitTests)
 
 
 def order_by_bases(layers):
@@ -1109,8 +1116,8 @@ class FakeInputContinueGenerator:
     def readline(self):
         print('c\n')
         print('*'*70)
-        print ("Can't use pdb.set_trace when running a layer"
-               " as a subprocess!")
+        print("Can't use pdb.set_trace when running a layer"
+              " as a subprocess!")
         print('*'*70)
         print()
         return 'c\n'

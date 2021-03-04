@@ -68,8 +68,9 @@ class OutputFormatter(object):
     progress = property(lambda self: self.options.progress)
     verbose = property(lambda self: self.options.verbose)
     in_subprocess = property(
-        lambda self: self.options.resume_layer is not None and
-                     self.options.processes > 1)
+        lambda self: (
+            self.options.resume_layer is not None and
+            self.options.processes > 1))
 
     def compute_max_width(self):
         """Try to determine the terminal width."""
@@ -173,10 +174,10 @@ class OutputFormatter(object):
     def summary(self, n_tests, n_failures, n_errors, n_seconds,
                 n_skipped=0):
         """Summarize the results of a single test layer."""
-        print ("  Ran %s tests with %s failures, %s errors and "
-               "%s skipped in %s."
-               % (n_tests, n_failures, n_errors, n_skipped,
-                   self.format_seconds(n_seconds)))
+        print("  Ran %s tests with %s failures, %s errors and "
+              "%s skipped in %s."
+              % (n_tests, n_failures, n_errors, n_skipped,
+                  self.format_seconds(n_seconds)))
 
     def totals(self, n_tests, n_failures, n_errors, n_seconds,
                n_skipped=0):
@@ -497,12 +498,14 @@ class ColorfulOutputFormatter(OutputFormatter):
                   '?': 'character-diffs',
                   '@': 'diff-chunk',
                   '*': 'diff-chunk',
-                  '!': 'actual-output',}
+                  '!': 'actual-output',
+                  }
 
     prefixes = [('dark', '0;'),
                 ('light', '1;'),
                 ('bright', '1;'),
-                ('bold', '1;'),]
+                ('bold', '1;'),
+                ]
 
     colorcodes = {'default': 0, 'normal': 0,
                   'black': 30,
@@ -514,10 +517,10 @@ class ColorfulOutputFormatter(OutputFormatter):
                   'cyan': 36,
                   'grey': 37, 'gray': 37, 'white': 37}
 
-    slow_test_threshold = 10.0 # seconds
+    slow_test_threshold = 10.0  # seconds
 
     def color_code(self, color):
-        """Convert a color description (e.g. 'lightgray') to a terminal code."""
+        """Convert a color description (e.g. 'lightred') to a terminal code."""
         prefix_code = ''
         for prefix, code in self.prefixes:
             if color.startswith(prefix):
@@ -690,7 +693,8 @@ class ColorfulOutputFormatter(OutputFormatter):
                     print(line)
             elif line.startswith('    ') or line.strip() == '':
                 if colorize_diff and len(line) > 4:
-                    color = self.diff_color.get(line[4], color_of_indented_text)
+                    color = self.diff_color.get(
+                        line[4], color_of_indented_text)
                     print(self.colorize(color, line))
                 else:
                     if line.strip() != '':

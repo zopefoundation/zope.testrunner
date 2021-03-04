@@ -14,12 +14,14 @@
 
 import unittest
 
+
 class Test(unittest.TestCase):
 
     def test(self):
-        self.assertEqual(1,0)
+        self.assertEqual(1, 0)
 
     raise TypeError('eek')
+
 
 def test_suite():
     return unittest.makeSuite(Test)

@@ -13,12 +13,14 @@
 ##############################################################################
 
 import unittest
-import zope.testrunner.huh
+import zope.testrunner.huh  # noqa: F401
+
 
 class Test(unittest.TestCase):
 
     def test(self):
-        self.assertEqual(1,0)
-        
+        self.assertEqual(1, 0)
+
+
 def test_suite():
     return unittest.makeSuite(Test)

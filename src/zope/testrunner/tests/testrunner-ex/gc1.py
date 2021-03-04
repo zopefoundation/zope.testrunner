@@ -13,6 +13,7 @@
 ##############################################################################
 import doctest
 
+
 def make_sure_gc_threshold_is_one():
     """
     >>> import gc
@@ -20,6 +21,6 @@ def make_sure_gc_threshold_is_one():
     1
     """
 
+
 def test_suite():
     return doctest.DocTestSuite()
-

@@ -18,14 +18,13 @@ import os
 
 __path__.append(
     os.path.join(
-        os.path.dirname( # testing
-            os.path.dirname( # testrunner-ex-knit-lib
-                os.path.dirname( # sample4
-                    os.path.dirname(__file__) # products
+        os.path.dirname(  # testing
+            os.path.dirname(  # testrunner-ex-knit-lib
+                os.path.dirname(  # sample4
+                    os.path.dirname(__file__)  # products
                     )
                 )
-            )
-        , "testrunner-ex-pp-products"
+            ),
+        "testrunner-ex-pp-products"
         )
     )
-

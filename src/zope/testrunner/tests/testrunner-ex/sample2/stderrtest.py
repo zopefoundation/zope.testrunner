@@ -19,7 +19,6 @@ import doctest
 import sys
 
 
-
 class Layer:
 
     def setUp(self):

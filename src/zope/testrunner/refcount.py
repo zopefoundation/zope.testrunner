@@ -46,7 +46,7 @@ class TrackRefs(object):
             n += all
 
             t = type(o)
-            if t is types.InstanceType:
+            if issubclass(t, types.InstanceType):
                 t = o.__class__
 
             if t in type2count:
@@ -55,7 +55,6 @@ class TrackRefs(object):
             else:
                 type2count[t] = 1
                 type2all[t] = all
-
 
         ct = [(
                type_or_class_title(t),
@@ -76,17 +75,17 @@ class TrackRefs(object):
         self.type2all = type2all
         self.n = n
 
-
     def output(self):
         printed = False
         s1 = s2 = 0
         for t, delta1, delta2 in self.delta:
             if delta1 or delta2:
                 if not printed:
-                    print (
+                    print(
                         '    Leak details, changes in instances and refcounts'
                         ' by type/class:')
-                    print("    %-55s %6s %6s" % ('type/class', 'insts', 'refs'))
+                    print(
+                        "    %-55s %6s %6s" % ('type/class', 'insts', 'refs'))
                     print("    %-55s %6s %6s" % ('-' * 55, '-----', '----'))
                     printed = True
                 print("    %-55s %6d %6d" % (t, delta1, delta2))
@@ -96,7 +95,6 @@ class TrackRefs(object):
         if printed:
             print("    %-55s %6s %6s" % ('-' * 55, '-----', '----'))
             print("    %-55s %6s %6s" % ('total', s1, s2))
-
 
         self.delta = None
 

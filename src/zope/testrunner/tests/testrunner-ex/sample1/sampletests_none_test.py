@@ -16,6 +16,7 @@
 
 import unittest
 
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(None)

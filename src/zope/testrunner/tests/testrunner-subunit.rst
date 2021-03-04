@@ -207,7 +207,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in f
             g()
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
-            x = y + 1
+            x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
     0\r
@@ -235,7 +235,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in f
         g()
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
-        x = y + 1
+        x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
     0\r
@@ -474,7 +474,7 @@ Let's run tests including a module with some bad syntax:
     error: sample2.badsyntax [
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/badsyntax.py", line 16
-        importx unittest
+        importx unittest  # noqa: E999
                        ^
     SyntaxError: invalid syntax
     ]
@@ -483,7 +483,7 @@ Let's run tests including a module with some bad syntax:
     error: sample2.sample21.sampletests_i [
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
-        import zope.testrunner.huh
+        import zope.testrunner.huh  # noqa: F401
     ImportError: No module named huh
     ]
     test: sample2.sample23.sampletests_i

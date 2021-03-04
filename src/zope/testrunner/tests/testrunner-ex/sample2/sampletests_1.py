@@ -14,6 +14,7 @@
 
 import doctest
 
+
 def eek(self):
     """
     >>> x = y
@@ -24,6 +25,7 @@ def eek(self):
     >>> z = x + 1
 
     """
-        
+
+
 def test_suite():
     return doctest.DocTestSuite()

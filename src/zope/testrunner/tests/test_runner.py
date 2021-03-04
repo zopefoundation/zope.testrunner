@@ -27,7 +27,8 @@ class TestLayerOrdering(unittest.TestCase):
                          for qn in runner.layer_sort_key(layer))
 
     def order(self, *layers):
-        return ', '.join(l.__name__ for l in runner.order_by_bases(layers))
+        return ', '.join(layer.__name__
+                         for layer in runner.order_by_bases(layers))
 
     def test_order_by_bases(self):
         #    A      B
@@ -181,6 +182,7 @@ class TestLayerOrdering(unittest.TestCase):
         f = runner.FakeInputContinueGenerator()
         f.close()
 
+
 @unittest.skipIf(sys.warnoptions, "Only done if no user override")
 class TestWarnings(unittest.TestCase):
 
@@ -203,7 +205,6 @@ class TestWarnings(unittest.TestCase):
         # For some reason, catch_warnings doesn't fully reset things,
         # and we wind up with some duplicate entries in new_filters
         self.assertEqual(set(old_filters), set(new_filters))
-
 
     def test_warnings_are_shown(self):
         import warnings

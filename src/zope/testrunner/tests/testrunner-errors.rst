@@ -47,7 +47,7 @@ be read only):
           File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
           File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
-            x = y + 1
+            x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -60,7 +60,7 @@ be read only):
       File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
         g()
       File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
-        x = y + 1
+        x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -89,7 +89,7 @@ be read only):
     Failure in test test (sample2.sampletests_f.Test)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_f.py", line 21, in test
-        self.assertEqual(1,0)
+        self.assertEqual(1, 0)
       File "/usr/local/python/2.3/lib/python2.3/unittest.py", line 302, in failUnlessEqual
         raise self.failureException, \
     AssertionError: 1 != 0
@@ -133,7 +133,7 @@ there'll be a summary of the errors at the end of the test:
           File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
           File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
-            x = y + 1
+            x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -147,7 +147,7 @@ there'll be a summary of the errors at the end of the test:
       File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
         g()
       File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
-        x = y + 1
+        x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -176,7 +176,7 @@ there'll be a summary of the errors at the end of the test:
     Failure in test test (sample2.sampletests_f.Test)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_f.py", line 21, in test
-        self.assertEqual(1,0)
+        self.assertEqual(1, 0)
       File ".../unittest.py", line 302, in failUnlessEqual
         raise self.failureException, \
     AssertionError: 1 != 0
@@ -223,7 +223,7 @@ Similarly for progress output, the progress ticker will be interrupted:
           File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
             g()
           File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
-            x = y + 1
+            x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -240,7 +240,7 @@ Similarly for progress output, the progress ticker will be interrupted:
       File "testrunner-ex/sample2/sampletests_e.py", line 19, in f
         g()
       File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
-        x = y + 1
+        x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -273,7 +273,7 @@ Similarly for progress output, the progress ticker will be interrupted:
     Failure in test test (sample2.sampletests_f.Test)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_f.py", line 21, in test
-        self.assertEqual(1,0)
+        self.assertEqual(1, 0)
       File ".../unittest.py", line 302, in failUnlessEqual
         raise self.failureException, \
     AssertionError: 1 != 0
@@ -821,7 +821,7 @@ Then run the tests:
     <BLANKLINE>
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sample21/sampletests_i.py", line 15, in ?
-        import zope.testrunner.huh
+        import zope.testrunner.huh  # noqa: F401
     ImportError: No module named huh
     <BLANKLINE>
     <BLANKLINE>

@@ -56,7 +56,7 @@ class Filter(zope.testrunner.feature.Feature):
                     "Cannot find layer %s" % self.runner.options.resume_layer)
                 self.runner.errors.append(
                     ("subprocess failed for %s" %
-                         self.runner.options.resume_layer,
+                        self.runner.options.resume_layer,
                      None))
         elif self.runner.options.layer:
             accept = build_filtering_func(self.runner.options.layer)
@@ -66,11 +66,12 @@ class Filter(zope.testrunner.feature.Feature):
                     layers.pop(name)
 
         if (self.runner.options.verbose and
-            not self.runner.options.resume_layer):
+                not self.runner.options.resume_layer):
             if self.runner.options.all:
                 msg = "Running tests at all levels"
             else:
-                msg = "Running tests at level %d" % self.runner.options.at_level
+                msg = (
+                    "Running tests at level %d" % self.runner.options.at_level)
             self.runner.options.output.info(msg)
 
     def report(self):
@@ -80,7 +81,8 @@ class Filter(zope.testrunner.feature.Feature):
             return
         if self.runner.options.verbose:
             self.runner.options.output.tests_with_errors(self.runner.errors)
-            self.runner.options.output.tests_with_failures(self.runner.failures)
+            self.runner.options.output.tests_with_failures(
+                self.runner.failures)
 
 
 def build_filtering_func(patterns):

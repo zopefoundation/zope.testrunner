@@ -16,6 +16,8 @@
 
 import sys
 import doctest
+
+from zope.testrunner.exceptions import DocTestFailureException
 import zope.testrunner.feature
 
 
@@ -34,12 +36,14 @@ class DocTest(zope.testrunner.feature.Feature):
             reporting_flags = doctest.REPORT_NDIFF
         if options.udiff:
             if reporting_flags:
-                output.error("Can only give one of --ndiff, --udiff, or --cdiff")
+                output.error(
+                    "Can only give one of --ndiff, --udiff, or --cdiff")
                 sys.exit(1)
             reporting_flags = doctest.REPORT_UDIFF
         if options.cdiff:
             if reporting_flags:
-                output.error("Can only give one of --ndiff, --udiff, or --cdiff")
+                output.error(
+                    "Can only give one of --ndiff, --udiff, or --cdiff")
                 sys.exit(1)
             reporting_flags = doctest.REPORT_CDIFF
         if options.report_only_first_failure:
@@ -51,6 +55,6 @@ class DocTest(zope.testrunner.feature.Feature):
     def global_shutdown(self):
         doctest.set_unittest_reportflags(self.old_reporting_flags)
 
+
 # Use a special exception for the test runner.
-from zope.testrunner.exceptions import DocTestFailureException
 doctest.DocTestCase.failureException = DocTestFailureException

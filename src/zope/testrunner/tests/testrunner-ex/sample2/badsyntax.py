@@ -13,4 +13,4 @@
 ##############################################################################
 
 # This is an intentional syntax error, to test module import errors.
-importx unittest
+importx unittest  # noqa: E999

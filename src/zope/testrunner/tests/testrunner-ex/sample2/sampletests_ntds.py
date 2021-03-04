@@ -17,6 +17,7 @@
 import unittest
 import doctest
 
+
 class Layer:
 
     def setUp(self):
@@ -26,6 +27,7 @@ class Layer:
     def tearDown(self):
         raise NotImplementedError
     tearDown = classmethod(tearDown)
+
 
 class TestSomething(unittest.TestCase):
 
@@ -46,8 +48,10 @@ class TestSomething(unittest.TestCase):
     def test_something5(self):
         f()
 
+
 def f():
     import pdb; pdb.set_trace()
+
 
 def test_set_trace():
     """
@@ -55,7 +59,8 @@ def test_set_trace():
     ...     x = 1
     ...     import pdb; pdb.set_trace()
     """
-    
+
+
 def test_set_trace2():
     """
     >>> f()

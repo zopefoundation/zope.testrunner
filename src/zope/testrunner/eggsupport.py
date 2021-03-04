@@ -4,6 +4,7 @@ from __future__ import print_function
 from setuptools.command.test import ScanningLoader
 from setuptools.command.test import test as BaseCommand
 
+
 def skipLayers(suite, _result=None):
     """ Walk the suite returned by setuptools' testloader.
 
@@ -25,6 +26,7 @@ def skipLayers(suite, _result=None):
         else:
             _result.addTest(test)
     return _result
+
 
 class SkipLayers(ScanningLoader):
     """
@@ -67,6 +69,7 @@ def print_usage():
     print()
     print(ftest.__doc__)
 
+
 class ftest(BaseCommand):
     """
     Run unit and functional tests after an in-place build.
@@ -74,10 +77,10 @@ class ftest(BaseCommand):
     * Note that this command runs *all* tests (unit *and* functional).
 
     * This command does not provide any of the configuration options which
-      the usual testrunner provided by 'zope.testrunner' offers:  it is intended
-      to allow easy verification that a package has been installed correctly
-      via setuptools, but is not likely to be useful for developers working
-      on the package.
+      the usual testrunner provided by 'zope.testrunner' offers:  it is
+      intended to allow easy verification that a package has been installed
+      correctly via setuptools, but is not likely to be useful for
+      developers working on the package.
 
     * Developers working on the package will likely prefer to work with
       the stock testrunner, e.g., by using buildout with a recipe which
@@ -100,10 +103,10 @@ class ftest(BaseCommand):
     help_options = [('usage', '?', 'Show usage', print_usage)]
 
     def initialize_options(self):
-        pass # suppress normal handling
+        pass  # suppress normal handling
 
     def finalize_options(self):
-        pass # suppress normal handling
+        pass  # suppress normal handling
 
     def run(self):
         from zope.testrunner import run

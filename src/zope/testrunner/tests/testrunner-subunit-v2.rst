@@ -233,7 +233,7 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in f
             g()
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
-            x = y + 1
+            x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
         NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -254,7 +254,7 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in f
         g()
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
-        x = y + 1
+        x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
     NameError: global name 'y' is not defined
     <BLANKLINE>
@@ -441,7 +441,7 @@ Let's run tests including a module with some bad syntax:
     traceback (text/x-traceback...)
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/badsyntax.py", line 16
-        importx unittest
+        importx unittest  # noqa: E999
                        ^
     SyntaxError: invalid syntax
     <BLANKLINE>
@@ -451,7 +451,7 @@ Let's run tests including a module with some bad syntax:
     traceback (text/x-traceback...)
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
-        import zope.testrunner.huh
+        import zope.testrunner.huh  # noqa: F401
     ImportError: No module named huh
     <BLANKLINE>
     id=sample2.sample21.sampletests_i status=fail tags=(zope:import_error)

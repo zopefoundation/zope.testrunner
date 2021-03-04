@@ -13,6 +13,7 @@
 ##############################################################################
 import doctest
 
+
 def make_sure_gc_is_disabled():
     """
     >>> import gc
@@ -20,6 +21,6 @@ def make_sure_gc_is_disabled():
     0
     """
 
+
 def test_suite():
     return doctest.DocTestSuite()
-

@@ -16,6 +16,7 @@
 
 import unittest
 
+
 class Layer:
 
     def setUp(self):
@@ -25,6 +26,7 @@ class Layer:
     def tearDown(self):
         raise NotImplementedError
     tearDown = classmethod(tearDown)
+
 
 class TestSomething(unittest.TestCase):
 

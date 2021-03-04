@@ -14,10 +14,12 @@
 
 import unittest
 
+
 class Test(unittest.TestCase):
 
     def test(self):
-        self.assertEqual(1,0)
-        
+        self.assertEqual(1, 0)
+
+
 def test_suitex():
     return unittest.makeSuite(Test)
