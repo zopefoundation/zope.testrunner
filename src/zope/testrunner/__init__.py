@@ -66,6 +66,11 @@ def _script_parts(args=None):
         # make sure we remember the absolute path early -- the tests might
         # do an os.chdir()
         script_parts[0] = os.path.abspath(script_parts[0])
+        if not os.path.exists(script_parts[0]):
+            # uhh, no wrapper script?  this happens on Windows sometimes,
+            # where there are like three wrapper scripts with various suffixes,
+            # and I don't want to go looking up what they might be.
+            script_parts = ['-m', 'zope.testrunner']
     return script_parts
 
 
