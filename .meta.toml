@@ -1,0 +1,82 @@
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+[meta]
+template = "pure-python"
+commit-id = "c90811ca98ae13a1a52890c1e28bcf436b5a11dc"
+
+[python]
+with-appveyor = true
+with-pypy = true
+with-legacy-python = true
+with-docs = true
+with-sphinx-doctests = false
+
+[coverage]
+fail-under = 85
+
+[manifest]
+additional-rules = [
+    "include *.md",
+    ]
+
+[flake8]
+additional-config = [
+    "builtins =",
+    "    # src/zope/testrunner/tests/testrunner-ex/sample1/sampletests/test*.py stuff layerx in test.globs",
+    "    layerx",
+    "per-file-ignores =",
+    "    # E701: multiple statements on one line (colon)",
+    "    # TestLayerOrdering uses this for compact declaration of class graphs.",
+    "    src/zope/testrunner/tests/test_runner.py: E701",
+    "    # E702: multiple statements on one line (semicolon)",
+    "    # Some tests use the \"import pdb; pdb.set_trace()\" idiom.",
+    "    src/zope/testrunner/tests/testrunner-ex/sample2/sampletests_ntds.py: E702",
+    "    src/zope/testrunner/tests/testrunner-ex/sample3/sampletests_d.py: E702",
+    "    # F821: undefined name (y)",
+    "    src/zope/testrunner/tests/testrunner-ex/sample2/sampletests_1.py: F821",
+    ]
+
+[tox]
+additional-envlist = [
+    "py{27,35,36,37,38,39,py,py3}-subunit",
+    ]
+testenv-additional-extras = [
+    "subunit: subunit",
+    "coverage: subunit",
+    ]
+
+[github-actions]
+additional-config = [
+    "- [\"2.7\",   \"py27-subunit\"]",
+    "- [\"3.5\",   \"py35-subunit\"]",
+    "- [\"3.6\",   \"py36-subunit\"]",
+    "- [\"3.7\",   \"py37-subunit\"]",
+    "- [\"3.8\",   \"py38-subunit\"]",
+    "- [\"3.9\",   \"py39-subunit\"]",
+    "- [\"pypy2\", \"pypy-subunit\"]",
+    "- [\"pypy3\", \"pypy3-subunit\"]",
+    ]
+
+[appveyor]
+global-env-vars = [
+    "SUBUNIT: 0",
+    ]
+additional-matrix = [
+    "- { python: 27, SUBUNIT: 1 }",
+    "- { python: 27-x64, SUBUNIT: 1 }",
+    "- { python: 35, SUBUNIT: 1 }",
+    "- { python: 35-x64, SUBUNIT: 1 }",
+    "- { python: 36, SUBUNIT: 1 }",
+    "- { python: 36-x64, SUBUNIT: 1 }",
+    "- { python: 37, SUBUNIT: 1 }",
+    "- { python: 37-x64, SUBUNIT: 1 }",
+    "- { python: 38, SUBUNIT: 1 }",
+    "- { python: 38-x64, SUBUNIT: 1 }",
+    "- { python: 39, SUBUNIT: 1 }",
+    "- { python: 39-x64, SUBUNIT: 1 }",
+    ]
+install-steps = [
+    "# NB: pip install -e .[test] fails for obscure namespace package reasons",
+    "- pip install -U .[test]",
+    "- if %SUBUNIT%==1 pip install -U .[subunit]",
+    ]
