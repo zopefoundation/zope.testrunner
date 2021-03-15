@@ -307,6 +307,7 @@ stream as MIME-encoded chunks of text.
     id=sample2.stdstreamstest.Test.test_stderr_error
     test-stderr (text/plain; charset="utf8")
     stderr output on error
+    stderr buffer output on error
     <BLANKLINE>
     id=sample2.stdstreamstest.Test.test_stderr_error
     traceback (text/x-traceback...)
@@ -321,6 +322,7 @@ stream as MIME-encoded chunks of text.
     id=sample2.stdstreamstest.Test.test_stderr_failure
     test-stderr (text/plain; charset="utf8")
     stderr output on failure
+    stderr buffer output on failure
     <BLANKLINE>
     id=sample2.stdstreamstest.Test.test_stderr_failure
     traceback (text/x-traceback...)
@@ -338,6 +340,7 @@ stream as MIME-encoded chunks of text.
     id=sample2.stdstreamstest.Test.test_stdout_error
     test-stdout (text/plain; charset="utf8")
     stdout output on error
+    stdout buffer output on error
     <BLANKLINE>
     id=sample2.stdstreamstest.Test.test_stdout_error
     traceback (text/x-traceback...)
@@ -352,6 +355,7 @@ stream as MIME-encoded chunks of text.
     id=sample2.stdstreamstest.Test.test_stdout_failure
     test-stdout (text/plain; charset="utf8")
     stdout output on failure
+    stdout buffer output on failure
     <BLANKLINE>
     id=sample2.stdstreamstest.Test.test_stdout_failure
     traceback (text/x-traceback...)

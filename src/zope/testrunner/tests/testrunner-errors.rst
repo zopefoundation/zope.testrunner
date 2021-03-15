@@ -392,6 +392,7 @@ for failing and erroring tests.
     <BLANKLINE>
     Stderr:
     stderr output on error
+    stderr buffer output on error
     <BLANKLINE>
     <BLANKLINE>
      test_stderr_failure (sample2.stdstreamstest.Test)
@@ -404,6 +405,7 @@ for failing and erroring tests.
     <BLANKLINE>
     Stderr:
     stderr output on failure
+    stderr buffer output on failure
     <BLANKLINE>
     <BLANKLINE>
      test_stderr_success (sample2.stdstreamstest.Test)
@@ -417,6 +419,7 @@ for failing and erroring tests.
     <BLANKLINE>
     Stdout:
     stdout output on error
+    stdout buffer output on error
     <BLANKLINE>
     <BLANKLINE>
      test_stdout_failure (sample2.stdstreamstest.Test)
@@ -429,6 +432,7 @@ for failing and erroring tests.
     <BLANKLINE>
     Stdout:
     stdout output on failure
+    stdout buffer output on failure
     <BLANKLINE>
     <BLANKLINE>
      test_stdout_success (sample2.stdstreamstest.Test)

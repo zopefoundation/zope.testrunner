@@ -2,10 +2,11 @@
  zope.testrunner Changelog
 ===========================
 
-5.2.1 (unreleased)
+5.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Make standard streams provide a `buffer` attribute on Python 3 when using
+  `--buffer` or testing under subunit.
 
 
 5.2 (2020-06-29)
