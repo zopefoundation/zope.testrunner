@@ -5,6 +5,8 @@
 5.3 (unreleased)
 ==================
 
+- Add support for Python 3.9.
+
 - Fix `package init file missing` warning
   (`#112 <https://github.com/zopefoundation/zope.testrunner/pull/112>`_).
 
