@@ -2,7 +2,7 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 [meta]
 template = "pure-python"
-commit-id = "c90811ca98ae13a1a52890c1e28bcf436b5a11dc"
+commit-id = "af622790bf7aa724913c1929effe5992f422d175"
 
 [python]
 with-appveyor = true
@@ -40,10 +40,13 @@ additional-config = [
 additional-envlist = [
     "py{27,35,36,37,38,39,py,py3}-subunit",
     ]
+testenv-deps = [
+    ]
 testenv-additional-extras = [
     "subunit: subunit",
     "coverage: subunit",
     ]
+use-flake8 = true
 
 [github-actions]
 additional-config = [
