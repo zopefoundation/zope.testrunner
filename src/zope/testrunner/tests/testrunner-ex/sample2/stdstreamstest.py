@@ -20,26 +20,41 @@ import unittest
 
 class Test(unittest.TestCase):
 
+    def _getStreamBuffer(self, stream):
+        return stream.buffer if sys.version_info[0] >= 3 else stream
+
     def test_stdout_success(self):
         sys.stdout.write("stdout output on success\n")
+        self._getStreamBuffer(sys.stdout).write(
+            b"stdout buffer output on success\n")
 
     def test_stdout_failure(self):
         sys.stdout.write("stdout output on failure\n")
+        self._getStreamBuffer(sys.stdout).write(
+            b"stdout buffer output on failure\n")
         self.assertTrue(False)
 
     def test_stdout_error(self):
         sys.stdout.write("stdout output on error\n")
+        self._getStreamBuffer(sys.stdout).write(
+            b"stdout buffer output on error\n")
         raise Exception("boom")
 
     def test_stderr_success(self):
         sys.stderr.write("stderr output on success\n")
+        self._getStreamBuffer(sys.stderr).write(
+            b"stderr buffer output on success\n")
 
     def test_stderr_failure(self):
         sys.stderr.write("stderr output on failure\n")
+        self._getStreamBuffer(sys.stderr).write(
+            b"stderr buffer output on failure\n")
         self.assertTrue(False)
 
     def test_stderr_error(self):
         sys.stderr.write("stderr output on error\n")
+        self._getStreamBuffer(sys.stderr).write(
+            b"stderr buffer output on error\n")
         raise Exception("boom")
 
 

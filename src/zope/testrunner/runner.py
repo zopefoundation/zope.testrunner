@@ -898,13 +898,30 @@ class TestResult(unittest.TestResult):
             if hasattr(layer, 'testTearDown'):
                 layer.testTearDown()
 
+    def _makeBufferedStdStream(self):
+        """Make a buffered stream to replace a standard stream."""
+        if sys.version_info[0] >= 3:
+            # The returned stream needs to have a 'buffer' attribute, since
+            # some tests may expect that to exist on standard streams, and a
+            # 'getvalue' method for the convenience of _restoreStdStreams.
+            # This requires some care.
+            class BufferedStandardStream(io.TextIOWrapper):
+                def getvalue(self):
+                    return self.buffer.getvalue().decode(
+                        encoding=self.encoding, errors=self.errors)
+
+            return BufferedStandardStream(
+                io.BytesIO(), newline='\n', write_through=True)
+        else:
+            return StringIO()
+
     def _setUpStdStreams(self):
         """Set up buffered standard streams, if requested."""
         if self.options.buffer:
             if self._stdout_buffer is None:
-                self._stdout_buffer = StringIO()
+                self._stdout_buffer = self._makeBufferedStdStream()
             if self._stderr_buffer is None:
-                self._stderr_buffer = StringIO()
+                self._stderr_buffer = self._makeBufferedStdStream()
             sys.stdout = self._stdout_buffer
             sys.stderr = self._stderr_buffer
 

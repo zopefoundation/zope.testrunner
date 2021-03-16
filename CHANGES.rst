@@ -2,11 +2,14 @@
  zope.testrunner Changelog
 ===========================
 
-5.2.1 (unreleased)
+5.3 (unreleased)
 ==================
 
 - Fix `package init file missing` warning
   (`#112 <https://github.com/zopefoundation/zope.testrunner/pull/112>`_).
+
+- Make standard streams provide a `buffer` attribute on Python 3 when using
+  `--buffer` or testing under subunit.
 
 
 5.2 (2020-06-29)
