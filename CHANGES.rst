@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.3 (unreleased)
+5.3.0 (2021-03-17)
 ==================
 
 - Add support for Python 3.9.
