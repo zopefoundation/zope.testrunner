@@ -39,7 +39,7 @@ class Logging(zope.testrunner.feature.Feature):
 
         logini = os.path.abspath("log.ini")
         if os.path.exists(logini):
-            logging.config.fileConfig(logini)
+            logging.config.fileConfig(logini, disable_existing_loggers=False)
         else:
             # If there's no log.ini, cause the logging package to be
             # silent during testing.
