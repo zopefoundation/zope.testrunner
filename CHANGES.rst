@@ -5,7 +5,9 @@
 5.3.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Do not disable existing loggers during logsupport initialization
+  (`#120 <https://github.com/zopefoundation/zope.testrunner/pull/120>`_).
+
 
 
 5.3.0 (2021-03-17)
