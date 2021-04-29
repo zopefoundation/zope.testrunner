@@ -5,6 +5,9 @@
 5.3.1 (unreleased)
 ==================
 
+- Improve ``--help`` documentation for ``--package-path`` option
+  (`#121 <https://github.com/zopefoundation/zope.testrunner/pull/121>`_).
+
 - Do not disable existing loggers during logsupport initialization
   (`#120 <https://github.com/zopefoundation/zope.testrunner/pull/120>`_).
 

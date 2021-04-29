@@ -418,14 +418,14 @@ will be run.
 
 setup.add_argument(
     '--package-path', action="append", dest='package_path', nargs=2,
+    metavar="ARG",
     help="""\
 Specify a path to be searched for tests, but not added to the Python
 search path.  Also specify a package for files found in this path.
 This is used to deal with directories that are stitched into packages
 that are not otherwise searched for tests.
 
-This option takes 2 arguments.  The first is a path name. The second is
-the package name.
+This option takes 2 arguments specifying the path and the package.
 
 This option can be used multiple times to specify
 multiple search paths.  The path is usually specified by the
