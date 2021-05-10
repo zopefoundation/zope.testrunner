@@ -41,7 +41,7 @@ Post-mortem debugging also works when there is an import failure.
       File ".../TESTS-DIR/tests.py", line 2
         impot doctest
                     ^
-    SyntaxError: invalid syntax
+    SyntaxError: invalid syntax...
     > ...find.py(399)import_name()
     -> __import__(name)
     (Pdb) c

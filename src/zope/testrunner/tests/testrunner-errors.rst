@@ -818,7 +818,7 @@ Then run the tests:
       File "testrunner-ex/sample2/sampletests_i.py", line 1
         importx unittest
                        ^
-    SyntaxError: invalid syntax
+    SyntaxError: invalid syntax...
     <BLANKLINE>
     <BLANKLINE>
     Module: sample2.sample21.sampletests_i
