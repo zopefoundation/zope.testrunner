@@ -442,8 +442,7 @@ Let's run tests including a module with some bad syntax:
     >>> subunit_summarize(testrunner.run_internal, defaults)
     id=sample2.badsyntax status=inprogress
     id=sample2.badsyntax
-    traceback (text/x-traceback...)
-    Traceback (most recent call last):
+    traceback (text/x-traceback...)...
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/badsyntax.py", line 16
         importx unittest  # noqa: E999
                        ^
