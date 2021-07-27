@@ -11,6 +11,8 @@
 - Do not disable existing loggers during logsupport initialization
   (`#120 <https://github.com/zopefoundation/zope.testrunner/pull/120>`_).
 
+- Fix tests with testtools >= 2.5.0 (`#125
+  <https://github.com/zopefoundation/zope.testrunner/issues/125>`_).
 
 
 5.3.0 (2021-03-17)

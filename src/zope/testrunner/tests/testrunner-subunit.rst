@@ -475,8 +475,7 @@ Let's run tests including a module with some bad syntax:
     >>> testrunner.run_internal(defaults)
     test: sample2.badsyntax
     tags: zope:import_error
-    error: sample2.badsyntax [
-    Traceback (most recent call last):
+    error: sample2.badsyntax [...
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/badsyntax.py", line 16
         importx unittest  # noqa: E999
                        ^
