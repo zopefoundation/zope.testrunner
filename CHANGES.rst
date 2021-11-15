@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.3.1 (unreleased)
+5.4.0 (unreleased)
 ==================
 
 - Improve ``--help`` documentation for ``--package-path`` option
@@ -13,6 +13,8 @@
 
 - Fix tests with testtools >= 2.5.0 (`#125
   <https://github.com/zopefoundation/zope.testrunner/issues/125>`_).
+
+- Add support for Python 3.10.
 
 
 5.3.0 (2021-03-17)
