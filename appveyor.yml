@@ -1,7 +1,6 @@
 # Generated from:
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 environment:
-
   SUBUNIT: 0
 
   matrix:
@@ -17,6 +16,8 @@ environment:
     - python: 38-x64
     - python: 39
     - python: 39-x64
+    - python: 310
+    - python: 310-x64
     - { python: 27, SUBUNIT: 1 }
     - { python: 27-x64, SUBUNIT: 1 }
     - { python: 35, SUBUNIT: 1 }
@@ -47,12 +48,12 @@ install:
   - pip install -U .[test]
   - if %SUBUNIT%==1 pip install -U .[subunit]
 
-build: false
 matrix:
   fast_finish: true
 
+build: false
+
 test_script:
   - zope-testrunner --test-path=src
-
 on_success:
   - echo Build succesful!
