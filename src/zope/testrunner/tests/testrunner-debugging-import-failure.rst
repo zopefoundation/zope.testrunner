@@ -38,9 +38,9 @@ Post-mortem debugging also works when there is an import failure.
     ... except zope.testrunner.interfaces.EndRun: print('EndRun raised')
     ... finally: sys.stdin = real_stdin
     ... # doctest: +ELLIPSIS +REPORT_NDIFF
-      File ".../TESTS-DIR/tests.py", line 2
+      File ".../TESTS-DIR/tests.py", line 2...
         impot doctest
-                    ^
+                 ...^
     SyntaxError: invalid syntax...
     > ...find.py(399)import_name()
     -> __import__(name)
