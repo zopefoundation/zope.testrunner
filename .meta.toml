@@ -5,7 +5,6 @@ template = "pure-python"
 commit-id = "aef18fe5ee64014d8b1b9de21f1e0a0991be874e"
 
 [python]
-with-appveyor = true
 with-pypy = true
 with-legacy-python = true
 with-docs = true
