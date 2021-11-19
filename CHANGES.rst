@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.4.0 (unreleased)
+5.4.0 (2021-11-19)
 ==================
 
 - Improve ``--help`` documentation for ``--package-path`` option
