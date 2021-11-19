@@ -478,7 +478,7 @@ Let's run tests including a module with some bad syntax:
     error: sample2.badsyntax [...
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/badsyntax.py", line 16
         importx unittest  # noqa: E999
-                       ^
+                    ...^
     SyntaxError: invalid syntax...
     ]
     test: sample2.sample21.sampletests_i

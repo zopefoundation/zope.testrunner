@@ -2,21 +2,23 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 [meta]
 template = "pure-python"
-commit-id = "af622790bf7aa724913c1929effe5992f422d175"
+commit-id = "aef18fe5ee64014d8b1b9de21f1e0a0991be874e"
 
 [python]
-with-appveyor = true
 with-pypy = true
 with-legacy-python = true
 with-docs = true
 with-sphinx-doctests = false
+with-windows = true
+with-future-python = false
 
 [coverage]
-fail-under = 85
+fail-under = 82
 
 [manifest]
 additional-rules = [
     "include *.md",
+    "recursive-include src *.rst",
     ]
 
 [flake8]
@@ -38,7 +40,7 @@ additional-config = [
 
 [tox]
 additional-envlist = [
-    "py{27,35,36,37,38,39,py,py3}-subunit",
+    "py{27,35,36,37,38,39,310,py,py3}-subunit",
     ]
 testenv-deps = [
     ]
@@ -56,30 +58,10 @@ additional-config = [
     "- [\"3.7\",   \"py37-subunit\"]",
     "- [\"3.8\",   \"py38-subunit\"]",
     "- [\"3.9\",   \"py39-subunit\"]",
+    "- [\"3.10\",   \"py310-subunit\"]",
     "- [\"pypy2\", \"pypy-subunit\"]",
     "- [\"pypy3\", \"pypy3-subunit\"]",
     ]
-
-[appveyor]
-global-env-vars = [
-    "SUBUNIT: 0",
-    ]
-additional-matrix = [
-    "- { python: 27, SUBUNIT: 1 }",
-    "- { python: 27-x64, SUBUNIT: 1 }",
-    "- { python: 35, SUBUNIT: 1 }",
-    "- { python: 35-x64, SUBUNIT: 1 }",
-    "- { python: 36, SUBUNIT: 1 }",
-    "- { python: 36-x64, SUBUNIT: 1 }",
-    "- { python: 37, SUBUNIT: 1 }",
-    "- { python: 37-x64, SUBUNIT: 1 }",
-    "- { python: 38, SUBUNIT: 1 }",
-    "- { python: 38-x64, SUBUNIT: 1 }",
-    "- { python: 39, SUBUNIT: 1 }",
-    "- { python: 39-x64, SUBUNIT: 1 }",
-    ]
-install-steps = [
-    "# NB: pip install -e .[test] fails for obscure namespace package reasons",
-    "- pip install -U .[test]",
-    "- if %SUBUNIT%==1 pip install -U .[subunit]",
+additional-exclude = [
+    "- { os: windows, config: [\"pypy2\", \"pypy-subunit\"] }",
     ]

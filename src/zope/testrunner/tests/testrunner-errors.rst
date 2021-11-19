@@ -817,7 +817,7 @@ Then run the tests:
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_i.py", line 1
         importx unittest
-                       ^
+                    ...^
     SyntaxError: invalid syntax...
     <BLANKLINE>
     <BLANKLINE>
