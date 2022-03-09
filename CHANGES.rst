@@ -5,7 +5,9 @@
 5.4.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Inline a small part of ``random.Random.shuffle`` which was deprecated in
+  Python 3.9 and removed in 3.11 (`#119
+  <https://github.com/zopefoundation/zope.testrunner/issues/119>`_).
 
 
 5.4.0 (2021-11-19)
