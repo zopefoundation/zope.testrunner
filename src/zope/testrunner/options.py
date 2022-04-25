@@ -346,7 +346,9 @@ analysis.add_argument(
     help="""\
 After each test, call 'gc.collect' and record the return
 value *rv*; when *rv* is non-zero, output '!' on verbosity level 1
-and '[*rv*]' on higher verbosity levels.
+and '[*rv*]' on higher verbosity levels.\n
+Note: the option does not work under `jython` and not fully works
+under `PyPy`.
 """)
 
 analysis.add_argument(

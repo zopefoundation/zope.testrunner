@@ -18,6 +18,7 @@ from __future__ import print_function
 import doctest
 import gc
 import os
+import platform
 import re
 import sys
 import unittest
@@ -27,6 +28,7 @@ from zope.testing import renormalizing
 
 from ..runner import is_jython
 
+is_pypy = platform.python_implementation() == "PyPy"
 
 # separated checkers for the different platform,
 # because it s...s to maintain just one
@@ -387,7 +389,10 @@ def test_suite():
                 checker=checker,
             )
         )
-    if not is_jython:
+    if not is_jython and not is_pypy:
+        # ``Jython`` apparently does not implement ``gc``
+        # and for ``PyPy``, ``gc.collect`` returns ``None``
+        # rather than the number of collected objects
         suites.append(
             doctest.DocFileSuite(
                 'testrunner-gc-after-test.rst',
