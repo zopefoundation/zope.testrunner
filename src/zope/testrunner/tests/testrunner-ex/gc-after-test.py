@@ -1,16 +1,24 @@
 from unittest import TestCase
 from warnings import warn
 
+from six import PY2
+
 
 class GcAfterTestTests(TestCase):
+    def tearDown(self):
+        try:
+            del self.cycle
+        except AttributeError:
+            pass
+
     def test_okay(self):
         pass
 
     def test_cycle_without_resource(self):
-        c = _Cycle()
+        self.cycle = _Cycle()
 
     def test_cycle_with_resource(self):
-        c = _Cycle(resource=_Resource())
+        self.cycle = _Cycle(resource=_Resource())
 
     def test_failure(self):
         raise AssertionError("failure")
@@ -29,9 +37,15 @@ class _Cycle(object):
 class _Resource(object):
     """Auxiliary class emulating a resource."""
     closed = False
+
     def close(self):
         self.closed = True
 
     def __del__(self):
         if not self.closed:
             warn(ResourceWarning("not closed"))
+
+
+if PY2:
+    class ResourceWarning(Warning):
+        pass

@@ -30,7 +30,7 @@ therefore does not show the warnings (even though two are issued).
     Error in test test_exception (gc-after-test.GcAfterTestTests)
     Traceback (most recent call last):
     ...
-    ZeroDivisionError: division by zero
+    ZeroDivisionError: ...
     <BLANKLINE>
     .
     <BLANKLINE>
@@ -66,7 +66,7 @@ therefore does not show the warnings (even though two are issued).
     Error in test test_exception (gc-after-test.GcAfterTestTests)
     Traceback (most recent call last):
       ...
-    ZeroDivisionError: division by zero
+    ZeroDivisionError: ...
     <BLANKLINE>
     <BLANKLINE>
      test_failure (gc-after-test.GcAfterTestTests)

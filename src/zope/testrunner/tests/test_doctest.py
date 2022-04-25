@@ -22,6 +22,7 @@ import re
 import sys
 import unittest
 
+from six import PY2
 from zope.testing import renormalizing
 
 from ..runner import is_jython
@@ -396,8 +397,12 @@ def test_suite():
                     (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'),
                      'N.NNN seconds'),
                     (re.compile(r'\(\d+[.]\d\d\d s\)'),
-                     '(N.NNN s)'),                    
-                    ])))
+                     '(N.NNN s)'),
+                    ]
+                    # objects on cycle differ between PY2 and PY3
+                    + (
+                    [(re.compile(r'\[\d+\]'), '[C]')] if PY2
+                    else []))))
 
     try:
         import subunit

@@ -1297,7 +1297,7 @@ class SubunitOutputFormatter(object):
         self._add_std_streams_to_details(details, stdout, stderr)
         self._subunit.addFailure(test, details=details)
 
-    def stop_test(self, test):
+    def stop_test(self, test, gccount):
         """Clean up the output state after a test."""
         self._subunit.stopTest(test)
 

@@ -1027,8 +1027,9 @@ class TestResult(unittest.TestResult):
 
     def stopTest(self, test):
         self.testTearDown()
-        gccount = gc.collect() if self.options.gc_after_test and not is_jython \
-                  else 0
+        gccount = gc.collect() \
+            if self.options.gc_after_test and not is_jython \
+            else 0
         self.options.output.stop_test(test, gccount)
 
         if is_jython:
