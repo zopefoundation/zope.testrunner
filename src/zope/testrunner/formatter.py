@@ -395,8 +395,12 @@ class OutputFormatter(object):
             tb = "".join(traceback.format_exception(*exc_info))
         return tb
 
-    def stop_test(self, test):
+    def stop_test(self, test, gccount):
         """Clean up the output state after a test."""
+        if gccount and self.verbose:
+            s = "!" if self.verbose == 1 else " [%d]" % gccount
+            self.test_width += len(s)
+            print(s, end="")
         if self.progress:
             self.last_width = self.test_width
         elif self.verbose > 1:

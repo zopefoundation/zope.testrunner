@@ -24,6 +24,8 @@ import unittest
 
 from zope.testing import renormalizing
 
+from ..runner import is_jython
+
 
 # separated checkers for the different platform,
 # because it s...s to maintain just one
@@ -384,6 +386,18 @@ def test_suite():
                 checker=checker,
             )
         )
+    if not is_jython:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-gc-after-test.rst',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=renormalizing.RENormalizing([
+                    (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'),
+                     'N.NNN seconds'),
+                    (re.compile(r'\(\d+[.]\d\d\d s\)'),
+                     '(N.NNN s)'),                    
+                    ])))
 
     try:
         import subunit

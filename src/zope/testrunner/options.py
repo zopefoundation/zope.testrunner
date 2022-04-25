@@ -342,6 +342,14 @@ once to set multiple flags.
 """)
 
 analysis.add_argument(
+    '--gc-after-test', action="store_true", dest='gc_after_test',
+    help="""\
+After each test, call 'gc.collect' and record the return
+value *rv*; when *rv* is non-zero, output '!' on verbosity level 1
+and '[*rv*]' on higher verbosity levels.
+""")
+
+analysis.add_argument(
     '--repeat', '-N', action="store", type=int, dest='repeat',
     default=1,
     help="""\
