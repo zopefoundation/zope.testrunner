@@ -941,6 +941,7 @@ class TestResult(unittest.TestResult):
             return None, None
 
     def startTest(self, test):
+        self._test_state = test.__dict__.copy()
         self.testSetUp()
         unittest.TestResult.startTest(self, test)
         testsRun = self.testsRun - 1  # subtract the one the base class added
@@ -1027,6 +1028,11 @@ class TestResult(unittest.TestResult):
 
     def stopTest(self, test):
         self.testTearDown()
+        # Without clearing, cyclic garbage referenced by the test
+        # would be reported in the following test.
+        test.__dict__.clear()
+        test.__dict__.update(self._test_state)
+        del self._test_state
         gccount = gc.collect() \
             if self.options.gc_after_test and not is_jython \
             else 0
@@ -1100,7 +1106,10 @@ def layer_sort_key(layer):
         key.append(layer)
 
     _gather(layer)
-    return tuple(name_from_layer(ly) for ly in key if ly != UnitTests)
+    try:
+        return tuple(name_from_layer(ly) for ly in key if ly != UnitTests)
+    finally:
+        del _gather  # break reference cycle
 
 
 def order_by_bases(layers):

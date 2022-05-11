@@ -20,6 +20,9 @@ class GcAfterTestTests(TestCase):
     def test_cycle_with_resource(self):
         self.cycle = _Cycle(resource=_Resource())
 
+    def test_test_holds_cycle(self):
+        self.hold_cycle = _Cycle(resource=_Resource())
+
     def test_failure(self):
         raise AssertionError("failure")
 

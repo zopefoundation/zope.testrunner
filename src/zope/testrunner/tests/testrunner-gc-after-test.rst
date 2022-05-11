@@ -39,8 +39,8 @@ therefore does not show the warnings (even though two are issued).
       ...	
     AssertionError: failure
     <BLANKLINE>
-    .
-      Ran 5 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
+    ..!
+      Ran 6 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
@@ -57,7 +57,7 @@ therefore does not show the warnings (even though two are issued).
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_cycle_with_resource (gc-after-test.GcAfterTestTests) [10]
+     test_cycle_with_resource (gc-after-test.GcAfterTestTests) [3]
     <BLANKLINE>
      test_cycle_without_resource (gc-after-test.GcAfterTestTests) [2]
     <BLANKLINE>
@@ -78,7 +78,8 @@ therefore does not show the warnings (even though two are issued).
     <BLANKLINE>
     <BLANKLINE>
      test_okay (gc-after-test.GcAfterTestTests)
-      Ran 5 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
+     test_test_holds_cycle (gc-after-test.GcAfterTestTests) [3]
+      Ran 6 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
