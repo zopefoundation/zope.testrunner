@@ -1093,6 +1093,8 @@ def layer_sort_key(layer):
 
     # Note: we cannot reuse gather_layers() here because it uses a
     # different traversal order.
+    binding = {}  # hack to avoid recursion -- for PY2
+
     def _gather(layer):
         seen.add(layer)
         # We make the simplifying assumption that the order of initialization
@@ -1102,14 +1104,15 @@ def layer_sort_key(layer):
         # zope.testrunner, so let's use that.
         for base in layer.__bases__[::-1]:
             if base is not object and base not in seen:
-                _gather(base)
+                binding["_gather"](base)
         key.append(layer)
 
+    binding["_gather"] = _gather
     _gather(layer)
     try:
         return tuple(name_from_layer(ly) for ly in key if ly != UnitTests)
     finally:
-        del _gather  # break reference cycle
+        binding.clear()  # break reference cycle
 
 
 def order_by_bases(layers):
