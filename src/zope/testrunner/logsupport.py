@@ -18,13 +18,11 @@ This code is pretty much untested and was only mechanically refactored.
 The module name is not 'logging' because of a name collision with Python's
 logging module.
 """
-from __future__ import print_function
-
 import logging
 import logging.config
 import os
 import os.path
-import sys
+import warnings
 
 import zope.testrunner.feature
 
@@ -39,8 +37,9 @@ class Logging(zope.testrunner.feature.Feature):
         # the current working directory.
         logini = os.environ.get("ZOPE_TESTRUNNER_LOG_INI")
         if logini is not None and not os.path.exists(logini):
-            print("ERROR: file specified by envvar ZOPE_TESTRUNNER_LOG_INI` "
-                  "does not exist", file=sys.stderr)
+            warnings.warn(
+                "ERROR: file specified by envvar ZOPE_TESTRUNNER_LOG_INI` "
+                "does not exist")
             logini = None
         if logini is None:
             logini = "log.ini"
