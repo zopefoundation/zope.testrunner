@@ -18,10 +18,13 @@ This code is pretty much untested and was only mechanically refactored.
 The module name is not 'logging' because of a name collision with Python's
 logging module.
 """
+from __future__ import print_function
 
 import logging
 import logging.config
+import os
 import os.path
+import sys
 
 import zope.testrunner.feature
 
@@ -31,15 +34,22 @@ class Logging(zope.testrunner.feature.Feature):
     active = True
 
     def global_setup(self):
-        # Get the log.ini file from the current directory instead of
-        # possibly buried in the build directory.  TODO: This isn't
-        # perfect because if log.ini specifies a log file, it'll be
-        # relative to the build directory.  Hmm...  logini =
-        # os.path.abspath("log.ini")
-
-        logini = os.path.abspath("log.ini")
+        # Get the log.ini file either from the envvar
+        # ``ZOPE_TESTRUNNER_LOG_INI`` or file ``log.ini`` in
+        # the current working directory.
+        logini = os.environ.get("ZOPE_TESTRUNNER_LOG_INI")
+        if logini is not None and not os.path.exists(logini):
+            print("ERROR: file specified by envvar ZOPE_TESTRUNNER_LOG_INI` "
+                  "does not exist", file=sys.stderr)
+            logini = None
+        if logini is None:
+            logini = "log.ini"
+        logini = os.path.abspath(logini)  # make absolute
         if os.path.exists(logini):
             logging.config.fileConfig(logini, disable_existing_loggers=False)
+            # remember the log configuration in envvar for use
+            # by child processes
+            os.environ["ZOPE_TESTRUNNER_LOG_INI"] = logini
         else:
             # If there's no log.ini, cause the logging package to be
             # silent during testing.
