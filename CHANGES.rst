@@ -15,6 +15,16 @@
   For details, see
   `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133`_.
 
+- Allow the filename for the logging configuration to be specified
+  via the envvar ``ZOPE_TESTRUNNER_LOG_INI``.
+  If not defined, the configuration continues to be locked for
+  in file ``log.ini`` of the current working directory.
+  Remember the logging configuration file in envvar
+  ``ZOPE_TESTRUNNER_LOG_INI`` to allow spawned child processes
+  to recreate the logging configuration.
+  For details, see
+  `#134 <https://github.com/zopefoundation/zope.testrunner/pull/134>`_.
+
 
 5.4.0 (2021-11-19)
 ==================
