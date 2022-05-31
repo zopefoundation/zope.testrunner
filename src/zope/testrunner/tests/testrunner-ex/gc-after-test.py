@@ -35,7 +35,7 @@ class GcAfterTestTests(TestCase):
         def f():
             try:
                 1/0
-            except Exception as e:
+            except Exception:
                 # create cycle
                 tb = exc_info()[2]  # noqa: F841
 

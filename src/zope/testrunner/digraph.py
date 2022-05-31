@@ -197,5 +197,3 @@ class _TarjanState(object):
     def __repr__(self):
         return "dfs=%d low=%d stacked=%s" \
                % (self.dfs, self.low, self.stacked)
-
-

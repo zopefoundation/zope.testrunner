@@ -1049,7 +1049,8 @@ class TestResult(unittest.TestResult):
                 cycles = [[repr_lines(o) for o in c] for c in g.sccs()]
                 del gc.garbage[:]
                 g = obj = None  # avoid to hold cyclic garbage
-                o = c = None  # Python 2: avoid to hold cyclic garbage
+                # Python 2: avoid to hold cyclic garbage
+                o = c = None  # noqa: F841
             gc.set_debug(gc_opts)
         gccount = gc.collect() \
             if uses_refcounts and self.options.gc_after_test else 0
