@@ -79,7 +79,7 @@ therefore does not show the warnings (even though two are issued).
     <BLANKLINE>
      test_okay (gc-after-test.GcAfterTestTests)
      test_test_holds_cycle (gc-after-test.GcAfterTestTests) [3]
-     test_traceback_cycle (gc-after-test.GcAfterTestTests) [7]
+     test_traceback_cycle (gc-after-test.GcAfterTestTests) [5]
       Ran 7 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
@@ -134,11 +134,10 @@ therefore does not show the warnings (even though two are issued).
     Cycle 1
      *  ...
      *  ...
-     test_traceback_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [7]
+     test_traceback_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [5]
     The following test left cyclic garbage behind:
     test_traceback_cycle (gc-after-test.GcAfterTestTests)
     Cycle 1
-     *  ...
      *  ...
      *  ...
       Ran 7 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.

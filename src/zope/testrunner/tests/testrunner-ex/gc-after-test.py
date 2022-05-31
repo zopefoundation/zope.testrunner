@@ -1,3 +1,4 @@
+from sys import exc_info
 from unittest import TestCase
 from warnings import warn
 
@@ -36,7 +37,7 @@ class GcAfterTestTests(TestCase):
                 1/0
             except Exception as e:
                 # create cycle
-                exc = e  # noqa: F841
+                tb = exc_info()[2]  # noqa: F841
 
         f()
 
