@@ -97,13 +97,13 @@ therefore does not show the warnings (even though two are issued).
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_cycle_with_resource (gc-after-test.GcAfterTestTests) (N.NNN s) [15]
+     test_cycle_with_resource (gc-after-test.GcAfterTestTests) (N.NNN s) [3]
     The following test left cyclic garbage behind:
     test_cycle_with_resource (gc-after-test.GcAfterTestTests)
     Cycle 1
      *  ...
      *  ...
-     test_cycle_without_resource (gc-after-test.GcAfterTestTests) (N.NNN s) [14]
+     test_cycle_without_resource (gc-after-test.GcAfterTestTests) (N.NNN s) [2]
     The following test left cyclic garbage behind:
     test_cycle_without_resource (gc-after-test.GcAfterTestTests)
     Cycle 1
@@ -128,13 +128,13 @@ therefore does not show the warnings (even though two are issued).
     <BLANKLINE>
     <BLANKLINE>
      test_okay (gc-after-test.GcAfterTestTests) (N.NNN s)
-     test_test_holds_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [15]
+     test_test_holds_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [3]
     The following test left cyclic garbage behind:
     test_test_holds_cycle (gc-after-test.GcAfterTestTests)
     Cycle 1
      *  ...
      *  ...
-     test_traceback_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [19]
+     test_traceback_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [7]
     The following test left cyclic garbage behind:
     test_traceback_cycle (gc-after-test.GcAfterTestTests)
     Cycle 1

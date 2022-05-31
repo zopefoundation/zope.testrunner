@@ -14,6 +14,8 @@
 """Directed graph
 """
 
+from itertools import count
+
 
 class DiGraph(object):
     """Directed graph.
@@ -111,20 +113,6 @@ class DiGraph(object):
         This is an implementation of the "Tarjan SCC" algorithm.
         """
 
-        class State(object):
-            """representation of a node's processing state."""
-            __slots__ = "stacked dfs low".split()
-
-            def __init__(self):
-                nonlocal dfs
-                self.stacked = False
-                self.dfs = self.low = dfs
-                dfs += 1
-
-            def __repr__(self):
-                return "dfs=%d low=%d stacked=%s" \
-                       % (self.dfs, self.low, self.stacked)
-
         # any node is either in ``unvisited`` or in ``state``
         unvisited = self._nodes.copy()
         state = {}  # nodes -> state
@@ -136,7 +124,7 @@ class DiGraph(object):
         # In the first visit, visits for the unprocessed neighbors
         # are scheduled as well as the second visit to this
         # node after all neighbors have been processed.
-        dfs = 0  # deoth first search visit order
+        dfs = count()  # depth first search visit order
         rtn_marker = object()  # marks second visit to ``ancestor`` top
         visits = []  # scheduled visits
 
@@ -189,10 +177,25 @@ class DiGraph(object):
                         visits.pop()
                         continue
                     unvisited.remove(node)
-                    nstate = state[node] = State()
+                    nstate = state[node] = _TarjanState(dfs)
                     ancestors.append(node)
                     stack.append(node)
                     nstate.stacked = True
                     visits[-1] = rtn_marker  # schedule return visit
                     # schedule neighbor visits
                     visits.extend(self._neighbors.get(node, ()))
+
+
+class _TarjanState(object):
+    """representation of a node's processing state."""
+    __slots__ = "stacked dfs low".split()
+
+    def __init__(self, dfs):
+        self.stacked = False
+        self.dfs = self.low = next(dfs)
+
+    def __repr__(self):
+        return "dfs=%d low=%d stacked=%s" \
+               % (self.dfs, self.low, self.stacked)
+
+
