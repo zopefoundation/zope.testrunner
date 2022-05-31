@@ -39,8 +39,8 @@ therefore does not show the warnings (even though two are issued).
       ...	
     AssertionError: failure
     <BLANKLINE>
-    ..!
-      Ran 6 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
+    ..!.!
+      Ran 7 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
@@ -79,7 +79,8 @@ therefore does not show the warnings (even though two are issued).
     <BLANKLINE>
      test_okay (gc-after-test.GcAfterTestTests)
      test_test_holds_cycle (gc-after-test.GcAfterTestTests) [3]
-      Ran 6 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
+     test_traceback_cycle (gc-after-test.GcAfterTestTests) [7]
+      Ran 7 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
@@ -89,3 +90,77 @@ therefore does not show the warnings (even though two are issued).
     Tests with failures:
        test_failure (gc-after-test.GcAfterTestTests)
 
+    Verbosity level 4 (or higher)
+    >>> sys.argv = 'test --gc-after-test -vvvv'.split()
+    >>> _ = testrunner.run_internal(defaults)
+    Running tests at level 1
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Running:
+     test_cycle_with_resource (gc-after-test.GcAfterTestTests) (N.NNN s) [15]
+    The following test left cyclic garbage behind:
+    test_cycle_with_resource (gc-after-test.GcAfterTestTests)
+    Cycle 1
+     *  ...
+     *  ...
+     test_cycle_without_resource (gc-after-test.GcAfterTestTests) (N.NNN s) [14]
+    The following test left cyclic garbage behind:
+    test_cycle_without_resource (gc-after-test.GcAfterTestTests)
+    Cycle 1
+     *  ...
+     *  ...
+     test_exception (gc-after-test.GcAfterTestTests) (N.NNN s)
+    <BLANKLINE>
+    <BLANKLINE>
+    Error in test test_exception (gc-after-test.GcAfterTestTests)
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+        yield
+      File "/usr/local/lib/python3.9/unittest/case.py", line 593, in run
+        self._callTestMethod(testMethod)
+      File "/usr/local/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+        method()
+      File "/home/dieter/tmp/zope.testrunner/src/zope/testrunner/tests/testrunner-ex/gc-after-test.py", line 30, in test_exception
+        1/0
+    ZeroDivisionError: division by zero
+    <BLANKLINE>
+    <BLANKLINE>
+     test_failure (gc-after-test.GcAfterTestTests) (N.NNN s)
+    <BLANKLINE>
+    <BLANKLINE>
+    Failure in test test_failure (gc-after-test.GcAfterTestTests)
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+        yield
+      File "/usr/local/lib/python3.9/unittest/case.py", line 593, in run
+        self._callTestMethod(testMethod)
+      File "/usr/local/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+        method()
+      File "/home/dieter/tmp/zope.testrunner/src/zope/testrunner/tests/testrunner-ex/gc-after-test.py", line 27, in test_failure
+        raise AssertionError("failure")
+    AssertionError: failure
+    <BLANKLINE>
+    <BLANKLINE>
+     test_okay (gc-after-test.GcAfterTestTests) (N.NNN s)
+     test_test_holds_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [15]
+    The following test left cyclic garbage behind:
+    test_test_holds_cycle (gc-after-test.GcAfterTestTests)
+    Cycle 1
+     *  ...
+     *  ...
+     test_traceback_cycle (gc-after-test.GcAfterTestTests) (N.NNN s) [19]
+    The following test left cyclic garbage behind:
+    test_traceback_cycle (gc-after-test.GcAfterTestTests)
+    Cycle 1
+     *  ...
+     *  ...
+     *  ...
+      Ran 7 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    <BLANKLINE>
+    Tests with errors:
+       test_exception (gc-after-test.GcAfterTestTests)
+    <BLANKLINE>
+    Tests with failures:
+       test_failure (gc-after-test.GcAfterTestTests)

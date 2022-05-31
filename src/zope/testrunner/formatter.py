@@ -212,6 +212,16 @@ class OutputFormatter(object):
             print(test)
             print("New thread(s):", new_threads)
 
+    def test_cycles(self, test, cycles):
+        """Report cyclic garbage left behind by a test."""
+        if cycles:
+            print("The following test left cyclic garbage behind:")
+            print(test)
+            for i, cy in enumerate(cycles):
+                print("Cycle", i + 1)
+                for oi in cy:
+                    print(" * ", "\n   ".join(oi))
+
     def refcounts(self, rc, prev):
         """Report a change in reference counts."""
         print("  sys refcount=%-8d change=%-6d" % (rc, rc - prev))
@@ -1109,6 +1119,10 @@ class SubunitOutputFormatter(object):
         self._subunit.addError(
             test, details={'threads': text_content(unicode(new_threads))})
         self._subunit.stopTest(test)
+
+    def test_cycles(self, test, cycles):
+        """Report cycles left behind by a test."""
+        pass  # not implemented
 
     def refcounts(self, rc, prev):
         """Report a change in reference counts."""

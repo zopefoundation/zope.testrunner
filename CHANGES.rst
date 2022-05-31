@@ -9,9 +9,11 @@
   after each test and can be used to track down ``ResourceWarning``s
   and cyclic garbage.
   With ``rv = gc.collect()``, ``!`` is output on verbosity level 1 when
-  ``rv`` is non zero (i.e. when cyclic structures have been released)
-  and ``[``*rv*``]`` on higher verbosity levels
-  (`#131 <https://github.com/zopefoundation/zope.testrunner/issues/131`_).
+  ``rv`` is non zero (i.e. when cyclic structures have been released),
+  ``[``*rv*``]`` on higher verbosity levels and
+  a detailed cyclic garbage analysis on verbosity level 4+.
+  For details, see
+  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133`_.
 
 
 5.4.0 (2021-11-19)

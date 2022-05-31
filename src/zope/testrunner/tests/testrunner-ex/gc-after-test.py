@@ -29,6 +29,17 @@ class GcAfterTestTests(TestCase):
     def test_exception(self):
         1/0
 
+    def test_traceback_cycle(self):
+
+        def f():
+            try:
+                1/0
+            except Exception as e:
+                # create cycle
+                exc = e  # noqa: F841
+
+        f()
+
 
 class _Cycle(object):
     """Auxiliary class creating a reference cycle."""

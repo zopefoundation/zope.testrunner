@@ -19,6 +19,7 @@ import errno
 import gc
 import io
 import os
+import pprint
 import re
 import subprocess
 import sys
@@ -47,12 +48,16 @@ import zope.testrunner.profiling
 import zope.testrunner.filter
 import zope.testrunner.garbagecollection
 import zope.testrunner.listing
+import zope.testrunner.shuffle
 import zope.testrunner.statistics
 import zope.testrunner.process
 import zope.testrunner.interfaces
 import zope.testrunner.debug
 import zope.testrunner.tb_format
-import zope.testrunner.shuffle
+
+from .digraph import DiGraph
+from .util import is_jython
+from .util import uses_refcounts
 
 try:
     import Queue  # Python 2
@@ -66,8 +71,6 @@ class UnexpectedSuccess(Exception):
 
 
 PYREFCOUNT_PATTERN = re.compile(r'\[[0-9]+ refs\]')
-
-is_jython = sys.platform.startswith('java')
 
 
 class SubprocessError(Exception):
@@ -1033,10 +1036,26 @@ class TestResult(unittest.TestResult):
         test.__dict__.clear()
         test.__dict__.update(self._test_state)
         del self._test_state
+        cycles = None
+        if (uses_refcounts and self.options.gc_after_test and
+                self.options.verbose >= 4):
+            gc_opts = gc.get_debug()
+            gc.set_debug(gc.DEBUG_SAVEALL)
+            gc.collect()
+            if gc.garbage:
+                g = DiGraph(gc.garbage)
+                for obj in gc.garbage:
+                    g.add_neighbors(obj, gc.get_referents(obj))
+                cycles = [[repr_lines(o) for o in c] for c in g.sccs()]
+                del gc.garbage[:]
+                g = obj = None  # avoid to hold cyclic garbage
+            gc.set_debug(gc_opts)
         gccount = gc.collect() \
-            if self.options.gc_after_test and not is_jython \
-            else 0
+            if uses_refcounts and self.options.gc_after_test else 0
         self.options.output.stop_test(test, gccount)
+
+        if cycles:
+            self.options.output.test_cycles(test, cycles)
 
         if is_jython:
             pass
@@ -1156,3 +1175,23 @@ class FakeInputContinueGenerator:
 
     def close(self):
         pass
+
+
+def repr_lines(obj, max_width=75, max_lines=5):
+    """represent *obj* by a sequence of text lines.
+
+    Use at most *max_lines*, each with at most *max_width* chars.
+    """
+    try:
+        oi = pprint.pformat(obj)
+    except Exception:
+        # unprintable
+        oi = "%s instance at 0x%x" % (obj.__class__, id(obj))
+    # limit
+    cmps = oi.split("\n", max_lines)
+    if len(cmps) > max_lines:
+        cmps[-1] = "..."
+    for i, li in enumerate(cmps):
+        if len(li) > max_width:
+            cmps[i] = li[:max_width - 3] + "..."
+    return cmps
