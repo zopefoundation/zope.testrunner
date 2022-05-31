@@ -114,15 +114,8 @@ therefore does not show the warnings (even though two are issued).
     <BLANKLINE>
     Error in test test_exception (gc-after-test.GcAfterTestTests)
     Traceback (most recent call last):
-      File "/usr/local/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
-        yield
-      File "/usr/local/lib/python3.9/unittest/case.py", line 593, in run
-        self._callTestMethod(testMethod)
-      File "/usr/local/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
-        method()
-      File "/home/dieter/tmp/zope.testrunner/src/zope/testrunner/tests/testrunner-ex/gc-after-test.py", line 30, in test_exception
-        1/0
-    ZeroDivisionError: division by zero
+    ...
+    ZeroDivisionError: ...
     <BLANKLINE>
     <BLANKLINE>
      test_failure (gc-after-test.GcAfterTestTests) (N.NNN s)
@@ -130,14 +123,7 @@ therefore does not show the warnings (even though two are issued).
     <BLANKLINE>
     Failure in test test_failure (gc-after-test.GcAfterTestTests)
     Traceback (most recent call last):
-      File "/usr/local/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
-        yield
-      File "/usr/local/lib/python3.9/unittest/case.py", line 593, in run
-        self._callTestMethod(testMethod)
-      File "/usr/local/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
-        method()
-      File "/home/dieter/tmp/zope.testrunner/src/zope/testrunner/tests/testrunner-ex/gc-after-test.py", line 27, in test_failure
-        raise AssertionError("failure")
+    ...
     AssertionError: failure
     <BLANKLINE>
     <BLANKLINE>
