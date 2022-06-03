@@ -31,6 +31,8 @@ from zope.testrunner.formatter import (
 from zope.testrunner.formatter import terminal_has_colors
 from zope.testrunner.profiling import available_profilers
 
+from .util import uses_refcounts
+
 
 def _regex_search(s):
     return re.compile(s).search
@@ -340,6 +342,16 @@ analysis.add_argument(
 Set a Python gc-module debug flag.  This option can be used more than
 once to set multiple flags.
 """)
+
+if uses_refcounts:
+    analysis.add_argument(
+        '--gc-after-test', action="store_true", dest='gc_after_test',
+        help="""\
+    After each test, call 'gc.collect' and record the return
+    value *rv*; when *rv* is non-zero, output '!' on verbosity level 1
+    and '[*rv*]' on higher verbosity levels.\n
+    On verbosity level 4 or higher output detailed cycle information.
+    """)
 
 analysis.add_argument(
     '--repeat', '-N', action="store", type=int, dest='repeat',

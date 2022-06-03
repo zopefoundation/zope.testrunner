@@ -5,6 +5,16 @@
 5.4.1 (unreleased)
 ==================
 
+- New option ``--gc-after-test``. It calls for a garbage collection
+  after each test and can be used to track down ``ResourceWarning``s
+  and cyclic garbage.
+  With ``rv = gc.collect()``, ``!`` is output on verbosity level 1 when
+  ``rv`` is non zero (i.e. when cyclic structures have been released),
+  ``[``*rv*``]`` on higher verbosity levels and
+  a detailed cyclic garbage analysis on verbosity level 4+.
+  For details, see
+  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133`_.
+
 - Allow the filename for the logging configuration to be specified
   via the envvar ``ZOPE_TESTRUNNER_LOG_INI``.
   If not defined, the configuration continues to be locked for

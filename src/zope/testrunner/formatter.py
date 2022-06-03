@@ -212,6 +212,16 @@ class OutputFormatter(object):
             print(test)
             print("New thread(s):", new_threads)
 
+    def test_cycles(self, test, cycles):
+        """Report cyclic garbage left behind by a test."""
+        if cycles:
+            print("The following test left cyclic garbage behind:")
+            print(test)
+            for i, cy in enumerate(cycles):
+                print("Cycle", i + 1)
+                for oi in cy:
+                    print(" * ", "\n   ".join(oi))
+
     def refcounts(self, rc, prev):
         """Report a change in reference counts."""
         print("  sys refcount=%-8d change=%-6d" % (rc, rc - prev))
@@ -395,8 +405,12 @@ class OutputFormatter(object):
             tb = "".join(traceback.format_exception(*exc_info))
         return tb
 
-    def stop_test(self, test):
+    def stop_test(self, test, gccount):
         """Clean up the output state after a test."""
+        if gccount and self.verbose:
+            s = "!" if self.verbose == 1 else " [%d]" % gccount
+            self.test_width += len(s)
+            print(s, end="")
         if self.progress:
             self.last_width = self.test_width
         elif self.verbose > 1:
@@ -1106,6 +1120,10 @@ class SubunitOutputFormatter(object):
             test, details={'threads': text_content(unicode(new_threads))})
         self._subunit.stopTest(test)
 
+    def test_cycles(self, test, cycles):
+        """Report cycles left behind by a test."""
+        pass  # not implemented
+
     def refcounts(self, rc, prev):
         """Report a change in reference counts."""
         details = _SortedDict({
@@ -1293,7 +1311,7 @@ class SubunitOutputFormatter(object):
         self._add_std_streams_to_details(details, stdout, stderr)
         self._subunit.addFailure(test, details=details)
 
-    def stop_test(self, test):
+    def stop_test(self, test, gccount):
         """Clean up the output state after a test."""
         self._subunit.stopTest(test)
 
