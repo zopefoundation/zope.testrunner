@@ -33,7 +33,7 @@ else:
         th_known = dict((t.ident, t) for t in threading.enumerate())
         return [ThreadProxy(th_known[i] if i in th_known else DummyThread(i))
                 for i in running]
-    
+
 
 class ThreadProxy(object):
     """auxiliary class to provide ident based ``__eq__``."""
@@ -61,5 +61,3 @@ class DummyThread(object):
 
     def is_alive(self):
         return True
-
-

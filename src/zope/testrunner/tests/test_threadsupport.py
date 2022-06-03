@@ -98,9 +98,9 @@ class Tests(TestCase):
         self.check_new_thread()
 
     def check_new_thread(self, name=None):
-        t1 = self._mk_thread(name and (name + "-1"))
+        self._mk_thread(name and (name + "-1"))
         threads = self.alive()
-        t2 = self._mk_thread(name and (name + "-2"))
+        self._mk_thread(name and (name + "-2"))
         new_threads = [p for p in self.alive() if p not in threads]
         self.assertEqual(len(new_threads), 1)
 
@@ -116,9 +116,3 @@ class Tests(TestCase):
         t.lock.release()
         sleep(0.01)
         self.assertEqual(self.alive(), [])
-        
-
-    
-    
-
-
