@@ -5,6 +5,10 @@
 5.4.1 (unreleased)
 ==================
 
+- Use ``sys._current_frames`` (rather than ``threading.enumerate``)
+  as base for new thread detection, fixes
+  `#130 <https://github.com/zopefoundation/zope.testrunner/issues/130>`_.
+
 - New option ``--gc-after-test``. It calls for a garbage collection
   after each test and can be used to track down ``ResourceWarning``s
   and cyclic garbage.

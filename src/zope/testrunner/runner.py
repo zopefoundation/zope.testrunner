@@ -32,6 +32,7 @@ import warnings
 from contextlib import contextmanager
 
 from six import StringIO
+from zope.testrunner import threadsupport
 from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer, _layer_name_cache
 from zope.testrunner.layer import UnitTests
@@ -953,7 +954,7 @@ class TestResult(unittest.TestResult):
 
         self.options.output.start_test(test, self.testsRun, self.count)
 
-        self._threads = threading.enumerate()
+        self._threads = threadsupport.enumerate()
         self._start_time = time.time()
 
         self._setUpStdStreams()
@@ -1069,7 +1070,7 @@ class TestResult(unittest.TestResult):
 
         # Did the test leave any new threads behind?
         new_threads = []
-        for t in threading.enumerate():
+        for t in threadsupport.enumerate():
             if t.is_alive() and t not in self._threads:
                 if not any([re.match(p, t.name)
                             for p in self.options.ignore_new_threads]):
