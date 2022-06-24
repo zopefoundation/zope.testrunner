@@ -17,7 +17,7 @@
   ``[``*rv*``]`` on higher verbosity levels and
   a detailed cyclic garbage analysis on verbosity level 4+.
   For details, see
-  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133`_.
+  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133>`_.
 
 - Allow the filename for the logging configuration to be specified
   via the envvar ``ZOPE_TESTRUNNER_LOG_INI``.
