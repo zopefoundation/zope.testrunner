@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.5 (unreleased)
+5.5 (2022-06-24)
 ================
 
 - Use ``sys._current_frames`` (rather than ``threading.enumerate``)
