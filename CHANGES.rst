@@ -2,8 +2,8 @@
  zope.testrunner Changelog
 ===========================
 
-5.4.1 (unreleased)
-==================
+5.5 (unreleased)
+================
 
 - Use ``sys._current_frames`` (rather than ``threading.enumerate``)
   as base for new thread detection, fixes
