@@ -9,6 +9,30 @@
   Python 3.9 and removed in 3.11 (`#119
   <https://github.com/zopefoundation/zope.testrunner/issues/119>`_).
 
+- Use ``sys._current_frames`` (rather than ``threading.enumerate``)
+  as base for new thread detection, fixes
+  `#130 <https://github.com/zopefoundation/zope.testrunner/issues/130>`_.
+
+- New option ``--gc-after-test``. It calls for a garbage collection
+  after each test and can be used to track down ``ResourceWarning``s
+  and cyclic garbage.
+  With ``rv = gc.collect()``, ``!`` is output on verbosity level 1 when
+  ``rv`` is non zero (i.e. when cyclic structures have been released),
+  ``[``*rv*``]`` on higher verbosity levels and
+  a detailed cyclic garbage analysis on verbosity level 4+.
+  For details, see
+  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133`_.
+
+- Allow the filename for the logging configuration to be specified
+  via the envvar ``ZOPE_TESTRUNNER_LOG_INI``.
+  If not defined, the configuration continues to be locked for
+  in file ``log.ini`` of the current working directory.
+  Remember the logging configuration file in envvar
+  ``ZOPE_TESTRUNNER_LOG_INI`` to allow spawned child processes
+  to recreate the logging configuration.
+  For details, see
+  `#134 <https://github.com/zopefoundation/zope.testrunner/pull/134>`_.
+
 
 5.4.0 (2021-11-19)
 ==================

@@ -223,3 +223,37 @@ class TestWarnings(unittest.TestCase):
         self.assertEqual(1, len(handler.records))
         self.assertIn('DeprecationWarning', handler.records[0].getMessage())
         self.assertIn(msg, handler.records[0].getMessage())
+
+
+class TestReprLines(unittest.TestCase):
+    def test_unprintable(self):
+
+        class C(object):
+            def __repr__(self):
+                raise Exception
+
+        rl = runner.repr_lines(C(), max_width=10000)
+        self.assertEqual(len(rl), 1)
+        self.assertIn(".C'> instance at 0x", rl[0])
+
+    def test_simple(self):
+        rl = runner.repr_lines("")
+        self.assertEqual(rl, [repr("")])
+
+    def test_multiline(self):
+        li = ["*" * 20 + " %d " % i + "*" * 20 for i in range(2)]
+        rl = runner.repr_lines(li)
+        self.assertEqual(rl, [
+            "[" + repr(li[0]) + ",",
+            " " + repr(li[1]) + "]"])
+
+    def test_multiline_truncated(self):
+        li = ["*" * 20 + "%d" % i + "*" * 20 for i in range(2)]
+        rl = runner.repr_lines(li, max_lines=1)
+        self.assertEqual(rl, [
+            "[" + repr(li[0]) + ",",
+            "..."])
+
+    def test_line_truncated(self):
+        rl = runner.repr_lines("*" * 20, max_width=10)
+        self.assertEqual(rl, ["'******..."])

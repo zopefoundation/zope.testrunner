@@ -24,6 +24,7 @@ import unittest
 
 from zope.testing import renormalizing
 
+from ..util import uses_refcounts
 
 # separated checkers for the different platform,
 # because it s...s to maintain just one
@@ -384,6 +385,20 @@ def test_suite():
                 checker=checker,
             )
         )
+    if uses_refcounts:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-gc-after-test.rst',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=renormalizing.RENormalizing([
+                    (re.compile(r'(\d+ minutes )?\d+[.]\d\d\d seconds'),
+                     'N.NNN seconds'),
+                    (re.compile(r'\(\d+[.]\d\d\d s\)'),
+                     '(N.NNN s)'),
+                    # objects on cycle differ between PY2 and PY3
+                    # and different python 3 versions
+                    (re.compile(r'\[\d+\]'), '[C]')])))
 
     try:
         import subunit
