@@ -5,7 +5,10 @@
 5.6 (unreleased)
 ================
 
-- Nothing changed yet.
+- Fix: let ``--at-level=level`` with ``level <= 0`` run the tests
+  at all levels (rather than at no level)
+  `#138 <https://github.com/zopefoundation/zope.testrunner/issues/138>`_.
+  
 
 
 5.5 (2022-06-24)

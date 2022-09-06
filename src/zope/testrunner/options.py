@@ -135,7 +135,7 @@ searching.add_argument(
     default=1,
     help="""\
 Run the tests at the given level.  Any test at a level at or below
-this is run, any test at a level above this is not run.  Level 0
+this is run, any test at a level above this is not run.  Level <= 0
 runs all tests.
 """)
 
