@@ -2,8 +2,8 @@
  zope.testrunner Changelog
 ===========================
 
-5.6 (unreleased)
-================
+5.5.1 (2022-09-07)
+==================
 
 - Fix: let ``--at-level=level`` with ``level <= 0`` run the tests
   at all levels (rather than at no level)
