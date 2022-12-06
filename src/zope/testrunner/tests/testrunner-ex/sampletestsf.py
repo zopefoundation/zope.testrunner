@@ -194,13 +194,13 @@ class TestNotMuch1(unittest.TestCase, Layered):
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestA))
-    suite.addTest(unittest.makeSuite(TestA2))
-    suite.addTest(unittest.makeSuite(TestB))
-    suite.addTest(unittest.makeSuite(TestNotMuch))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA2))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
     suite.addTest(doctest.DocTestSuite(setUp=setUp))
     suite.addTest(doctest.DocFileSuite('sampletests.rst', setUp=setUp))
-    suite.addTest(unittest.makeSuite(TestA1))
-    suite.addTest(unittest.makeSuite(TestB1))
-    suite.addTest(unittest.makeSuite(TestNotMuch1))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA1))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB1))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch1))
     return suite

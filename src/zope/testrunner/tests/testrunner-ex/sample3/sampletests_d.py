@@ -88,7 +88,7 @@ def post_mortem_failure2():
 def test_suite():
     return unittest.TestSuite((
         doctest.DocTestSuite(),
-        unittest.makeSuite(TestSomething),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestSomething),
         doctest.DocFileSuite('set_trace5.rst'),
         doctest.DocFileSuite('set_trace6.rst'),
         doctest.DocFileSuite('post_mortem5.rst'),

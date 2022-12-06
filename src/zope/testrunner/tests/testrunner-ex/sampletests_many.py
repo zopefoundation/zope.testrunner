@@ -66,8 +66,8 @@ TestMany = make_TestMany()
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestNoTeardown))
-    suite.addTest(unittest.makeSuite(TestMany))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNoTeardown))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestMany))
     return suite
 
 

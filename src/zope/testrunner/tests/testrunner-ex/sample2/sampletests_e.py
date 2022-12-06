@@ -56,6 +56,6 @@ class Test(unittest.TestCase):
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(doctest.DocTestSuite())
-    suite.addTest(unittest.makeSuite(Test))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(Test))
     suite.addTest(doctest.DocFileSuite('e.rst'))
     return suite
