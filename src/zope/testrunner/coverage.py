@@ -14,10 +14,10 @@
 """Code coverage analysis
 """
 
-import trace
-import sys
 import os.path
+import sys
 import threading
+import trace
 
 import zope.testrunner.feature
 from zope.testrunner.find import test_dirs

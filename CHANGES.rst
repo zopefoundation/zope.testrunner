@@ -5,7 +5,7 @@
 5.5.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add support for Python 3.11.
 
 
 5.5.1 (2022-09-07)

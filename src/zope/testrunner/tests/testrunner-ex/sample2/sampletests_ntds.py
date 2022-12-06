@@ -14,8 +14,8 @@
 """Sample tests with a layer that can't be torn down
 """
 
-import unittest
 import doctest
+import unittest
 
 
 class Layer:

@@ -14,16 +14,18 @@
 """Test discovery
 """
 
-import re
 import os
-import unittest
+import re
 import sys
+import unittest
 
 import six
+
+import zope.testrunner.debug
 import zope.testrunner.feature
 import zope.testrunner.layer
-import zope.testrunner.debug
 from zope.testrunner.filter import build_filtering_func
+
 
 identifier = re.compile(r'[_a-zA-Z]\w*$').match
 

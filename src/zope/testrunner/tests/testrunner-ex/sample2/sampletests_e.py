@@ -12,8 +12,8 @@
 #
 ##############################################################################
 
-import unittest
 import doctest
+import unittest
 
 
 def f():

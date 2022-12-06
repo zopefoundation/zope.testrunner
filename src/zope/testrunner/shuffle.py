@@ -14,9 +14,10 @@
 """Shuffle tests discovered before executing them.
 """
 
+import random
 import sys
 import time
-import random
+
 import zope.testrunner.feature
 
 

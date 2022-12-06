@@ -12,9 +12,11 @@
 #
 ##############################################################################
 
-import unittest
 import doctest
+import unittest
+
 import samplelayers
+
 
 layername = 'samplelayers.Layer122'
 layer = samplelayers.Layer122

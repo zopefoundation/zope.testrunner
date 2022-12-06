@@ -14,11 +14,11 @@
 """Doc test support for the test runner.
 """
 
-import sys
 import doctest
+import sys
 
-from zope.testrunner.exceptions import DocTestFailureException
 import zope.testrunner.feature
+from zope.testrunner.exceptions import DocTestFailureException
 
 
 class DocTest(zope.testrunner.feature.Feature):

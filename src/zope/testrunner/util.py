@@ -13,8 +13,9 @@
 ##############################################################################
 """Some general auxiliary functions.
 """
-import sys
 import platform
+import sys
+
 
 is_jython = sys.platform.startswith('java')
 is_pypy = platform.python_implementation() == "PyPy"

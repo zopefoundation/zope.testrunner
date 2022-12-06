@@ -26,6 +26,7 @@ from zope.testing import renormalizing
 
 from ..util import uses_refcounts
 
+
 # separated checkers for the different platform,
 # because it s...s to maintain just one
 if sys.platform == 'win32':

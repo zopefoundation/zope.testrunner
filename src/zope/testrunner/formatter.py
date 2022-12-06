@@ -15,19 +15,21 @@
 """
 from __future__ import print_function
 
+
 try:
     from collections.abc import MutableMapping
 except ImportError:
     from collections import MutableMapping
-from contextlib import contextmanager
+
 import doctest
 import os
 import re
 import sys
 import tempfile
 import traceback
-
-from datetime import datetime, timedelta
+from contextlib import contextmanager
+from datetime import datetime
+from datetime import timedelta
 
 from zope.testrunner.exceptions import DocTestFailureException
 
@@ -788,12 +790,10 @@ except (ImportError, AttributeError):
 # separately for richer error messages.
 try:
     import testtools
-    from testtools.content import (
-        Content,
-        ContentType,
-        content_from_file,
-        text_content,
-    )
+    from testtools.content import Content
+    from testtools.content import ContentType
+    from testtools.content import content_from_file
+    from testtools.content import text_content
     testtools.StreamToExtendedDecorator
 except (ImportError, AttributeError):
     testtools = None
