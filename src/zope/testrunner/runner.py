@@ -384,6 +384,8 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
                         test.debug()
                     except KeyboardInterrupt:
                         raise
+                    except unittest.SkipTest as e:
+                        result.addSkip(test, str(e))
                     except BaseException:
                         result.addError(
                             test,

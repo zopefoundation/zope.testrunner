@@ -44,7 +44,7 @@ runner will enter pdb at that point:
     ...
     False
 
-Post-Mortem Dubigging
+Post-Mortem Debugging
 =====================
 
 You can also do post-mortem debugging, using the --post-mortem (-D)
@@ -107,6 +107,23 @@ converted to errors and can be debugged the same way:
     (Pdb) p y
     2
     (Pdb) c
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False
+
+
+Skipping tests with ``@unittest.skip`` decorator does not trigger the
+post-mortem debugger:
+
+    >>> sys.stdin = Input('q')
+    >>> sys.argv = ('test -ssample3 --tests-pattern ^sampletests_d$'
+    ...             ' -t skipped -D').split()
+    >>> try: testrunner.run_internal(defaults)
+    ... finally: sys.stdin = real_stdin
+    ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF +ELLIPSIS
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 1 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False

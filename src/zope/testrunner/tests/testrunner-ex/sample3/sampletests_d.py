@@ -37,6 +37,10 @@ class TestSomething(unittest.TestCase):
         y = 2
         assert x == y
 
+    @unittest.skip("skipped test")
+    def test_skipped(self):
+        self.fail('test should have been skipped')
+
 
 def f():
     x = 1
