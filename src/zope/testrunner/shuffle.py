@@ -14,6 +14,7 @@
 """Shuffle tests discovered before executing them.
 """
 
+import math
 import random
 import sys
 import time
@@ -46,15 +47,22 @@ class Shuffle(zope.testrunner.feature.Feature):
             # that and replace the test suite instance with a new one of the
             # same class.
             tests = list(suite)
-            # Black magic: if we don't pass random=rng.random to rng.shuffle,
-            # we get different results on Python 2.7--3.1 and 3.2.  The
-            # standard library guarantees rng.random() will return the same
-            # floats if given the same seed.  It makes no guarantees for
-            # rng.randrange, or rng.choice, or rng.shuffle.  Experiments
+            # The standard library guarantees rng.random() will return the
+            # same floats if given the same seed.  It makes no guarantees
+            # for rng.randrange, or rng.choice, or rng.shuffle.  Experiments
             # show that Python happily breaks backwards compatibility for
-            # these functions.  By passing the random function we trick
-            # shuffle() into using the old algorithm.
-            rng.shuffle(tests, random=rng.random)
+            # these functions.  We used to use `rng.shuffle(tests,
+            # random=rng.random)` to trick it into using the old algorithm,
+            # but even this was deprecated in Python 3.9 and removed in
+            # 3.11.  Accordingly, inline equivalent code which we know is
+            # stable across Python versions.
+            floor = math.floor
+            for i in reversed(range(1, len(tests))):
+                # Pick an element in tests[:i+1] with which to exchange
+                # tests[i].  math.floor returns a float on Python 2, so we
+                # need int() until we drop Python 2 support.
+                j = int(floor(rng.random() * (i + 1)))
+                tests[i], tests[j] = tests[j], tests[i]
             self.runner.tests_by_layer_name[layer] = suite.__class__(tests)
 
     def report(self):
