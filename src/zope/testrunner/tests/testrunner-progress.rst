@@ -96,23 +96,23 @@ width, when the terminal width can't be determined, is 80:
       Set up samplelayers.Layer12 in N.NNN seconds.
       Set up samplelayers.Layer122 in N.NNN seconds.
       Running:
-        1/26 (3.8%) test_x1 (sample1.sampletests.test122.TestA)##r##
+        1/26 (3.8%) test_x1 (sample1.sampletests.test122.TestA...)##r##
                                                                ##r##
-        2/26 (7.7%) test_y0 (sample1.sampletests.test122.TestA)##r##
+        2/26 (7.7%) test_y0 (sample1.sampletests.test122.TestA...)##r##
                                                                ##r##
-        3/26 (11.5%) test_z0 (sample1.sampletests.test122.TestA)##r##
+        3/26 (11.5%) test_z0 (sample1.sampletests.test122.TestA...)##r##
                                                                 ##r##
-        4/26 (15.4%) test_x0 (sample1.sampletests.test122.TestB)##r##
+        4/26 (15.4%) test_x0 (sample1.sampletests.test122.TestB...)##r##
                                                                 ##r##
-        5/26 (19.2%) test_y1 (sample1.sampletests.test122.TestB)##r##
+        5/26 (19.2%) test_y1 (sample1.sampletests.test122.TestB...)##r##
                                                                 ##r##
-        6/26 (23.1%) test_z0 (sample1.sampletests.test122.TestB)##r##
+        6/26 (23.1%) test_z0 (sample1.sampletests.test122.TestB...)##r##
                                                                 ##r##
-        7/26 (26.9%) test_1 (sample1.sampletests.test122.TestNotMuch)##r##
+        7/26 (26.9%) test_1 (sample1.sampletests.test122.TestNotMuch...)##r##
                                                                      ##r##
-        8/26 (30.8%) test_2 (sample1.sampletests.test122.TestNotMuch)##r##
+        8/26 (30.8%) test_2 (sample1.sampletests.test122.TestNotMuch...)##r##
                                                                      ##r##
-        9/26 (34.6%) test_3 (sample1.sampletests.test122.TestNotMuch)##r##
+        9/26 (34.6%) test_3 (sample1.sampletests.test122.TestNotMuch...)##r##
                                                                      ##r##
         10/26 (38.5%) test_x0 (sample1.sampletests.test122)##r##
                                                            ##r##
@@ -122,23 +122,23 @@ width, when the terminal width can't be determined, is 80:
                                                            ##r##
      testrunner-ex/sample1/sampletests/../../sampletestsl.rst##r##
                                                                                    ##r##
-        14/26 (53.8%) test_x1 (sampletests.test122.TestA)##r##
+        14/26 (53.8%) test_x1 (sampletests.test122.TestA...)##r##
                                                          ##r##
-        15/26 (57.7%) test_y0 (sampletests.test122.TestA)##r##
+        15/26 (57.7%) test_y0 (sampletests.test122.TestA...)##r##
                                                          ##r##
-        16/26 (61.5%) test_z0 (sampletests.test122.TestA)##r##
+        16/26 (61.5%) test_z0 (sampletests.test122.TestA...)##r##
                                                          ##r##
-        17/26 (65.4%) test_x0 (sampletests.test122.TestB)##r##
+        17/26 (65.4%) test_x0 (sampletests.test122.TestB...)##r##
                                                          ##r##
-        18/26 (69.2%) test_y1 (sampletests.test122.TestB)##r##
+        18/26 (69.2%) test_y1 (sampletests.test122.TestB...)##r##
                                                          ##r##
-        19/26 (73.1%) test_z0 (sampletests.test122.TestB)##r##
+        19/26 (73.1%) test_z0 (sampletests.test122.TestB...)##r##
                                                          ##r##
-        20/26 (76.9%) test_1 (sampletests.test122.TestNotMuch)##r##
+        20/26 (76.9%) test_1 (sampletests.test122.TestNotMuch...)##r##
                                                               ##r##
-        21/26 (80.8%) test_2 (sampletests.test122.TestNotMuch)##r##
+        21/26 (80.8%) test_2 (sampletests.test122.TestNotMuch...)##r##
                                                               ##r##
-        22/26 (84.6%) test_3 (sampletests.test122.TestNotMuch)##r##
+        22/26 (84.6%) test_3 (sampletests.test122.TestNotMuch...)##r##
                                                               ##r##
         23/26 (88.5%) test_x0 (sampletests.test122)##r##
                                                    ##r##
@@ -175,23 +175,23 @@ that, we'll provide a fake curses module:
       Set up samplelayers.Layer12 in N.NNN seconds.
       Set up samplelayers.Layer122 in N.NNN seconds.
       Running:
-        1/26 (3.8%) test_x1 (sample1.sampletests.test122.TestA)##r##
+        1/26 (3.8%) test_x1 (...pletests.test122.TestA...)##r##
                                                                ##r##
-        2/26 (7.7%) test_y0 (sample1.sampletests.test122.TestA)##r##
+        2/26 (7.7%) test_y0 (...pletests.test122.TestA...)##r##
                                                                ##r##
-        3/26 (11.5%) test_z0 (...le1.sampletests.test122.TestA)##r##
+        3/26 (11.5%) test_z0 (...letests.test122.TestA...)##r##
                                                                ##r##
-        4/26 (15.4%) test_x0 (...le1.sampletests.test122.TestB)##r##
+        4/26 (15.4%) test_x0 (...letests.test122.TestB...)##r##
                                                                ##r##
-        5/26 (19.2%) test_y1 (...le1.sampletests.test122.TestB)##r##
+        5/26 (19.2%) test_y1 (...letests.test122.TestB...)##r##
                                                                ##r##
-        6/26 (23.1%) test_z0 (...le1.sampletests.test122.TestB)##r##
+        6/26 (23.1%) test_z0 (...letests.test122.TestB...)##r##
                                                                ##r##
-        7/26 (26.9%) test_1 (...ampletests.test122.TestNotMuch)##r##
+        7/26 (26.9%) test_1 (...sts.test122.TestNotMuch...)##r##
                                                                ##r##
-        8/26 (30.8%) test_2 (...ampletests.test122.TestNotMuch)##r##
+        8/26 (30.8%) test_2 (...sts.test122.TestNotMuch...)##r##
                                                                ##r##
-        9/26 (34.6%) test_3 (...ampletests.test122.TestNotMuch)##r##
+        9/26 (34.6%) test_3 (...sts.test122.TestNotMuch...)##r##
                                                                ##r##
         10/26 (38.5%) test_x0 (sample1.sampletests.test122)##r##
                                                            ##r##
@@ -201,23 +201,23 @@ that, we'll provide a fake curses module:
                                                            ##r##
         13/26 (50.0%) ... e1/sampletests/../../sampletestsl.rst##r##
                                                                ##r##
-        14/26 (53.8%) test_x1 (sampletests.test122.TestA)##r##
+        14/26 (53.8%) test_x1 (...etests.test122.TestA...)##r##
                                                          ##r##
-        15/26 (57.7%) test_y0 (sampletests.test122.TestA)##r##
+        15/26 (57.7%) test_y0 (...etests.test122.TestA...)##r##
                                                          ##r##
-        16/26 (61.5%) test_z0 (sampletests.test122.TestA)##r##
+        16/26 (61.5%) test_z0 (...etests.test122.TestA...)##r##
                                                          ##r##
-        17/26 (65.4%) test_x0 (sampletests.test122.TestB)##r##
+        17/26 (65.4%) test_x0 (...etests.test122.TestB...)##r##
                                                          ##r##
-        18/26 (69.2%) test_y1 (sampletests.test122.TestB)##r##
+        18/26 (69.2%) test_y1 (...etests.test122.TestB...)##r##
                                                          ##r##
-        19/26 (73.1%) test_z0 (sampletests.test122.TestB)##r##
+        19/26 (73.1%) test_z0 (...etests.test122.TestB...)##r##
                                                          ##r##
-        20/26 (76.9%) test_1 (sampletests.test122.TestNotMuch)##r##
+        20/26 (76.9%) test_1 (...ts.test122.TestNotMuch...)##r##
                                                               ##r##
-        21/26 (80.8%) test_2 (sampletests.test122.TestNotMuch)##r##
+        21/26 (80.8%) test_2 (...ts.test122.TestNotMuch...)##r##
                                                               ##r##
-        22/26 (84.6%) test_3 (sampletests.test122.TestNotMuch)##r##
+        22/26 (84.6%) test_3 (...ts.test122.TestNotMuch...)##r##
                                                               ##r##
         23/26 (88.5%) test_x0 (sampletests.test122)##r##
                                                    ##r##
@@ -247,23 +247,23 @@ information.
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        1/24 (4.2%) test_x1 (sample1.sampletests.test122.TestA)##r##
+        1/24 (4.2%) test_x1 (sample1.sampletests.test122.TestA...)##r##
                                                               ##r##
-        2/24 (8.3%) test_y0 (sample1.sampletests.test122.TestA)##r##
+        2/24 (8.3%) test_y0 (sample1.sampletests.test122.TestA...)##r##
                                                               ##r##
-        3/24 (12.5%) test_z0 (sample1.sampletests.test122.TestA)##r##
+        3/24 (12.5%) test_z0 (sample1.sampletests.test122.TestA...)##r##
                                                                ##r##
-        4/24 (16.7%) test_x0 (sample1.sampletests.test122.TestB)##r##
+        4/24 (16.7%) test_x0 (sample1.sampletests.test122.TestB...)##r##
                                                                ##r##
-        5/24 (20.8%) test_y1 (sample1.sampletests.test122.TestB)##r##
+        5/24 (20.8%) test_y1 (sample1.sampletests.test122.TestB...)##r##
                                                                ##r##
-        6/24 (25.0%) test_z0 (sample1.sampletests.test122.TestB)##r##
+        6/24 (25.0%) test_z0 (sample1.sampletests.test122.TestB...)##r##
                                                                ##r##
-        7/24 (29.2%) test_1 (sample1.sampletests.test122.TestNotMuch)##r##
+        7/24 (29.2%) test_1 (sample1.sampletests.test122.TestNotMuch...)##r##
                                                                     ##r##
-        8/24 (33.3%) test_2 (sample1.sampletests.test122.TestNotMuch)##r##
+        8/24 (33.3%) test_2 (sample1.sampletests.test122.TestNotMuch...)##r##
                                                                     ##r##
-        9/24 (37.5%) test_3 (sample1.sampletests.test122.TestNotMuch)##r##
+        9/24 (37.5%) test_3 (sample1.sampletests.test122.TestNotMuch...)##r##
                                                                     ##r##
         10/24 (41.7%) test_x0 (sample1.sampletests.test122)##r##
                                                           ##r##
@@ -271,23 +271,23 @@ information.
                                                           ##r##
         12/24 (50.0%) test_z1 (sample1.sampletests.test122)##r##
                                                           ##r##
-        13/24 (54.2%) test_x1 (sampletests.test122.TestA)##r##
+        13/24 (54.2%) test_x1 (sampletests.test122.TestA...)##r##
                                                         ##r##
-        14/24 (58.3%) test_y0 (sampletests.test122.TestA)##r##
+        14/24 (58.3%) test_y0 (sampletests.test122.TestA...)##r##
                                                         ##r##
-        15/24 (62.5%) test_z0 (sampletests.test122.TestA)##r##
+        15/24 (62.5%) test_z0 (sampletests.test122.TestA...)##r##
                                                         ##r##
-        16/24 (66.7%) test_x0 (sampletests.test122.TestB)##r##
+        16/24 (66.7%) test_x0 (sampletests.test122.TestB...)##r##
                                                         ##r##
-        17/24 (70.8%) test_y1 (sampletests.test122.TestB)##r##
+        17/24 (70.8%) test_y1 (sampletests.test122.TestB...)##r##
                                                         ##r##
-        18/24 (75.0%) test_z0 (sampletests.test122.TestB)##r##
+        18/24 (75.0%) test_z0 (sampletests.test122.TestB...)##r##
                                                         ##r##
-        19/24 (79.2%) test_1 (sampletests.test122.TestNotMuch)##r##
+        19/24 (79.2%) test_1 (sampletests.test122.TestNotMuch...)##r##
                                                              ##r##
-        20/24 (83.3%) test_2 (sampletests.test122.TestNotMuch)##r##
+        20/24 (83.3%) test_2 (sampletests.test122.TestNotMuch...)##r##
                                                              ##r##
-        21/24 (87.5%) test_3 (sampletests.test122.TestNotMuch)##r##
+        21/24 (87.5%) test_3 (sampletests.test122.TestNotMuch...)##r##
                                                              ##r##
         22/24 (91.7%) test_x0 (sampletests.test122)##r##
                                                   ##r##
@@ -313,17 +313,17 @@ with '!' to exclude tests containing the string "rst".
       Set up samplelayers.Layer12 in 0.000 seconds.
       Set up samplelayers.Layer122 in 0.000 seconds.
       Running:
-        1/18 (5.6%) test_x1 (sample1.sampletests.test122.TestA) (0.000 s)##r##
+        1/18 (5.6%) test_x1 (sample1.sampletests.test122.TestA...) (0.000 s)##r##
                                                                           ##r##
-        2/18 (11.1%) test_y0 (sample1.sampletests.test122.TestA) (0.000 s)##r##
+        2/18 (11.1%) test_y0 (sample1.sampletests.test122.TestA...) (0.000 s)##r##
                                                                            ##r##
-        3/18 (16.7%) test_z0 (sample1.sampletests.test122.TestA) (0.000 s)##r##
+        3/18 (16.7%) test_z0 (sample1.sampletests.test122.TestA...) (0.000 s)##r##
                                                                            ##r##
-        4/18 (22.2%) test_x0 (sample1.sampletests.test122.TestB) (0.000 s)##r##
+        4/18 (22.2%) test_x0 (sample1.sampletests.test122.TestB...) (0.000 s)##r##
                                                                            ##r##
-        5/18 (27.8%) test_y1 (sample1.sampletests.test122.TestB) (0.000 s)##r##
+        5/18 (27.8%) test_y1 (sample1.sampletests.test122.TestB...) (0.000 s)##r##
                                                                            ##r##
-        6/18 (33.3%) test_z0 (sample1.sampletests.test122.TestB) (0.000 s)##r##
+        6/18 (33.3%) test_z0 (sample1.sampletests.test122.TestB...) (0.000 s)##r##
                                                                            ##r##
         7/18 (38.9%) test_x0 (sample1.sampletests.test122) (0.001 s)##r##
                                                                      ##r##
@@ -331,17 +331,17 @@ with '!' to exclude tests containing the string "rst".
                                                                      ##r##
         9/18 (50.0%) test_z1 (sample1.sampletests.test122) (0.001 s)##r##
                                                                      ##r##
-        10/18 (55.6%) test_x1 (sampletests.test122.TestA) (0.000 s)##r##
+        10/18 (55.6%) test_x1 (sampletests.test122.TestA...) (0.000 s)##r##
                                                                     ##r##
-        11/18 (61.1%) test_y0 (sampletests.test122.TestA) (0.000 s)##r##
+        11/18 (61.1%) test_y0 (sampletests.test122.TestA...) (0.000 s)##r##
                                                                     ##r##
-        12/18 (66.7%) test_z0 (sampletests.test122.TestA) (0.000 s)##r##
+        12/18 (66.7%) test_z0 (sampletests.test122.TestA...) (0.000 s)##r##
                                                                     ##r##
-        13/18 (72.2%) test_x0 (sampletests.test122.TestB) (0.000 s)##r##
+        13/18 (72.2%) test_x0 (sampletests.test122.TestB...) (0.000 s)##r##
                                                                     ##r##
-        14/18 (77.8%) test_y1 (sampletests.test122.TestB) (0.000 s)##r##
+        14/18 (77.8%) test_y1 (sampletests.test122.TestB...) (0.000 s)##r##
                                                                     ##r##
-        15/18 (83.3%) test_z0 (sampletests.test122.TestB) (0.000 s)##r##
+        15/18 (83.3%) test_z0 (sampletests.test122.TestB...) (0.000 s)##r##
                                                                     ##r##
         16/18 (88.9%) test_x0 (sampletests.test122) (0.001 s)##r##
                                                               ##r##

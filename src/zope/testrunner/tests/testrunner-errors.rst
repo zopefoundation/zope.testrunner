@@ -53,7 +53,7 @@ be read only):
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test3 (sample2.sampletests_e.Test)
+    Error in test test3 (sample2.sampletests_e.Test...)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_e.py", line 43, in test3
         f()
@@ -86,7 +86,7 @@ be read only):
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Failure in test test (sample2.sampletests_f.Test)
+    Failure in test test (sample2.sampletests_f.Test...)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_f.py", line 21, in test
         self.assertEqual(1, 0)
@@ -140,7 +140,7 @@ there'll be a summary of the errors at the end of the test:
     ...
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test3 (sample2.sampletests_e.Test)
+    Error in test test3 (sample2.sampletests_e.Test...)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_e.py", line 43, in test3
         f()
@@ -173,7 +173,7 @@ there'll be a summary of the errors at the end of the test:
     <BLANKLINE>
     .
     <BLANKLINE>
-    Failure in test test (sample2.sampletests_f.Test)
+    Failure in test test (sample2.sampletests_f.Test...)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_f.py", line 21, in test
         self.assertEqual(1, 0)
@@ -187,12 +187,12 @@ there'll be a summary of the errors at the end of the test:
     ...
     <BLANKLINE>
     Tests with errors:
-       test3 (sample2.sampletests_e.Test)
+       test3 (sample2.sampletests_e.Test...)
     <BLANKLINE>
     Tests with failures:
        eek (sample2.sampletests_e)
        testrunner-ex/sample2/e.rst
-       test (sample2.sampletests_f.Test)
+       test (sample2.sampletests_f.Test...)
     True
 
 Similarly for progress output, the progress ticker will be interrupted:
@@ -233,7 +233,7 @@ Similarly for progress output, the progress ticker will be interrupted:
                    \r
         4/47 (8.5%)
     <BLANKLINE>
-    Error in test test3 (sample2.sampletests_e.Test)
+    Error in test test3 (sample2.sampletests_e.Test...)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_e.py", line 43, in test3
         f()
@@ -270,7 +270,7 @@ Similarly for progress output, the progress ticker will be interrupted:
     <BLANKLINE>
         8/47 (17.0%)
     <BLANKLINE>
-    Failure in test test (sample2.sampletests_f.Test)
+    Failure in test test (sample2.sampletests_f.Test...)
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sampletests_f.py", line 21, in test
         self.assertEqual(1, 0)
@@ -382,9 +382,9 @@ for failing and erroring tests.
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
       Running:
-     test_stderr_error (sample2.stdstreamstest.Test)
+     test_stderr_error (sample2.stdstreamstest.Test...)
     <BLANKLINE>
-    Error in test test_stderr_error (sample2.stdstreamstest.Test)
+    Error in test test_stderr_error (sample2.stdstreamstest.Test...)
     Traceback (most recent call last):
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_error
         raise Exception("boom")
@@ -395,9 +395,9 @@ for failing and erroring tests.
     stderr buffer output on error
     <BLANKLINE>
     <BLANKLINE>
-     test_stderr_failure (sample2.stdstreamstest.Test)
+     test_stderr_failure (sample2.stdstreamstest.Test...)
     <BLANKLINE>
-    Failure in test test_stderr_failure (sample2.stdstreamstest.Test)
+    Failure in test test_stderr_failure (sample2.stdstreamstest.Test...)
     Traceback (most recent call last):
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stderr_failure
         self.assertTrue(False)
@@ -408,10 +408,10 @@ for failing and erroring tests.
     stderr buffer output on failure
     <BLANKLINE>
     <BLANKLINE>
-     test_stderr_success (sample2.stdstreamstest.Test)
-     test_stdout_error (sample2.stdstreamstest.Test)
+     test_stderr_success (sample2.stdstreamstest.Test...)
+     test_stdout_error (sample2.stdstreamstest.Test...)
     <BLANKLINE>
-    Error in test test_stdout_error (sample2.stdstreamstest.Test)
+    Error in test test_stdout_error (sample2.stdstreamstest.Test...)
     Traceback (most recent call last):
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_error
         raise Exception("boom")
@@ -422,9 +422,9 @@ for failing and erroring tests.
     stdout buffer output on error
     <BLANKLINE>
     <BLANKLINE>
-     test_stdout_failure (sample2.stdstreamstest.Test)
+     test_stdout_failure (sample2.stdstreamstest.Test...)
     <BLANKLINE>
-    Failure in test test_stdout_failure (sample2.stdstreamstest.Test)
+    Failure in test test_stdout_failure (sample2.stdstreamstest.Test...)
     Traceback (most recent call last):
      testrunner-ex/sample2/stdstreamstest.py", Line NNN, in test_stdout_failure
         self.assertTrue(False)
@@ -435,18 +435,18 @@ for failing and erroring tests.
     stdout buffer output on failure
     <BLANKLINE>
     <BLANKLINE>
-     test_stdout_success (sample2.stdstreamstest.Test)
+     test_stdout_success (sample2.stdstreamstest.Test...)
       Ran 6 tests with 2 failures, 2 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
     Tests with errors:
-       test_stderr_error (sample2.stdstreamstest.Test)
-       test_stdout_error (sample2.stdstreamstest.Test)
+       test_stderr_error (sample2.stdstreamstest.Test...)
+       test_stdout_error (sample2.stdstreamstest.Test...)
     <BLANKLINE>
     Tests with failures:
-       test_stderr_failure (sample2.stdstreamstest.Test)
-       test_stdout_failure (sample2.stdstreamstest.Test)
+       test_stderr_failure (sample2.stdstreamstest.Test...)
+       test_stdout_failure (sample2.stdstreamstest.Test...)
     True
     >>> sys.stderr = orig_stderr
 

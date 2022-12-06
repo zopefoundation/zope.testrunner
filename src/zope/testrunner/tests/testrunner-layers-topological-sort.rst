@@ -33,7 +33,7 @@ methods are called in the correct order.
 ...     def testTearDown(cls):
 ...         log('%s.testTearDown' % name_from_layer(cls))
 ...     testTearDown = classmethod(testTearDown)
-...         
+...
 >>> class AB(A): pass
 >>> class AC(A): pass
 >>> class AAAABD(AB): pass
@@ -56,10 +56,10 @@ methods are called in the correct order.
 ...     def test(self):
 ...         pass
 >>> suite = unittest.TestSuite()
->>> suite.addTest(unittest.makeSuite(DeepTest1))
->>> suite.addTest(unittest.makeSuite(DeepTest2))
->>> suite.addTest(unittest.makeSuite(DeepTest3))
->>> suite.addTest(unittest.makeSuite(QuickTests))
+>>> suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(DeepTest1))
+>>> suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(DeepTest2))
+>>> suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(DeepTest3))
+>>> suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(QuickTests))
 >>> log_handler.clear()
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[suite])
 >>> succeeded = runner.run() #doctest: +ELLIPSIS
@@ -87,4 +87,3 @@ Tearing down left over layers:
   Tear down ...AC in N.NNN seconds.
   Tear down ...A in N.NNN seconds.
 Total: 4 tests, 0 failures, 0 errors and 0 skipped in N.NNN seconds.
-

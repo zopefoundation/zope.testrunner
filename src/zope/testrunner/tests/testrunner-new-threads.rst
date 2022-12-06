@@ -15,7 +15,7 @@ For each test zope.testrunner checks if new threads are left behind.
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     The following test left new threads behind:
-    test_leave_thread_behind (new_threads.TestNewThreadsReporting)
+    test_leave_thread_behind (new_threads.TestNewThreadsReporting...)
     New thread(s): [<Thread(t1)>]
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:

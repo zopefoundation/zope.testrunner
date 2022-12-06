@@ -64,29 +64,29 @@ tests:
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 0.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletestsf.TestA...)
       test_y0 (sample1.sampletests.test_one)
-      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sampletests.test1.TestA...)
       test_y0 (sample1.sampletestsf)
-      test_y0 (sample1.sampletests.test_one.TestA)
+      test_y0 (sample1.sampletests.test_one.TestA...)
       test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample13.sampletests.TestA...)
       test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sample11.sampletests.TestA...)
       test_y0 (sample1.sampletests.test1)
     False
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 0.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletestsf.TestA...)
       test_y0 (sample1.sampletests.test_one)
-      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sampletests.test1.TestA...)
       test_y0 (sample1.sampletestsf)
-      test_y0 (sample1.sampletests.test_one.TestA)
+      test_y0 (sample1.sampletests.test_one.TestA...)
       test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample13.sampletests.TestA...)
       test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sample11.sampletests.TestA...)
       test_y0 (sample1.sampletests.test1)
     False
 
@@ -97,30 +97,30 @@ but stable, list of tests:
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 42.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample13.sampletests.TestA...)
       test_y0 (sample1.sample13.sampletests)
       test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sampletests.test1.TestA)
-      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sampletests.test1.TestA...)
+      test_y0 (sample1.sample11.sampletests.TestA...)
       test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sampletests.test_one)
       test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sampletestsf.TestA)
-      test_y0 (sample1.sampletests.test_one.TestA)
+      test_y0 (sample1.sampletestsf.TestA...)
+      test_y0 (sample1.sampletests.test_one.TestA...)
     False
     >>> testrunner.run_internal(defaults, argv)
     Tests were shuffled using seed number 42.
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample13.sampletests.TestA...)
       test_y0 (sample1.sample13.sampletests)
       test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sampletests.test1.TestA)
-      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sampletests.test1.TestA...)
+      test_y0 (sample1.sample11.sampletests.TestA...)
       test_y0 (sample1.sampletestsf)
       test_y0 (sample1.sampletests.test_one)
       test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sampletestsf.TestA)
-      test_y0 (sample1.sampletests.test_one.TestA)
+      test_y0 (sample1.sampletestsf.TestA...)
+      test_y0 (sample1.sampletests.test_one.TestA...)
     False
 
 Selecting a seed number without ``--shuffle``
@@ -132,14 +132,14 @@ option or tests will not be re-ordered:
     >>> argv = (default_argv + '--shuffle-seed 42').split()
     >>> testrunner.run_internal(defaults, argv)
     Listing zope.testrunner.layer.UnitTests tests:
-      test_y0 (sample1.sampletestsf.TestA)
+      test_y0 (sample1.sampletestsf.TestA...)
       test_y0 (sample1.sampletestsf)
-      test_y0 (sample1.sample11.sampletests.TestA)
+      test_y0 (sample1.sample11.sampletests.TestA...)
       test_y0 (sample1.sample11.sampletests)
-      test_y0 (sample1.sample13.sampletests.TestA)
+      test_y0 (sample1.sample13.sampletests.TestA...)
       test_y0 (sample1.sample13.sampletests)
-      test_y0 (sample1.sampletests.test1.TestA)
+      test_y0 (sample1.sampletests.test1.TestA...)
       test_y0 (sample1.sampletests.test1)
-      test_y0 (sample1.sampletests.test_one.TestA)
+      test_y0 (sample1.sampletests.test_one.TestA...)
       test_y0 (sample1.sampletests.test_one)
     False
