@@ -101,7 +101,8 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA))
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB))
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
     suite.addTest(doctest.DocTestSuite(setUp=setUp))
     suite.addTest(doctest.DocFileSuite('../../sampletests.rst',
                                        setUp=setUp))

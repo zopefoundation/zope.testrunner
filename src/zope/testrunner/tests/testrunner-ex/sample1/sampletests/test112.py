@@ -140,7 +140,8 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA))
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB))
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
     s = doctest.DocTestSuite(setUp=setUp)
     s.layer = layer
     suite.addTest(s)

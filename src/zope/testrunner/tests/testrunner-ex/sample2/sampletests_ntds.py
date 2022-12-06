@@ -69,7 +69,8 @@ def test_set_trace2():
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestSomething))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestSomething))
     d = doctest.DocTestSuite()
     d.layer = Layer
     suite.addTest(d)

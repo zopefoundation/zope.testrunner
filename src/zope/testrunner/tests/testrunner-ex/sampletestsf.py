@@ -197,10 +197,12 @@ def test_suite():
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA))
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA2))
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB))
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
     suite.addTest(doctest.DocTestSuite(setUp=setUp))
     suite.addTest(doctest.DocFileSuite('sampletests.rst', setUp=setUp))
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA1))
     suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB1))
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch1))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch1))
     return suite
