@@ -11,6 +11,9 @@
   Python 3.9 and removed in 3.11 (`#119
   <https://github.com/zopefoundation/zope.testrunner/issues/119>`_).
 
+- Don't trigger post mortem debugger for skipped tests. ( `#141
+  <https://github.com/zopefoundation/zope.testrunner/issues/141>`_).
+
 
 5.5.1 (2022-09-07)
 ==================
