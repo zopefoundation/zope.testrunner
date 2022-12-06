@@ -2,12 +2,24 @@
  zope.testrunner Changelog
 ===========================
 
-5.4.1 (unreleased)
+5.5.2 (unreleased)
 ==================
 
 - Inline a small part of ``random.Random.shuffle`` which was deprecated in
   Python 3.9 and removed in 3.11 (`#119
   <https://github.com/zopefoundation/zope.testrunner/issues/119>`_).
+
+
+5.5.1 (2022-09-07)
+==================
+
+- Fix: let ``--at-level=level`` with ``level <= 0`` run the tests
+  at all levels (rather than at no level)
+  `#138 <https://github.com/zopefoundation/zope.testrunner/issues/138>`_.
+  
+
+5.5 (2022-06-24)
+================
 
 - Use ``sys._current_frames`` (rather than ``threading.enumerate``)
   as base for new thread detection, fixes
@@ -21,7 +33,7 @@
   ``[``*rv*``]`` on higher verbosity levels and
   a detailed cyclic garbage analysis on verbosity level 4+.
   For details, see
-  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133`_.
+  `#133 <https://github.com/zopefoundation/zope.testrunner/pull/133>`_.
 
 - Allow the filename for the logging configuration to be specified
   via the envvar ``ZOPE_TESTRUNNER_LOG_INI``.
