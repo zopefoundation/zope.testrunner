@@ -62,7 +62,7 @@ additional-config = [
     "- [\"3.9\",   \"py39-subunit\"]",
     "- [\"3.10\",  \"py310-subunit\"]",
     "- [\"3.11\",  \"py311-subunit\"]",
-    "- [\"pypy2\", \"pypy-subunit\"]",
+    "- [\"pypy-2.7\", \"pypy-subunit\"]",
     "- [\"pypy-3.7\", \"pypy3-subunit\"]",
     ]
 additional-exclude = [
