@@ -66,5 +66,5 @@ additional-config = [
     "- [\"pypy-3.7\", \"pypy3-subunit\"]",
     ]
 additional-exclude = [
-    "- { os: [\"windows\", \"windows-latest\"], config: [\"pypy2\", \"pypy-subunit\"] }",
+    "- { os: [\"windows\", \"windows-latest\"], config: [\"pypy-2.7\", \"pypy-subunit\"] }",
     ]
