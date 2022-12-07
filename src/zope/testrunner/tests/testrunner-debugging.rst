@@ -58,7 +58,7 @@ option:
     ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF +ELLIPSIS
     Running zope.testrunner.layer.UnitTests tests:
     ...
-    Error in test test_post_mortem1 (sample3.sampletests_d.TestSomething)
+    Error in test test_post_mortem1 (sample3.sampletests_d.TestSomething...)
     Traceback (most recent call last):
       File "testrunner-ex/sample3/sampletests_d.py",
               line 34, in test_post_mortem1
@@ -89,7 +89,7 @@ converted to errors and can be debugged the same way:
     ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF +ELLIPSIS
     Running zope.testrunner.layer.UnitTests tests:
     ...
-    Error in test test_post_mortem_failure1 (sample3.sampletests_d.TestSomething)
+    Error in test test_post_mortem_failure1 (sample3.sampletests_d.TestSomething...)
     Traceback (most recent call last):
       File ".../unittest.py",  line 252, in debug
         getattr(self, self.__testMethodName)()

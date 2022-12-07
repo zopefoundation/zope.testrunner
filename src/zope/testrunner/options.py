@@ -16,18 +16,16 @@
 from __future__ import print_function
 
 import argparse
-import re
 import os
+import re
 import sys
 
 import pkg_resources
 
-from zope.testrunner.formatter import (
-    ColorfulOutputFormatter,
-    OutputFormatter,
-    SubunitOutputFormatter,
-    SubunitV2OutputFormatter,
-)
+from zope.testrunner.formatter import ColorfulOutputFormatter
+from zope.testrunner.formatter import OutputFormatter
+from zope.testrunner.formatter import SubunitOutputFormatter
+from zope.testrunner.formatter import SubunitV2OutputFormatter
 from zope.testrunner.formatter import terminal_has_colors
 from zope.testrunner.profiling import available_profilers
 

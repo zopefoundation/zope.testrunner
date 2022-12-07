@@ -14,9 +14,9 @@
 """Sample tests with a layer that produces output on stderr
 """
 
-import unittest
 import doctest
 import sys
+import unittest
 
 
 class Layer:

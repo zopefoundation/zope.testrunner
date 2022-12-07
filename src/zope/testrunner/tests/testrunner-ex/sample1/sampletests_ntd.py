@@ -38,7 +38,8 @@ class TestSomething(unittest.TestCase):
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestSomething))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestSomething))
     return suite
 
 

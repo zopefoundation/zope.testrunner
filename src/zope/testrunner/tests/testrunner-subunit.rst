@@ -486,7 +486,7 @@ Let's run tests including a module with some bad syntax:
     error: sample2.sample21.sampletests_i [
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
-        import zope.testrunner.huh  # noqa: F401
+        import zope.testrunner.huh  # noqa: F401...
     ImportError: No module named huh
     ]
     test: sample2.sample23.sampletests_i

@@ -13,6 +13,7 @@
 ##############################################################################
 import doctest
 
+
 pledge_template = """\
 I give my pledge, as %s,
 to save, and faithfully, to defend from waste,

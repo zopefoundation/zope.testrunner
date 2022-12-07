@@ -12,9 +12,11 @@
 #
 ##############################################################################
 
-import unittest
 import doctest
+import unittest
+
 import samplelayers
+
 
 layername = 'samplelayers.Layer112'
 layer = samplelayers.Layer112
@@ -141,9 +143,10 @@ def test_z1(self):
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestA))
-    suite.addTest(unittest.makeSuite(TestB))
-    suite.addTest(unittest.makeSuite(TestNotMuch))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
     s = doctest.DocTestSuite(setUp=setUp)
     s.layer = layer
     suite.addTest(s)

@@ -101,7 +101,7 @@ A failed test run highlights the failures in red:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    {boldred}Error in test test3 (sample2.sampletests_e.Test){normal}
+    {boldred}Error in test test3 (sample2.sampletests_e.Test...){normal}
     Traceback (most recent call last):
     {normal}  File "{boldblue}unittest.py{normal}", line {boldred}260{normal}, in {boldcyan}run{normal}
     {cyan}    testMethod(){normal}
@@ -136,7 +136,7 @@ A failed test run highlights the failures in red:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    {boldred}Failure in test test (sample2.sampletests_f.Test){normal}
+    {boldred}Failure in test test (sample2.sampletests_f.Test...){normal}
     Traceback (most recent call last):
     {normal}  File "{boldblue}unittest.py{normal}", line {boldred}260{normal}, in {boldcyan}run{normal}
     {cyan}    testMethod(){normal}
@@ -167,7 +167,7 @@ Tests which are skipped are colorized::
     {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
       Set up zope.testrunner.layer.UnitTests in {green}0.000{normal} seconds.
     {normal}  Running:{normal}
-     test_skipped (sample_skipped_tests.TestSkipppedNoLayer) ({boldyellow}skipped: I'm a skipped test!{normal})
+     test_skipped (sample_skipped_tests.TestSkipppedNoLayer...) ({boldyellow}skipped: I'm a skipped test!{normal})
     {normal}  Ran {green}1{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {boldyellow}1{normal} skipped in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
@@ -282,12 +282,12 @@ At very high verbosity levels you can see the time taken by each test
     {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
       Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     {normal}  Running:{normal}
-     test_1 (sample1.sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
-     test_2 (sample1.sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
-     test_3 (sample1.sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
-     test_1 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
-     test_2 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
-     test_3 (sampletests.test_one.TestNotMuch) ({green}N.NNN s{normal})
+     test_1 (sample1.sampletests.test_one.TestNotMuch...) ({green}N.NNN s{normal})
+     test_2 (sample1.sampletests.test_one.TestNotMuch...) ({green}N.NNN s{normal})
+     test_3 (sample1.sampletests.test_one.TestNotMuch...) ({green}N.NNN s{normal})
+     test_1 (sampletests.test_one.TestNotMuch...) ({green}N.NNN s{normal})
+     test_2 (sampletests.test_one.TestNotMuch...) ({green}N.NNN s{normal})
+     test_3 (sampletests.test_one.TestNotMuch...) ({green}N.NNN s{normal})
     {normal}  Ran {green}6{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
@@ -305,12 +305,12 @@ make all of the tests seem slow.
     {normal}Running zope.testrunner.layer.UnitTests tests:{normal}
       Set up zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.
     {normal}  Running:{normal}
-     test_1 (sample1.sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
-     test_2 (sample1.sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
-     test_3 (sample1.sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
-     test_1 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
-     test_2 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
-     test_3 (sampletests.test_one.TestNotMuch) ({boldmagenta}N.NNN s{normal})
+     test_1 (sample1.sampletests.test_one.TestNotMuch...) ({boldmagenta}N.NNN s{normal})
+     test_2 (sample1.sampletests.test_one.TestNotMuch...) ({boldmagenta}N.NNN s{normal})
+     test_3 (sample1.sampletests.test_one.TestNotMuch...) ({boldmagenta}N.NNN s{normal})
+     test_1 (sampletests.test_one.TestNotMuch...) ({boldmagenta}N.NNN s{normal})
+     test_2 (sampletests.test_one.TestNotMuch...) ({boldmagenta}N.NNN s{normal})
+     test_3 (sampletests.test_one.TestNotMuch...) ({boldmagenta}N.NNN s{normal})
     {normal}  Ran {green}6{normal} tests with {green}0{normal} failures, {green}0{normal} errors, {green}0{normal} skipped in {green}N.NNN{normal} seconds.{normal}
     {normal}Tearing down left over layers:{normal}
       Tear down zope.testrunner.layer.UnitTests in {green}N.NNN{normal} seconds.

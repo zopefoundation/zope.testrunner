@@ -14,8 +14,8 @@
 """Sample tests with a layer that can't be torn down
 """
 
-import unittest
 import doctest
+import unittest
 
 
 class Layer:
@@ -69,7 +69,8 @@ def test_set_trace2():
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestSomething))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestSomething))
     d = doctest.DocTestSuite()
     d.layer = Layer
     suite.addTest(d)

@@ -191,6 +191,7 @@ class TestWarnings(unittest.TestCase):
         # Note that this test will fail if PYTHONWARNINGS is set,
         # or a -W option was given, so we skip it
         import warnings
+
         # Save the current filters, ignoring the compiled regexes,
         # which can't be compared.
         old_filters = [(f[0], f[2], 4) for f in warnings.filters]
@@ -207,8 +208,9 @@ class TestWarnings(unittest.TestCase):
         self.assertEqual(set(old_filters), set(new_filters))
 
     def test_warnings_are_shown(self):
-        import warnings
         import logging
+        import warnings
+
         from zope.testing.loggingsupport import InstalledHandler
 
         handler = InstalledHandler("py.warnings", level=logging.WARNING)

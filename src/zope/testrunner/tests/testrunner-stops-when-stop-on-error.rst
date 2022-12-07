@@ -21,7 +21,7 @@ When we don't pass the flag, we see two layers are tested
     >>> testrunner.run_internal(defaults)
     Running layers.LayerA tests:
       Set up layers.LayerA in N.NNN seconds.
-    Failure in test test (stop_on_error.ErrorTestCase1)
+    Failure in test test (stop_on_error.ErrorTestCase1...)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_error.py", Line NNN, in test
         self.assertTrue(False)
@@ -30,7 +30,7 @@ When we don't pass the flag, we see two layers are tested
     Running layers.LayerB tests:
       Tear down layers.LayerA in N.NNN seconds.
       Set up layers.LayerB in N.NNN seconds.
-    Failure in test test (stop_on_error.ErrorTestCase2)
+    Failure in test test (stop_on_error.ErrorTestCase2...)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_error.py", Line NNN, in test
         self.assertTrue(False)
@@ -47,7 +47,7 @@ When we do pass the flag we see only one layer is tested
     >>> testrunner.run_internal(defaults + ["--stop-on-error"])
     Running layers.LayerA tests:
       Set up layers.LayerA in N.NNN seconds.
-    Failure in test test (stop_on_error.ErrorTestCase1)
+    Failure in test test (stop_on_error.ErrorTestCase1...)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_error.py", Line NNN, in test
         self.assertTrue(False)
@@ -67,7 +67,7 @@ Same for failures, without the flag, we see two layers
     >>> testrunner.run_internal(defaults)
     Running layers.LayerA tests:
       Set up layers.LayerA in N.NNN seconds.
-    Error in test test (stop_on_failure.FailureTestCase1)
+    Error in test test (stop_on_failure.FailureTestCase1...)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_failure.py", Line NNN, in test
         raise Exception
@@ -76,7 +76,7 @@ Same for failures, without the flag, we see two layers
     Running layers.LayerB tests:
       Tear down layers.LayerA in N.NNN seconds.
       Set up layers.LayerB in N.NNN seconds.
-    Error in test test (stop_on_failure.FailureTestCase2)
+    Error in test test (stop_on_failure.FailureTestCase2...)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_failure.py", Line NNN, in test
         raise Exception
@@ -93,7 +93,7 @@ When we do pass the flag we see only one layer is tested
     >>> testrunner.run_internal(defaults + ["--stop-on-error"])
     Running layers.LayerA tests:
       Set up layers.LayerA in N.NNN seconds.
-    Error in test test (stop_on_failure.FailureTestCase1)
+    Error in test test (stop_on_failure.FailureTestCase1...)
     Traceback (most recent call last):
      testrunner-ex-37/stop_on_failure.py", Line NNN, in test
         raise Exception

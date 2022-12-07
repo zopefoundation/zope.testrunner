@@ -94,8 +94,8 @@ Create a TestSuite containing two test suites, one for each of
 TestSpecifyingBaseLayer and TestSpecifyingNoLayer.
 
 >>> umbrella_suite = unittest.TestSuite()
->>> umbrella_suite.addTest(unittest.makeSuite(TestSpecifyingBaseLayer))
->>> no_layer_suite = unittest.makeSuite(TestSpecifyingNoLayer)
+>>> umbrella_suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestSpecifyingBaseLayer))
+>>> no_layer_suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestSpecifyingNoLayer)
 >>> umbrella_suite.addTest(no_layer_suite)
 
 Before we can run the tests, we need to setup some helpers.
@@ -240,7 +240,7 @@ methods are called in the correct order.
 ...     layer = F
 ...     def test(self):
 ...         pass
->>> suite = unittest.makeSuite(DeepTest)
+>>> suite = unittest.defaultTestLoader.loadTestsFromTestCase(DeepTest)
 >>> log_handler.clear()
 >>> runner = Runner(options=fresh_options(), args=[], found_suites=[suite])
 >>> succeeded = runner.run() #doctest: +ELLIPSIS

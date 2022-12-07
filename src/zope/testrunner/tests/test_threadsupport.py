@@ -11,11 +11,15 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from threading import Lock, Thread, _start_new_thread
+from threading import Lock
+from threading import Thread
+from threading import _start_new_thread
 from time import sleep
-from unittest import TestCase, skipUnless
+from unittest import TestCase
+from unittest import skipUnless
 
-from ..threadsupport import current_frames, enumerate
+from ..threadsupport import current_frames
+from ..threadsupport import enumerate
 
 
 class ThreadMixin(object):

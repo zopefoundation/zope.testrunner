@@ -17,7 +17,9 @@ Provides setup routines that enable the test runner to test itself.
 """
 
 import pdb
+
 import zope.testrunner.feature
+
 
 real_pdb_set_trace = pdb.set_trace
 

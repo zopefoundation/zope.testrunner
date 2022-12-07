@@ -28,37 +28,39 @@ import time
 import traceback
 import unittest
 import warnings
-
 from contextlib import contextmanager
 
 from six import StringIO
-from zope.testrunner import threadsupport
-from zope.testrunner.find import import_name
-from zope.testrunner.find import name_from_layer, _layer_name_cache
-from zope.testrunner.layer import UnitTests
-from zope.testrunner.layer import EmptyLayer
-from zope.testrunner.layer import EmptySuite
-from zope.testrunner.options import get_options
-from zope.testrunner.refcount import TrackRefs
+
 import zope.testrunner
-import zope.testrunner.coverage
 import zope.testrunner._doctest
-import zope.testrunner.logsupport
-import zope.testrunner.selftest
-import zope.testrunner.profiling
+import zope.testrunner.coverage
+import zope.testrunner.debug
 import zope.testrunner.filter
 import zope.testrunner.garbagecollection
+import zope.testrunner.interfaces
 import zope.testrunner.listing
+import zope.testrunner.logsupport
+import zope.testrunner.process
+import zope.testrunner.profiling
+import zope.testrunner.selftest
 import zope.testrunner.shuffle
 import zope.testrunner.statistics
-import zope.testrunner.process
-import zope.testrunner.interfaces
-import zope.testrunner.debug
 import zope.testrunner.tb_format
+from zope.testrunner import threadsupport
+from zope.testrunner.find import _layer_name_cache
+from zope.testrunner.find import import_name
+from zope.testrunner.find import name_from_layer
+from zope.testrunner.layer import EmptyLayer
+from zope.testrunner.layer import EmptySuite
+from zope.testrunner.layer import UnitTests
+from zope.testrunner.options import get_options
+from zope.testrunner.refcount import TrackRefs
 
 from .digraph import DiGraph
 from .util import is_jython
 from .util import uses_refcounts
+
 
 try:
     import Queue  # Python 2

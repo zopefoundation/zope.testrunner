@@ -12,8 +12,9 @@
 #
 ##############################################################################
 
-import unittest
 import doctest
+import unittest
+
 
 x = 0
 y = 0
@@ -141,11 +142,12 @@ def test_z1(self):
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestA))
-    suite.addTest(unittest.makeSuite(TestA3))
-    suite.addTest(unittest.makeSuite(TestB))
-    suite.addTest(unittest.makeSuite(TestB2))
-    suite.addTest(unittest.makeSuite(TestNotMuch))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestA3))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestB2))
+    suite.addTest(
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestNotMuch))
     suite.addTest(doctest.DocTestSuite(setUp=setUp))
     suite.addTest(doctest.DocFileSuite('../../sampletests.rst',
                                        setUp=setUp))

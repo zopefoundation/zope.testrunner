@@ -90,7 +90,9 @@ properly skipped.
   >>> T6.layer = 'layer'
 
   >>> all = unittest.TestSuite((
-  ...     unittest.makeSuite(T1), unittest.makeSuite(T2), T3, T4, T5, T6,
+  ...     unittest.defaultTestLoader.loadTestsFromTestCase(T1),
+  ...     unittest.defaultTestLoader.loadTestsFromTestCase(T2),
+  ...     T3, T4, T5, T6,
   ...     ))
 
 Let's return those tests from the scan:

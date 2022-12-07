@@ -22,4 +22,4 @@ class Test(unittest.TestCase):
 
 
 def test_suite():
-    return unittest.makeSuite(Test)
+    return unittest.defaultTestLoader.loadTestsFromTestCase(Test)

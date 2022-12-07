@@ -22,6 +22,7 @@ reliable determine the currently running threads.
 import sys
 import threading
 
+
 current_frames = getattr(sys, "_current_frames", None)
 
 if current_frames is None:  # pragma: no cover

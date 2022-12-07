@@ -42,7 +42,7 @@ resuming tests where it left off:
       Set up sample3.sampletests_ntd.Layer in N.NNN seconds.
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_error1 (sample3.sampletests_ntd.TestSomething)
+    Error in test test_error1 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_error1
         raise TypeError("Can we see errors")
@@ -50,7 +50,7 @@ resuming tests where it left off:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_error2 (sample3.sampletests_ntd.TestSomething)
+    Error in test test_error2 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_error2
         raise TypeError("I hope so")
@@ -58,7 +58,7 @@ resuming tests where it left off:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Failure in test test_fail1 (sample3.sampletests_ntd.TestSomething)
+    Failure in test test_fail1 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_fail1
         self.assertEqual(1, 2)
@@ -66,7 +66,7 @@ resuming tests where it left off:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Failure in test test_fail2 (sample3.sampletests_ntd.TestSomething)
+    Failure in test test_fail2 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_fail2
         self.assertEqual(1, 3)
@@ -100,7 +100,7 @@ Note that debugging doesn't work when running tests in a subprocess:
       Set up sample3.sampletests_ntd.Layer in N.NNN seconds.
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_error1 (sample3.sampletests_ntd.TestSomething)
+    Error in test test_error1 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_error1
         raise TypeError("Can we see errors")
@@ -113,7 +113,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_error2 (sample3.sampletests_ntd.TestSomething)
+    Error in test test_error2 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_error2
         raise TypeError("I hope so")
@@ -126,7 +126,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_fail1 (sample3.sampletests_ntd.TestSomething)
+    Error in test test_fail1 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_fail1
         self.assertEqual(1, 2)
@@ -139,7 +139,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_fail2 (sample3.sampletests_ntd.TestSomething)
+    Error in test test_fail2 (sample3.sampletests_ntd.TestSomething...)
     Traceback (most recent call last):
      testrunner-ex/sample3/sampletests_ntd.py", Line NNN, in test_fail2
         self.assertEqual(1, 3)
@@ -285,7 +285,7 @@ pipe.
       Set up sampletests_many.Layer2 in N.NNN seconds.
     <BLANKLINE>
     <BLANKLINE>
-    Failure in test test_some_very_long_test_name_with_padding_000 (sampletests_many.TestMany)
+    Failure in test test_some_very_long_test_name_with_padding_000 (sampletests_many.TestMany...)
     ...
       Ran 1000 tests with 1000 failures, 0 errors and 0 skipped in N.NNN seconds.
       Tear down sampletests_many.Layer2 in N.NNN seconds.

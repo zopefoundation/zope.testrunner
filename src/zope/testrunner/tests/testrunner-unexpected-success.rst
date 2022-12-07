@@ -35,7 +35,7 @@ affecting the Python path:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
     <BLANKLINE>
-    Error in test test_ef (sampletestsf.TestUnexpectedSuccess)
+    Error in test test_ef (sampletestsf.TestUnexpectedSuccess...)
     Traceback (most recent call last):
     ...UnexpectedSuccess
     <BLANKLINE>
