@@ -97,11 +97,6 @@ if sys.platform == 'win32':
                     re.MULTILINE),
          r''),
         # (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
-        (re.compile('import pdb; pdb'), 'Pdb()'),  # Py 2.3
-
-        (re.compile("NameError: global name '([^']*)' is not defined"),
-         r"NameError: name '\1' is not defined"),
-
         ])
 else:
     # *nix
