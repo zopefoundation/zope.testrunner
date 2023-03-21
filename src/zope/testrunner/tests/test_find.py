@@ -34,7 +34,7 @@ class TestUniqueness(unittest.TestCase):
     """Test how the testrunner handles non-unique IDs."""
 
     def setUp(self):
-        super(TestUniqueness, self).setUp()
+        super().setUp()
         suites = [
             doctest.DocFileSuite('testrunner-ex/sampletests.rst'),
             doctest.DocFileSuite('testrunner-ex/sampletests.rst'),

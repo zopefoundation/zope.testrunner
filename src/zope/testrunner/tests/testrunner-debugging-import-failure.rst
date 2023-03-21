@@ -10,7 +10,7 @@ Post-mortem debugging also works when there is an import failure.
     ...     with open(os.path.join(dir, filename), 'w') as f:
     ...         f.write(body)
     ...     try:
-    ...         # Need to do this on Python 3.3 after creating new modules
+    ...         # Need to do this after creating new modules:
     ...         import importlib; importlib.invalidate_caches()
     ...     except (ImportError, AttributeError):
     ...         pass
@@ -71,5 +71,3 @@ Post-mortem debugging also works when the test suite is invalid:
     EndRun raised
 
     >>> shutil.rmtree(tdir)
-
-

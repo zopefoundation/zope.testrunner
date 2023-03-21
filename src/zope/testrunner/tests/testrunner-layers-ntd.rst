@@ -214,7 +214,7 @@ that is run as a subprocess:
     <BLANKLINE>
     --Return--
     > doctest.py(351)set_trace()->None
-    -> Pdb().set_trace()
+    -> import pdb; pdb.set_trace()
     (Pdb) c
     <BLANKLINE>
     **********************************************************************
@@ -223,7 +223,7 @@ that is run as a subprocess:
     <BLANKLINE>
     --Return--
     > doctest.py(351)set_trace()->None
-    -> Pdb().set_trace()
+    -> import pdb; pdb.set_trace()
     (Pdb) c
     <BLANKLINE>
     **********************************************************************
@@ -244,7 +244,7 @@ If a test is run in a subprocess and it generates output on stderr (as
 stderrtest does), the output is ignored (but it doesn't cause a SubprocessError
 like it once did).
 
-    >>> from six import StringIO
+    >>> from io import StringIO
     >>> real_stderr = sys.stderr
     >>> sys.stderr = StringIO()
 

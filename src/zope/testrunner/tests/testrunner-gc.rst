@@ -66,7 +66,7 @@ values:
 Specifying more than 3 ``--gc`` options is not allowed:
 
 
-    >>> from six import StringIO
+    >>> from io import StringIO
     >>> out = StringIO()
     >>> stdout = sys.stdout
     >>> sys.stdout = out
@@ -92,7 +92,7 @@ in the library documentation for the gc module.
 
 The output statistics are written to standard error.
 
-    >>> from six import StringIO
+    >>> from io import StringIO
     >>> err = StringIO()
     >>> stderr = sys.stderr
     >>> sys.stderr = err

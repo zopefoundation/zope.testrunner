@@ -49,7 +49,7 @@ be read only):
           File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
             x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
-        NameError: global name 'y' is not defined
+        NameError: name 'y' is not defined
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
@@ -62,7 +62,7 @@ be read only):
       File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
         x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
-    NameError: global name 'y' is not defined
+    NameError: name 'y' is not defined
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
@@ -82,7 +82,7 @@ be read only):
             f()
           File "<doctest e.rst[0]>", line 2, in f
             return x
-        NameError: global name 'x' is not defined
+        NameError: name 'x' is not defined
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
@@ -135,7 +135,7 @@ there'll be a summary of the errors at the end of the test:
           File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
             x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
-        NameError: global name 'y' is not defined
+        NameError: name 'y' is not defined
     <BLANKLINE>
     ...
     <BLANKLINE>
@@ -149,7 +149,7 @@ there'll be a summary of the errors at the end of the test:
       File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
         x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
-    NameError: global name 'y' is not defined
+    NameError: name 'y' is not defined
     <BLANKLINE>
     ...
     <BLANKLINE>
@@ -169,7 +169,7 @@ there'll be a summary of the errors at the end of the test:
             f()
           File "<doctest e.rst[0]>", line 2, in f
             return x
-        NameError: global name 'x' is not defined
+        NameError: name 'x' is not defined
     <BLANKLINE>
     .
     <BLANKLINE>
@@ -225,7 +225,7 @@ Similarly for progress output, the progress ticker will be interrupted:
           File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
             x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
-        NameError: global name 'y' is not defined
+        NameError: name 'y' is not defined
     <BLANKLINE>
         2/47 (4.3%)\r
                    \r
@@ -242,7 +242,7 @@ Similarly for progress output, the progress ticker will be interrupted:
       File "testrunner-ex/sample2/sampletests_e.py", line 24, in g
         x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
-    NameError: global name 'y' is not defined
+    NameError: name 'y' is not defined
     <BLANKLINE>
         5/47 (10.6%)\r
                    \r
@@ -266,7 +266,7 @@ Similarly for progress output, the progress ticker will be interrupted:
             f()
           File "<doctest e.rst[0]>", line 2, in f
             return x
-        NameError: global name 'x' is not defined
+        NameError: name 'x' is not defined
     <BLANKLINE>
         8/47 (17.0%)
     <BLANKLINE>
@@ -826,7 +826,7 @@ Then run the tests:
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sample21/sampletests_i.py", line 15, in ?
         import zope.testrunner.huh  # noqa: F401
-    ImportError: No module named huh
+    ModuleNotFoundError: No module named 'zope.testrunner.huh'
     <BLANKLINE>
     <BLANKLINE>
     Module: sample2.sample23.sampletests_i

@@ -22,12 +22,6 @@ from zope.testrunner import formatter
 
 
 try:
-    unichr
-except NameError:
-    unichr = chr  # Python 3
-
-
-try:
     import subunit
     subunit
 except ImportError:
@@ -35,43 +29,26 @@ except ImportError:
         return unittest.TestSuite()
 else:
 
-    class TestSubunitTracebackPrintingMixin(object):
+    class TestSubunitTracebackPrintingMixin:
 
         def makeByteStringFailure(self, text, encoding):
             try:
-                if sys.version_info[0] < 3:
-                    # On Python 2, note that this deliberately throws a
-                    # string of bytes instead of a unicode object.  This
-                    # simulates errors thrown by utf8-encoded doctests.
-                    bytestr = text.encode(encoding)
-                    self.fail(bytestr)
-                else:
-                    # On Python 3, it's more accurate to just use the
-                    # Unicode text directly.
-                    self.fail(text)
+                # It's more accurate to just use the text directly.
+                self.fail(text)
             except self.failureException:
                 return sys.exc_info()
 
         def test_print_failure_containing_utf8_bytestrings(self):
-            exc_info = self.makeByteStringFailure(unichr(6514), 'utf8')
+            exc_info = self.makeByteStringFailure(chr(6514), 'utf8')
             self.subunit_formatter.test_failure(self, 0, exc_info)
             assert b"AssertionError: \xe1\xa5\xb2" in self.output.getvalue()
-            # '\xe1\xa5\xb2'.decode('utf-8') == unichr(6514)
+            # '\xe1\xa5\xb2'.decode('utf-8') == chr(6514)
 
         def test_print_error_containing_utf8_bytestrings(self):
-            exc_info = self.makeByteStringFailure(unichr(6514), 'utf8')
+            exc_info = self.makeByteStringFailure(chr(6514), 'utf8')
             self.subunit_formatter.test_error(self, 0, exc_info)
             assert b"AssertionError: \xe1\xa5\xb2" in self.output.getvalue()
-            # '\xe1\xa5\xb2'.decode('utf-8') == unichr(6514)
-
-        @unittest.skipIf(
-            sys.version_info[0] >= 3,
-            'Tracebacks are always Unicode on Python 3')
-        def test_print_failure_containing_latin1_bytestrings(self):
-            exc_info = self.makeByteStringFailure(unichr(241), 'latin1')
-            self.subunit_formatter.test_failure(self, 0, exc_info)
-            assert b"AssertionError: \xef\xbf\xbd" in self.output.getvalue()
-            # '\xef\xbf\xbd'.decode('utf-8') = unichr(0xFFFD)
+            # '\xe1\xa5\xb2'.decode('utf-8') == chr(6514)
 
     class TestSubunitTracebackPrinting(
             TestSubunitTracebackPrintingMixin, unittest.TestCase):

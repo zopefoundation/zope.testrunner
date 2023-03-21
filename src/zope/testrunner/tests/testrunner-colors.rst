@@ -97,7 +97,7 @@ A failed test run highlights the failures in red:
     {red}      File "testrunner-ex/sample2/sampletests_e.py", line 24, in g{normal}
     {red}        x = y + 1  # noqa: F821{normal}
     {red}       - __traceback_info__: I don't know what Y should be.{normal}
-    {red}    NameError: global name 'y' is not defined{normal}
+    {red}    NameError: name 'y' is not defined{normal}
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
@@ -112,7 +112,7 @@ A failed test run highlights the failures in red:
     {normal}  File "{boldblue}testrunner-ex/sample2/sampletests_e.py{normal}", line {boldred}24{normal}, in {boldcyan}g{normal}
     {cyan}    x = y + 1  # noqa: F821{normal}
     {red}   - __traceback_info__: I don't know what Y should be.{normal}
-    {red}NameError: global name 'y' is not defined{normal}
+    {red}NameError: name 'y' is not defined{normal}
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
@@ -132,7 +132,7 @@ A failed test run highlights the failures in red:
     {red}        f(){normal}
     {red}      File "<doctest e.rst[0]>", line 2, in f{normal}
     {red}        return x{normal}
-    {red}    NameError: global name 'x' is not defined{normal}
+    {red}    NameError: name 'x' is not defined{normal}
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>

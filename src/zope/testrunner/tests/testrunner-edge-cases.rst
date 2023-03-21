@@ -29,7 +29,7 @@ affecting the Python path:
     Module: sampletestsf
     <BLANKLINE>
     Traceback (most recent call last):
-    ImportError: No module named sampletestsf
+    ModuleNotFoundError: No module named 'sampletestsf'
     ...
 
     >>> sys.path.append(directory_with_tests)

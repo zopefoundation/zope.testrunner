@@ -10,7 +10,7 @@ Post-mortem debugging also works when the exception cannot be printed
     ...     with open(os.path.join(dir, filename), 'w') as f:
     ...         f.write(body)
     ...     try:
-    ...         # Need to do this on Python 3.3 after creating new modules
+    ...         # Need to do this on after creating new modules:
     ...         import importlib; importlib.invalidate_caches()
     ...     except (ImportError, AttributeError):
     ...         pass
@@ -18,11 +18,10 @@ Post-mortem debugging also works when the exception cannot be printed
     >>> write_file('tests.py',
     ... r'''
     ... import unittest
-    ... import six
     ...
     ... class MyTest(unittest.TestCase):
     ...     def test(self):
-    ...         self.assertEqual(six.u('a'), six.b('\xc4\x85').decode('UTF-8'))
+    ...         self.assertEqual('a', b'\xc4\x85'.decode('UTF-8'))
     ... ''')
 
     >>> class Input:
@@ -53,5 +52,3 @@ Post-mortem debugging also works when the exception cannot be printed
     False
 
     >>> shutil.rmtree(tdir)
-
-

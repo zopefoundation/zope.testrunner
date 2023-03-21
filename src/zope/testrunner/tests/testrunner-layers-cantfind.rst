@@ -22,7 +22,7 @@ method out.
 
     >>> sys.stdout.close = lambda: None
 
-    >>> from six import StringIO
+    >>> from io import StringIO
     >>> orig_stderr = sys.stderr
     >>> sys.stderr = fake_stderr = StringIO()
 
@@ -47,4 +47,3 @@ Cleanup
 
     >>> del sys.stdout.close
     >>> sys.stderr = orig_stderr
-

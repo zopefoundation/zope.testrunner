@@ -13,13 +13,13 @@
 ##############################################################################
 """Test execution
 """
-from __future__ import print_function
 
 import errno
 import gc
 import io
 import os
 import pprint
+import queue
 import re
 import subprocess
 import sys
@@ -29,8 +29,7 @@ import traceback
 import unittest
 import warnings
 from contextlib import contextmanager
-
-from six import StringIO
+from io import StringIO
 
 import zope.testrunner
 import zope.testrunner._doctest
@@ -62,13 +61,6 @@ from .util import is_jython
 from .util import uses_refcounts
 
 
-try:
-    import Queue  # Python 2
-except ImportError:
-    # Python 3
-    import queue as Queue  # Python 3
-
-
 class UnexpectedSuccess(Exception):
     pass
 
@@ -85,14 +77,14 @@ class SubprocessError(Exception):
         self.stderr = stderr
 
     def __str__(self):
-        return '%s: %s' % (self.reason, self.stderr)
+        return '{}: {}'.format(self.reason, self.stderr)
 
 
 class CanNotTearDown(Exception):
     "Couldn't tear down a test"
 
 
-class Runner(object):
+class Runner:
     """The test runner.
 
     It is the central point of this package and responsible for finding and
@@ -156,8 +148,8 @@ class Runner(object):
             # but only if this is not in the subprocess
             yield (name_from_layer(EmptyLayer), EmptyLayer, EmptySuite())
 
-        layer_names = dict([(layer_from_name(layer_name), layer_name)
-                            for layer_name in self.tests_by_layer_name])
+        layer_names = {layer_from_name(layer_name): layer_name
+                       for layer_name in self.tests_by_layer_name}
         for layer in order_by_bases(layer_names):
             layer_name = layer_names[layer]
             yield layer_name, layer, self.tests_by_layer_name[layer_name]
@@ -412,11 +404,8 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
         output.stop_tests()
         failures.extend(result.failures)
         n_failures = len(result.failures)
-        if hasattr(result, 'unexpectedSuccesses'):
-            # Python versions prior to 2.7 do not have the concept of
-            # unexpectedSuccesses.
-            failures.extend(result.unexpectedSuccesses)
-            n_failures += len(result.unexpectedSuccesses)
+        failures.extend(result.unexpectedSuccesses)
+        n_failures += len(result.unexpectedSuccesses)
         skipped.extend(result.skipped)
         errors.extend(result.errors)
         output.summary(n_tests=result.testsRun,
@@ -463,7 +452,7 @@ def run_layer(options, layer_name, layer, tests, setup_layers,
     output = options.output
     gathered = []
     gather_layers(layer, gathered)
-    needed = dict([(ly, 1) for ly in gathered])
+    needed = {ly: 1 for ly in gathered}
     if options.resume_number != 0:
         output.info("Running %s tests:" % layer_name)
     tear_down_unneeded(options, needed, setup_layers, errors)
@@ -490,7 +479,7 @@ class SetUpLayerFailure(unittest.TestCase):
     subunit_label = 'setUp'
 
     def __init__(self, layer):
-        super(SetUpLayerFailure, self).__init__()
+        super().__init__()
         self.layer = layer
 
     def runTest(self):
@@ -505,7 +494,7 @@ class TearDownLayerFailure(unittest.TestCase):
     subunit_label = 'tearDown'
 
     def __init__(self, layer):
-        super(TearDownLayerFailure, self).__init__()
+        super().__init__()
         self.layer = layer
 
     def runTest(self):
@@ -531,11 +520,6 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
             args.extend(['--default', d])
 
         args.extend(options.original_testrunner_args[1:])
-
-        # this is because of a bug in Python (http://www.python.org/sf/900092)
-        if (options.profile == 'hotshot'
-                and sys.version_info[:3] <= (2, 4, 1)):
-            args.insert(1, '-O')
 
         debugargs = args  # save them before messing up for windows
         if sys.platform.startswith('win'):
@@ -575,7 +559,7 @@ def spawn_layer_in_subprocess(result, script_parts, options, features,
                     if not line:
                         break
                     result.write(line)
-            except IOError as e:
+            except OSError as e:
                 if e.errno == errno.EINTR:
                     # If the subprocess dies before we finish reading its
                     # output, a SIGCHLD signal can interrupt the reading.
@@ -664,7 +648,7 @@ def _get_output_buffer(stream):
     return stream
 
 
-class AbstractSubprocessResult(object):
+class AbstractSubprocessResult:
     """A result of a subprocess layer run."""
 
     num_ran = 0
@@ -691,7 +675,7 @@ class ImmediateSubprocessResult(AbstractSubprocessResult):
     """Sends complete output to queue."""
 
     def __init__(self, layer_name, queue):
-        super(ImmediateSubprocessResult, self).__init__(layer_name, queue)
+        super().__init__(layer_name, queue)
         self.stream = _get_output_buffer(sys.stdout)
 
     def write(self, out):
@@ -730,7 +714,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
     elif (options.verbose > 1 and
             not options.subunit and not options.subunit_v2):
         result_factory = KeepaliveSubprocessResult
-        stdout_queue = Queue.Queue()
+        stdout_queue = queue.Queue()
     else:
         result_factory = DeferredSubprocessResult
     resume_number = int(options.processes > 1)
@@ -767,7 +751,7 @@ def resume_tests(script_parts, options, features, layers, failures, errors,
             previous_output = output
             try:
                 layer_name, output = stdout_queue.get(False)
-            except Queue.Empty:
+            except queue.Empty:
                 break
             if layer_name != last_layer_intermediate_output:
                 # Clarify what layer is reporting activity.
@@ -908,20 +892,17 @@ class TestResult(unittest.TestResult):
 
     def _makeBufferedStdStream(self):
         """Make a buffered stream to replace a standard stream."""
-        if sys.version_info[0] >= 3:
-            # The returned stream needs to have a 'buffer' attribute, since
-            # some tests may expect that to exist on standard streams, and a
-            # 'getvalue' method for the convenience of _restoreStdStreams.
-            # This requires some care.
-            class BufferedStandardStream(io.TextIOWrapper):
-                def getvalue(self):
-                    return self.buffer.getvalue().decode(
-                        encoding=self.encoding, errors=self.errors)
+        # The returned stream needs to have a 'buffer' attribute, since
+        # some tests may expect that to exist on standard streams, and a
+        # 'getvalue' method for the convenience of _restoreStdStreams.
+        # This requires some care.
+        class BufferedStandardStream(io.TextIOWrapper):
+            def getvalue(self):
+                return self.buffer.getvalue().decode(
+                    encoding=self.encoding, errors=self.errors)
 
-            return BufferedStandardStream(
-                io.BytesIO(), newline='\n', write_through=True)
-        else:
-            return StringIO()
+        return BufferedStandardStream(
+            io.BytesIO(), newline='\n', write_through=True)
 
     def _setUpStdStreams(self):
         """Set up buffered standard streams, if requested."""
@@ -1054,8 +1035,6 @@ class TestResult(unittest.TestResult):
                 cycles = [[repr_lines(o) for o in c] for c in g.sccs()]
                 del gc.garbage[:]
                 g = obj = None  # avoid to hold cyclic garbage
-                # Python 2: avoid to hold cyclic garbage
-                o = c = None  # noqa: F841
             gc.set_debug(gc_opts)
         gccount = gc.collect() \
             if uses_refcounts and self.options.gc_after_test else 0
@@ -1114,7 +1093,7 @@ def layer_sort_key(layer):
     Based on the reverse MRO ordering in order to put layers with shared base
     layers next to each other.
     """
-    seen = set([])
+    seen = set()
     key = []
 
     # Note: we cannot reuse gather_layers() here because it uses a
@@ -1193,7 +1172,7 @@ def repr_lines(obj, max_width=75, max_lines=5):
         oi = pprint.pformat(obj)
     except Exception:
         # unprintable
-        oi = "%s instance at 0x%x" % (obj.__class__, id(obj))
+        oi = "{} instance at 0x{:x}".format(obj.__class__, id(obj))
     # limit
     cmps = oi.split("\n", max_lines)
     if len(cmps) > max_lines:

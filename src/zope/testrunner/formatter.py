@@ -13,13 +13,7 @@
 ##############################################################################
 """Output formatting.
 """
-from __future__ import print_function
 
-
-try:
-    from collections.abc import MutableMapping
-except ImportError:
-    from collections import MutableMapping
 
 import doctest
 import os
@@ -27,17 +21,12 @@ import re
 import sys
 import tempfile
 import traceback
+from collections.abc import MutableMapping
 from contextlib import contextmanager
 from datetime import datetime
 from datetime import timedelta
 
 from zope.testrunner.exceptions import DocTestFailureException
-
-
-try:
-    unicode
-except NameError:
-    unicode = str
 
 
 doctest_template = """
@@ -51,7 +40,7 @@ Got:
 """
 
 
-class OutputFormatter(object):
+class OutputFormatter:
     """Test runner output formatter."""
 
     # Implementation note: be careful about printing stuff to sys.stderr.
@@ -93,7 +82,7 @@ class OutputFormatter(object):
                 else:
                     pre = s[:pos+2]
                     post = s[-w:]
-                    s = "%s...%s" % (pre, post)
+                    s = "{}...{}".format(pre, post)
             else:
                 w = room - 4
                 s = '... ' + s[-w:]
@@ -230,10 +219,10 @@ class OutputFormatter(object):
 
     def detailed_refcounts(self, track, rc, prev):
         """Report a change in reference counts, with extra detail."""
-        print(("  sum detail refcount=%-8d"
-               " sys refcount=%-8d"
-               " change=%-6d"
-               % (track.n, rc, rc - prev)))
+        print("  sum detail refcount=%-8d"
+              " sys refcount=%-8d"
+              " change=%-6d"
+              % (track.n, rc, rc - prev))
         track.output()
 
     def start_set_up(self, layer_name):
@@ -439,16 +428,15 @@ def tigetnum(attr, default=None):
     try:
         import curses
     except ImportError:
-        # avoid reimporting a broken module in python 2.3
+        # avoid reimporting a broken module
         sys.modules['curses'] = None
     else:
         # If sys.stdout is not a real file object (e.g. in unit tests that
         # use various wrappers), you get an error, different depending on
         # Python version:
         expected_exceptions = (curses.error, TypeError, AttributeError)
-        if sys.version_info >= (3,):
-            import io
-            expected_exceptions += (io.UnsupportedOperation, )
+        import io
+        expected_exceptions += (io.UnsupportedOperation, )
         try:
             curses.setupterm()
         except expected_exceptions:
@@ -544,7 +532,7 @@ class ColorfulOutputFormatter(OutputFormatter):
                 prefix_code = code
                 break
         color_code = self.colorcodes[color]
-        return '\033[%s%sm' % (prefix_code, color_code)
+        return '\033[{}{}m'.format(prefix_code, color_code)
 
     def color(self, what):
         """Pick a named color from the color scheme"""
@@ -576,10 +564,10 @@ class ColorfulOutputFormatter(OutputFormatter):
         The next output operation should be stop_test().
         """
         if self.verbose > 2:
-            s = " (%sskipped: %s%s)" % (
+            s = " ({}skipped: {}{})".format(
                 self.color('skipped'), reason, self.color('info'))
         elif self.verbose > 1:
-            s = " (%sskipped%s)" % (
+            s = " ({}skipped{})".format(
                 self.color('skipped'), self.color('info'))
         else:
             return
@@ -621,7 +609,7 @@ class ColorfulOutputFormatter(OutputFormatter):
         """Format a time in seconds."""
         if n_seconds >= 60:
             n_minutes, n_seconds = divmod(n_seconds, 60)
-            return "%s minutes %s seconds" % (
+            return "{} minutes {} seconds".format(
                         self.colorize('number', '%d' % n_minutes, normal),
                         self.colorize('number', '%.3f' % n_seconds, normal))
         else:
@@ -764,7 +752,7 @@ class ColorfulOutputFormatter(OutputFormatter):
         print()
 
 
-class FakeTest(object):
+class FakeTest:
     """A fake test object that only has an id."""
 
     failureException = None
@@ -799,7 +787,7 @@ except (ImportError, AttributeError):
     testtools = None
 
 
-class _RunnableDecorator(object):
+class _RunnableDecorator:
     """Permit controlling the runnable annotation on tests.
 
     This decorates a StreamResult, adding a setRunnable context manager to
@@ -831,7 +819,7 @@ class _RunnableDecorator(object):
         self.decorated.status(**kwargs)
 
 
-class _SortedDict(MutableMapping, object):
+class _SortedDict(MutableMapping):
     """A dict that always returns items in sorted order.
 
     This differs from collections.OrderedDict in that it returns items in
@@ -862,7 +850,7 @@ class _SortedDict(MutableMapping, object):
         return len(self._dict)
 
 
-class SubunitOutputFormatter(object):
+class SubunitOutputFormatter:
     """A subunit output formatter.
 
     This output formatter generates subunit-compatible output (see
@@ -966,11 +954,11 @@ class SubunitOutputFormatter(object):
 
     def _enter_layer(self, layer_name):
         """Tell subunit that we are entering a layer."""
-        self._subunit.tags(['zope:layer:%s' % (layer_name,)], [])
+        self._subunit.tags(['zope:layer:{}'.format(layer_name)], [])
 
     def _exit_layer(self, layer_name):
         """Tell subunit that we are exiting a layer."""
-        self._subunit.tags([], ['zope:layer:%s' % (layer_name,)])
+        self._subunit.tags([], ['zope:layer:{}'.format(layer_name)])
 
     def info(self, message):
         """Print an informative message."""
@@ -993,7 +981,7 @@ class SubunitOutputFormatter(object):
         """Report an error."""
         # XXX: Mostly used for user errors, sometimes used for errors in the
         # test framework, sometimes used to record layer setUp failure (!!!).
-        self._stream.write('%s\n' % (message,))
+        self._stream.write('{}\n'.format(message))
 
     def error_with_banner(self, message):
         """Report an error with a big ASCII banner."""
@@ -1087,7 +1075,7 @@ class SubunitOutputFormatter(object):
         # summary information for the whole suite. However, there's no event
         # on output formatters for "everything is really finished, honest". --
         # jml, 2010-02-14
-        details = {'garbage': text_content(unicode(garbage))}
+        details = {'garbage': text_content(str(garbage))}
         self._emit_fake_test(self.TAG_GARBAGE, self.TAG_GARBAGE, details)
 
     def test_garbage(self, test, garbage):
@@ -1104,7 +1092,7 @@ class SubunitOutputFormatter(object):
         self._subunit.startTest(test)
         self._subunit.tags([self.TAG_GARBAGE], [])
         self._subunit.addError(
-            test, details={'garbage': text_content(unicode(garbage))})
+            test, details={'garbage': text_content(str(garbage))})
         self._subunit.stopTest(test)
 
     def test_threads(self, test, new_threads):
@@ -1117,7 +1105,7 @@ class SubunitOutputFormatter(object):
         self._subunit.startTest(test)
         self._subunit.tags([self.TAG_THREADS], [])
         self._subunit.addError(
-            test, details={'threads': text_content(unicode(new_threads))})
+            test, details={'threads': text_content(str(new_threads))})
         self._subunit.stopTest(test)
 
     def test_cycles(self, test, cycles):
@@ -1151,7 +1139,7 @@ class SubunitOutputFormatter(object):
 
         The next output operation should be stop_set_up().
         """
-        test = FakeTest('%s:setUp' % (layer_name,))
+        test = FakeTest('{}:setUp'.format(layer_name))
         now = self._emit_timestamp()
         with self._subunit.setRunnable(False):
             self._subunit.startTest(test)
@@ -1165,7 +1153,7 @@ class SubunitOutputFormatter(object):
         """
         layer_name, start_time = self._last_layer
         self._last_layer = None
-        test = FakeTest('%s:setUp' % (layer_name,))
+        test = FakeTest('{}:setUp'.format(layer_name))
         self._emit_timestamp(start_time + timedelta(seconds=seconds))
         with self._subunit.setRunnable(False):
             self._subunit.addSuccess(test)
@@ -1175,7 +1163,7 @@ class SubunitOutputFormatter(object):
     def layer_failure(self, failure_type, exc_info):
         layer_name, start_time = self._last_layer
         self._emit_failure(
-            '%s:%s' % (layer_name, failure_type), self.TAG_LAYER, exc_info)
+            '{}:{}'.format(layer_name, failure_type), self.TAG_LAYER, exc_info)
 
     def start_tear_down(self, layer_name):
         """Report that we're tearing down a layer.
@@ -1187,7 +1175,7 @@ class SubunitOutputFormatter(object):
         The next output operation should be stop_tear_down() or
         tear_down_not_supported().
         """
-        test = FakeTest('%s:tearDown' % (layer_name,))
+        test = FakeTest('{}:tearDown'.format(layer_name))
         self._exit_layer(layer_name)
         now = self._emit_timestamp()
         with self._subunit.setRunnable(False):
@@ -1202,7 +1190,7 @@ class SubunitOutputFormatter(object):
         """
         layer_name, start_time = self._last_layer
         self._last_layer = None
-        test = FakeTest('%s:tearDown' % (layer_name,))
+        test = FakeTest('{}:tearDown'.format(layer_name))
         self._emit_timestamp(start_time + timedelta(seconds=seconds))
         with self._subunit.setRunnable(False):
             self._subunit.addSuccess(test)
@@ -1215,7 +1203,7 @@ class SubunitOutputFormatter(object):
         """
         layer_name, start_time = self._last_layer
         self._last_layer = None
-        test = FakeTest('%s:tearDown' % (layer_name,))
+        test = FakeTest('{}:tearDown'.format(layer_name))
         self._emit_timestamp()
         with self._subunit.setRunnable(False):
             self._subunit.addSkip(test, 'tearDown not supported')
@@ -1259,19 +1247,19 @@ class SubunitOutputFormatter(object):
         formatter = OutputFormatter(None)
         traceback = formatter.format_traceback(exc_info)
 
-        # We have no idea if the traceback is a unicode object or a
+        # We have no idea if the traceback is a str object or a
         # bytestring with non-ASCII characters.  We had best be careful when
         # handling it.
         if isinstance(traceback, bytes):
             # Assume the traceback was UTF-8-encoded, but still be careful.
-            unicode_tb = traceback.decode('utf-8', 'replace')
+            str_tb = traceback.decode('utf-8', 'replace')
         else:
-            unicode_tb = traceback
+            str_tb = traceback
 
         return _SortedDict({
             'traceback': Content(
                 self.TRACEBACK_CONTENT_TYPE,
-                lambda: [unicode_tb.encode('utf8')]),
+                lambda: [str_tb.encode('utf8')]),
         })
 
     def _add_std_streams_to_details(self, details, stdout, stderr):
@@ -1339,7 +1327,7 @@ class SubunitV2OutputFormatter(SubunitOutputFormatter):
         # XXX: Mostly used for user errors, sometimes used for errors in the
         # test framework, sometimes used to record layer setUp failure (!!!).
         self._subunit.status(
-            file_name='error', file_bytes=unicode(message).encode('utf-8'),
+            file_name='error', file_bytes=str(message).encode('utf-8'),
             eof=True, mime_type=repr(self.PLAIN_TEXT))
 
     def _emit_exists(self, test):

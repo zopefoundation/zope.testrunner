@@ -27,7 +27,6 @@ version = '6.0.dev0'
 
 INSTALL_REQUIRES = [
     'setuptools',
-    'six',
     'zope.exceptions',
     'zope.interface',
 ]
@@ -133,7 +132,7 @@ setup(
     description='Zope testrunner script.',
     long_description=long_description,
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     packages=[
         "zope",
         "zope.testrunner",
@@ -147,11 +146,7 @@ setup(
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -163,7 +158,7 @@ setup(
         "Topic :: Software Development :: Testing",
     ],
     namespace_packages=['zope'],
-    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
+    python_requires='>=3.7',
     install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
     extras_require=EXTRAS_REQUIRE,

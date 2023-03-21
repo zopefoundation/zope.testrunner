@@ -23,7 +23,7 @@ import zope.testrunner.feature
 class Threshold(zope.testrunner.feature.Feature):
 
     def __init__(self, runner):
-        super(Threshold, self).__init__(runner)
+        super().__init__(runner)
         self.threshold = self.runner.options.gc
         self.active = bool(self.threshold)
 
@@ -55,7 +55,7 @@ class Debug(zope.testrunner.feature.Feature):
     """Manages garbage collection debug flags."""
 
     def __init__(self, runner):
-        super(Debug, self).__init__(runner)
+        super().__init__(runner)
         self.flags = self.runner.options.gc_option
         self.active = bool(self.flags)
 

@@ -20,7 +20,7 @@ import zope.testrunner.interfaces
 
 
 @zope.interface.implementer(zope.testrunner.interfaces.IFeature)
-class Feature(object):
+class Feature:
     """A base class implementing no-op methods for the IFeature interface."""
 
     active = False

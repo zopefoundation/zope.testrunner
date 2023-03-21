@@ -22,7 +22,7 @@ from ..threadsupport import current_frames
 from ..threadsupport import enumerate
 
 
-class ThreadMixin(object):
+class ThreadMixin:
     """test thread."""
     def __init__(self):
         self.lock = Lock()

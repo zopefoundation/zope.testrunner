@@ -2,8 +2,6 @@ from sys import exc_info
 from unittest import TestCase
 from warnings import warn
 
-from six import PY2
-
 
 class GcAfterTestTests(TestCase):
     def tearDown(self):
@@ -42,14 +40,14 @@ class GcAfterTestTests(TestCase):
         f()
 
 
-class _Cycle(object):
+class _Cycle:
     """Auxiliary class creating a reference cycle."""
     def __init__(self, **kw):
         self.self = self  # create reference cycle
         self.__dict__.update(kw)
 
 
-class _Resource(object):
+class _Resource:
     """Auxiliary class emulating a resource."""
     closed = False
 
@@ -59,8 +57,3 @@ class _Resource(object):
     def __del__(self):
         if not self.closed:
             warn(ResourceWarning("not closed"))
-
-
-if PY2:
-    class ResourceWarning(Warning):
-        pass

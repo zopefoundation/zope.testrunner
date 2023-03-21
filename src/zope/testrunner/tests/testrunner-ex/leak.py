@@ -21,7 +21,7 @@ class ClassicLeakable:
         self.x = 'x'
 
 
-class Leakable(object):
+class Leakable:
     def __init__(self):
         self.x = 'x'
 

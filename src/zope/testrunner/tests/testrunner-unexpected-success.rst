@@ -1,10 +1,7 @@
 testrunner handling of unexpected success
 =========================================
 
-Python 2.7 introduced the concept of expectedFailures to unittest.
-See http://www.voidspace.org.uk/python/articles/unittest2.shtml#more-skipping
-
-Although testrunner is currently not able to hande unexpected successes
+Although testrunner is currently not able to handle unexpected successes
 correctly at least it does not report them as successes.
 
 

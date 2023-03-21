@@ -13,10 +13,10 @@
 ##############################################################################
 """Test harness for the test runner itself.
 """
-from __future__ import print_function
 
 import doctest
 import gc
+import io
 import os
 import re
 import sys
@@ -99,21 +99,6 @@ if sys.platform == 'win32':
         # (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
         (re.compile('import pdb; pdb'), 'Pdb()'),  # Py 2.3
 
-        # Python 3 exceptions are from the builtins module
-        (re.compile(r'builtins\.(SyntaxError|TypeError)'),
-         r'exceptions.\1'),
-
-        # Python 3.6 introduces ImportError subclasses
-        (re.compile(r'ModuleNotFoundError:'), 'ImportError:'),
-
-        # Python 3.3 has better exception messages
-        (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
-         r'ImportError: No module named \1'),
-
-        # PyPy has different exception messages too
-        (re.compile("ImportError: No module named "
-                    "(?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
-         r'ImportError: No module named \1'),
         (re.compile("NameError: global name '([^']*)' is not defined"),
          r"NameError: name '\1' is not defined"),
 
@@ -169,67 +154,44 @@ else:
                     r'(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
-        (re.compile('import pdb; pdb'), 'Pdb()'),  # Py 2.3
-
-        # Python 3 exceptions are from the builtins module
-        (re.compile(r'builtins\.(SyntaxError|TypeError)'),
-         r'exceptions.\1'),
-
-        # Python 3.6 introduces ImportError subclasses
-        (re.compile(r'ModuleNotFoundError:'), 'ImportError:'),
-
-        # Python 3.3 has better exception messages
-        (re.compile("ImportError: No module named '(?:[^']*[.])?([^'.]*)'"),
-         r'ImportError: No module named \1'),
-
-        # PyPy has different exception messages too
-        (re.compile("ImportError: No module named "
-                    "(?:[a-zA-Z_0-9.]*[.])?([a-zA-Z_0-9]*)"),
-         r'ImportError: No module named \1'),
-        (re.compile("NameError: global name '([^']*)' is not defined"),
-         r"NameError: name '\1' is not defined"),
-
         ])
 
 
-# On Python 3, monkey-patch doctest with our own _SpoofOut replacement.  We
+# Monkey-patch doctest with our own _SpoofOut replacement.  We
 # need sys.stdout to be binary-capable so that we can pass through binary
 # output from test formatters cleanly, which is in particular required for
 # subunit.  We don't expect to be able to do actual binary comparisons in
 # doctests, but that's OK.
 # See https://github.com/zopefoundation/zope.testrunner/pull/23 for the
 # background.
-if sys.version_info[0] >= 3:
-    import io
 
-    class _SpoofOut(io.TextIOWrapper):
-        def __init__(self):
-            super(_SpoofOut, self).__init__(io.BytesIO(), encoding='utf-8')
+class _SpoofOut(io.TextIOWrapper):
+    def __init__(self):
+        super().__init__(io.BytesIO(), encoding='utf-8')
 
-        def write(self, s):
-            super(_SpoofOut, self).write(s)
-            # Always flush immediately so that getvalue() never returns
-            # short results.
-            self.flush()
+    def write(self, s):
+        super().write(s)
+        # Always flush immediately so that getvalue() never returns
+        # short results.
+        self.flush()
 
-        def getvalue(self):
-            result = self.buffer.getvalue().decode('utf-8', 'replace')
-            # If anything at all was written, make sure there's a trailing
-            # newline.  There's no way for the expected output to indicate
-            # that a trailing newline is missing.
-            if result and not result.endswith("\n"):
-                result += "\n"
-            # We're reading bytes, so we have to do universal newlines
-            # conversion by hand.
-            return result.replace(os.linesep, '\n')
+    def getvalue(self):
+        result = self.buffer.getvalue().decode('utf-8', 'replace')
+        # If anything at all was written, make sure there's a trailing
+        # newline.  There's no way for the expected output to indicate
+        # that a trailing newline is missing.
+        if result and not result.endswith("\n"):
+            result += "\n"
+        # We're reading bytes, so we have to do universal newlines
+        # conversion by hand.
+        return result.replace(os.linesep, '\n')
 
-        def truncate(self, size=None):
-            self.seek(size)
-            super(_SpoofOut, self).truncate()
+    def truncate(self, size=None):
+        self.seek(size)
+        super().truncate()
 
 
 def setUp(test):
-    test.globs['print_function'] = print_function
     test.globs['saved-sys-info'] = (
         sys.path[:],
         sys.argv[:],
@@ -237,9 +199,8 @@ def setUp(test):
     )
     if hasattr(gc, 'get_threshold'):
         test.globs['saved-gc-threshold'] = gc.get_threshold()
-    if sys.version_info[0] >= 3:
-        test.globs['saved-doctest-SpoofOut'] = doctest._SpoofOut
-        doctest._SpoofOut = _SpoofOut
+    test.globs['saved-doctest-SpoofOut'] = doctest._SpoofOut
+    doctest._SpoofOut = _SpoofOut
     test.globs['this_directory'] = os.path.split(__file__)[0]
     test.globs['testrunner_script'] = sys.argv[0]
 
@@ -250,8 +211,7 @@ def tearDown(test):
         gc.set_threshold(*test.globs['saved-gc-threshold'])
     sys.modules.clear()
     sys.modules.update(test.globs['saved-sys-info'][2])
-    if sys.version_info[0] >= 3:
-        doctest._SpoofOut = test.globs['saved-doctest-SpoofOut']
+    doctest._SpoofOut = test.globs['saved-doctest-SpoofOut']
 
 
 def test_suite():
@@ -397,8 +357,7 @@ def test_suite():
                      'N.NNN seconds'),
                     (re.compile(r'\(\d+[.]\d\d\d s\)'),
                      '(N.NNN s)'),
-                    # objects on cycle differ between PY2 and PY3
-                    # and different python 3 versions
+                    # objects on cycle differ between different python versions
                     (re.compile(r'\[\d+\]'), '[C]')])))
 
     try:

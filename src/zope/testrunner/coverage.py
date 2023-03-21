@@ -83,7 +83,7 @@ class TestTrace(trace.Trace):
         self.started = False
 
 
-class TestIgnore(object):
+class TestIgnore:
 
     def __init__(self, directories):
         self._test_dirs = [self._filenameFormat(d[0]) + os.path.sep
@@ -130,7 +130,7 @@ class Coverage(zope.testrunner.feature.Feature):
     directory = None
 
     def __init__(self, runner):
-        super(Coverage, self).__init__(runner)
+        super().__init__(runner)
         self.active = bool(runner.options.coverage)
 
     def global_setup(self):

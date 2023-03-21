@@ -16,7 +16,6 @@
 
 import math
 import random
-import sys
 import time
 
 import zope.testrunner.feature
@@ -26,7 +25,7 @@ class Shuffle(zope.testrunner.feature.Feature):
     """Take the tests found so far and shuffle them."""
 
     def __init__(self, runner):
-        super(Shuffle, self).__init__(runner)
+        super().__init__(runner)
         self.active = runner.options.shuffle
         self.seed = runner.options.shuffle_seed
         if self.seed is None:
@@ -37,9 +36,8 @@ class Shuffle(zope.testrunner.feature.Feature):
 
     def global_setup(self):
         rng = random.Random(self.seed)
-        if sys.version_info >= (3, 2):
-            # in case somebody tries to use a string as the seed
-            rng.seed(self.seed, version=1)
+        # in case somebody tries to use a string as the seed
+        rng.seed(self.seed, version=1)
         # Be careful to shuffle the layers in a deterministic order!
         for layer, suite in sorted(self.runner.tests_by_layer_name.items()):
             # Test suites cannot be modified through a public API.  We thus
@@ -59,9 +57,8 @@ class Shuffle(zope.testrunner.feature.Feature):
             floor = math.floor
             for i in reversed(range(1, len(tests))):
                 # Pick an element in tests[:i+1] with which to exchange
-                # tests[i].  math.floor returns a float on Python 2, so we
-                # need int() until we drop Python 2 support.
-                j = int(floor(rng.random() * (i + 1)))
+                # tests[i].
+                j = floor(rng.random() * (i + 1))
                 tests[i], tests[j] = tests[j], tests[i]
             self.runner.tests_by_layer_name[layer] = suite.__class__(tests)
 

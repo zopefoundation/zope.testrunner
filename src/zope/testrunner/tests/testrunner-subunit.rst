@@ -209,7 +209,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
             x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
-        NameError: global name 'y' is not defined
+        NameError: name 'y' is not defined
     0\r
     <BLANKLINE>
     ]
@@ -237,7 +237,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
         x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
-    NameError: global name 'y' is not defined
+    NameError: name 'y' is not defined
     0\r
     <BLANKLINE>
     ]
@@ -270,7 +270,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
             f()
           File "<doctest e.rst[0]>", Line NNN, in f
             return x
-        NameError: global name 'x' is not defined
+        NameError: name 'x' is not defined
     0\r
     <BLANKLINE>
     ]
@@ -487,7 +487,7 @@ Let's run tests including a module with some bad syntax:
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
         import zope.testrunner.huh  # noqa: F401...
-    ImportError: No module named huh
+    ModuleNotFoundError: No module named 'zope.testrunner.huh'
     ]
     test: sample2.sample23.sampletests_i
     tags: zope:import_error
@@ -703,7 +703,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     16A\r
     <BLANKLINE>
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 42, in test_error1
         raise TypeError("Can we see errors")
@@ -723,7 +723,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     15A\r
     <BLANKLINE>
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 45, in test_error2
         raise TypeError("I hope so")
@@ -743,11 +743,11 @@ Note that debugging doesn't work when running tests in a subprocess:
     1C5\r
     <BLANKLINE>
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 48, in test_fail1
         self.assertEqual(1, 2)
-      File "/usr/lib/python2.6/unittest.py", line 350, in failUnlessEqual
+      File "/usr/lib/python3.11/unittest.py", line 350, in failUnlessEqual
         (msg or '%r != %r' % (first, second))
     AssertionError: 1 != 2
     0\r
@@ -765,11 +765,11 @@ Note that debugging doesn't work when running tests in a subprocess:
     1C5\r
     <BLANKLINE>
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 51, in test_fail2
         self.assertEqual(1, 3)
-      File "/usr/lib/python2.6/unittest.py", line 350, in failUnlessEqual
+      File "/usr/lib/python3.11/unittest.py", line 350, in failUnlessEqual
         (msg or '%r != %r' % (first, second))
     AssertionError: 1 != 3
     0\r

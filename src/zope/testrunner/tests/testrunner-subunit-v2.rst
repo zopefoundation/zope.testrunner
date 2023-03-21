@@ -56,18 +56,12 @@ For easier doctesting, we use a helper that summarizes the output.
     >>> def subunit_summarize(func, *args, **kwargs):
     ...     orig_stdout = sys.stdout
     ...     try:
-    ...         if sys.version_info[0] >= 3:
-    ...             import io
-    ...             sys.stdout = io.TextIOWrapper(
-    ...                 io.BytesIO(), encoding='utf-8')
-    ...         else:
-    ...             import StringIO
-    ...             sys.stdout = StringIO.StringIO()
+    ...         import io
+    ...         sys.stdout = io.TextIOWrapper(io.BytesIO(), encoding='utf-8')
     ...         ret = func(*args, **kwargs)
     ...         sys.stdout.flush()
     ...         buf = sys.stdout
-    ...         if sys.version_info[0] >= 3:
-    ...             buf = buf.detach()
+    ...         buf = buf.detach()
     ...         buf.seek(0)
     ...     finally:
     ...         sys.stdout = orig_stdout
@@ -235,7 +229,7 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
             x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
-        NameError: global name 'y' is not defined
+        NameError: name 'y' is not defined
     <BLANKLINE>
     id=sample2.sampletests_e.eek status=fail
       tags=(zope:layer:zope.testrunner.layer.UnitTests)
@@ -256,7 +250,7 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
         x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
-    NameError: global name 'y' is not defined
+    NameError: name 'y' is not defined
     <BLANKLINE>
     id=sample2.sampletests_e.Test.test3 status=fail
       tags=(zope:layer:zope.testrunner.layer.UnitTests)
@@ -282,7 +276,7 @@ https://bugs.launchpad.net/subunit/+bug/1740158.)
             f()
           File "<doctest e.rst[0]>", Line NNN, in f
             return x
-        NameError: global name 'x' is not defined
+        NameError: name 'x' is not defined
     <BLANKLINE>
     id=e_rst status=fail tags=(zope:layer:zope.testrunner.layer.UnitTests)
     id=zope.testrunner.layer.UnitTests:tearDown status=inprogress !runnable
@@ -455,7 +449,7 @@ Let's run tests including a module with some bad syntax:
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
         import zope.testrunner.huh  # noqa: F401...
-    ImportError: No module named huh
+    ModuleNotFoundError: No module named 'zope.testrunner.huh'
     <BLANKLINE>
     id=sample2.sample21.sampletests_i status=fail tags=(zope:import_error)
     id=sample2.sample23.sampletests_i status=inprogress
@@ -613,7 +607,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     id=sample3.sampletests_ntd.TestSomething.test_error1
     traceback (text/x-traceback...)
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 42, in test_error1
         raise TypeError("Can we see errors")
@@ -631,7 +625,7 @@ Note that debugging doesn't work when running tests in a subprocess:
     id=sample3.sampletests_ntd.TestSomething.test_error2
     traceback (text/x-traceback...)
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 45, in test_error2
         raise TypeError("I hope so")
@@ -649,11 +643,11 @@ Note that debugging doesn't work when running tests in a subprocess:
     id=sample3.sampletests_ntd.TestSomething.test_fail1
     traceback (text/x-traceback...)
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 48, in test_fail1
         self.assertEqual(1, 2)
-      File "/usr/lib/python2.6/unittest.py", line 350, in failUnlessEqual
+      File "/usr/lib/python3.11/unittest.py", line 350, in failUnlessEqual
         (msg or '%r != %r' % (first, second))
     AssertionError: 1 != 2
     <BLANKLINE>
@@ -669,11 +663,11 @@ Note that debugging doesn't work when running tests in a subprocess:
     id=sample3.sampletests_ntd.TestSomething.test_fail2
     traceback (text/x-traceback...)
     Traceback (most recent call last):
-      File "/usr/lib/python2.6/unittest.py", line 305, in debug
+      File "/usr/lib/python3.11/unittest.py", line 305, in debug
         getattr(self, self._testMethodName)()
       File "/home/jml/src/zope.testrunner/subunit-output-formatter/src/zope/testing/testrunner/testrunner-ex/sample3/sampletests_ntd.py", line 51, in test_fail2
         self.assertEqual(1, 3)
-      File "/usr/lib/python2.6/unittest.py", line 350, in failUnlessEqual
+      File "/usr/lib/python3.11/unittest.py", line 350, in failUnlessEqual
         (msg or '%r != %r' % (first, second))
     AssertionError: 1 != 3
     <BLANKLINE>
