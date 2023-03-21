@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-5.7 (unreleased)
+6.0 (unreleased)
 ================
 
 - Nothing changed yet.
