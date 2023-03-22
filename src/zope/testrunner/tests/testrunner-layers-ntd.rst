@@ -213,7 +213,7 @@ that is run as a subprocess:
     **********************************************************************
     <BLANKLINE>
     --Return--
-    > doctest.py(351)set_trace()->None
+    > <doctest sample2.sampletests_ntds.test_set_trace[0]>(3)?()
     -> import pdb; pdb.set_trace()
     (Pdb) c
     <BLANKLINE>
@@ -222,7 +222,7 @@ that is run as a subprocess:
     **********************************************************************
     <BLANKLINE>
     --Return--
-    > doctest.py(351)set_trace()->None
+    > testrunner-ex/sample2/sampletests_ntds.py(NNN)f()
     -> import pdb; pdb.set_trace()
     (Pdb) c
     <BLANKLINE>

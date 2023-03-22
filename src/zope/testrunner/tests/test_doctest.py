@@ -31,21 +31,10 @@ from ..util import uses_refcounts
 # because it s...s to maintain just one
 if sys.platform == 'win32':
     checker = renormalizing.RENormalizing([
-        # 2.5 changed the way pdb reports exceptions
-        (re.compile(r"<class 'exceptions.(\w+)Error'>:"),
-         r'exceptions.\1Error:'),
-
-        # rewrite pdb prompt to ... the current location
-        # windows, py2.4 pdb seems not to put the '>' on doctest locations
-        # therefore we cut it here
-        (re.compile('^> doctest[^\n]+->None$', re.M), '...->None'),
-
-        # rewrite pdb prompt to ... the current location
-        (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
+        # rewrite pdb prompt for coverage runs:
+        (re.compile('->None'), ''),
 
         (re.compile(r"<module>"), (r'?')),
-        (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
-         r'exceptions.\1Error:'),
 
         # testtools content formatter is used to mime-encode
         # tracebacks when the SubunitOutputFormatter is used, and the
@@ -101,16 +90,10 @@ if sys.platform == 'win32':
 else:
     # *nix
     checker = renormalizing.RENormalizing([
-        # 2.5 changed the way pdb reports exceptions
-        (re.compile(r"<class 'exceptions.(\w+)Error'>:"),
-         r'exceptions.\1Error:'),
-
-        # rewrite pdb prompt to ... the current location
-        (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
+        # rewrite pdb prompt for coverage runs:
+        (re.compile('->None'), ''),
 
         (re.compile(r"<module>"), (r'?')),
-        (re.compile(r"<type 'exceptions.(\w+)Error'>:"),
-         r'exceptions.\1Error:'),
 
         # this is a magic to put linefeeds into the doctest
         # on win it takes one step, linux is crazy about the same...
