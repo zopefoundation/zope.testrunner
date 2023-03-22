@@ -56,4 +56,6 @@ class _Resource:
 
     def __del__(self):
         if not self.closed:
-            warn(ResourceWarning("not closed"))
+            warn(ResourceWarning(
+                "not closed"
+                " - this is no error: testing ResourceWarning here"))
