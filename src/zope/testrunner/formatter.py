@@ -13,9 +13,8 @@
 ##############################################################################
 """Output formatting.
 """
-
-
 import doctest
+import io
 import os
 import re
 import sys
@@ -434,9 +433,8 @@ def tigetnum(attr, default=None):
         # If sys.stdout is not a real file object (e.g. in unit tests that
         # use various wrappers), you get an error, different depending on
         # Python version:
-        expected_exceptions = (curses.error, TypeError, AttributeError)
-        import io
-        expected_exceptions += (io.UnsupportedOperation, )
+        expected_exceptions = (
+            curses.error, TypeError, AttributeError, io.UnsupportedOperation)
         try:
             curses.setupterm()
         except expected_exceptions:
