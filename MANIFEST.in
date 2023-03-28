@@ -13,5 +13,6 @@ recursive-include docs Makefile
 
 recursive-include src *.py
 include *.md
+include *.yaml
 recursive-include src *.rst
 recursive-include src *.ini
