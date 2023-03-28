@@ -17,7 +17,7 @@
 from itertools import count
 
 
-class DiGraph(object):
+class DiGraph:
     """Directed graph.
 
     A directed graph is a set of nodes together with a
@@ -186,7 +186,7 @@ class DiGraph(object):
                     visits.extend(self._neighbors.get(node, ()))
 
 
-class _TarjanState(object):
+class _TarjanState:
     """representation of a node's processing state."""
     __slots__ = "stacked dfs low".split()
 

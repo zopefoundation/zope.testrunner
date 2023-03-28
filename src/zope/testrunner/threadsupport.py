@@ -31,12 +31,12 @@ else:
     def enumerate():
         """return sequence of proxies for the currently running threads."""
         running = set(current_frames())
-        th_known = dict((t.ident, t) for t in threading.enumerate())
+        th_known = {t.ident: t for t in threading.enumerate()}
         return [ThreadProxy(th_known[i] if i in th_known else DummyThread(i))
                 for i in running]
 
 
-class ThreadProxy(object):
+class ThreadProxy:
     """auxiliary class to provide ident based ``__eq__``."""
     def __init__(self, thread):
         self.thread = thread
@@ -51,7 +51,7 @@ class ThreadProxy(object):
         return getattr(self.thread, k)
 
 
-class DummyThread(object):
+class DummyThread:
     """auxiliary to represent a thread unknown to ``threading``."""
     def __init__(self, ident):
         self.ident = ident

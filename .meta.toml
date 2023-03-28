@@ -2,11 +2,10 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 [meta]
 template = "pure-python"
-commit-id = "180c99ed3def7da6e173a5a496cad6484eadd044"
+commit-id = "1514f236"
 
 [python]
 with-pypy = true
-with-legacy-python = true
 with-docs = true
 with-sphinx-doctests = false
 with-windows = true
@@ -42,7 +41,7 @@ additional-config = [
 
 [tox]
 additional-envlist = [
-    "py{27,35,36,37,38,39,310,311,py,py3}-subunit",
+    "py{37,38,39,310,311,py3}-subunit",
     ]
 testenv-deps = [
     ]
@@ -54,17 +53,10 @@ use-flake8 = true
 
 [github-actions]
 additional-config = [
-    "- [\"2.7\",   \"py27-subunit\"]",
-    "- [\"3.5\",   \"py35-subunit\"]",
-    "- [\"3.6\",   \"py36-subunit\"]",
     "- [\"3.7\",   \"py37-subunit\"]",
     "- [\"3.8\",   \"py38-subunit\"]",
     "- [\"3.9\",   \"py39-subunit\"]",
     "- [\"3.10\",  \"py310-subunit\"]",
     "- [\"3.11\",  \"py311-subunit\"]",
-    "- [\"pypy-2.7\", \"pypy-subunit\"]",
-    "- [\"pypy-3.7\", \"pypy3-subunit\"]",
-    ]
-additional-exclude = [
-    "- { os: [\"windows\", \"windows-latest\"], config: [\"pypy-2.7\", \"pypy-subunit\"] }",
+    "- [\"pypy-3.9\", \"pypy3-subunit\"]",
     ]

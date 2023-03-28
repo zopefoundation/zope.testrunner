@@ -13,7 +13,6 @@
 ##############################################################################
 """Subprocess support.
 """
-from __future__ import print_function
 
 import sys
 
@@ -24,7 +23,7 @@ class SubProcess(zope.testrunner.feature.Feature):
     """Lists all tests in the report instead of running the tests."""
 
     def __init__(self, runner):
-        super(SubProcess, self).__init__(runner)
+        super().__init__(runner)
         self.active = bool(runner.options.resume_layer)
 
     def global_setup(self):
@@ -50,5 +49,4 @@ class SubProcess(zope.testrunner.feature.Feature):
         for test, exc_info in self.runner.errors:
             print(' '.join(str(test).strip().split('\n')),
                   file=self.original_stderr)
-        # You need to flush in Python 3, and it doesn't hurt in Python 2:
         self.original_stderr.flush()

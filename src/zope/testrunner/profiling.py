@@ -25,7 +25,7 @@ import zope.testrunner.feature
 available_profilers = {}
 
 
-class CProfiler(object):
+class CProfiler:
     """cProfiler"""
     def __init__(self, filepath):
         self.filepath = filepath
@@ -52,7 +52,7 @@ available_profilers['cProfile'] = CProfiler
 class Profiling(zope.testrunner.feature.Feature):
 
     def __init__(self, runner):
-        super(Profiling, self).__init__(runner)
+        super().__init__(runner)
         self.active = bool(self.runner.options.profile)
         self.profiler = self.runner.options.profile
 

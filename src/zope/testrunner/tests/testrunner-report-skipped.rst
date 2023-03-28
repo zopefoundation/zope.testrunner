@@ -1,8 +1,7 @@
 testrunner handling of skipped tests
 ====================================
 
-`unittest 2`_, which has been merged into Python 2.7 and Python 3.1, provides a
-way to "skip" tests:
+``unittest``  provides a way to "skip" tests, see
 http://docs.python.org/2/library/unittest.html#skipping-tests-and-expected-failures
 
 This feature is reported by the test runner.

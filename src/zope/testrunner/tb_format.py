@@ -22,30 +22,25 @@ import zope.exceptions.exceptionformatter
 import zope.testrunner.feature
 
 
-try:
-    _iter_chain = traceback._iter_chain
-except AttributeError:
-    # Python 3.5
-    def _iter_chain(exc, custom_tb=None, seen=None):
-        if seen is None:
-            seen = set()
-        seen.add(exc)
-        its = []
-        context = exc.__context__
-        cause = exc.__cause__
-        if cause is not None and cause not in seen:
-            its.append(_iter_chain(cause, False, seen))
-            its.append([(traceback._cause_message, None)])
-        elif (context is not None and
-              not exc.__suppress_context__ and
-              context not in seen):
-            its.append(_iter_chain(context, None, seen))
-            its.append([(traceback._context_message, None)])
-        its.append([(exc, custom_tb or exc.__traceback__)])
-        # itertools.chain is in an extension module and may be unavailable
-        for it in its:
-            for x in it:
-                yield x
+def _iter_chain(exc, custom_tb=None, seen=None):
+    if seen is None:
+        seen = set()
+    seen.add(exc)
+    its = []
+    context = exc.__context__
+    cause = exc.__cause__
+    if cause is not None and cause not in seen:
+        its.append(_iter_chain(cause, False, seen))
+        its.append([(traceback._cause_message, None)])
+    elif (context is not None and
+            not exc.__suppress_context__ and
+            context not in seen):
+        its.append(_iter_chain(context, None, seen))
+        its.append([(traceback._context_message, None)])
+    its.append([(exc, custom_tb or exc.__traceback__)])
+    # itertools.chain is in an extension module and may be unavailable
+    for it in its:
+        yield from it
 
 
 def format_exception(t, v, tb, limit=None, chain=None):

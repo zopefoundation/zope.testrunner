@@ -1,6 +1,5 @@
 """ Add unit and functional testing support to setuptools-driven eggs.
 """
-from __future__ import print_function
 
 from setuptools.command.test import ScanningLoader
 from setuptools.command.test import test as BaseCommand

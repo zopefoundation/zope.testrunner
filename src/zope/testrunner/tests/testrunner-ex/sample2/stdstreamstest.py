@@ -21,7 +21,7 @@ import unittest
 class Test(unittest.TestCase):
 
     def _getStreamBuffer(self, stream):
-        return stream.buffer if sys.version_info[0] >= 3 else stream
+        return stream.buffer
 
     def test_stdout_success(self):
         sys.stdout.write("stdout output on success\n")

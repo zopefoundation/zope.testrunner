@@ -9,7 +9,7 @@ setup.
     ...     with open(os.path.join(dir, filename), 'w') as f:
     ...         f.write(body)
     ...     try:
-    ...         # Need to do this on Python 3.3 after creating new modules
+    ...         # Need to do this after creating new modules:
     ...         import importlib; importlib.invalidate_caches()
     ...     except (ImportError, AttributeError):
     ...         pass
@@ -32,7 +32,7 @@ setup.
     ...     suite = doctest.DocTestSuite()
     ...     suite.layer = Layer
     ...     return suite
-    ... 
+    ...
     ... ''')
 
     >>> class Input:
@@ -86,7 +86,7 @@ a subprocess:
     ...     def setUp(self):
     ...         x = 1
     ...         raise ValueError
-    ...     
+    ...
     ... def a_test():
     ...     """
     ...     >>> None
@@ -97,7 +97,7 @@ a subprocess:
     ...     suite2 = doctest.DocTestSuite()
     ...     suite2.layer = Layer2
     ...     return unittest.TestSuite((suite1, suite2))
-    ... 
+    ...
     ... ''')
 
     >>> import sys
@@ -136,5 +136,3 @@ a subprocess:
     True
 
     >>> shutil.rmtree(tdir)
-
-

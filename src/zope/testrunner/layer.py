@@ -16,11 +16,11 @@
 import unittest
 
 
-class UnitTests(object):
+class UnitTests:
     """A layer for gathering all unit tests."""
 
 
-class EmptyLayer(object):
+class EmptyLayer:
     """An empty layer to start spreading out subprocesses."""
 
     __bases__ = ()

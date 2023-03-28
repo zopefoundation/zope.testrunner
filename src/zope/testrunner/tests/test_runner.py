@@ -35,10 +35,10 @@ class TestLayerOrdering(unittest.TestCase):
         #   /|\    /
         #  / | \  /
         # A1 A2 AB
-        class A(object): pass
+        class A: pass
         class A1(A): pass
         class A2(A): pass
-        class B(object): pass
+        class B: pass
         class AB(A, B): pass
         self.assertEqual(self.order(B, A1, A2, A1, AB, UnitTests),
                          'UnitTests, A1, A2, B, AB')
@@ -49,9 +49,9 @@ class TestLayerOrdering(unittest.TestCase):
         self.assertEqual(self.sort_key(AB), 'B, A, AB')
 
     def test_order_by_bases_alphabetical_order(self):
-        class X(object): pass
-        class Y(object): pass
-        class Z(object): pass
+        class X: pass
+        class Y: pass
+        class Z: pass
         class A(Y): pass
         class B(X): pass
         class C(Z): pass
@@ -69,7 +69,7 @@ class TestLayerOrdering(unittest.TestCase):
         #    C   E
         #     \ /
         #      F
-        class A(object): pass
+        class A: pass
         class B(A): pass
         class C(B): pass
         class D(A): pass
@@ -92,7 +92,7 @@ class TestLayerOrdering(unittest.TestCase):
         #    /  \  \
         # AAAABD \ MMMACF
         #      ZZZABE
-        class A(object): pass
+        class A: pass
         class AB(A): pass
         class AC(A): pass
         class AAAABD(AB): pass
@@ -140,9 +140,9 @@ class TestLayerOrdering(unittest.TestCase):
         #   B   C
         #    \ /
         #     A
-        class F(object): pass
-        class E(object): pass
-        class D(object): pass
+        class F: pass
+        class E: pass
+        class D: pass
         class C(D, F): pass
         class B(D, E): pass
         class A(B, C): pass
@@ -158,11 +158,11 @@ class TestLayerOrdering(unittest.TestCase):
         #      \ K3 /
         #       \ |/
         #        ZZ
-        class A(object): pass
-        class B(object): pass
-        class C(object): pass
-        class D(object): pass
-        class E(object): pass
+        class A: pass
+        class B: pass
+        class C: pass
+        class D: pass
+        class E: pass
         class K1(A, B, C): pass
         class K2(D, B, E): pass
         class K3(D, A): pass
@@ -230,7 +230,7 @@ class TestWarnings(unittest.TestCase):
 class TestReprLines(unittest.TestCase):
     def test_unprintable(self):
 
-        class C(object):
+        class C:
             def __repr__(self):
                 raise Exception
 

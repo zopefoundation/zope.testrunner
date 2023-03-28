@@ -21,7 +21,7 @@ class Listing(zope.testrunner.feature.Feature):
     """Lists all tests in the report instead of running the tests."""
 
     def __init__(self, runner):
-        super(Listing, self).__init__(runner)
+        super().__init__(runner)
         self.active = bool(runner.options.list_tests)
 
     def global_setup(self):

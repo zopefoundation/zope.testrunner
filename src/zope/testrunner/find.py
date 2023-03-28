@@ -19,8 +19,6 @@ import re
 import sys
 import unittest
 
-import six
-
 import zope.testrunner.debug
 import zope.testrunner.feature
 import zope.testrunner.layer
@@ -102,14 +100,13 @@ class StartUpFailure(unittest.TestCase):
 
     >>> from zope.testrunner.interfaces import EndRun
     >>> try: #doctest: +ELLIPSIS
-    ...   try: # try...except...finally doesn't work in Python 2.4
     ...     # Needed to prevent the result from starting with '...'
     ...     print("Result:")
     ...     StartUpFailure(options, None, exc_info)
-    ...   except EndRun:
+    ... except EndRun:
     ...     print("EndRun raised")
     ... finally:
-    ...   sys.stdin = old_stdin
+    ...     sys.stdin = old_stdin
     Result:
     Exception: something bad happened during import
     ...
@@ -141,7 +138,7 @@ class StartUpFailure(unittest.TestCase):
             zope.testrunner.debug.post_mortem(exc_info)
         self.module = module
         self.exc_info = exc_info
-        super(StartUpFailure, self).__init__()
+        super().__init__()
 
     def shortDescription(self):
         return 'StartUpFailure: import errors in %s.' % self.module
@@ -153,7 +150,12 @@ class StartUpFailure(unittest.TestCase):
         if self.exc_info is None or any(x is None for x in self.exc_info):
             self.fail("could not import %s" % self.module)
         else:
-            six.reraise(*self.exc_info)
+            try:
+                _, value, tb = self.exc_info
+                raise value.with_traceback(tb)
+            finally:
+                value = None
+                tb = None
 
 
 def find_tests(options, found_suites=None):
@@ -232,9 +234,7 @@ def find_suites(options, accept=None):
                                     "Module %s does not define any tests"
                                     % module_name)
 
-                        if isinstance(suite, unittest.TestSuite):
-                            check_suite(suite, module_name)
-                        else:
+                        if not isinstance(suite, unittest.TestSuite):
                             # We extract the error message expression into a
                             # local variable because we want the `raise`
                             # statement to fit on a single line, to make the
@@ -356,8 +356,7 @@ def test_dirs(options, seen):
                         yield p, package
                         break
     else:
-        for dpath in options.test_path:
-            yield dpath
+        yield from options.test_path
 
 
 def walk_with_symlinks(options, dir):
@@ -371,8 +370,7 @@ def walk_with_symlinks(options, dir):
         for d in dirs:
             p = os.path.join(dirpath, d)
             if os.path.islink(p):
-                for sdirpath, sdirs, sfiles in walk_with_symlinks(options, p):
-                    yield (sdirpath, sdirs, sfiles)
+                yield from walk_with_symlinks(options, p)
 
 
 compiled_suffixes = '.pyc', '.pyo'
@@ -451,16 +449,16 @@ def tests_from_suite(suite, options, dlevel=1,
 
     level = getattr(suite, 'level', dlevel)
     layer = getattr(suite, 'layer', dlayer)
-    if not isinstance(layer, six.string_types):
+    if not isinstance(layer, str):
         layer = name_from_layer(layer)
 
     if isinstance(suite, unittest.TestSuite):
         for possible_suite in suite:
-            for r in tests_from_suite(possible_suite, options, level, layer,
-                                      accept=accept,
-                                      seen_test_ids=seen_test_ids,
-                                      duplicated_test_ids=duplicated_test_ids):
-                yield r
+            yield from tests_from_suite(
+                possible_suite, options, level, layer,
+                accept=accept,
+                seen_test_ids=seen_test_ids,
+                duplicated_test_ids=duplicated_test_ids)
     elif isinstance(suite, StartUpFailure):
         yield (suite, None)
     else:
@@ -473,26 +471,6 @@ def tests_from_suite(suite, options, dlevel=1,
         if options.at_level <= 0 or level <= options.at_level:
             if accept is None or accept(str(suite)):
                 yield (suite, layer)
-
-
-def check_suite(suite, module_name):
-
-    """Check for bad tests in a test suite.
-
-    "Bad tests" are those that do not inherit from unittest.TestCase.
-
-    Note that this function is pointless on Python 2.5, because unittest itself
-    checks for this in TestSuite.addTest.  It is, however, useful on earlier
-    Pythons.
-    """
-    for x in suite:
-        if isinstance(x, unittest.TestSuite):
-            check_suite(x, module_name)
-        elif not isinstance(x, unittest.TestCase):
-            raise TypeError(
-                "Invalid test, %r,\nin test_suite from %s"
-                % (x, module_name)
-                )
 
 
 _layer_name_cache = {}

@@ -13,14 +13,13 @@
 ##############################################################################
 """Support for tracking reference counts.
 """
-from __future__ import print_function
 
 import gc
 import sys
 import types
 
 
-class TrackRefs(object):
+class TrackRefs:
     """Object to track reference counts across test runs."""
 
     def __init__(self):
@@ -103,4 +102,4 @@ def type_or_class_title(t):
     module = getattr(t, '__module__', '__builtin__')
     if module == '__builtin__':
         return t.__name__
-    return "%s.%s" % (module, t.__name__)
+    return "{}.{}".format(module, t.__name__)
