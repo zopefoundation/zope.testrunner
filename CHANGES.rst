@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-6.0 (unreleased)
+6.0 (2023-03-28)
 ================
 
 - Drop support for Python 2.7, 3.5, 3.6.
