@@ -43,6 +43,20 @@ def _iter_chain(exc, custom_tb=None, seen=None):
         yield from it
 
 
+def _parse_value_tb(exc, value, tb):
+    # Taken straight from the traceback module code on Python 3.10, which
+    # introduced the ability to call print_exception with an exception
+    # instance as first parameter
+    if (value is None) != (tb is None):
+        raise ValueError("Both or neither of value and tb must be given")
+    if value is tb is None:
+        if exc is not None:
+            return exc, exc.__traceback__
+        else:
+            return None, None
+    return value, tb
+
+
 def format_exception(t, v, tb, limit=None, chain=None):
     if chain:
         values = _iter_chain(v, tb)
@@ -56,7 +70,8 @@ def format_exception(t, v, tb, limit=None, chain=None):
         return fmt.formatException(t, v, tb)
 
 
-def print_exception(t, v, tb, limit=None, file=None, chain=None):
+def print_exception(t, v=None, tb=None, limit=None, file=None, chain=None):
+    v, tb = _parse_value_tb(t, v, tb)
     if chain:
         values = _iter_chain(v, tb)
     else:
