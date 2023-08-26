@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-6.1 (unreleased)
+6.1 (2023-08-26)
 ================
 
 - Add preliminary support for Python 3.12b4.
