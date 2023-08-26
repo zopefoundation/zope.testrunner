@@ -5,7 +5,8 @@
 6.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add preliminary support for Python 3.12b4.
+  (`#149 <https://github.com/zopefoundation/zope.testrunner/issues/149>`_)
 
 
 6.0 (2023-03-28)
