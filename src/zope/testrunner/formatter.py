@@ -880,7 +880,7 @@ class SubunitOutputFormatter:
 
     def __init__(self, options, stream=None):
         if subunit is None:
-            raise Exception('Requires subunit 1.4.3 or better')
+            raise Exception('Requires python-subunit 1.4.3 or better')
         if testtools is None:
             raise Exception('Requires testtools 0.9.30 or better')
         self.options = options
