@@ -5,6 +5,9 @@
 6.2 (unreleased)
 ================
 
+- Update code and tests to ``python-subunit >= 1.4.3`` thus requiring at least
+  this version.
+
 
 6.1 (2023-08-26)
 ================

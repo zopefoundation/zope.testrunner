@@ -32,7 +32,7 @@ For easier doctesting, we use a helper that summarizes the output.
     ...                eof=False, mime_type=None, route_code=None,
     ...                timestamp=None):
     ...         if (test_id, file_name) == self._last_file:
-    ...             self.stream.write(file_bytes.decode('utf-8', 'replace'))
+    ...             self.stream.write(file_bytes.tobytes().decode('utf-8', 'replace'))
     ...             return
     ...         elif self._last_file is not None:
     ...             self.stream.write('\n')
@@ -49,7 +49,7 @@ For easier doctesting, we use a helper that summarizes the output.
     ...             self.stream.write('\n')
     ...         if file_name is not None:
     ...             self.stream.write('%s (%s)\n' % (file_name, mime_type))
-    ...             self.stream.write(file_bytes.decode('utf-8', 'replace'))
+    ...             self.stream.write(file_bytes.tobytes().decode('utf-8', 'replace'))
     ...             self._last_file = (test_id, file_name)
     ...         self.stream.flush()
 

@@ -38,7 +38,7 @@ TESTS_REQUIRE = [
 EXTRAS_REQUIRE = {
     'test': TESTS_REQUIRE,
     'subunit': [
-        'python-subunit >= 0.0.11',
+        'python-subunit >= 1.4.3',
         'testtools >= 0.9.30',
     ],
     'docs': [
