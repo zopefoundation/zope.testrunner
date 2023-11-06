@@ -9,7 +9,7 @@ with-pypy = true
 with-docs = true
 with-sphinx-doctests = false
 with-windows = true
-with-future-python = true
+with-future-python = false
 with-macos = false
 
 [coverage]
