@@ -5,6 +5,8 @@
 6.2 (unreleased)
 ================
 
+- Add support for Python 3.12.
+
 - Update code and tests to ``python-subunit >= 1.4.3`` thus requiring at least
   this version.
 
