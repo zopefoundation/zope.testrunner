@@ -37,6 +37,7 @@ jobs:
         - ["3.9",   "py39-subunit"]
         - ["3.10",  "py310-subunit"]
         - ["3.11",  "py311-subunit"]
+        - ["3.12",  "py312-subunit"]
         - ["pypy-3.9", "pypy3-subunit"]
         exclude:
           - { os: ["windows", "windows-latest"], config: ["3.9",   "release-check"] }
