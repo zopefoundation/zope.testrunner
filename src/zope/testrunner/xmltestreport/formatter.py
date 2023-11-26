@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collective.xmltestreport.utils import prettyXML
 from xml.etree import ElementTree
 from zope.testrunner.find import StartUpFailure
 
@@ -300,7 +299,11 @@ class XMLOutputFormattingWrapper(object):
             systemErrNode = ElementTree.Element('system-err')
             testSuiteNode.append(systemErrNode)
 
+            # indent the XML structure
+            ElementTree.indent(testSuiteNode)
+            text = ElementTree.tostring(testSuiteNode).decode('utf-8')
+
             # Write file
             outputFile = open(filename, 'w')
-            outputFile.write(prettyXML(testSuiteNode).decode('utf-8'))
+            outputFile.write(text)
             outputFile.close()
