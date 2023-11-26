@@ -15,34 +15,11 @@
 """Test runner based on zope.testing.testrunner
 """
 from collective.xmltestreport.formatter import XMLOutputFormattingWrapper
-from zope.testrunner.options import parser
 from zope.testrunner.runner import Runner
 
-import optparse
 import os
 import sys
 
-
-help = """\
-If given, XML reports will be written to the current directory. If you created
-the testrunner using the buildout recipe provided by this package, this will
-be in the buildout `parts` directroy, e.g. `parts/test`.
-"""
-
-try:
-    group = parser.add_argument_group(
-        'Generate XML test reports',
-        'Support for JUnit style XML output')
-    group.add_argument(
-        '--xml', dest='xmlOutput', action='store_true', help=help)
-
-except AttributeError:
-    # bbb: zope.testrunner < 4.9.0 uses optparse
-    group = parser.add_option_group(
-        'Generate XML test reports',
-        'Support for JUnit style XML output')
-    group.add_option(
-        '--xml', dest='xmlOutput', action='store_true', help=help)
 
 # Test runner and execution methods
 
