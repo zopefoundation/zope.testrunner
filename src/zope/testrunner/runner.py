@@ -1019,9 +1019,10 @@ class TestResult(unittest.TestResult):
         self.testTearDown()
         # Without clearing, cyclic garbage referenced by the test
         # would be reported in the following test.
-        test.__dict__.clear()
-        test.__dict__.update(self._test_state)
-        del self._test_state
+        if hasattr(self, '_test_state'):
+            test.__dict__.clear()
+            test.__dict__.update(self._test_state)
+            del self._test_state
         cycles = None
         if (uses_refcounts and self.options.gc_after_test and
                 self.options.verbose >= 4):
@@ -1052,9 +1053,10 @@ class TestResult(unittest.TestResult):
                 #       printed for every subsequent test.
 
         # Did the test leave any new threads behind?
+        old_threads = getattr(self, '_threads', ())
         new_threads = []
         for t in threadsupport.enumerate():
-            if t.is_alive() and t not in self._threads:
+            if t.is_alive() and t not in old_threads:
                 if not any([re.match(p, t.name)
                             for p in self.options.ignore_new_threads]):
                     new_threads.append(t)

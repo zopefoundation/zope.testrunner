@@ -52,7 +52,7 @@ class OutputFormatter:
 
     def __init__(self, options):
         self.options = options
-        self.last_width = 0
+        self.test_width = self.last_width = 0
         self.compute_max_width()
 
     progress = property(lambda self: self.options.progress)
