@@ -31,7 +31,6 @@ from zope.testrunner.exceptions import DocTestFailureException
 from xml.etree import ElementTree
 from zope.testrunner.find import StartUpFailure
 
-import datetime
 import os.path
 import socket
 import traceback
@@ -1544,7 +1543,7 @@ class XMLOutputFormattingWrapper(object):
 
     def writeXMLReports(self, properties={}):
 
-        timestamp = datetime.datetime.now().isoformat()
+        timestamp = datetime.now().isoformat()
         hostname = socket.gethostname()
 
         workingDir = os.getcwd()
