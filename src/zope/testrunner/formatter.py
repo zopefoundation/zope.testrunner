@@ -16,7 +16,9 @@
 import doctest
 import io
 import os
+import os.path
 import re
+import socket
 import sys
 import tempfile
 import traceback
@@ -25,16 +27,10 @@ from contextlib import contextmanager
 from contextlib import suppress
 from datetime import datetime
 from datetime import timedelta
+from xml.etree import ElementTree
 
 from zope.testrunner.exceptions import DocTestFailureException
-
-
-from xml.etree import ElementTree
 from zope.testrunner.find import StartUpFailure
-
-import os.path
-import socket
-import traceback
 
 
 try:
