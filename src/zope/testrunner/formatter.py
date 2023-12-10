@@ -1632,6 +1632,5 @@ class XMLOutputFormattingWrapper(object):
             text = ElementTree.tostring(testSuiteNode).decode('utf-8')
 
             # Write file
-            outputFile = open(filename, 'w')
-            outputFile.write(text)
-            outputFile.close()
+            with open(filename, 'w') as outputFile:
+                outputFile.write(text)
