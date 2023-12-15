@@ -227,6 +227,7 @@ def test_suite():
             'testrunner-eggsupport.rst',
             'testrunner-stops-when-stop-on-error.rst',
             'testrunner-new-threads.rst',
+            'testrunner-xml-report.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=optionflags,
             checker=checker),
