@@ -22,6 +22,7 @@ import tempfile
 import traceback
 from collections.abc import MutableMapping
 from contextlib import contextmanager
+from contextlib import suppress
 from datetime import datetime
 from datetime import timedelta
 
@@ -1630,7 +1631,8 @@ class XMLOutputFormattingWrapper(object):
             testSuiteNode.append(systemErrNode)
 
             # indent the XML structure
-            ElementTree.indent(testSuiteNode)
+            with suppress(AttributeError):
+                ElementTree.indent(testSuiteNode)
             text = ElementTree.tostring(testSuiteNode).decode('utf-8')
 
             # Write file
