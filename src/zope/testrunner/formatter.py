@@ -40,7 +40,6 @@ except ImportError:
     HAVE_MANUEL = False
 
 
-
 doctest_template = """
 File "%s", line %s, in %s
 
@@ -1483,14 +1482,18 @@ class XMLOutputFormattingWrapper(object):
         if stdout is None and stderr is None:
             # the normal case
             return self.delegate.test_failure(test, seconds, exc_info)
-        return self.delegate.test_failure(test, seconds, exc_info, stdout=stdout, stderr=stderr)
+        return self.delegate.test_failure(
+            test, seconds, exc_info, stdout=stdout, stderr=stderr
+        )
 
     def test_error(self, test, seconds, exc_info, stdout=None, stderr=None):
         self._record(test, seconds, error=exc_info)
         if stdout is None and stderr is None:
             # the normal case
             return self.delegate.test_error(test, seconds, exc_info)
-        return self.delegate.test_error(test, seconds, exc_info, stdout=stdout, stderr=stderr)
+        return self.delegate.test_error(
+            test, seconds, exc_info, stdout=stdout, stderr=stderr
+        )
 
     def test_success(self, test, seconds):
         self._record(test, seconds)
