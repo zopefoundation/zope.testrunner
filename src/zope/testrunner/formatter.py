@@ -16,7 +16,6 @@
 import doctest
 import io
 import os
-import os.path
 import re
 import socket
 import sys
@@ -27,6 +26,7 @@ from contextlib import contextmanager
 from contextlib import suppress
 from datetime import datetime
 from datetime import timedelta
+from pathlib import Path
 from xml.etree import ElementTree
 
 from zope.testrunner.exceptions import DocTestFailureException
@@ -1386,8 +1386,8 @@ def filename_to_suite_name_parts(filename):
     # lop off whatever portion of the path we have in common
     # with the current working directory; crude, but about as
     # much as we can do :(
-    filenameParts = filename.split(os.path.sep)
-    cwdParts = os.getcwd().split(os.path.sep)
+    filenameParts = Path(filename).parts
+    cwdParts = Path(os.getcwd()).parts
     longest = min(len(filenameParts), len(cwdParts))
     for i in range(longest):
         if filenameParts[i] != cwdParts[i]:
@@ -1546,13 +1546,12 @@ class XMLOutputFormattingWrapper(object):
         timestamp = datetime.now().isoformat()
         hostname = socket.gethostname()
 
-        workingDir = os.getcwd()
-        reportsDir = os.path.join(workingDir, 'testreports')
-        if not os.path.exists(reportsDir):
-            os.mkdir(reportsDir)
+        workingDir = Path(os.getcwd())
+        reportsDir = workingDir / 'testreports'
+        reportsDir.mkdir(exist_ok=True)
 
         for name, suite in self._testSuites.items():
-            filename = os.path.join(reportsDir, name + '.xml')
+            filename = reportsDir / f'{name}.xml'
 
             testSuiteNode = ElementTree.Element('testsuite')
 
