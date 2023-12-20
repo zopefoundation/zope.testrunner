@@ -1523,8 +1523,8 @@ class XMLOutputFormattingWrapper(object):
 
         if (testSuite, testName, testClassName) == (None, None, None):
             raise TypeError(
-                'Unknown test type: Could not compute testSuite, testName, '
-                'testClassName: {0!r}'.format(test),
+                'Unknown test type: Could not compute testSuite, testName,'
+                f' testClassName: {test!r}'
             )
 
         suite = self._testSuites.setdefault(testSuite, TestSuiteInfo())
