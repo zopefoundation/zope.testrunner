@@ -1366,6 +1366,7 @@ class TestSuiteInfo:
     def successes(self):
         return self.tests - self.errors - self.failures
 
+
 @dataclass
 class TestCaseInfo:
 
