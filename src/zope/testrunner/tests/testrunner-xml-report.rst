@@ -20,7 +20,7 @@ The ``--xml`` option tells the test runner to produce such a report.
     ...     ]
 
     >>> from zope import testrunner
-    >>> default_argv = 'test -u --xml -t sample3'.split()
+    >>> default_argv = 'test -u --xml=. -t sample3'.split()
 
 Run tests
 =========
@@ -110,7 +110,7 @@ If errors/failures happen, they are also reported in the XML files:
     >>> defaults = [
     ...     '--path', directory_with_tests,
     ...     '--tests-pattern', '^sampletestsf?$',
-    ...     '--xml',
+    ...     '--xml=.',
     ...     ]
 
     >>> sys.argv = 'test --tests-pattern ^sampletests(f|_e|_f)?$ '.split()

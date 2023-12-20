@@ -1466,10 +1466,10 @@ class XMLOutputFormattingWrapper:
     operations, but also prepares an element tree of test output.
     """
 
-    def __init__(self, delegate, cwd):
+    def __init__(self, delegate, folder):
         self.delegate = delegate
         self._testSuites = {}  # test class -> list of test names
-        self.cwd = cwd
+        self.folder = folder
 
     def __getattr__(self, name):
         return getattr(self.delegate, name)
@@ -1545,8 +1545,7 @@ class XMLOutputFormattingWrapper:
         timestamp = datetime.now().isoformat()
         hostname = socket.gethostname()
 
-        workingDir = Path.cwd()
-        reportsDir = workingDir / 'testreports'
+        reportsDir = self.folder / 'testreports'
         reportsDir.mkdir(exist_ok=True)
 
         for name, suite in self._testSuites.items():

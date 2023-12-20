@@ -13,7 +13,6 @@
 ##############################################################################
 """Test execution
 """
-
 import errno
 import gc
 import io
@@ -30,6 +29,7 @@ import unittest
 import warnings
 from contextlib import contextmanager
 from io import StringIO
+from pathlib import Path
 
 import zope.testrunner
 import zope.testrunner._doctest
@@ -230,8 +230,10 @@ class Runner:
         options.resume_number = resume_number
 
         if options.xmlOutput:
+            folder = Path(options.xmlOutput).resolve()
+            folder.mkdir(parents=True, exist_ok=True)
             options.output = XMLOutputFormattingWrapper(
-                options.output, cwd=os.getcwd())
+                options.output, folder=folder)
 
         self.options = options
 
