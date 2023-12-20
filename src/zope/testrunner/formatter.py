@@ -1353,7 +1353,7 @@ class SubunitV2OutputFormatter(SubunitOutputFormatter):
 @dataclass
 class TestSuiteInfo:
 
-    testCases: list[str] = field(default_factory=list)
+    testCases: list = field(default_factory=list)
     errors: int = 0
     failures: int = 0
     time: float = 0.0
