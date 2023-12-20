@@ -1545,7 +1545,7 @@ class XMLOutputFormattingWrapper(object):
         timestamp = datetime.now().isoformat()
         hostname = socket.gethostname()
 
-        workingDir = Path(os.getcwd())
+        workingDir = Path.cwd()
         reportsDir = workingDir / 'testreports'
         reportsDir.mkdir(exist_ok=True)
 
