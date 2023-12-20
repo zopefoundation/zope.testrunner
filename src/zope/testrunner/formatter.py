@@ -1505,13 +1505,6 @@ class XMLOutputFormattingWrapper:
         return self.delegate.import_errors(import_errors)
 
     def _record(self, test, seconds, failure=None, error=None):
-        try:
-            os.getcwd()
-        except OSError:
-            # In case the current directory is no longer available fallback to
-            # the default working directory.
-            os.chdir(self.cwd)
-
         for parser in [parse_doc_file_case,
                        parse_doc_test_case,
                        parse_manuel,
