@@ -1379,7 +1379,7 @@ class TestCaseInfo(object):
 
 def get_test_class_name(test):
     """Compute the test class name from the test object."""
-    return '{0}.{1}'.format(test.__module__, test.__class__.__name__, )
+    return f'{test.__module__}.{test.__class__.__name__}'
 
 
 def filename_to_suite_name_parts(filename):
