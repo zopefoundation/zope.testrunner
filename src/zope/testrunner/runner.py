@@ -950,7 +950,17 @@ class TestResult(unittest.TestResult):
         self.options.output.test_success(test, t)
 
     def addSkip(self, test, reason):
-        self._restoreStdStreams()
+        if not hasattr(self, "_test_state"):
+            # ``startTest`` was not called -- set up extected state
+            self._test_state = test.__dict__
+            count = test.countTestCases()
+            self.testsRun += count
+            self.options.output.start_test(test, self.testsRun, self.count)
+            self._threads = threadsupport.enumerate()
+            if not hasattr(self, "_start_time"):
+                self._start_time = time.time()
+        else:
+            self._restoreStdStreams()
         unittest.TestResult.addSkip(self, test, reason)
         self.options.output.test_skipped(test, reason)
 

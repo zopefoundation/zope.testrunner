@@ -5,7 +5,8 @@
 6.3 (unreleased)
 ================
 
-- Nothing changed yet.
+- Work around Python 3.12 no longer calling ``startTest`` for skipped tests
+  (`#157 <https://github.com/zopefoundation/zope.testrunner/issues/157>_`).
 
 
 6.2 (2023-11-08)
