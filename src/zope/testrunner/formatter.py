@@ -24,6 +24,8 @@ import traceback
 from collections.abc import MutableMapping
 from contextlib import contextmanager
 from contextlib import suppress
+from dataclasses import dataclass
+from dataclasses import field
 from datetime import datetime
 from datetime import timedelta
 from pathlib import Path
@@ -1348,13 +1350,13 @@ class SubunitV2OutputFormatter(SubunitOutputFormatter):
             test_tags=self._subunit.current_tags, timestamp=now)
 
 
+@dataclass
 class TestSuiteInfo:
 
-    def __init__(self):
-        self.testCases = []
-        self.errors = 0
-        self.failures = 0
-        self.time = 0.0
+    testCases: list[str] = field(default_factory=list)
+    errors: int = 0
+    failures: int = 0
+    time: float = 0.0
 
     @property
     def tests(self):
@@ -1364,17 +1366,15 @@ class TestSuiteInfo:
     def successes(self):
         return self.tests - self.errors - self.failures
 
+@dataclass
+class TestCaseInfo:
 
-class TestCaseInfo(object):
-
-    def __init__(self, test, time, testClassName, testName, failure=None,
-                 error=None):
-        self.test = test
-        self.time = time
-        self.testClassName = testClassName
-        self.testName = testName
-        self.failure = failure
-        self.error = error
+    test: object
+    time: float
+    testClassName: str
+    testName: str
+    failure: bool = None
+    error: bool = None
 
 
 def get_test_class_name(test):
