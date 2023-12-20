@@ -1621,7 +1621,7 @@ class XMLOutputFormattingWrapper(object):
                     text = f'{errorMessage}\n\n{stackTrace}'
                     failureNode.text = text
 
-            # XXX: We don't have a good way to capture these yet
+            # We don't have a good way to capture these yet, so they are empty:
             systemOutNode = ElementTree.Element('system-out')
             testSuiteNode.append(systemOutNode)
             systemErrNode = ElementTree.Element('system-err')
