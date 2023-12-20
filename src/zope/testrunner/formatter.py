@@ -1348,7 +1348,7 @@ class SubunitV2OutputFormatter(SubunitOutputFormatter):
             test_tags=self._subunit.current_tags, timestamp=now)
 
 
-class TestSuiteInfo(object):
+class TestSuiteInfo:
 
     def __init__(self):
         self.testCases = []
@@ -1461,7 +1461,7 @@ def parse_unittest(test):
     return testSuite, testName, testClassName
 
 
-class XMLOutputFormattingWrapper(object):
+class XMLOutputFormattingWrapper:
     """Output formatter which delegates to another formatter for all
     operations, but also prepares an element tree of test output.
     """
