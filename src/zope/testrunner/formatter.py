@@ -1618,7 +1618,7 @@ class XMLOutputFormattingWrapper(object):
 
                     failureNode.set('message', errorMessage.split('\n')[0])
                     failureNode.set('type', str(excType))
-                    text = errorMessage + '\n\n' + stackTrace
+                    text = f'{errorMessage}\n\n{stackTrace}'
                     failureNode.text = text
 
             # XXX: We don't have a good way to capture these yet
