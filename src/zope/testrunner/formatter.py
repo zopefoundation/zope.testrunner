@@ -1438,7 +1438,7 @@ def parse_manuel(test):
         return None, None, None
     filename = test.regions.location
     suiteNameParts = filename_to_suite_name_parts(filename)
-    testSuite = 'manuel-' + '-'.join(suiteNameParts)
+    testSuite = f'manuel-{"-".join(suiteNameParts)}'
     testName = suiteNameParts[-1]
     testClassName = '.'.join(suiteNameParts[:-1])
     return testSuite, testName, testClassName
