@@ -1593,10 +1593,6 @@ class XMLOutputFormattingWrapper:
 
                     errorNode.set('message', errorMessage.split('\n')[0])
                     errorNode.set('type', str(excType))
-                    # We need to decode here (and maybe elsewhere),
-                    # because prettyXML will try to encode it in
-                    # _escape_cdata using 'us-ascii' as encoding,
-                    # which of course fails for anything that is not ascii.
                     text = (errorMessage + '\n\n' + stackTrace)
                     errorNode.text = text
 
