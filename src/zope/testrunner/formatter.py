@@ -1362,7 +1362,7 @@ class TestSuiteInfo(object):
 
     @property
     def successes(self):
-        return self.tests - (self.errors + self.failures)
+        return self.tests - self.errors - self.failures
 
 
 class TestCaseInfo(object):
