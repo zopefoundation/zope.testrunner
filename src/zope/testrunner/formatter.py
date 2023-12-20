@@ -1387,7 +1387,7 @@ def filename_to_suite_name_parts(filename):
     # with the current working directory; crude, but about as
     # much as we can do :(
     filenameParts = Path(filename).parts
-    cwdParts = Path(os.getcwd()).parts
+    cwdParts = Path.cwd().parts
     longest = min(len(filenameParts), len(cwdParts))
     for i in range(longest):
         if filenameParts[i] != cwdParts[i]:
