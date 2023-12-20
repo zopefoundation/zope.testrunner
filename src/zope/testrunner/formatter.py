@@ -1416,7 +1416,7 @@ def parse_doc_file_case(test):
 
     filename = test._dt_test.filename
     suiteNameParts = filename_to_suite_name_parts(filename)
-    testSuite = 'doctest-' + '-'.join(suiteNameParts)
+    testSuite = f'doctest-{"-".join(suiteNameParts)}'
     testName = test._dt_test.name
     testClassName = '.'.join(suiteNameParts[:-1])
     return testSuite, testName, testClassName
