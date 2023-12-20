@@ -2,7 +2,7 @@
 XML report
 ==========
 
-By default, ``zope.testrunner`` reports the results on the terminal.
+By default, ``zope.testrunner`` reports the results to the terminal.
 CI systems however, need a machine readable format
 to actually parse the results and display them.
 
