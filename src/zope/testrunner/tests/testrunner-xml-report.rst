@@ -89,7 +89,7 @@ Remove the files:
 Errors reported
 ===============
 
-If errors/faiulres happen, they are also reported on the XML files:
+If errors/failures happen, they are also reported in the XML files:
 
 .. note::
     Code copied from ``testrunner-errors.rst``
