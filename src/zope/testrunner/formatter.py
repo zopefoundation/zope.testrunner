@@ -1476,9 +1476,8 @@ class XMLOutputFormattingWrapper(object):
 
     def test_failure(self, test, seconds, exc_info, stdout=None, stderr=None):
         self._record(test, seconds, failure=exc_info)
-        # stdout and stderr are only passed into us by zope.testrunner 5.1+
-        # and then only when using buffering (--buffer).
-        # self.delegate also comes from zope.testrunner then.
+        # stdout and stderr are only passed into us when using buffering
+        # (--buffer). self.delegate also comes from zope.testrunner then.
         if stdout is None and stderr is None:
             # the normal case
             return self.delegate.test_failure(test, seconds, exc_info)
