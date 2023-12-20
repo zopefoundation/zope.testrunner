@@ -61,6 +61,7 @@ Some useful command-line options to get you started
 --list-tests    show names of tests instead of running them
 -x              stop on first error or failure
 -D, --pdb       enable post-mortem debugging of test failures
+--xml path      generate XML reports to be written at the given path
 --help          show *all* command-line options (there are many more!)
 
 For example ::
