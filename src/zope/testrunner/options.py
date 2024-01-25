@@ -604,8 +604,7 @@ def get_options(args=None, defaults=None):
     if options.showversion:
         dist = pkg_resources.require('zope.testrunner')[0]
         print('zope.testrunner version %s' % dist.version)
-        options.fail = True
-        return options
+        sys.exit(0)
 
     if options.subunit or options.subunit_v2:
         try:
