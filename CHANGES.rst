@@ -5,6 +5,11 @@
 6.3 (unreleased)
 ================
 
+- Add new `--xml path` option to write `JUnit`-like XML reports.
+  Code comes from `collective.xmltestreport`, but be aware that here `--xml`
+  is not a boolean, but expects a path!
+  (`#148 <https://github.com/zopefoundation/zope.testrunner/issues/148>_`).
+
 - Add support for Python 3.13a3.
 
 
@@ -14,10 +19,6 @@
 - Work around Python 3.12.1+ no longer calling ``startTest`` for skipped tests
   (`#157 <https://github.com/zopefoundation/zope.testrunner/issues/157>_`).
 
-- Add new `--xml path` option to write `JUnit`-like XML reports.
-  Code comes from `collective.xmltestreport`, but be aware that here `--xml`
-  is not a boolean, but expects a path!
-  (`#148 <https://github.com/zopefoundation/zope.testrunner/issues/148>_`).
 
 6.2 (2023-11-08)
 ================
