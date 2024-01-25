@@ -5,7 +5,7 @@
 6.3 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add support for Python 3.13a3.
 
 
 6.2.1 (2023-12-22)

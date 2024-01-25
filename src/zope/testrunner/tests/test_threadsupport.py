@@ -11,9 +11,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+from _thread import start_new_thread
 from threading import Lock
 from threading import Thread
-from threading import _start_new_thread
 from time import sleep
 from unittest import TestCase
 from unittest import skipUnless
@@ -43,7 +43,7 @@ class ThrThread(ThreadMixin, Thread):
 
 class DummyThread(ThreadMixin):
     def start(self):
-        _start_new_thread(self.run, ())
+        start_new_thread(self.run, ())
 
 
 class Tests(TestCase):
