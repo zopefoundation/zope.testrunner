@@ -17,15 +17,29 @@ import doctest
 import io
 import os
 import re
+import socket
 import sys
 import tempfile
 import traceback
 from collections.abc import MutableMapping
 from contextlib import contextmanager
+from contextlib import suppress
+from dataclasses import dataclass
+from dataclasses import field
 from datetime import datetime
 from datetime import timedelta
+from pathlib import Path
+from xml.etree import ElementTree
 
 from zope.testrunner.exceptions import DocTestFailureException
+from zope.testrunner.find import StartUpFailure
+
+
+try:
+    import manuel.testing
+    HAVE_MANUEL = True
+except ImportError:
+    HAVE_MANUEL = False
 
 
 doctest_template = """
@@ -1334,3 +1348,279 @@ class SubunitV2OutputFormatter(SubunitOutputFormatter):
         self._subunit.status(
             test_id=test.id(), test_status='exists',
             test_tags=self._subunit.current_tags, timestamp=now)
+
+
+@dataclass
+class TestSuiteInfo:
+
+    testCases: list = field(default_factory=list)
+    errors: int = 0
+    failures: int = 0
+    time: float = 0.0
+
+    @property
+    def tests(self):
+        return len(self.testCases)
+
+    @property
+    def successes(self):
+        return self.tests - self.errors - self.failures
+
+
+@dataclass
+class TestCaseInfo:
+
+    test: object
+    time: float
+    testClassName: str
+    testName: str
+    failure: bool = None
+    error: bool = None
+
+
+def get_test_class_name(test):
+    """Compute the test class name from the test object."""
+    return f'{test.__module__}.{test.__class__.__name__}'
+
+
+def filename_to_suite_name_parts(filename):
+    # lop off whatever portion of the path we have in common
+    # with the current working directory; crude, but about as
+    # much as we can do :(
+    filenameParts = Path(filename).parts
+    cwdParts = Path.cwd().parts
+    longest = min(len(filenameParts), len(cwdParts))
+    for i in range(longest):
+        if filenameParts[i] != cwdParts[i]:
+            break
+
+    if i < len(filenameParts) - 1:
+
+        # The real package name couldn't have a '.' in it. This
+        # makes sense for the common egg naming patterns, and
+        # will still work in other cases
+
+        suiteNameParts = []
+        for part in reversed(filenameParts[i:-1]):
+            if '.' in part:
+                break
+            suiteNameParts.insert(0, part)
+
+        # don't lose the filename, which would have a . in it
+        suiteNameParts.append(filenameParts[-1])
+        return suiteNameParts
+
+
+def parse_doc_file_case(test):
+    if not isinstance(test, doctest.DocFileCase):
+        return None, None, None
+
+    filename = test._dt_test.filename
+    suiteNameParts = filename_to_suite_name_parts(filename)
+    testSuite = f'doctest-{"-".join(suiteNameParts)}'
+    testName = test._dt_test.name
+    testClassName = '.'.join(suiteNameParts[:-1])
+    return testSuite, testName, testClassName
+
+
+def parse_doc_test_case(test):
+    if not isinstance(test, doctest.DocTestCase):
+        return None, None, None
+
+    testDottedNameParts = test._dt_test.name.split('.')
+    testClassName = get_test_class_name(test)
+    testSuite = testClassName = '.'.join(testDottedNameParts[:-1])
+    testName = testDottedNameParts[-1]
+    return testSuite, testName, testClassName
+
+
+def parse_manuel(test):
+    if not (HAVE_MANUEL and isinstance(test, manuel.testing.TestCase)):
+        return None, None, None
+    filename = test.regions.location
+    suiteNameParts = filename_to_suite_name_parts(filename)
+    testSuite = f'manuel-{"-".join(suiteNameParts)}'
+    testName = suiteNameParts[-1]
+    testClassName = '.'.join(suiteNameParts[:-1])
+    return testSuite, testName, testClassName
+
+
+def parse_startup_failure(test):
+    if not isinstance(test, StartUpFailure):
+        return None, None, None
+    testModuleName = test.module
+    return testModuleName, 'Startup', testModuleName
+
+
+def parse_unittest(test):
+    testId = test.id()
+    if testId is None:
+        return None, None, None
+    testClassName = get_test_class_name(test)
+    testSuite = testClassName
+    testName = testId[len(testClassName)+1:]
+    return testSuite, testName, testClassName
+
+
+class XMLOutputFormattingWrapper:
+    """Output formatter which delegates to another formatter for all
+    operations, but also prepares an element tree of test output.
+    """
+
+    def __init__(self, delegate, folder):
+        self.delegate = delegate
+        self._testSuites = {}  # test class -> list of test names
+        self.folder = folder
+
+    def __getattr__(self, name):
+        return getattr(self.delegate, name)
+
+    def test_failure(self, test, seconds, exc_info, stdout=None, stderr=None):
+        self._record(test, seconds, failure=exc_info)
+        # stdout and stderr are only passed into us when using buffering
+        # (--buffer). self.delegate also comes from zope.testrunner then.
+        if stdout is None and stderr is None:
+            # the normal case
+            return self.delegate.test_failure(test, seconds, exc_info)
+        return self.delegate.test_failure(
+            test, seconds, exc_info, stdout=stdout, stderr=stderr
+        )
+
+    def test_error(self, test, seconds, exc_info, stdout=None, stderr=None):
+        self._record(test, seconds, error=exc_info)
+        if stdout is None and stderr is None:
+            # the normal case
+            return self.delegate.test_error(test, seconds, exc_info)
+        return self.delegate.test_error(
+            test, seconds, exc_info, stdout=stdout, stderr=stderr
+        )
+
+    def test_success(self, test, seconds):
+        self._record(test, seconds)
+        return self.delegate.test_success(test, seconds)
+
+    def import_errors(self, import_errors):
+        if import_errors:
+            for test in import_errors:
+                self._record(test, 0, error=test.exc_info)
+        return self.delegate.import_errors(import_errors)
+
+    def _record(self, test, seconds, failure=None, error=None):
+        for parser in [parse_doc_file_case,
+                       parse_doc_test_case,
+                       parse_manuel,
+                       parse_startup_failure,
+                       parse_unittest]:
+            testSuite, testName, testClassName = parser(test)
+            if (testSuite, testName, testClassName) != (None, None, None):
+                break
+
+        if (testSuite, testName, testClassName) == (None, None, None):
+            raise TypeError(
+                'Unknown test type: Could not compute testSuite, testName,'
+                f' testClassName: {test!r}'
+            )
+
+        suite = self._testSuites.setdefault(testSuite, TestSuiteInfo())
+        suite.testCases.append(TestCaseInfo(
+            test, seconds, testClassName, testName, failure, error))
+
+        if failure is not None:
+            suite.failures += 1
+
+        if error is not None:
+            suite.errors += 1
+
+        if seconds:
+            suite.time += seconds
+
+    def writeXMLReports(self, properties={}):
+
+        timestamp = datetime.now().isoformat()
+        hostname = socket.gethostname()
+
+        reportsDir = self.folder / 'testreports'
+        reportsDir.mkdir(exist_ok=True)
+
+        for name, suite in self._testSuites.items():
+            filename = reportsDir / f'{name}.xml'
+
+            testSuiteNode = ElementTree.Element('testsuite')
+
+            testSuiteNode.set('tests', str(suite.tests))
+            testSuiteNode.set('errors', str(suite.errors))
+            testSuiteNode.set('failures', str(suite.failures))
+            testSuiteNode.set('hostname', hostname)
+            testSuiteNode.set('name', name)
+            testSuiteNode.set('time', str(suite.time))
+            testSuiteNode.set('timestamp', timestamp)
+
+            propertiesNode = ElementTree.Element('properties')
+            testSuiteNode.append(propertiesNode)
+
+            for k, v in properties.items():
+                propertyNode = ElementTree.Element('property')
+                propertiesNode.append(propertyNode)
+
+                propertyNode.set('name', k)
+                propertyNode.set('value', v)
+
+            for testCase in suite.testCases:
+                testCaseNode = ElementTree.Element('testcase')
+                testSuiteNode.append(testCaseNode)
+
+                testCaseNode.set('classname', testCase.testClassName)
+                testCaseNode.set('name', testCase.testName)
+                testCaseNode.set('time', str(testCase.time))
+
+                if testCase.error:
+                    errorNode = ElementTree.Element('error')
+                    testCaseNode.append(errorNode)
+
+                    try:
+                        excType, excInstance, tb = testCase.error
+                        errorMessage = str(excInstance)
+                        stackTrace = ''.join(traceback.format_tb(tb))
+                    finally:  # Avoids a memory leak
+                        del tb
+
+                    errorNode.set('message', errorMessage.split('\n')[0])
+                    errorNode.set('type', str(excType))
+                    text = (errorMessage + '\n\n' + stackTrace)
+                    errorNode.text = text
+
+                if testCase.failure:
+
+                    failureNode = ElementTree.Element('failure')
+                    testCaseNode.append(failureNode)
+
+                    try:
+                        excType, excInstance, tb = testCase.failure
+                        errorMessage = str(excInstance)
+                        stackTrace = ''.join(traceback.format_tb(tb))
+                    except UnicodeEncodeError:
+                        errorMessage = 'Could not extract error str ' \
+                            'for unicode error'
+                        stackTrace = ''.join(traceback.format_tb(tb))
+                    finally:  # Avoids a memory leak
+                        del tb
+
+                    failureNode.set('message', errorMessage.split('\n')[0])
+                    failureNode.set('type', str(excType))
+                    text = f'{errorMessage}\n\n{stackTrace}'
+                    failureNode.text = text
+
+            # We don't have a good way to capture these yet, so they are empty:
+            systemOutNode = ElementTree.Element('system-out')
+            testSuiteNode.append(systemOutNode)
+            systemErrNode = ElementTree.Element('system-err')
+            testSuiteNode.append(systemErrNode)
+
+            # indent the XML structure
+            with suppress(AttributeError):
+                ElementTree.indent(testSuiteNode)
+            text = ElementTree.tostring(testSuiteNode).decode('utf-8')
+
+            # Write file
+            with open(filename, 'w') as outputFile:
+                outputFile.write(text)

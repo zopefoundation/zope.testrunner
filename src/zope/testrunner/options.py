@@ -296,6 +296,11 @@ This option is enabled by default if --subunit or --subunit-v2 is in use, to
 avoid corrupting the subunit stream.
 """)
 
+reporting.add_argument(
+    '--xml', action='store', dest='xmlOutput', help="""\
+If given, XML reports will be written to the specified directory.
+""")
+
 
 ######################################################################
 # Analysis

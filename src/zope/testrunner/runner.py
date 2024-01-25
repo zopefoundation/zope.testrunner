@@ -13,7 +13,6 @@
 ##############################################################################
 """Test execution
 """
-
 import errno
 import gc
 import io
@@ -30,6 +29,7 @@ import unittest
 import warnings
 from contextlib import contextmanager
 from io import StringIO
+from pathlib import Path
 
 import zope.testrunner
 import zope.testrunner._doctest
@@ -50,6 +50,7 @@ from zope.testrunner import threadsupport
 from zope.testrunner.find import _layer_name_cache
 from zope.testrunner.find import import_name
 from zope.testrunner.find import name_from_layer
+from zope.testrunner.formatter import XMLOutputFormattingWrapper
 from zope.testrunner.layer import EmptyLayer
 from zope.testrunner.layer import EmptySuite
 from zope.testrunner.layer import UnitTests
@@ -201,6 +202,9 @@ class Runner:
                 for feature in self.features:
                     feature.report()
 
+        if self.options.xmlOutput:
+            self.options.output.writeXMLReports()
+
     def configure(self):
         if self.args is None:
             self.args = sys.argv[:]
@@ -224,6 +228,12 @@ class Runner:
         options.testrunner_defaults = self.defaults
         options.resume_layer = resume_layer
         options.resume_number = resume_number
+
+        if options.xmlOutput:
+            folder = Path(options.xmlOutput).resolve()
+            folder.mkdir(parents=True, exist_ok=True)
+            options.output = XMLOutputFormattingWrapper(
+                options.output, folder=folder)
 
         self.options = options
 

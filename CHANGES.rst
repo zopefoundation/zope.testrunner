@@ -5,6 +5,11 @@
 6.3 (unreleased)
 ================
 
+- Add new `--xml path` option to write `JUnit`-like XML reports.
+  Code comes from `collective.xmltestreport`, but be aware that here `--xml`
+  is not a boolean, but expects a path!
+  (`#148 <https://github.com/zopefoundation/zope.testrunner/issues/148>_`).
+
 - Add support for Python 3.13a3.
 
 
