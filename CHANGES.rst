@@ -5,6 +5,9 @@
 6.3 (unreleased)
 ================
 
+- Exit cleanly when using the test runner ``--version`` argument.
+  (`#102 <https://github.com/zopefoundation/zope.testrunner/issues/102>`_)
+
 - Add new `--xml path` option to write `JUnit`-like XML reports.
   Code comes from `collective.xmltestreport`, but be aware that here `--xml`
   is not a boolean, but expects a path!
