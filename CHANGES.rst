@@ -5,7 +5,13 @@
 6.3 (unreleased)
 ================
 
-- Work around Python 3.12 no longer calling ``startTest`` for skipped tests
+- Add support for Python 3.13a3.
+
+
+6.2.1 (2023-12-22)
+==================
+
+- Work around Python 3.12.1+ no longer calling ``startTest`` for skipped tests
   (`#157 <https://github.com/zopefoundation/zope.testrunner/issues/157>_`).
 
 - Add new `--xml path` option to write `JUnit`-like XML reports.
