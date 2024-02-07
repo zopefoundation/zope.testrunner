@@ -23,7 +23,7 @@ from setuptools import setup
 from setuptools.command.test import test
 
 
-version = '6.3.dev0'
+version = '6.3'
 
 INSTALL_REQUIRES = [
     'setuptools',

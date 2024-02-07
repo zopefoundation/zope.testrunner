@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-6.3 (unreleased)
+6.3 (2024-02-07)
 ================
 
 - Exit cleanly when using the test runner ``--version`` argument.
