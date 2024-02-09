@@ -15,8 +15,6 @@
 """
 import contextlib
 import io
-import os
-import os.path
 import shutil
 import sys
 import tempfile
@@ -29,13 +27,12 @@ from zope import testrunner
 class Base(unittest.TestCase):
 
     def tearDown(self):
-        self._cleanup(self.reports_folder)
+        self._cleanup(self.tmpdir)
         return super().tearDown()
 
     def _cleanup(self, path):
-        if path.exists():
-            [x.unlink() for x in path.iterdir()]
-            path.rmdir()
+        assert path.exists()
+        shutil.rmtree(path)
 
 
 class TestXMLOutput(Base):
@@ -53,15 +50,14 @@ class TestXMLOutput(Base):
     """
 
     def setUp(self):
-        this_directory = os.path.split(__file__)[0]
-        directory_with_tests = Path(this_directory, 'testrunner-ex')
+        self.tmpdir = Path(tempfile.mkdtemp())
+        directory_with_tests = Path(Path(__file__).parent, 'testrunner-ex')
         self.arg_defaults = [
             '--path', str(directory_with_tests),
             '--tests-pattern', '^sampletestsf?$',
         ]
-        self.default_argv = 'test -u --xml=. -t sample3'.split()
-        self.reports_folder = Path('testreports')
-        self._cleanup(self.reports_folder)
+        self.default_argv = f'test -u --xml={self.tmpdir} -t sample3'.split()
+        self.reports_folder = self.tmpdir / 'testreports'
 
     def _run_tests(self):
         stream1 = io.StringIO()
@@ -109,26 +105,18 @@ class TextXMLOutputWithErrors(Base):
     """
 
     def setUp(self):
-        this_directory = os.path.split(__file__)[0]
-        tmpdir = tempfile.mkdtemp()
-        directory_with_tests = os.path.join(tmpdir, 'testrunner-ex')
-        self.reports_folder = Path('testreports')
+        self.tmpdir = Path(tempfile.mkdtemp())
+        directory_with_tests = self.tmpdir / 'testrunner-ex'
+        self.reports_folder = self.tmpdir / 'testreports'
 
-        source = os.path.join(this_directory, 'testrunner-ex')
-        n = len(source) + 1
-        for root, dirs, files in os.walk(source):
-            dirs[:] = [d for d in dirs if d != ".svn"]  # prune cruft
-            os.mkdir(os.path.join(directory_with_tests, root[n:]))
-            for f in files:
-                shutil.copy(os.path.join(root, f),
-                            os.path.join(directory_with_tests, root[n:], f))
+        source = Path(__file__).parent / 'testrunner-ex'
+        shutil.copytree(source, directory_with_tests)
 
         self.defaults = [
-            '--path', directory_with_tests,
+            '--path', str(directory_with_tests),
             '--tests-pattern', '^sampletestsf?$',
-            '--xml=.',
+            f'--xml={self.tmpdir}',
             ]
-        self._cleanup(self.reports_folder)
 
     def _run_tests(self):
         stream1 = io.StringIO()
@@ -166,7 +154,7 @@ class TextXMLOutputWithErrors(Base):
         self._run_tests()
         report = (
             self.reports_folder /
-            'doctest-src-zope-testrunner-tests-testrunner-ex-sample2-e.rst.xml'
+            'sample2.sampletests_f.Test.xml'
         )
         self.assertTrue(report.exists())
 
@@ -176,4 +164,5 @@ class TextXMLOutputWithErrors(Base):
         self.assertIn(' failures="1" ', content)
 
         # The failure is reported:
-        self.assertIn('Exception raised:', content)
+        self.assertIn("class 'AssertionError'", content)
+        self.assertIn("self.assertEqual(1, 0)", content)
