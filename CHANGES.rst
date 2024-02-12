@@ -2,8 +2,8 @@
  zope.testrunner Changelog
 ===========================
 
-6.4 (unreleased)
-================
+6.3.1 (2024-02-12)
+==================
 
 - Fix XML tests when running in distribution resp. separately.
   (`#163 <https://github.com/zopefoundation/zope.testrunner/issues/163>`_)
