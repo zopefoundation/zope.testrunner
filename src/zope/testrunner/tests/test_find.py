@@ -81,3 +81,19 @@ class TestUniqueness(unittest.TestCase):
         self.assertIn(
             os.path.join('testrunner-ex', 'sampletestsl.rst'),
             str(e.exception))
+
+
+class TestIdentifierMatches(unittest.TestCase):
+    """Test which folders are ignored by the test runner."""
+
+    def test_ignored(self):
+        folders = ('spaces are bad', 'dashes-bad', 'ünicodeLeading')
+        for name in folders:
+            self.assertFalse(find.identifier(name), f'{name} is accepted')
+
+    def test_accepted(self):
+        folders = (
+            'random', 'CamelCase', 'Under_scores', '_leading_scores', 'unicöde'
+        )
+        for name in folders:
+            self.assertTrue(find.identifier(name), f'{name} is not accepted')
