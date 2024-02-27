@@ -2,17 +2,19 @@
  zope.testrunner Changelog
 ===========================
 
-6.4 (unreleased)
+6.4 (2024-02-27)
 ================
 
 - Add PEP 440 support (implicit namespaces).
   (`#160 <https://github.com/zopefoundation/zope.testrunner/issues/160>`_)
+
 
 6.3.1 (2024-02-12)
 ==================
 
 - Fix XML tests when running in distribution resp. separately.
   (`#163 <https://github.com/zopefoundation/zope.testrunner/issues/163>`_)
+
 
 6.3 (2024-02-07)
 ================
