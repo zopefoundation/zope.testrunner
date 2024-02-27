@@ -25,7 +25,12 @@ import zope.testrunner.layer
 from zope.testrunner.filter import build_filtering_func
 
 
-identifier = re.compile(r'[_a-zA-Z]\w*$').match
+identifier = re.compile(r'[_a-z]\w*$', re.I).match
+IGNORE_FOLDERS = {
+    '.git',
+    'node_modules',
+    '__pycache__'
+}
 
 
 class DuplicateTestIDError(Exception):
@@ -292,13 +297,10 @@ def find_test_files_(options):
 
     for (p, package) in test_dirs(options, {}):
         for dirname, dirs, files in walk_with_symlinks(options, p):
-            if dirname != p and not contains_init_py(options, files):
-                # This is not a plausible test directory. Avoid descending
-                # further.
-                del dirs[:]
-                continue
             root2ext = {}
-            dirs[:] = [d for d in dirs if identifier(d)]
+            dirs[:] = [
+                d for d in dirs if identifier(d) and d not in IGNORE_FOLDERS
+            ]
             d = os.path.split(dirname)[1]
             if tests_pattern(d) and contains_init_py(options, files):
                 # tests directory

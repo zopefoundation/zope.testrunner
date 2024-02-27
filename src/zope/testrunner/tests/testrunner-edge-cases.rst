@@ -419,8 +419,10 @@ Post-mortem debugging of a docfile doctest failure:
 
 Post-mortem debugging with triple verbosity
 
+    >>> sys.stdin = Input('p x\nc')
     >>> sys.argv = 'test --layer samplelayers.Layer1$ -vvv -D'.split()
-    >>> testrunner.run_internal(defaults)
+    >>> try: testrunner.run_internal(defaults)
+    ... finally: sys.stdin = real_stdin
     Running tests at level 1
     Running samplelayers.Layer1 tests:
       Set up samplelayers.Layer1 in 0.000 seconds.

@@ -5,8 +5,8 @@
 6.4 (unreleased)
 ================
 
-- Nothing changed yet.
-
+- Add PEP 440 support (implicit namespaces).
+  (`#160 <https://github.com/zopefoundation/zope.testrunner/issues/160>`_)
 
 6.3.1 (2024-02-12)
 ==================
