@@ -9,7 +9,7 @@
 6.4 (2024-02-27)
 ================
 
-- Add PEP 440 support (implicit namespaces).
+- Add PEP 420 support (implicit namespaces).
   (`#160 <https://github.com/zopefoundation/zope.testrunner/issues/160>`_)
 
 
