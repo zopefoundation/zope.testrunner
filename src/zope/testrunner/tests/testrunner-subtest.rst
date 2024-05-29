@@ -41,5 +41,5 @@ The testrunner supports ``unittest.TestCase.subTest``.
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     <BLANKLINE>
     Tests with failures:
-       test_subTest (subtest.TestSomething.test_subTest) [fail 1]
-       test_subTest (subtest.TestSomething.test_subTest) [fail 2]
+       test_subTest (subtest.TestSomething...) [fail 1]
+       test_subTest (subtest.TestSomething...) [fail 2]
