@@ -21,7 +21,7 @@ The testrunner supports ``unittest.TestCase.subTest``.
       Running:
      test_subTest (subtest.TestSomething.test_subTest)
     <BLANKLINE>
-    Failure in test test_subTest (subtest.TestSomething.test_subTest) [fail 1]
+    Failure in test test_subTest (subtest.TestSomething...) [fail 1]
     Traceback (most recent call last):
      testrunner-ex/subtest.py", Line NNN, in test_subTest
         self.assertEqual(0, 1)
@@ -29,7 +29,7 @@ The testrunner supports ``unittest.TestCase.subTest``.
     <BLANKLINE>
     <BLANKLINE>
     <BLANKLINE>
-    Failure in test test_subTest (subtest.TestSomething.test_subTest) [fail 2]
+    Failure in test test_subTest (subtest.TestSomething...) [fail 2]
     Traceback (most recent call last):
      testrunner-ex/subtest.py", Line NNN, in test_subTest
         self.assertEqual(0, 1)
