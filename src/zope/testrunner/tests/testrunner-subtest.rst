@@ -19,7 +19,7 @@ The testrunner supports ``unittest.TestCase.subTest``.
     Running tests at level 1
     ...
       Running:
-     test_subTest (subtest.TestSomething.test_subTest)
+     test_subTest (subtest.TestSomething...)
     <BLANKLINE>
     Failure in test test_subTest (subtest.TestSomething...) [fail 1]
     Traceback (most recent call last):
