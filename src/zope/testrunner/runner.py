@@ -974,6 +974,29 @@ class TestResult(unittest.TestResult):
         unittest.TestResult.addSkip(self, test, reason)
         self.options.output.test_skipped(test, reason)
 
+    def addSubTest(self, test, subtest, exc_info):
+        if exc_info is None:
+            return
+        stdout, stderr = self._restoreStdStreams()
+        outp = self.options.output
+        report = (outp.test_failure
+                  if issubclass(exc_info[0], test.failureException)
+                  else outp.test_error)
+        report(subtest, time.time() - self._start_time,
+               exc_info, stdout=stdout, stderr=stderr)
+
+        unittest.TestResult.addSubTest(self, test, subtest, exc_info)
+
+        if self.options.post_mortem:
+            if self.options.resume_layer:
+                self.options.output.error_with_banner(
+                    "Can't post-mortem debug when running a layer as"
+                    " a subprocess!")
+            else:
+                zope.testrunner.debug.post_mortem(exc_info)
+        elif self.options.stop_on_error:
+            self.stop()
+
     def addError(self, test, exc_info):
         stdout, stderr = self._restoreStdStreams()
         self.options.output.test_error(test, time.time() - self._start_time,
