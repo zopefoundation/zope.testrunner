@@ -989,9 +989,9 @@ class TestResult(unittest.TestResult):
 
         if self.options.post_mortem:
             if self.options.resume_layer:
-                self.options.output.error_with_banner("Can't post-mortem debug"
-                                                      " when running a layer"
-                                                      " as a subprocess!")
+                self.options.output.error_with_banner(
+                    "Can't post-mortem debug when running a layer as"
+                    " a subprocess!")
             else:
                 zope.testrunner.debug.post_mortem(exc_info)
         elif self.options.stop_on_error:
