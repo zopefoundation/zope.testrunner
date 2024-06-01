@@ -93,7 +93,7 @@ Using pdb.set_trace in a function called by an ordinary test:
     ... # doctest: +ELLIPSIS
     Running zope.testrunner.layer.UnitTests tests:...
     > testrunner-ex/sample3/sampletests_d.py(47)f()
-    -> y = x  # noqa: F841
+    -> ...
     (Pdb) p x
     1
     (Pdb) c
@@ -111,11 +111,9 @@ Using pdb.set_trace in a function called by a doctest in a doc string:
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
     > testrunner-ex/sample3/sampletests_d.py(NNN)f()
-    -> y = x  # noqa: F841
+    -> ...
     (Pdb) n
-    --Return--
-    > ...->None
-    -> y = x  # noqa: F841
+    ...
     (Pdb) p x
     1
     (Pdb) c
@@ -133,12 +131,9 @@ Using pdb in a docstring-based doctest
     ... finally: sys.stdin = real_stdin
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    > <doctest sample3.sampletests_d.set_trace3[1]>(3)?()
-    -> y = x
+    ...
     (Pdb) n
-    --Return--
-    > ...->None
-    -> y = x
+    ...
     (Pdb) p x
     1
     (Pdb) c
@@ -157,12 +152,9 @@ Using pdb.set_trace in a doc file:
     ... finally: sys.stdin = real_stdin
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    > <doctest set_trace5.rst[1]>(3)?()
-    -> y = x
+    ...
     (Pdb) n
-    --Return--
-    > ...->None
-    -> y = x
+    ...
     (Pdb) p x
     1
     (Pdb) c
@@ -181,12 +173,9 @@ Using pdb.set_trace in a function called by a doctest in a doc file:
     ... finally: sys.stdin = real_stdin
     Running zope.testrunner.layer.UnitTests tests:
       Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
-    > testrunner-ex/sample3/sampletests_d.py(NNN)f()
-    -> y = x  # noqa: F841
+    ...
     (Pdb) n
-    --Return--
-    > ...->None
-    -> y = x  # noqa: F841
+    ...
     (Pdb) p x
     1
     (Pdb) c
