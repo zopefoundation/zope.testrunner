@@ -36,7 +36,7 @@ runner will enter pdb at that point:
     Running zope.testrunner.layer.UnitTests tests:
     ...
     > testrunner-ex/sample3/sampletests_d.py(27)test_set_trace1()
-    -> y = x  # noqa: F841
+    -> ...
     (Pdb) p x
     1
     (Pdb) c

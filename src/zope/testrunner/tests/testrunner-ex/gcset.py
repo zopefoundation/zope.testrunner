@@ -12,14 +12,21 @@
 #
 ##############################################################################
 import doctest
+import sys
+
+
+PY313 = sys.version_info[:2] >= (3, 13)
 
 
 def make_sure_gc_threshold_is_701_11_9():
-    """
-    >>> import gc
-    >>> gc.get_threshold()
-    (701, 11, 9)
-    """
+    pass
+
+
+make_sure_gc_threshold_is_701_11_9.__doc__ = """\
+>>> import gc
+>>> gc.get_threshold()
+(701, 11, %d)
+""" % (0 if PY313 else 9)
 
 
 def test_suite():

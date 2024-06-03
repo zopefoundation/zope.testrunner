@@ -85,6 +85,10 @@ therefore does not show the warnings (even though two are issued).
        test_failure (gc-after-test.GcAfterTestTests...)
 
     Verbosity level 4 (or higher)
+    Note: starting with Python 3.13, the garbage collector identifies
+    an instance and its ``__dict__``; as a consequence, cycles
+    appear smaller than in preceding versions (not
+    mentioning the involved ``__dict__``s).
     >>> sys.argv = 'test --gc-after-test -vvvv'.split()
     >>> _ = testrunner.run_internal(defaults)
     Running tests at level 1
@@ -96,12 +100,10 @@ therefore does not show the warnings (even though two are issued).
     test_cycle_with_resource (gc-after-test.GcAfterTestTests...)
     Cycle 1
      *  ...
-     *  ...
      test_cycle_without_resource (gc-after-test.GcAfterTestTests...) (N.NNN s) [2]
     The following test left cyclic garbage behind:
     test_cycle_without_resource (gc-after-test.GcAfterTestTests...)
     Cycle 1
-     *  ...
      *  ...
      test_exception (gc-after-test.GcAfterTestTests...) (N.NNN s)
     <BLANKLINE>
@@ -123,12 +125,10 @@ therefore does not show the warnings (even though two are issued).
     test_test_holds_cycle (gc-after-test.GcAfterTestTests...)
     Cycle 1
      *  ...
-     *  ...
      test_traceback_cycle (gc-after-test.GcAfterTestTests...) (N.NNN s) [5]
     The following test left cyclic garbage behind:
     test_traceback_cycle (gc-after-test.GcAfterTestTests...)
     Cycle 1
-     *  ...
      *  ...
       Ran 7 tests with 1 failures, 1 errors and 0 skipped in N.NNN seconds.
     Tearing down left over layers:

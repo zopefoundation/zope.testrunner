@@ -82,7 +82,7 @@ A failed test run highlights the failures in red:
     Failed doctest test for sample2.sampletests_e.eek
       File "testrunner-ex/sample2/sampletests_e.py", line 28, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     {normal}File "{boldblue}testrunner-ex/sample2/sampletests_e.py{normal}", line {boldred}30{normal}, in {boldcyan}sample2.sampletests_e.eek{normal}
     Failed example:
     {cyan}    f(){normal}
@@ -120,7 +120,7 @@ A failed test run highlights the failures in red:
     Failed doctest test for e.rst
       File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     {normal}File "{boldblue}testrunner-ex/sample2/e.rst{normal}", line {boldred}4{normal}, in {boldcyan}e.rst{normal}
     Failed example:
     {cyan}    f(){normal}
@@ -189,7 +189,7 @@ colors:
     Failed doctest test for pledge.pledge
       File "testrunner-ex/pledge.py", line 24, in pledge
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     {normal}File testrunner-ex/pledge.py{normal}", line {boldred}26{normal}, in {boldcyan}pledge.pledge{normal}
     Failed example:
     {cyan}    print_pledge(){normal}
@@ -223,7 +223,7 @@ apart:
     Failed doctest test for pledge.pledge
       File "testrunner-ex/pledge.py", line 24, in pledge
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     {normal}File testrunner-ex/pledge.py{normal}", line {boldred}26{normal}, in {boldcyan}pledge.pledge{normal}
     Failed example:
     {cyan}    print_pledge(){normal}

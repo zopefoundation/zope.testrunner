@@ -34,7 +34,7 @@ be read only):
     Failed doctest test for sample2.sampletests_e.eek
       File "testrunner-ex/sample2/sampletests_e.py", line 28, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_e.py", line 30, in sample2.sampletests_e.eek
     Failed example:
         f()
@@ -70,7 +70,7 @@ be read only):
     Failed doctest test for e.rst
       File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/e.rst", line 4, in e.rst
     Failed example:
         f()
@@ -119,7 +119,7 @@ there'll be a summary of the errors at the end of the test:
     Failed doctest test for sample2.sampletests_e.eek
       File "testrunner-ex/sample2/sampletests_e.py", line 28, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_e.py", line 30,
         in sample2.sampletests_e.eek
     Failed example:
@@ -157,7 +157,7 @@ there'll be a summary of the errors at the end of the test:
     Failed doctest test for e.rst
       File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/e.rst", line 4, in e.rst
     Failed example:
         f()
@@ -210,7 +210,7 @@ Similarly for progress output, the progress ticker will be interrupted:
     Failed doctest test for sample2.sampletests_e.eek
       File "testrunner-ex/sample2/sampletests_e.py", line 28, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_e.py", line 30, in sample2.sampletests_e.eek
     Failed example:
         f()
@@ -254,7 +254,7 @@ Similarly for progress output, the progress ticker will be interrupted:
     Failed doctest test for e.rst
       File "testrunner-ex/sample2/e.rst", line 0
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/e.rst", line 4, in e.rst
     Failed example:
         f()
@@ -467,7 +467,7 @@ examples in the same test to fail.  Each failure is reported:
     Failed doctest test for sample2.sampletests_1.eek
       File "testrunner-ex/sample2/sampletests_1.py", line 17, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 19,
          in sample2.sampletests_1.eek
     Failed example:
@@ -479,7 +479,7 @@ examples in the same test to fail.  Each failure is reported:
           File "<doctest sample2.sampletests_1.eek[0]>", line 1, in ?
             x = y
         NameError: name 'y' is not defined
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 21,
          in sample2.sampletests_1.eek
     Failed example:
@@ -491,7 +491,7 @@ examples in the same test to fail.  Each failure is reported:
           File "<doctest sample2.sampletests_1.eek[1]>", line 1, in ?
             x
         NameError: name 'x' is not defined
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 24,
          in sample2.sampletests_1.eek
     Failed example:
@@ -524,7 +524,7 @@ me the first failed example in a doctest" :)
     Failed doctest test for sample2.sampletests_1.eek
       File "testrunner-ex/sample2/sampletests_1.py", line 17, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 19,
          in sample2.sampletests_1.eek
     Failed example:
@@ -557,7 +557,7 @@ The --hide-secondary-failures option is an alias for -1:
     Failed doctest test for sample2.sampletests_1.eek
       File "testrunner-ex/sample2/sampletests_1.py", line 17, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 19, in sample2.sampletests_1.eek
     Failed example:
         x = y
@@ -592,7 +592,7 @@ command-line options in sys.argv.
     Failed doctest test for sample2.sampletests_1.eek
       File "testrunner-ex/sample2/sampletests_1.py", line 17, in eek
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 19, in sample2.sampletests_1.eek
     Failed example:
         x = y
@@ -603,7 +603,7 @@ command-line options in sys.argv.
           File "<doctest sample2.sampletests_1.eek[0]>", line 1, in ?
             x = y
         NameError: name 'y' is not defined
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 21, in sample2.sampletests_1.eek
     Failed example:
         x
@@ -614,7 +614,7 @@ command-line options in sys.argv.
           File "<doctest sample2.sampletests_1.eek[1]>", line 1, in ?
             x
         NameError: name 'x' is not defined
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/sample2/sampletests_1.py", line 24, in sample2.sampletests_1.eek
     Failed example:
         z = x + 1
@@ -650,7 +650,7 @@ kinds.
     Failed doctest test for pledge.pledge
       File "testrunner-ex/pledge.py", line 24, in pledge
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
         print_pledge()
@@ -692,7 +692,7 @@ caret marking the mismatching column positions.
     Failed doctest test for pledge.pledge
       File "testrunner-ex/pledge.py", line 24, in pledge
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
         print_pledge()
@@ -721,7 +721,7 @@ The -udiff option requests a standard "unified" diff:
     Failed doctest test for pledge.pledge
       File "testrunner-ex/pledge.py", line 24, in pledge
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
         print_pledge()
@@ -748,7 +748,7 @@ The -cdiff option requests a standard "context" diff:
     Failed doctest test for pledge.pledge
       File "testrunner-ex/pledge.py", line 24, in pledge
     <BLANKLINE>
-    ----------------------------------------------------------------------
+    ...
     File "testrunner-ex/pledge.py", line 26, in pledge.pledge
     Failed example:
         print_pledge()
