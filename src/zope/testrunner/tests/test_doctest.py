@@ -88,7 +88,7 @@ if sys.platform == 'win32':
         # (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
 
         # disregard trailing whitespace
-        (re.compile(r'\s*$'), ''),
+        (re.compile(r'\s+$'), ''),
         ])
 else:
     # *nix
@@ -137,7 +137,7 @@ else:
          r''),
 
         # disregard trailing whitespace
-        (re.compile(r'\s*$', re.MULTILINE), ''),
+        (re.compile(r'\s+$', re.MULTILINE), ''),
         ])
 
 
