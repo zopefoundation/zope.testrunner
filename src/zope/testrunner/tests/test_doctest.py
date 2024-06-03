@@ -86,6 +86,9 @@ if sys.platform == 'win32':
                     re.MULTILINE),
          r''),
         # (re.compile('^> [^\n]+->None$', re.M), '> ...->None'),
+
+        # disregard trailing whitespace
+        (re.compile(r'\s*$'), ''),
         ])
 else:
     # *nix
@@ -132,6 +135,9 @@ else:
                     r'(/__init__)?.py{\w+}", [^\n]+\n[^\n]+\n',
                     re.MULTILINE),
          r''),
+
+        # disregard trailing whitespace
+        (re.compile(r'\s*$', re.MULTILINE), ''),
         ])
 
 

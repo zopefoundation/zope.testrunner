@@ -495,7 +495,7 @@ Let's run tests including a module with some bad syntax:
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample23/sampletests_i.py", line 17, in <module>
         class Test(unittest.TestCase):
-      File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample23/sampletests_i.py", line 22, in Test
+      ...
         raise TypeError('eek')
     TypeError: eek
     ]
