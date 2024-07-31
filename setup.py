@@ -124,7 +124,6 @@ setup(
     namespace_packages=['zope'],
     python_requires='>=3.7',
     install_requires=INSTALL_REQUIRES,
-    tests_require=TESTS_REQUIRE,
     extras_require=EXTRAS_REQUIRE,
     entry_points={
         'console_scripts':
