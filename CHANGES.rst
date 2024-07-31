@@ -5,6 +5,13 @@
 6.4.1 (unreleased)
 ==================
 
+- Deprecate our ``python setup.py ftest`` command.
+  This builds on the ``test`` command from ``setuptools``,
+  which no longer works since ``setuptools`` 72,
+  so our command does not work either.
+  The ``ftest`` command will be removed in zope.testrunnner 7."
+  [maurits]
+
 - Remove setuptools fossils.
 
 - ``unittest.TestCase.subTest`` support

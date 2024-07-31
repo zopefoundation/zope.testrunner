@@ -166,6 +166,7 @@ setup(
     entry_points={
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run'],
+        # This command is deprecated:
         'distutils.commands': [
             'ftest = zope.testrunner.eggsupport:ftest'],
     },
