@@ -1,8 +1,22 @@
 """ Add unit and functional testing support to setuptools-driven eggs.
-"""
 
-from setuptools.command.test import ScanningLoader
-from setuptools.command.test import test as BaseCommand
+We make this available via `python setup.py ftest`.
+This builds on the setuptools 'test' command, which is deprecated.
+So our `ftest` command is deprecated as well.
+"""
+import warnings
+
+
+try:
+    # setuptools 71-
+    from setuptools.command.test import ScanningLoader
+    from setuptools.command.test import test as BaseCommand
+    HAS_WORKING_SETUPTOOLS_TEST_COMMAND = True
+except ImportError:
+    # setuptools 72+
+    from setuptools import Command as BaseCommand
+    ScanningLoader = object
+    HAS_WORKING_SETUPTOOLS_TEST_COMMAND = False
 
 
 def skipLayers(suite, _result=None):
@@ -74,6 +88,8 @@ class ftest(BaseCommand):
     """
     Run unit and functional tests after an in-place build.
 
+    This is deprecated.
+
     * Note that this command runs *all* tests (unit *and* functional).
 
     * This command does not provide any of the configuration options which
@@ -98,7 +114,9 @@ class ftest(BaseCommand):
               ...
           )
     """
-    description = "Run all functional and unit tests after in-place build"
+    description = (
+        "Run all functional and unit tests after in-place build (deprecated)"
+    )
     user_options = []
     help_options = [('usage', '?', 'Show usage', print_usage)]
 
@@ -109,6 +127,13 @@ class ftest(BaseCommand):
         pass  # suppress normal handling
 
     def run(self):
+        warnings.warn(
+            "The 'ftest' command from zope.testrunner is deprecated. This "
+            "is because the 'test' command from setuptools is deprecated. "
+            "Since setuptools 72 it no longer works, so the 'ftest' command "
+            "does not work either.  It will be removed in zope.testrunnner 7."
+        )
+
         from zope.testrunner import run
         args = ['IGNORE_ME']
 

@@ -24,6 +24,7 @@ import unittest
 
 from zope.testing import renormalizing
 
+from ..eggsupport import HAS_WORKING_SETUPTOOLS_TEST_COMMAND
 from ..util import uses_refcounts
 
 
@@ -230,7 +231,6 @@ def test_suite():
             'testrunner-repeat.rst',
             'testrunner-knit.rst',
             'testrunner-shuffle.rst',
-            'testrunner-eggsupport.rst',
             'testrunner-stops-when-stop-on-error.rst',
             'testrunner-new-threads.rst',
             'testrunner-subtest.rst',
@@ -243,6 +243,14 @@ def test_suite():
         doctest.DocTestSuite('zope.testrunner.options'),
         doctest.DocTestSuite('zope.testrunner.find'),
     ]
+    if HAS_WORKING_SETUPTOOLS_TEST_COMMAND:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-eggsupport.rst',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker)
+        )
 
     # PyPy uses a different garbage collector
     if hasattr(gc, 'get_threshold'):
