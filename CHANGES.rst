@@ -5,6 +5,8 @@
 6.4.1 (unreleased)
 ==================
 
+- Remove setuptools fossils.
+
 - ``unittest.TestCase.subTest`` support
   (`#91 <https://github.com/zopefoundation/zope.testrunner/issues/91>`_).
 
