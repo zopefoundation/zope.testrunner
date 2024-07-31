@@ -46,33 +46,6 @@ EXTRAS_REQUIRE = {
 }
 
 
-CUSTOM_TEST_TEMPLATE = """\
-import sys
-sys.path = %r
-
-try:
-    import coverage
-except ImportError:
-    pass
-else:
-    coverage.process_startup()
-
-import os
-os.chdir(%r)
-
-# The following unused imports are dark magic that makes the tests pass on
-# Python 3.5 on Travis CI.  I do not understand why.
-import zope.exceptions.exceptionformatter
-import zope.testing
-
-import zope.testrunner
-if __name__ == '__main__':
-    zope.testrunner.run([
-        '--test-path', %r, '-c',
-        ])
-"""
-
-
 def read(*names):
     with open(os.path.join(*names)) as f:
         return f.read()
