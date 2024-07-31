@@ -17,10 +17,8 @@
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
 import os
-import sys
 
 from setuptools import setup
-from setuptools.command.test import test
 
 
 version = '6.4.1.dev0'
@@ -46,69 +44,6 @@ EXTRAS_REQUIRE = {
         'sphinxcontrib-programoutput',
     ],
 }
-
-
-CUSTOM_TEST_TEMPLATE = """\
-import sys
-sys.path = %r
-
-try:
-    import coverage
-except ImportError:
-    pass
-else:
-    coverage.process_startup()
-
-import os
-os.chdir(%r)
-
-# The following unused imports are dark magic that makes the tests pass on
-# Python 3.5 on Travis CI.  I do not understand why.
-import zope.exceptions.exceptionformatter
-import zope.testing
-
-import zope.testrunner
-if __name__ == '__main__':
-    zope.testrunner.run([
-        '--test-path', %r, '-c',
-        ])
-"""
-
-
-class custom_test(test):
-    # The zope.testrunner tests MUST be run using its own testrunner. This is
-    # because its subprocess testing will call the script it was run with. We
-    # therefore create a script to run the testrunner, and call that.
-    def run(self):
-        dist = self.distribution
-
-        if dist.install_requires:
-            dist.fetch_build_eggs(dist.install_requires)
-
-        if dist.tests_require:
-            dist.fetch_build_eggs(dist.tests_require)
-
-        self.with_project_on_sys_path(self.run_tests)
-
-    def run_tests(self):
-        import tempfile
-        script = CUSTOM_TEST_TEMPLATE % (
-            sys.path, os.path.abspath(os.curdir), os.path.abspath('src'))
-        _fd, filename = tempfile.mkstemp(prefix='temprunner', text=True)
-        with open(filename, 'w') as scriptfile:
-            scriptfile.write(script)
-
-        import subprocess
-        process = subprocess.Popen([sys.executable, filename])
-        rc = process.wait()
-        try:
-            os.unlink(filename)
-        except OSError as e:
-            # This happens on Windows and I don't understand _why_.
-            sys.stderr.write("Failed to clean up temporary script %s:\n%s: %s"
-                             % (filename, e.__class__.__name__, e))
-            sys.stderr.flush()
-        sys.exit(rc)
 
 
 def read(*names):
@@ -172,7 +107,4 @@ setup(
     },
     include_package_data=True,
     zip_safe=False,
-    cmdclass={
-        'test': custom_test,
-    },
 )
