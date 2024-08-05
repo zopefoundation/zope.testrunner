@@ -230,7 +230,6 @@ def test_suite():
             'testrunner-repeat.rst',
             'testrunner-knit.rst',
             'testrunner-shuffle.rst',
-            'testrunner-eggsupport.rst',
             'testrunner-stops-when-stop-on-error.rst',
             'testrunner-new-threads.rst',
             'testrunner-subtest.rst',
@@ -243,6 +242,19 @@ def test_suite():
         doctest.DocTestSuite('zope.testrunner.options'),
         doctest.DocTestSuite('zope.testrunner.find'),
     ]
+
+    try:
+        from setuptools.command.test import ScanningLoader  # noqa: F401
+    except ImportError:
+        # modern ``setuptools`` without ``test`` support
+        pass
+    else:
+        suites.append(
+            doctest.DocFileSuite(
+                'testrunner-eggsupport.rst',
+                setUp=setUp, tearDown=tearDown,
+                optionflags=optionflags,
+                checker=checker))
 
     # PyPy uses a different garbage collector
     if hasattr(gc, 'get_threshold'):
