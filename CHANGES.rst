@@ -2,8 +2,8 @@
  zope.testrunner Changelog
 ===========================
 
-6.4.1 (unreleased)
-==================
+6.5 (2024-08-06)
+================
 
 - ``unittest.TestCase.subTest`` support
   (`#91 <https://github.com/zopefoundation/zope.testrunner/issues/91>`_).
