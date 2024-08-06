@@ -1,8 +1,13 @@
 """ Add unit and functional testing support to setuptools-driven eggs.
 """
 
-from setuptools.command.test import ScanningLoader
-from setuptools.command.test import test as BaseCommand
+try:
+    from setuptools.command.test import ScanningLoader
+    from setuptools.command.test import test as BaseCommand
+except ImportError:
+    # a modern ``setuptools`` no longer supporting the ``test`` command
+    ScanningLoader = object
+    from setuptools import Command as BaseCommand
 
 
 def skipLayers(suite, _result=None):
@@ -109,6 +114,13 @@ class ftest(BaseCommand):
         pass  # suppress normal handling
 
     def run(self):
+        if ScanningLoader is object:
+            # modern ``setuptools`` no longer supporting ``test``
+            from sys import exit
+            exit("You are using a modern `setuptools` version "
+                 "which no longer supports the ``test`` command. "
+                 "`zope.testrunner`'s `ftest` command depends on this "
+                 "and therefore cannot be used.")
         from zope.testrunner import run
         args = ['IGNORE_ME']
 

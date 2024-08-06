@@ -8,6 +8,14 @@
 - ``unittest.TestCase.subTest`` support
   (`#91 <https://github.com/zopefoundation/zope.testrunner/issues/91>`_).
 
+- remove support for ``setup.py``'s ``test`` command.
+  Support for this command has been dropped by modern
+  ``setuptools`` versions and correspondingly has been removed from
+  most ``zopefoundation`` packages; ``zope.testrunner`` now follows.
+
+- ``setup.py``'s ``ftest`` command is now only supported
+  when the used ``setuptools`` version still supports ``test``.
+
 
 6.4 (2024-02-27)
 ================
