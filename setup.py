@@ -60,11 +60,6 @@ else:
 import os
 os.chdir(%r)
 
-# The following unused imports are dark magic that makes the tests pass on
-# Python 3.5 on Travis CI.  I do not understand why.
-import zope.exceptions.exceptionformatter
-import zope.testing
-
 import zope.testrunner
 if __name__ == '__main__':
     zope.testrunner.run([
