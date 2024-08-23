@@ -91,7 +91,7 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
-    packages=find_namespace_packages(where='src'),
+    packages=find_namespace_packages(where='src', exclude=['zope.testrunner.tests*']),
     package_dir={'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -124,6 +124,6 @@ setup(
         'distutils.commands': [
             'ftest = zope.testrunner.eggsupport:ftest'],
     },
-    include_package_data=True,
+    include_package_data=False,
     zip_safe=False,
 )
