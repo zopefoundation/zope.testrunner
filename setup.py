@@ -18,7 +18,7 @@
 ##############################################################################
 import os
 
-from setuptools import find_namespace_packages
+from setuptools import find_packages
 from setuptools import setup
 
 
@@ -91,7 +91,7 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
-    packages=find_namespace_packages(where='src', exclude=['zope.testrunner.tests*']),
+    packages=find_packages(where='src', exclude=['zope.testrunner.tests*']),
     package_dir={'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -114,6 +114,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
     ],
+    namespace_packages=['zope'],
     python_requires='>=3.7',
     install_requires=INSTALL_REQUIRES,
     tests_require=TESTS_REQUIRE,
