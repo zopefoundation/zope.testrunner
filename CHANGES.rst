@@ -11,6 +11,8 @@
 6.5 (2024-08-06)
 ================
 
+- Remove setuptools fossils.
+
 - ``unittest.TestCase.subTest`` support
   (`#91 <https://github.com/zopefoundation/zope.testrunner/issues/91>`_).
 
