@@ -47,28 +47,6 @@ EXTRAS_REQUIRE = {
 }
 
 
-CUSTOM_TEST_TEMPLATE = """\
-import sys
-sys.path = %r
-
-try:
-    import coverage
-except ImportError:
-    pass
-else:
-    coverage.process_startup()
-
-import os
-os.chdir(%r)
-
-import zope.testrunner
-if __name__ == '__main__':
-    zope.testrunner.run([
-        '--test-path', %r, '-c',
-        ])
-"""
-
-
 def read(*names):
     with open(os.path.join(*names)) as f:
         return f.read()
@@ -117,7 +95,6 @@ setup(
     namespace_packages=['zope'],
     python_requires='>=3.7',
     install_requires=INSTALL_REQUIRES,
-    tests_require=TESTS_REQUIRE,
     extras_require=EXTRAS_REQUIRE,
     entry_points={
         'console_scripts':
