@@ -12,10 +12,15 @@
 #
 ##############################################################################
 import doctest
-import sys
+import gc
 
 
-PY313 = sys.version_info[:2] >= (3, 13)
+# for some early 3.13 versions, the third threshold has been
+# a constant 0; this was changed again for newer versions
+_thresholds = gc.get_threshold()
+gc.set_threshold(10, 10, 10)
+ZERO_THR3 = gc.get_threshold()[2] == 0
+gc.set_threshold(*_thresholds)
 
 
 def make_sure_gc_threshold_is_701_11_9():
@@ -26,7 +31,7 @@ make_sure_gc_threshold_is_701_11_9.__doc__ = """\
 >>> import gc
 >>> gc.get_threshold()
 (701, 11, %d)
-""" % (0 if PY313 else 9)
+""" % (0 if ZERO_THR3 else 9)
 
 
 def test_suite():
