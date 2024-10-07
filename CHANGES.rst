@@ -5,7 +5,8 @@
 6.6 (unreleased)
 ================
 
-- Nothing changed yet.
+- Make tests compatible with Python 3.13.0rc3+.
+ (`#181 <https://github.com/zopefoundation/zope.testrunner/pull/181>`_)
 
 
 6.5 (2024-08-06)
