@@ -314,12 +314,12 @@ analysis.add_argument(
     '--stop-on-error', '--stop', '-x', action="store_true",
     dest='stop_on_error',
     help="Stop running tests after first test failure or error."
-    )
+)
 
 analysis.add_argument(
     '--post-mortem', '--pdb', '-D', action="store_true", dest='post_mortem',
     help="Enable post-mortem debugging of test failures"
-    )
+)
 
 
 analysis.add_argument(

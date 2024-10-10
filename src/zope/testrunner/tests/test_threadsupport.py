@@ -24,6 +24,7 @@ from ..threadsupport import enumerate
 
 class ThreadMixin:
     """test thread."""
+
     def __init__(self):
         self.lock = Lock()
         self.stopped = False
@@ -36,6 +37,7 @@ class ThreadMixin:
 
 class ThrThread(ThreadMixin, Thread):
     """``threading.Thread`` thread."""
+
     def __init__(self, name):
         Thread.__init__(self, name=name)
         ThreadMixin.__init__(self)

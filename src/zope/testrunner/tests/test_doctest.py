@@ -89,7 +89,7 @@ if sys.platform == 'win32':
 
         # disregard trailing whitespace
         (re.compile(r'\s+$'), ''),
-        ])
+    ])
 else:
     # *nix
     checker = renormalizing.RENormalizing([
@@ -138,7 +138,7 @@ else:
 
         # disregard trailing whitespace
         (re.compile(r'\s+$', re.MULTILINE), ''),
-        ])
+    ])
 
 
 # Monkey-patch doctest with our own _SpoofOut replacement.  We

@@ -78,7 +78,7 @@ class SubprocessError(Exception):
         self.stderr = stderr
 
     def __str__(self):
-        return '{}: {}'.format(self.reason, self.stderr)
+        return f'{self.reason}: {self.stderr}'
 
 
 class CanNotTearDown(Exception):
@@ -392,7 +392,7 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
                         result.addError(
                             test,
                             sys.exc_info()[:2] + (sys.exc_info()[2].tb_next, ),
-                            )
+                        )
                     else:
                         result.addSuccess(test)
                 finally:
@@ -1195,10 +1195,10 @@ class FakeInputContinueGenerator:
 
     def readline(self):
         print('c\n')
-        print('*'*70)
+        print('*' * 70)
         print("Can't use pdb.set_trace when running a layer"
               " as a subprocess!")
-        print('*'*70)
+        print('*' * 70)
         print()
         return 'c\n'
 
@@ -1215,7 +1215,7 @@ def repr_lines(obj, max_width=75, max_lines=5):
         oi = pprint.pformat(obj)
     except Exception:
         # unprintable
-        oi = "{} instance at 0x{:x}".format(obj.__class__, id(obj))
+        oi = f"{obj.__class__} instance at 0x{id(obj):x}"
     # limit
     cmps = oi.split("\n", max_lines)
     if len(cmps) > max_lines:

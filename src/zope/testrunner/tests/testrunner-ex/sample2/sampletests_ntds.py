@@ -34,23 +34,28 @@ class TestSomething(unittest.TestCase):
     layer = Layer
 
     def test_something(self):
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
     def test_something2(self):
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
     def test_something3(self):
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
     def test_something4(self):
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
 
     def test_something5(self):
         f()
 
 
 def f():
-    import pdb; pdb.set_trace()
+    import pdb
+    pdb.set_trace()
 
 
 def test_set_trace():

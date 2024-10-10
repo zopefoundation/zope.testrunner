@@ -19,7 +19,8 @@ class TestSomething(unittest.TestCase):
 
     def test_set_trace1(self):
         x = 1
-        import pdb; pdb.set_trace()
+        import pdb
+        pdb.set_trace()
         y = x  # noqa: F841
 
     def test_set_trace2(self):
@@ -44,7 +45,8 @@ class TestSomething(unittest.TestCase):
 
 def f():
     x = 1
-    import pdb; pdb.set_trace()
+    import pdb
+    pdb.set_trace()
     y = x  # noqa: F841
 
 
@@ -98,7 +100,7 @@ def test_suite():
         doctest.DocFileSuite('post_mortem5.rst'),
         doctest.DocFileSuite('post_mortem6.rst'),
         doctest.DocFileSuite('post_mortem_failure.rst'),
-        ))
+    ))
 
 
 if __name__ == '__main__':

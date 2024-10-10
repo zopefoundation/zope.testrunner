@@ -27,14 +27,14 @@ class Layer1:
     def setUp(self):
         global layer
         if layer != self.base:
-            raise ValueError("Bad layer, {}, for {}.".format(layer, self))
+            raise ValueError(f"Bad layer, {layer}, for {self}.")
         layer = self.layer
     setUp = classmethod(setUp)
 
     def tearDown(self):
         global layer
         if layer != self.layer:
-            raise ValueError("Bad layer, {}, for {}.".format(layer, self))
+            raise ValueError(f"Bad layer, {layer}, for {self}.")
         layer = self.base
     tearDown = classmethod(tearDown)
 
@@ -46,14 +46,14 @@ class Layerx:
     def setUp(self):
         global layerx
         if layerx != self.basex:
-            raise ValueError("Bad layerx, {}, for {}.".format(layerx, self))
+            raise ValueError(f"Bad layerx, {layerx}, for {self}.")
         layerx = self.layerx
     setUp = classmethod(setUp)
 
     def tearDown(self):
         global layerx
         if layerx != self.layerx:
-            raise ValueError("Bad layerx, {}, for {}.".format(layerx, self))
+            raise ValueError(f"Bad layerx, {layerx}, for {self}.")
         layerx = self.basex
     tearDown = classmethod(tearDown)
 
@@ -77,22 +77,22 @@ class Layer111(Layerx, Layer11):
     def setUp(self):
         global layer
         if layer != self.base:
-            raise ValueError("Bad layer, {}, for {}.".format(layer, self))
+            raise ValueError(f"Bad layer, {layer}, for {self}.")
         layer = self.layer
         global layerx
         if layerx != self.basex:
-            raise ValueError("Bad layerx, {}, for {}.".format(layerx, self))
+            raise ValueError(f"Bad layerx, {layerx}, for {self}.")
         layerx = self.layerx
     setUp = classmethod(setUp)
 
     def tearDown(self):
         global layer
         if layer != self.layer:
-            raise ValueError("Bad layer, {}, for {}.".format(layer, self))
+            raise ValueError(f"Bad layer, {layer}, for {self}.")
         layer = self.base
         global layerx
         if layerx != self.layerx:
-            raise ValueError("Bad layerx, {}, for {}.".format(layerx, self))
+            raise ValueError(f"Bad layerx, {layerx}, for {self}.")
         layerx = self.basex
     tearDown = classmethod(tearDown)
 
@@ -111,22 +111,22 @@ class Layer112(Layerx, Layer11):
     def setUp(self):
         global layer
         if layer != self.base:
-            raise ValueError("Bad layer, {}, for {}.".format(layer, self))
+            raise ValueError(f"Bad layer, {layer}, for {self}.")
         layer = self.layer
         global layerx
         if layerx != self.basex:
-            raise ValueError("Bad layerx, {}, for {}.".format(layerx, self))
+            raise ValueError(f"Bad layerx, {layerx}, for {self}.")
         layerx = self.layerx
     setUp = classmethod(setUp)
 
     def tearDown(self):
         global layer
         if layer != self.layer:
-            raise ValueError("Bad layer, {}, for {}.".format(layer, self))
+            raise ValueError(f"Bad layer, {layer}, for {self}.")
         layer = self.base
         global layerx
         if layerx != self.layerx:
-            raise ValueError("Bad layerx, {}, for {}.".format(layerx, self))
+            raise ValueError(f"Bad layerx, {layerx}, for {self}.")
         layerx = self.basex
     tearDown = classmethod(tearDown)
 

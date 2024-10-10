@@ -35,8 +35,8 @@ class IFeature(zope.interface.Interface):
     """
 
     active = zope.interface.Attribute(
-      "Flag whether this feature is activated. If it is not activated than "
-      "its methods won't be called by the runner.")
+        "Flag whether this feature is activated. If it is not activated than "
+        "its methods won't be called by the runner.")
 
     def global_setup():
         """Executed once when the test runner is being set up."""
@@ -99,7 +99,7 @@ class ITestRunner(zope.interface.Interface):
     """
 
     options = zope.interface.Attribute(
-      "Provides access to configuration options.")
+        "Provides access to configuration options.")
 
 
 class IMinimalTestLayer(zope.interface.Interface):

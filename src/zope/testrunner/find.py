@@ -134,6 +134,7 @@ class StartUpFailure(unittest.TestCase):
     ...
     TypeError: If post_mortem is specified, full exc_info must be passed!
     """
+
     def __init__(self, options, module, exc_info):
         if options.post_mortem:
             for item in exc_info:

@@ -91,11 +91,11 @@ class OutputFormatter:
                 w = room - (pos + 5)
                 if w < 1:
                     # first portion (test method name) is too long
-                    s = s[:room-3] + "..."
+                    s = s[:room - 3] + "..."
                 else:
-                    pre = s[:pos+2]
+                    pre = s[:pos + 2]
                     post = s[-w:]
-                    s = "{}...{}".format(pre, post)
+                    s = f"{pre}...{post}"
             else:
                 w = room - 4
                 s = '... ' + s[-w:]
@@ -121,9 +121,9 @@ class OutputFormatter:
     def error_with_banner(self, message):
         """Report an error with a big ASCII banner."""
         print()
-        print('*'*70)
+        print('*' * 70)
         self.error(message)
-        print('*'*70)
+        print('*' * 70)
         print()
 
     def profiler_stats(self, stats):
@@ -404,7 +404,7 @@ class OutputFormatter:
                 v.example.source,
                 v.example.want,
                 v.got,
-                )
+            )
         else:
             tb = "".join(traceback.format_exception(*exc_info))
         return tb
@@ -544,7 +544,7 @@ class ColorfulOutputFormatter(OutputFormatter):
                 prefix_code = code
                 break
         color_code = self.colorcodes[color]
-        return '\033[{}{}m'.format(prefix_code, color_code)
+        return f'\033[{prefix_code}{color_code}m'
 
     def color(self, what):
         """Pick a named color from the color scheme"""
@@ -605,9 +605,9 @@ class ColorfulOutputFormatter(OutputFormatter):
     def error_with_banner(self, message):
         """Report an error with a big ASCII banner."""
         print()
-        print(self.colorize('error', '*'*70))
+        print(self.colorize('error', '*' * 70))
         self.error(message)
-        print(self.colorize('error', '*'*70))
+        print(self.colorize('error', '*' * 70))
         print()
 
     def tear_down_not_supported(self):
@@ -622,11 +622,11 @@ class ColorfulOutputFormatter(OutputFormatter):
         if n_seconds >= 60:
             n_minutes, n_seconds = divmod(n_seconds, 60)
             return "{} minutes {} seconds".format(
-                        self.colorize('number', '%d' % n_minutes, normal),
-                        self.colorize('number', '%.3f' % n_seconds, normal))
+                self.colorize('number', '%d' % n_minutes, normal),
+                self.colorize('number', '%.3f' % n_seconds, normal))
         else:
             return "%s seconds" % (
-                        self.colorize('number', '%.3f' % n_seconds, normal))
+                self.colorize('number', '%.3f' % n_seconds, normal))
 
     def format_seconds_short(self, n_seconds):
         """Format a time in seconds (short version)."""
@@ -651,7 +651,7 @@ class ColorfulOutputFormatter(OutputFormatter):
             self.color('info'), ' skipped in ',
             self.format_seconds(n_seconds, 'info'), '.',
             self.color('normal'), '\n',
-            ])
+        ])
 
     def totals(self, n_tests, n_failures, n_errors, n_seconds,
                n_skipped=0):
@@ -966,11 +966,11 @@ class SubunitOutputFormatter:
 
     def _enter_layer(self, layer_name):
         """Tell subunit that we are entering a layer."""
-        self._subunit.tags(['zope:layer:{}'.format(layer_name)], [])
+        self._subunit.tags([f'zope:layer:{layer_name}'], [])
 
     def _exit_layer(self, layer_name):
         """Tell subunit that we are exiting a layer."""
-        self._subunit.tags([], ['zope:layer:{}'.format(layer_name)])
+        self._subunit.tags([], [f'zope:layer:{layer_name}'])
 
     def info(self, message):
         """Print an informative message."""
@@ -993,7 +993,7 @@ class SubunitOutputFormatter:
         """Report an error."""
         # XXX: Mostly used for user errors, sometimes used for errors in the
         # test framework, sometimes used to record layer setUp failure (!!!).
-        self._stream.write('{}\n'.format(message))
+        self._stream.write(f'{message}\n')
 
     def error_with_banner(self, message):
         """Report an error with a big ASCII banner."""
@@ -1151,7 +1151,7 @@ class SubunitOutputFormatter:
 
         The next output operation should be stop_set_up().
         """
-        test = FakeTest('{}:setUp'.format(layer_name))
+        test = FakeTest(f'{layer_name}:setUp')
         now = self._emit_timestamp()
         with self._subunit.setRunnable(False):
             self._subunit.startTest(test)
@@ -1165,7 +1165,7 @@ class SubunitOutputFormatter:
         """
         layer_name, start_time = self._last_layer
         self._last_layer = None
-        test = FakeTest('{}:setUp'.format(layer_name))
+        test = FakeTest(f'{layer_name}:setUp')
         self._emit_timestamp(start_time + timedelta(seconds=seconds))
         with self._subunit.setRunnable(False):
             self._subunit.addSuccess(test)
@@ -1175,7 +1175,7 @@ class SubunitOutputFormatter:
     def layer_failure(self, failure_type, exc_info):
         layer_name, start_time = self._last_layer
         self._emit_failure(
-            '{}:{}'.format(layer_name, failure_type), self.TAG_LAYER, exc_info)
+            f'{layer_name}:{failure_type}', self.TAG_LAYER, exc_info)
 
     def start_tear_down(self, layer_name):
         """Report that we're tearing down a layer.
@@ -1187,7 +1187,7 @@ class SubunitOutputFormatter:
         The next output operation should be stop_tear_down() or
         tear_down_not_supported().
         """
-        test = FakeTest('{}:tearDown'.format(layer_name))
+        test = FakeTest(f'{layer_name}:tearDown')
         self._exit_layer(layer_name)
         now = self._emit_timestamp()
         with self._subunit.setRunnable(False):
@@ -1202,7 +1202,7 @@ class SubunitOutputFormatter:
         """
         layer_name, start_time = self._last_layer
         self._last_layer = None
-        test = FakeTest('{}:tearDown'.format(layer_name))
+        test = FakeTest(f'{layer_name}:tearDown')
         self._emit_timestamp(start_time + timedelta(seconds=seconds))
         with self._subunit.setRunnable(False):
             self._subunit.addSuccess(test)
@@ -1215,7 +1215,7 @@ class SubunitOutputFormatter:
         """
         layer_name, start_time = self._last_layer
         self._last_layer = None
-        test = FakeTest('{}:tearDown'.format(layer_name))
+        test = FakeTest(f'{layer_name}:tearDown')
         self._emit_timestamp()
         with self._subunit.setRunnable(False):
             self._subunit.addSkip(test, 'tearDown not supported')
@@ -1458,7 +1458,7 @@ def parse_unittest(test):
         return None, None, None
     testClassName = get_test_class_name(test)
     testSuite = testClassName
-    testName = testId[len(testClassName)+1:]
+    testName = testId[len(testClassName) + 1:]
     return testSuite, testName, testClassName
 
 

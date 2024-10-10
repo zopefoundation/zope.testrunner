@@ -27,6 +27,7 @@ available_profilers = {}
 
 class CProfiler:
     """cProfiler"""
+
     def __init__(self, filepath):
         self.filepath = filepath
         self.profiler = cProfile.Profile()

@@ -84,4 +84,9 @@ def print_doctest_location(err):
     filename = err.test.filename
     if filename.endswith('.pyc'):
         filename = filename[:-1]
-    print("> {}({})_()".format(filename, err.test.lineno+err.example.lineno+1))
+    print(
+        "> {}({})_()".format(
+            filename,
+            err.test.lineno +
+            err.example.lineno +
+            1))
