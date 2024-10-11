@@ -2,14 +2,14 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 [meta]
 template = "pure-python"
-commit-id = "d3455844"
+commit-id = "210c1a0c"
 
 [python]
 with-pypy = true
 with-docs = true
 with-sphinx-doctests = false
 with-windows = true
-with-future-python = true
+with-future-python = false
 with-macos = false
 
 [coverage]
@@ -42,7 +42,7 @@ additional-config = [
 
 [tox]
 additional-envlist = [
-    "py{37,38,39,310,311,312,313,py3}-subunit",
+    "py{38,39,310,311,312,313,py3}-subunit",
     ]
 testenv-deps = [
     ]
@@ -54,12 +54,14 @@ use-flake8 = true
 
 [github-actions]
 additional-config = [
-    "- [\"3.7\",   \"py37-subunit\"]",
     "- [\"3.8\",   \"py38-subunit\"]",
     "- [\"3.9\",   \"py39-subunit\"]",
     "- [\"3.10\",  \"py310-subunit\"]",
     "- [\"3.11\",  \"py311-subunit\"]",
     "- [\"3.12\",  \"py312-subunit\"]",
-    "- [\"3.13.0-alpha - 3.13.0\",  \"py313-subunit\"]",
+    "- [\"3.13\",  \"py313-subunit\"]",
     "- [\"pypy-3.9\", \"pypy3-subunit\"]",
     ]
+
+[pre-commit]
+teyit-exclude = "tests/testrunner-ex/sample2/badsyntax\\.py"

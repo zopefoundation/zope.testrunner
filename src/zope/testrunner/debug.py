@@ -17,14 +17,14 @@
 
 import doctest
 import io
-import pdb
+import pdb  # noqa: T100 import for pdb found
 import sys
 import threading
 import traceback
 
 
 try:
-    import ipdb
+    import ipdb  # noqa: T100 import for ipdb found
     _ipdb_state = threading.local()
 except ImportError:
     ipdb = None

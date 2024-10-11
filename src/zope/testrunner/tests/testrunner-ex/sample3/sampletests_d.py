@@ -19,8 +19,8 @@ class TestSomething(unittest.TestCase):
 
     def test_set_trace1(self):
         x = 1
-        import pdb
-        pdb.set_trace()
+        import pdb  # noqa: T100 import for pdb found
+        pdb.set_trace()  # noqa: T100 pdb.set_trace found
         y = x  # noqa: F841
 
     def test_set_trace2(self):
@@ -45,8 +45,8 @@ class TestSomething(unittest.TestCase):
 
 def f():
     x = 1
-    import pdb
-    pdb.set_trace()
+    import pdb  # noqa: T100 import for pdb found
+    pdb.set_trace()  # noqa: T100 pdb.set_trace found
     y = x  # noqa: F841
 
 

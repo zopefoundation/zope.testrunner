@@ -16,7 +16,7 @@
 Provides setup routines that enable the test runner to test itself.
 """
 
-import pdb
+import pdb  # noqa: T100 import for pdb found
 
 import zope.testrunner.feature
 
