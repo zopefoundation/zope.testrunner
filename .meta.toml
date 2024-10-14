@@ -15,6 +15,12 @@ with-macos = false
 [coverage]
 fail-under = 84
 
+[coverage-run]
+additional-config = [
+    "omit =",
+    "    eggsupport.py",
+    ]
+
 [manifest]
 additional-rules = [
     "include *.md",
