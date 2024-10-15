@@ -137,6 +137,7 @@ else:
          r''),
         # Python 3.13+ no longer prints this `--Return--` line in pdb tests.
         (re.compile(r'--Return--'), ''),
+        (re.compile(r'--Return--\r'), ''),
 
         # disregard trailing whitespace
         (re.compile(r'\s+$', re.MULTILINE), ''),
