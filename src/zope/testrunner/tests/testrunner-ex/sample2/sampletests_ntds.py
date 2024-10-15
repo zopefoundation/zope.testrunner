@@ -39,15 +39,15 @@ class TestSomething(unittest.TestCase):
 
     def test_something2(self):
         import pdb  # noqa: T100 import for pdb found
-        pdb.set_trace()   # noqa: T100 pdb.set_trace found
+        pdb.set_trace()  # noqa: T100 pdb.set_trace found
 
     def test_something3(self):
         import pdb  # noqa: T100 import for pdb found
-        pdb.set_trace()   # noqa: T100 pdb.set_trace found
+        pdb.set_trace()  # noqa: T100 pdb.set_trace found
 
     def test_something4(self):
         import pdb  # noqa: T100 import for pdb found
-        pdb.set_trace()   # noqa: T100 pdb.set_trace found
+        pdb.set_trace()  # noqa: T100 pdb.set_trace found
 
     def test_something5(self):
         f()
