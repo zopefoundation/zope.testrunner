@@ -168,31 +168,31 @@ that is run as a subprocess:
       Running in a subprocess.
       Set up sample2.sampletests_ntds.Layer in 0.000 seconds.
     > testrunner-ex/sample2/sampletests_ntds.py(37)test_something()->None
-    -> pdb.set_trace()  # noqa: T100 pdb.set_trace found
+    -> pdb.set_trace()...# noqa: T100 pdb.set_trace found
     (Pdb) c
     **********************************************************************
     Can't use pdb.set_trace when running a layer as a subprocess!
     **********************************************************************
     > testrunner-ex/sample2/sampletests_ntds.py(40)test_something2()->None
-    -> pdb.set_trace()  # noqa: T100 pdb.set_trace found
+    -> pdb.set_trace()...# noqa: T100 pdb.set_trace found
     (Pdb) c
     **********************************************************************
     Can't use pdb.set_trace when running a layer as a subprocess!
     **********************************************************************
     > testrunner-ex/sample2/sampletests_ntds.py(43)test_something3()->None
-    -> pdb.set_trace()  # noqa: T100 pdb.set_trace found
+    -> pdb.set_trace()...# noqa: T100 pdb.set_trace found
     (Pdb) c
     **********************************************************************
     Can't use pdb.set_trace when running a layer as a subprocess!
     **********************************************************************
     > testrunner-ex/sample2/sampletests_ntds.py(46)test_something4()->None
-    -> pdb.set_trace()  # noqa: T100 pdb.set_trace found
+    -> pdb.set_trace()...# noqa: T100 pdb.set_trace found
     (Pdb) c
     **********************************************************************
     Can't use pdb.set_trace when running a layer as a subprocess!
     **********************************************************************
     > testrunner-ex/sample2/sampletests_ntds.py(52)f()->None
-    -> pdb.set_trace()  # noqa: T100 pdb.set_trace found
+    -> pdb.set_trace()...# noqa: T100 pdb.set_trace found
     (Pdb) c
     **********************************************************************
     Can't use pdb.set_trace when running a layer as a subprocess!
@@ -204,7 +204,7 @@ that is run as a subprocess:
     Can't use pdb.set_trace when running a layer as a subprocess!
     **********************************************************************
     > testrunner-ex/sample2/sampletests_ntds.py(NNN)f()
-    -> pdb.set_trace()  # noqa: T100 pdb.set_trace found
+    -> pdb.set_trace()...# noqa: T100 pdb.set_trace found
     (Pdb) c
     **********************************************************************
     Can't use pdb.set_trace when running a layer as a subprocess!
