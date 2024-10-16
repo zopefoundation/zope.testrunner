@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-6.6 (unreleased)
+6.6 (2024-10-16)
 ================
 
 - Make tests compatible with Python 3.13 + add support for that version.
