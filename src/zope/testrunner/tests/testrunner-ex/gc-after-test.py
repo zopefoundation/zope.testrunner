@@ -26,13 +26,13 @@ class GcAfterTestTests(TestCase):
         raise AssertionError("failure")
 
     def test_exception(self):
-        1/0
+        1 / 0
 
     def test_traceback_cycle(self):
 
         def f():
             try:
-                1/0
+                1 / 0
             except Exception:
                 # create cycle
                 tb = exc_info()[2]  # noqa: F841
@@ -42,6 +42,7 @@ class GcAfterTestTests(TestCase):
 
 class _Cycle:
     """Auxiliary class creating a reference cycle."""
+
     def __init__(self, **kw):
         self.self = self  # create reference cycle
         self.__dict__.update(kw)

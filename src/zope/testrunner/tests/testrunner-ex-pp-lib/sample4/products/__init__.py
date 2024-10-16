@@ -23,9 +23,9 @@ __path__.append(
             os.path.dirname(  # testrunner-ex-knit-lib
                 os.path.dirname(  # sample4
                     os.path.dirname(__file__)  # products
-                    )
                 )
-            ),
+            )
+        ),
         "testrunner-ex-pp-products"
-        )
     )
+)

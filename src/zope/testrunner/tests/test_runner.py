@@ -35,11 +35,20 @@ class TestLayerOrdering(unittest.TestCase):
         #   /|\    /
         #  / | \  /
         # A1 A2 AB
-        class A: pass
-        class A1(A): pass
-        class A2(A): pass
-        class B: pass
-        class AB(A, B): pass
+        class A:
+            pass
+
+        class A1(A):
+            pass
+
+        class A2(A):
+            pass
+
+        class B:
+            pass
+
+        class AB(A, B):
+            pass
         self.assertEqual(self.order(B, A1, A2, A1, AB, UnitTests),
                          'UnitTests, A1, A2, B, AB')
         self.assertEqual(self.sort_key(UnitTests), '')
@@ -49,12 +58,23 @@ class TestLayerOrdering(unittest.TestCase):
         self.assertEqual(self.sort_key(AB), 'B, A, AB')
 
     def test_order_by_bases_alphabetical_order(self):
-        class X: pass
-        class Y: pass
-        class Z: pass
-        class A(Y): pass
-        class B(X): pass
-        class C(Z): pass
+        class X:
+            pass
+
+        class Y:
+            pass
+
+        class Z:
+            pass
+
+        class A(Y):
+            pass
+
+        class B(X):
+            pass
+
+        class C(Z):
+            pass
         # It'd be nice to get A, B, C here, but that's not trivial.
         self.assertEqual(self.order(A, B, C), 'B, A, C')
         self.assertEqual(self.sort_key(B), 'X, B')
@@ -69,12 +89,23 @@ class TestLayerOrdering(unittest.TestCase):
         #    C   E
         #     \ /
         #      F
-        class A: pass
-        class B(A): pass
-        class C(B): pass
-        class D(A): pass
-        class E(D): pass
-        class F(C, E): pass
+        class A:
+            pass
+
+        class B(A):
+            pass
+
+        class C(B):
+            pass
+
+        class D(A):
+            pass
+
+        class E(D):
+            pass
+
+        class F(C, E):
+            pass
         self.assertEqual(self.order(A, B, C, D, E, F), 'A, B, C, D, E, F')
         self.assertEqual(self.sort_key(A), 'A')
         self.assertEqual(self.sort_key(B), 'A, B')
@@ -92,12 +123,23 @@ class TestLayerOrdering(unittest.TestCase):
         #    /  \  \
         # AAAABD \ MMMACF
         #      ZZZABE
-        class A: pass
-        class AB(A): pass
-        class AC(A): pass
-        class AAAABD(AB): pass
-        class ZZZABE(AB): pass
-        class MMMACF(AC): pass
+        class A:
+            pass
+
+        class AB(A):
+            pass
+
+        class AC(A):
+            pass
+
+        class AAAABD(AB):
+            pass
+
+        class ZZZABE(AB):
+            pass
+
+        class MMMACF(AC):
+            pass
         self.assertEqual(self.order(AAAABD, MMMACF, ZZZABE),
                          'AAAABD, ZZZABE, MMMACF')
         self.assertEqual(self.sort_key(AAAABD), 'A, AB, AAAABD')
@@ -114,14 +156,29 @@ class TestLayerOrdering(unittest.TestCase):
         #   \      /
         #   Layer112
         #
-        class Layer1: pass
-        class Layerx: pass
-        class Layer11(Layer1): pass
-        class Layer12(Layer1): pass
-        class Layer111(Layerx, Layer11): pass
-        class Layer121(Layer12): pass
-        class Layer112(Layerx, Layer11): pass
-        class Layer122(Layer12): pass
+        class Layer1:
+            pass
+
+        class Layerx:
+            pass
+
+        class Layer11(Layer1):
+            pass
+
+        class Layer12(Layer1):
+            pass
+
+        class Layer111(Layerx, Layer11):
+            pass
+
+        class Layer121(Layer12):
+            pass
+
+        class Layer112(Layerx, Layer11):
+            pass
+
+        class Layer122(Layer12):
+            pass
         self.assertEqual(
             self.order(Layer1, Layer11, Layer12, Layer111, Layer112, Layer121,
                        Layer122),
@@ -140,12 +197,23 @@ class TestLayerOrdering(unittest.TestCase):
         #   B   C
         #    \ /
         #     A
-        class F: pass
-        class E: pass
-        class D: pass
-        class C(D, F): pass
-        class B(D, E): pass
-        class A(B, C): pass
+        class F:
+            pass
+
+        class E:
+            pass
+
+        class D:
+            pass
+
+        class C(D, F):
+            pass
+
+        class B(D, E):
+            pass
+
+        class A(B, C):
+            pass
         self.assertEqual(self.order(A, B, C), 'B, C, A')
         self.assertEqual(self.order(A, B, C, D, E, F), 'D, E, B, F, C, A')
 
@@ -158,15 +226,32 @@ class TestLayerOrdering(unittest.TestCase):
         #      \ K3 /
         #       \ |/
         #        ZZ
-        class A: pass
-        class B: pass
-        class C: pass
-        class D: pass
-        class E: pass
-        class K1(A, B, C): pass
-        class K2(D, B, E): pass
-        class K3(D, A): pass
-        class ZZ(K1, K2, K3): pass
+        class A:
+            pass
+
+        class B:
+            pass
+
+        class C:
+            pass
+
+        class D:
+            pass
+
+        class E:
+            pass
+
+        class K1(A, B, C):
+            pass
+
+        class K2(D, B, E):
+            pass
+
+        class K3(D, A):
+            pass
+
+        class ZZ(K1, K2, K3):
+            pass
         self.assertEqual(self.order(K1, K2, K3, ZZ),
                          'K3, K2, K1, ZZ')
         # Sorting by reverse MRO, as computed by Python's MRO algorithm,

@@ -82,7 +82,6 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
@@ -95,7 +94,7 @@ setup(
         "Topic :: Software Development :: Testing",
     ],
     namespace_packages=['zope'],
-    python_requires='>=3.7',
+    python_requires='>=3.8',
     install_requires=INSTALL_REQUIRES,
     extras_require=EXTRAS_REQUIRE,
     entry_points={

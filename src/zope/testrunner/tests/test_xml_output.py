@@ -116,7 +116,7 @@ class TextXMLOutputWithErrors(Base):
             '--path', str(directory_with_tests),
             '--tests-pattern', '^sampletestsf?$',
             f'--xml={self.tmpdir}',
-            ]
+        ]
 
     def _run_tests(self):
         stream1 = io.StringIO()

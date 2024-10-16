@@ -60,6 +60,7 @@ class SkipLayers(ScanningLoader):
             ...
         )
     """
+
     def loadTestsFromModule(self, module):
         return skipLayers(
             ScanningLoader.loadTestsFromModule(self, module))

@@ -54,7 +54,7 @@ class DiGraph:
                 return ns
 
         else:
-            tr_nodes = lambda nodes: set(nodes)  # noqa: E731
+            def tr_nodes(nodes): return set(nodes)  # noqa: E731
             utr_node = tr_node = lambda node: node
 
         self._transform_node = tr_node

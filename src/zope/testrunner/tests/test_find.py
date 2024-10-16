@@ -40,7 +40,7 @@ class TestUniqueness(unittest.TestCase):
             doctest.DocFileSuite('testrunner-ex/sampletests.rst'),
             doctest.DocFileSuite('testrunner-ex/sampletestsl.rst'),
             doctest.DocFileSuite('testrunner-ex/sampletestsl.rst'),
-            ]
+        ]
         self.test_suites = unittest.TestSuite(suites)
 
     def test_tests_from_suite_records_duplicate_test_ids(self):

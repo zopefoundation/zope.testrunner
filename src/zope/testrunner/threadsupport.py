@@ -38,6 +38,7 @@ else:
 
 class ThreadProxy:
     """auxiliary class to provide ident based ``__eq__``."""
+
     def __init__(self, thread):
         self.thread = thread
 
@@ -53,6 +54,7 @@ class ThreadProxy:
 
 class DummyThread:
     """auxiliary to represent a thread unknown to ``threading``."""
+
     def __init__(self, ident):
         self.ident = ident
         self.name = "Dummy-%s" % ident

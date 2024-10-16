@@ -56,18 +56,18 @@ class TrackRefs:
                 type2all[t] = all
 
         ct = [(
-               type_or_class_title(t),
-               type2count[t] - self.type2count.get(t, 0),
-               type2all[t] - self.type2all.get(t, 0),
-               )
-              for t in type2count]
+            type_or_class_title(t),
+            type2count[t] - self.type2count.get(t, 0),
+            type2all[t] - self.type2all.get(t, 0),
+        )
+            for t in type2count]
         ct += [(
-                type_or_class_title(t),
-                - self.type2count[t],
-                - self.type2all[t],
-                )
-               for t in self.type2count
-               if t not in type2count]
+            type_or_class_title(t),
+            - self.type2count[t],
+            - self.type2all[t],
+        )
+            for t in self.type2count
+            if t not in type2count]
         ct.sort()
         self.delta = ct
         self.type2count = type2count
@@ -102,4 +102,4 @@ def type_or_class_title(t):
     module = getattr(t, '__module__', '__builtin__')
     if module == '__builtin__':
         return t.__name__
-    return "{}.{}".format(module, t.__name__)
+    return f"{module}.{t.__name__}"
