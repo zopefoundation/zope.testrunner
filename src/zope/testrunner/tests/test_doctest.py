@@ -376,7 +376,7 @@ def test_suite():
                     checker=checker))
 
     suites.append(doctest.DocFileSuite(
-        'testrunner-unexpected-success.rst',
+        'testrunner-expected-failures.rst',
         setUp=setUp, tearDown=tearDown,
         optionflags=optionflags,
         checker=checker))

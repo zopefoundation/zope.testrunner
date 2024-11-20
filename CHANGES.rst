@@ -5,6 +5,8 @@
 7.3 (unreleased)
 ================
 
+- Improve ``@unittest.expectedFailure`` support, especially regarding
+  post-mortem debugger. (`#196 <https://github.com/zopefoundation/zope.testrunner/pull/196>`_)
 
 7.2 (2025-03-06)
 ================
