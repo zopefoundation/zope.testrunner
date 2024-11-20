@@ -127,3 +127,44 @@ post-mortem debugger:
     Tearing down left over layers:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
+
+Tests marked as expected failures with the ``@unittest.expectedFailure`` decorator do
+not trigger the post-mortem debugger when they fail as expected:
+
+    >>> expected_failure_tests_defaults = [
+    ...     '--path', os.path.join(this_directory, 'testrunner-ex-expectedFailure'),
+    ...     '--tests-pattern', '^sample_expected_failure_tests$',
+    ...     ]
+    >>> sys.stdin = Input('q')
+    >>> sys.argv = 'test -t test_expected_failure -D'.split()
+    >>> try: testrunner.run_internal(expected_failure_tests_defaults)
+    ... finally: sys.stdin = real_stdin
+    ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF +ELLIPSIS
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Ran 1 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False
+
+When ``@unittest.expectedFailure`` test unexpectedly pass, it's not possible to use
+the post-mortem debugger, because no exception was raised. In that case a warning is
+printed:
+
+    >>> sys.stdin = Input('q')
+    >>> sys.argv = 'test -t test_unexpected_success -D'.split()
+    >>> try: testrunner.run_internal(expected_failure_tests_defaults)
+    ... finally: sys.stdin = real_stdin
+    ... # doctest: +NORMALIZE_WHITESPACE +REPORT_NDIFF +ELLIPSIS
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Error in test test_unexpected_success (sample_expected_failure_tests.TestExpectedFailures...)
+      Traceback (most recent call last):
+      zope.testrunner.runner.UnexpectedSuccess
+      **********************************************************************
+      Can't post-mortem debug an unexpected success
+      **********************************************************************
+      Ran 1 tests with 1 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    True

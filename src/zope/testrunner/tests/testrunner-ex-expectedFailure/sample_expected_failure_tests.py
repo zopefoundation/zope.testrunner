@@ -15,8 +15,12 @@
 import unittest
 
 
-class TestUnexpectedSuccess(unittest.TestCase):
+class TestExpectedFailures(unittest.TestCase):
 
     @unittest.expectedFailure
-    def test_ef(self):
-        pass
+    def test_expected_failure(self):
+        self.fail('test fail, as expected')
+
+    @unittest.expectedFailure
+    def test_unexpected_success(self):
+        self.assertTrue('unexpected success')

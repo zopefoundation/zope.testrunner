@@ -379,6 +379,13 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
             for test in tests:
                 if result.shouldStop:
                     break
+                expecting_failure = (
+                    getattr(test, "__unittest_expecting_failure__", False)
+                    or getattr(
+                        getattr(test, test._testMethodName),
+                        "__unittest_expecting_failure__",
+                        False)
+                )
                 result.startTest(test)
                 state = test.__dict__.copy()
                 try:
@@ -389,12 +396,19 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
                     except unittest.SkipTest as e:
                         result.addSkip(test, str(e))
                     except BaseException:
-                        result.addError(
-                            test,
-                            sys.exc_info()[:2] + (sys.exc_info()[2].tb_next, ),
+                        exc_info = (
+                            sys.exc_info()[:2]
+                            + (sys.exc_info()[2].tb_next, )
                         )
+                        if expecting_failure:
+                            result.addExpectedFailure(test, exc_info)
+                        else:
+                            result.addError(test, exc_info)
                     else:
-                        result.addSuccess(test)
+                        if expecting_failure:
+                            result.addUnexpectedSuccess(test)
+                        else:
+                            result.addSuccess(test)
                 finally:
                     result.stopTest(test)
                 test.__dict__.clear()
@@ -414,7 +428,7 @@ def run_tests(options, tests, name, failures, errors, skipped, import_errors):
         output.stop_tests()
         failures.extend(result.failures)
         n_failures = len(result.failures)
-        failures.extend(result.unexpectedSuccesses)
+        failures.extend([(s, None) for s in result.unexpectedSuccesses])
         n_failures += len(result.unexpectedSuccesses)
         skipped.extend(result.skipped)
         errors.extend(result.errors)
@@ -1052,9 +1066,8 @@ class TestResult(unittest.TestResult):
                                                       " when running a layer"
                                                       " as a subprocess!")
             else:
-                # XXX: what exc_info? there's no exc_info!
-                # flake8 is correct, but keep it quiet for now ...
-                zope.testrunner.debug.post_mortem(exc_info)  # noqa: F821
+                self.options.output.error_with_banner("Can't post-mortem debug"
+                                                      " an unexpected success")
         elif self.options.stop_on_error:
             self.stop()
 
