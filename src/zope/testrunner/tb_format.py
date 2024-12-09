@@ -22,6 +22,13 @@ import zope.exceptions.exceptionformatter
 import zope.testrunner.feature
 
 
+try:
+    from traceback import _sentinel
+except ImportError:
+    # before 3.12
+    _sentinel = False
+
+
 def _iter_chain(exc, custom_tb=None, seen=None):
     if seen is None:
         seen = set()
@@ -47,9 +54,9 @@ def _parse_value_tb(exc, value, tb):
     # Taken straight from the traceback module code on Python 3.10, which
     # introduced the ability to call print_exception with an exception
     # instance as first parameter
-    if (value is None) != (tb is None):
+    if (value is _sentinel) != (tb is _sentinel):
         raise ValueError("Both or neither of value and tb must be given")
-    if value is tb is None:
+    if value is tb is _sentinel:
         if exc is not None:
             return exc, exc.__traceback__
         else:
@@ -57,7 +64,8 @@ def _parse_value_tb(exc, value, tb):
     return value, tb
 
 
-def format_exception(t, v, tb, limit=None, chain=None):
+def format_exception(t, value=_sentinel, tb=_sentinel, limit=None, chain=None):
+    v, tb = _parse_value_tb(t, value, tb)
     if chain:
         values = _iter_chain(v, tb)
     else:
@@ -70,8 +78,9 @@ def format_exception(t, v, tb, limit=None, chain=None):
         return fmt.formatException(t, v, tb)
 
 
-def print_exception(t, v=None, tb=None, limit=None, file=None, chain=None):
-    v, tb = _parse_value_tb(t, v, tb)
+def print_exception(t, value=_sentinel, tb=_sentinel,
+                    limit=None, file=None, chain=None):
+    v, tb = _parse_value_tb(t, value, tb)
     if chain:
         values = _iter_chain(v, tb)
     else:

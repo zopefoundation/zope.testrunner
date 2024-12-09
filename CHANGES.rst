@@ -5,7 +5,8 @@
 6.7 (unreleased)
 ================
 
-- Nothing changed yet.
+- Make signatures in ``tb_format`` Python 3.12+ compatible
+  (`#186 <https://github.com/zopefoundation/zope.testrunner/issues/186>`_)
 
 
 6.6 (2024-10-16)
