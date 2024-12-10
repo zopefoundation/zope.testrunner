@@ -23,10 +23,17 @@ import zope.testrunner.feature
 
 
 try:
+    from traceback import _parse_value_tb
     from traceback import _sentinel
 except ImportError:
     # before 3.10
-    _sentinel = None
+    # for Python before 3.10, the first 3 parameters of
+    # ``print_exception`` and ``format_exception`` are all mandatory
+    # and the first one (``etype`` alias ``t``) is ignored
+    _sentinel = object()
+
+    def _parse_value_tb(ignored, value, tb):
+        return value, tb
 
 
 def _iter_chain(exc, custom_tb=None, seen=None):
@@ -48,20 +55,6 @@ def _iter_chain(exc, custom_tb=None, seen=None):
     # itertools.chain is in an extension module and may be unavailable
     for it in its:
         yield from it
-
-
-def _parse_value_tb(exc, value, tb):
-    # Taken straight from the traceback module code on Python 3.10, which
-    # introduced the ability to call print_exception with an exception
-    # instance as first parameter
-    if (value is _sentinel) != (tb is _sentinel):
-        raise ValueError("Both or neither of value and tb must be given")
-    if value is tb is _sentinel:
-        if exc is not None:
-            return exc, exc.__traceback__
-        else:
-            return None, None
-    return value, tb
 
 
 def format_exception(t, value=_sentinel, tb=_sentinel, limit=None, chain=None):
