@@ -25,8 +25,8 @@ import zope.testrunner.feature
 try:
     from traceback import _sentinel
 except ImportError:
-    # before 3.12
-    _sentinel = False
+    # before 3.10
+    _sentinel = None
 
 
 def _iter_chain(exc, custom_tb=None, seen=None):
