@@ -2,8 +2,8 @@
  zope.testrunner Changelog
 ===========================
 
-6.7 (unreleased)
-================
+6.6.1 (2024-12-13)
+==================
 
 - Make signatures in ``tb_format`` Python 3.12+ compatible
   (`#186 <https://github.com/zopefoundation/zope.testrunner/issues/186>`_)
