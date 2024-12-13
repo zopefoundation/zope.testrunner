@@ -2,6 +2,12 @@
  zope.testrunner Changelog
 ===========================
 
+6.7 (unreleased)
+================
+
+- Nothing changed yet.
+
+
 6.6.1 (2024-12-13)
 ==================
 
