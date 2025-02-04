@@ -524,6 +524,22 @@ additional tests:
       Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
     False
 
+We get run 38 tests.  We can specify to run only the level 2 tests using
+``--only-level=2``. So we run less tests:
+
+    >>> sys.argv = 'test -u  -vv --only-level=2 -t test_y1 -t test_y0'.split()
+    >>> testrunner.run_internal(defaults)
+    Running tests only at level 2
+    Running zope.testrunner.layer.UnitTests tests:
+      Set up zope.testrunner.layer.UnitTests in N.NNN seconds.
+      Running:
+     test_y0 (sampletestsf.TestA2...)
+     test_y1 (sample1.sample11.sampletests.TestB2...)
+      Ran 2 tests with 0 failures, 0 errors and 0 skipped in N.NNN seconds.
+    Tearing down left over layers:
+      Tear down zope.testrunner.layer.UnitTests in N.NNN seconds.
+    False
+
 
 We can use the --all option to run tests at all levels:
 

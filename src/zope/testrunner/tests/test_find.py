@@ -25,6 +25,7 @@ class UniquenessOptions:
 
     keepbytecode = True
     at_level = 99
+    only_level = None
     test = []
     module = []
     require_unique_ids = True
