@@ -12,6 +12,9 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: read
+      pull-requests: write
     strategy:
       # We want to see all failures:
       fail-fast: false
@@ -22,7 +25,6 @@ jobs:
         config:
         # [Python version, tox env]
         - ["3.11", "release-check"]
-        - ["3.8", "py38"]
         - ["3.9", "py39"]
         - ["3.10", "py310"]
         - ["3.11", "py311"]
@@ -31,13 +33,12 @@ jobs:
         - ["pypy-3.10", "pypy3"]
         - ["3.11", "docs"]
         - ["3.11", "coverage"]
-        - ["3.8",   "py38-subunit"]
         - ["3.9",   "py39-subunit"]
         - ["3.10",  "py310-subunit"]
         - ["3.11",  "py311-subunit"]
         - ["3.12",  "py312-subunit"]
         - ["3.13",  "py313-subunit"]
-        - ["pypy-3.9", "pypy3-subunit"]
+        - ["pypy-3.10", "pypy3-subunit"]
         exclude:
           - { os: ["windows", "windows-latest"], config: ["3.11", "release-check"] }
           - { os: ["windows", "windows-latest"], config: ["3.11", "docs"] }
@@ -48,6 +49,8 @@ jobs:
     name: ${{ matrix.os[0] }}-${{ matrix.config[1] }}
     steps:
     - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
