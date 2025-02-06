@@ -5,7 +5,7 @@
 6.7 (unreleased)
 ================
 
-- Drop support for Python 3.8, py{38,39,310,311,312,313,3.}-subunit.
+- Drop support for Python 3.8.
 
 
 6.6.1 (2024-12-13)
