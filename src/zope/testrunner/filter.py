@@ -70,8 +70,14 @@ class Filter(zope.testrunner.feature.Feature):
             if self.runner.options.all:
                 msg = "Running tests at all levels"
             else:
-                msg = (
-                    "Running tests at level %d" % self.runner.options.at_level)
+                if self.runner.options.only_level is None:
+                    msg = (
+                        "Running tests at level %d" %
+                        self.runner.options.at_level)
+                else:
+                    msg = (
+                        "Running tests only at level %d" %
+                        self.runner.options.only_level)
             self.runner.options.output.info(msg)
 
     def report(self):
