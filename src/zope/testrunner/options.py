@@ -141,6 +141,15 @@ searching.add_argument(
     help="Run tests at all levels.")
 
 searching.add_argument(
+    '--only-level', type=int, dest='only_level',
+    default=None,
+    help="""\
+Run only the tests at the given level. Tests on other levels are not run.
+Default is None, which means the level is not restricted by this option.
+If this option is used it overrides `--at-level` and `--all` options.
+""")
+
+searching.add_argument(
     '--list-tests', action="store_true", dest='list_tests',
     default=False,
     help="List all tests that matched your filters.  Do not run any tests.")

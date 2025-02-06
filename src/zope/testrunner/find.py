@@ -471,9 +471,14 @@ def tests_from_suite(suite, options, dlevel=1,
                 duplicated_test_ids.add(suite_id)
             else:
                 seen_test_ids.add(suite_id)
-        if options.at_level <= 0 or level <= options.at_level:
-            if accept is None or accept(str(suite)):
-                yield (suite, layer)
+        if options.only_level is None:
+            if options.at_level <= 0 or level <= options.at_level:
+                if accept is None or accept(str(suite)):
+                    yield (suite, layer)
+        else:
+            if level == options.only_level:
+                if accept is None or accept(str(suite)):
+                    yield (suite, layer)
 
 
 _layer_name_cache = {}

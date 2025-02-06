@@ -5,7 +5,8 @@
 6.7 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add option ``--only-level=level`` to run tests only at the specified level.
+  (`#188 <https://github.com/zopefoundation/zope.testrunner/issues/188>`_)
 
 
 6.6.1 (2024-12-13)
