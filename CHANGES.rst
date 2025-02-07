@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-6.7 (unreleased)
+6.7 (2025-02-07)
 ================
 
 - Drop support for Python 3.8.
