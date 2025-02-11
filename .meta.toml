@@ -13,7 +13,7 @@ with-future-python = false
 with-macos = false
 
 [coverage]
-fail-under = 82.5
+fail-under = 84.4
 
 [manifest]
 additional-rules = [

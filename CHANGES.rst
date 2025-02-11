@@ -2,10 +2,18 @@
  zope.testrunner Changelog
 ===========================
 
-6.8 (unreleased)
+7.0 (unreleased)
 ================
 
-- Nothing changed yet.
+Backwards-incompatible changes
+------------------------------
+
+- Remove ``setup.py ftest`` command.
+  (`#178 <https://github.com/zopefoundation/zope.testrunner/issues/178>`_)
+
+- Remove ``zope.testrunner.eggsupport``.  It is no longer usable as of
+  ``setuptools`` 72.0.0.
+  (`#185 <https://github.com/zopefoundation/zope.testrunner/issues/185>`_)
 
 
 6.7 (2025-02-07)

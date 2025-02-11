@@ -99,8 +99,6 @@ setup(
     entry_points={
         'console_scripts':
             ['zope-testrunner = zope.testrunner:run'],
-        'distutils.commands': [
-            'ftest = zope.testrunner.eggsupport:ftest'],
     },
     include_package_data=True,
     zip_safe=False,

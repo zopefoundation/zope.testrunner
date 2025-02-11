@@ -80,7 +80,6 @@ To get started testing right away, see :doc:`getting-started`
 
    testrunner-simple
    testrunner-arguments
-   testrunner-eggsupport
    api
 
 
