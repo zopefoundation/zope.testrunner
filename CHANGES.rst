@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-7.0 (unreleased)
+7.0 (2025-02-12)
 ================
 
 Backwards-incompatible changes
