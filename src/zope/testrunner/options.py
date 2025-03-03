@@ -18,7 +18,6 @@ import argparse
 import os
 import re
 import sys
-
 from importlib.metadata import distribution
 
 from zope.testrunner.formatter import ColorfulOutputFormatter
