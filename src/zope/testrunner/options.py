@@ -19,7 +19,7 @@ import os
 import re
 import sys
 
-import pkg_resources
+from importlib.metadata import distribution
 
 from zope.testrunner.formatter import ColorfulOutputFormatter
 from zope.testrunner.formatter import OutputFormatter
@@ -611,7 +611,7 @@ def get_options(args=None, defaults=None):
     options.original_testrunner_args = args
 
     if options.showversion:
-        dist = pkg_resources.require('zope.testrunner')[0]
+        dist = distribution('zope.testrunner')
         print('zope.testrunner version %s' % dist.version)
         sys.exit(0)
 
