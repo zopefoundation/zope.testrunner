@@ -14,12 +14,11 @@
 
 import os
 import sys
-
-import pkg_resources
+from importlib.metadata import distribution
 
 
 sys.path.append(os.path.abspath('../src'))
-rqmt = pkg_resources.require('zope.testrunner')[0]
+rqmt = distribution('zope.testrunner')
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
