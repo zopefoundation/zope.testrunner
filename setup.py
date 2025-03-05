@@ -21,7 +21,7 @@ import os
 from setuptools import setup
 
 
-version = '7.1'
+version = '7.2.dev0'
 
 INSTALL_REQUIRES = [
     'setuptools',
