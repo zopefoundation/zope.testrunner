@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-7.1 (unreleased)
+7.1 (2025-03-05)
 ================
 
 - Replace ``pkg_resources`` with ``importlib.metadata``.
