@@ -17,6 +17,8 @@
 import os
 import sys
 
+import pkg_resources  # noqa: F401 unused import, see GitHub issue #194
+
 
 def run(defaults=None, args=None, script_parts=None, cwd=None, warnings=None):
     """Main runner function which can be and is being used from main programs.

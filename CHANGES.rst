@@ -5,13 +5,16 @@
 7.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- Re-add a single import of ``pkg_resources`` to avoid other import issues in
+  mixed pip/buildout environments.
+  (`#194 <https://github.com/zopefoundation/zope.testrunner/issues/194>`_)
 
 
 7.1 (2025-03-05)
 ================
 
 - Replace ``pkg_resources`` with ``importlib.metadata``.
+
 
 7.0 (2025-02-12)
 ================
