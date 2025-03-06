@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-7.2 (unreleased)
+7.2 (2025-03-06)
 ================
 
 - Re-add a single import of ``pkg_resources`` to avoid other import issues in
