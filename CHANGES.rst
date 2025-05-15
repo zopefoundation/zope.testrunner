@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-7.3 (unreleased)
+7.3 (2025-05-15)
 ================
 
 - Improve ``@unittest.expectedFailure`` support, especially regarding
