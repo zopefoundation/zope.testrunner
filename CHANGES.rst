@@ -2,11 +2,18 @@
  zope.testrunner Changelog
 ===========================
 
-7.4 (unreleased)
+7.5 (unreleased)
+================
+
+- Nothing changed yet.
+
+
+7.4 (2025-05-28)
 ================
 
 - Add ``--auto-path`` option.
   This automatically adds the path of all packages from the ``--package`` option to the test paths.
+  (`#198 <https://github.com/zopefoundation/zope.testrunner/pull/198>`_)
 
 
 7.3 (2025-05-15)
@@ -14,6 +21,7 @@
 
 - Improve ``@unittest.expectedFailure`` support, especially regarding
   post-mortem debugger. (`#196 <https://github.com/zopefoundation/zope.testrunner/pull/196>`_)
+
 
 7.2 (2025-03-06)
 ================
