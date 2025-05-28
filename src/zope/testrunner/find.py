@@ -347,8 +347,8 @@ def strip_py_ext(options, path):
 
 def test_dirs(options, seen):
     if options.package:
-        for p in options.package:
-            p = import_name(p)
+        for package_name in options.package:
+            p = import_name(package_name)
             for p in p.__path__:
                 p = os.path.abspath(p)
                 if p in seen:
@@ -358,6 +358,13 @@ def test_dirs(options, seen):
                         seen[p] = 1
                         yield p, package
                         break
+                else:
+                    if options.auto_path:
+                        seen[p] = 1
+                        result = p + os.path.sep, package_name
+                        options.prefix.append(result)
+                        yield result
+
     else:
         yield from options.test_path
 

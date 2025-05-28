@@ -5,7 +5,8 @@
 7.4 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add ``--auto-path`` option.
+  This automatically adds the path of all packages from the ``--package`` option to the test paths.
 
 
 7.3 (2025-05-15)

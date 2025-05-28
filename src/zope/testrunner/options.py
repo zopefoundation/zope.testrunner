@@ -456,6 +456,12 @@ although it can be overridden by users.  Only tests found in the path
 will be run.
 """)
 
+searching.add_argument(
+    '--auto-path', action="store_true", dest='auto_path',
+    help="""\
+Automatically add path of --package to the test paths.
+""")
+
 setup.add_argument(
     '--tests-pattern', action="store", dest='tests_pattern',
     default=_regex_search('^tests$'),
