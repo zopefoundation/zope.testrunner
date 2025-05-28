@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-7.4 (unreleased)
+7.4 (2025-05-28)
 ================
 
 - Add ``--auto-path`` option.
