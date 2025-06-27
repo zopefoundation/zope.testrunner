@@ -34,7 +34,6 @@ import zope.testrunner.interfaces
 
 def _use_ipdb():
     """Check whether ipdb is usable."""
-    global _ipdb_ok
     if ipdb is None:
         return False
     if getattr(_ipdb_state, 'ok', None) is None:
