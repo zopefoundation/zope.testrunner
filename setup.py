@@ -68,11 +68,6 @@ setup(
     long_description=long_description,
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
-    packages=[
-        "zope",
-        "zope.testrunner",
-    ],
-    package_dir={'': 'src'},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
@@ -92,7 +87,6 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
     ],
-    namespace_packages=['zope'],
     python_requires='>=3.9',
     install_requires=INSTALL_REQUIRES,
     extras_require=EXTRAS_REQUIRE,
