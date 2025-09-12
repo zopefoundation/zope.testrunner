@@ -2,10 +2,10 @@
  zope.testrunner Changelog
 ===========================
 
-7.5 (unreleased)
+8.0 (unreleased)
 ================
 
-- Nothing changed yet.
+- Replace ``pkg_resources`` namespace with PEP 420 native namespace.
 
 
 7.4 (2025-05-28)
