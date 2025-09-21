@@ -24,7 +24,6 @@ from setuptools import setup
 version = '8.1.dev0'
 
 INSTALL_REQUIRES = [
-    'setuptools',
     'zope.exceptions',
     'zope.interface',
 ]
