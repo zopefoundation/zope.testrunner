@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-8.1 (unreleased)
+8.1 (2025-10-02)
 ================
 
 - Remove run-time dependency on ``setuptools``.
