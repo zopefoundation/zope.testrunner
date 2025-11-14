@@ -5,7 +5,9 @@
 8.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- Remove support for Python 3.9.
+
+- Add support for Python 3.1.4.
 
 
 8.1 (2025-10-02)
