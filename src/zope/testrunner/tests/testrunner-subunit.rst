@@ -191,11 +191,9 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     failure: sample2.sampletests_e.eek [ multipart
     Content-Type: text/x-traceback...
     traceback
-    NNN\r
-    <BLANKLINE>
+    NNN\r...
     Failed doctest test for sample2.sampletests_e.eek
-     testrunner-ex/sample2/sampletests_e.py", Line NNN, in eek
-    <BLANKLINE>
+     testrunner-ex/sample2/sampletests_e.py", Line NNN, in eek...
     ----------------------------------------------------------------------
     File testrunner-ex/sample2/sampletests_e.py", Line NNN, in sample2.sampletests_e.eek
     Failed example:
@@ -209,8 +207,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
             x = y + 1  # noqa: F821
            - __traceback_info__: I don't know what Y should be.
-        NameError: name 'y' is not defined
-    0\r
+        NameError: name 'y' is not ...0\r...
     <BLANKLINE>
     ]
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
@@ -227,8 +224,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     error: sample2.sampletests_e.Test.test3 [ multipart
     Content-Type: text/x-traceback...
     traceback
-    NNN\r
-    <BLANKLINE>
+    NNN\r...
     Traceback (most recent call last):
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in test3
         f()
@@ -237,9 +233,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
      testrunner-ex/sample2/sampletests_e.py", Line NNN, in g
         x = y + 1  # noqa: F821
        - __traceback_info__: I don't know what Y should be.
-    NameError: name 'y' is not defined
-    0\r
-    <BLANKLINE>
+    NameError: name 'y' is not ...0\r...
     ]
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
     test: sample2.sampletests_e.Test.test4
@@ -255,11 +249,9 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
     failure: e_rst [ multipart
     Content-Type: text/x-traceback...
     traceback
-    NNN\r
-    <BLANKLINE>
+    NNN\r...
     Failed doctest test for e.rst
-     testrunner-ex/sample2/e.rst", line 0
-    <BLANKLINE>
+     testrunner-ex/sample2/e.rst", line 0...
     ----------------------------------------------------------------------
     File testrunner-ex/sample2/e.rst", Line NNN, in e.rst
     Failed example:
@@ -270,9 +262,7 @@ Errors are recorded in the subunit stream as MIME-encoded chunks of text.
             f()
           File "<doctest e.rst[0]>", Line NNN, in f
             return x
-        NameError: name 'x' is not defined
-    0\r
-    <BLANKLINE>
+        NameError: name 'x' is not ...0\r...
     ]
     tags: -zope:layer:zope.testrunner.layer.UnitTests
     time: YYYY-MM-DD HH:MM:SS.mmmmmmZ
