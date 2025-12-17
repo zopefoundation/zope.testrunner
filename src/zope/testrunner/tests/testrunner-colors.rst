@@ -84,7 +84,7 @@ A failed test run highlights the failures in red:
     Failed example:
     {cyan}    f(){normal}
     Exception raised:
-    {red}    Traceback (most recent call last):{normal...
+    {red}    Traceback (most recent call last):{normal}...
     {red}      File "<doctest sample2.sampletests_e.eek[0]>", line 1, in ?{normal}
     {red}        f(){normal}
     {red}      File "testrunner-ex/sample2/sampletests_e.py", line 19, in f{normal}
@@ -92,7 +92,7 @@ A failed test run highlights the failures in red:
     {red}      File "testrunner-ex/sample2/sampletests_e.py", line 24, in g{normal}
     {red}        x = y + 1  # noqa: F821{normal}
     {red}       - __traceback_info__: I don't know what Y should be.{normal}
-    {red}    NameError: name 'y' is not defined{normal...
+    {red}    NameError: name 'y' is not defined{normal}...
     {boldred}Error in test test3 (sample2.sampletests_e.Test...){normal}
     Traceback (most recent call last):
     {normal}  File "{boldblue}unittest.py{normal}", line {boldred}260{normal}, in {boldcyan}run{normal}
@@ -104,7 +104,7 @@ A failed test run highlights the failures in red:
     {normal}  File "{boldblue}testrunner-ex/sample2/sampletests_e.py{normal}", line {boldred}24{normal}, in {boldcyan}g{normal}
     {cyan}    x = y + 1  # noqa: F821{normal}
     {red}   - __traceback_info__: I don't know what Y should be.{normal}
-    {red}NameError: name 'y' is not defined{normal...
+    {red}NameError: name 'y' is not defined{normal}...
     {boldred}Failure in test testrunner-ex/sample2/e.rst{normal}
     Failed doctest test for e.rst
       File "testrunner-ex/sample2/e.rst", line 0
@@ -113,12 +113,12 @@ A failed test run highlights the failures in red:
     Failed example:
     {cyan}    f(){normal}
     Exception raised:
-    {red}    Traceback (most recent call last):{normal...
+    {red}    Traceback (most recent call last):{normal}...
     {red}      File "<doctest e.rst[1]>", line 1, in ?{normal}
     {red}        f(){normal}
     {red}      File "<doctest e.rst[0]>", line 2, in f{normal}
     {red}        return x{normal}
-    {red}    NameError: name 'x' is not defined{normal...
+    {red}    NameError: name 'x' is not defined{normal}...
     {boldred}Failure in test test (sample2.sampletests_f.Test...){normal}
     Traceback (most recent call last):
     {normal}  File "{boldblue}unittest.py{normal}", line {boldred}260{normal}, in {boldcyan}run{normal}
@@ -127,7 +127,7 @@ A failed test run highlights the failures in red:
     {cyan}    self.assertEqual(1, 0){normal}
     {normal}  File "{boldblue}unittest.py{normal}", line {boldred}333{normal}, in {boldcyan}failUnlessEqual{normal}
     {cyan}    raise self.failureException, \{normal}
-    {red}AssertionError: 1 != 0{normal...
+    {red}AssertionError: 1 != 0{normal}...
     {normal}  Ran {green}164{normal} tests with {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}0.045{normal} seconds.{normal}
     ...
     {normal}Total: {green}329{normal} tests, {boldred}3{normal} failures, {boldred}1{normal} errors, {green}0{normal} skipped in {green}N.NNN{normal} seconds.{normal}
