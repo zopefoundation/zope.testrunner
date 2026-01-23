@@ -5,7 +5,7 @@
 8.3 (unreleased)
 ================
 
-- Nothing changed yet.
+- Move package metadata from setup.py to pyproject.toml.
 
 
 8.2 (2026-01-23)
