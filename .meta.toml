@@ -1,16 +1,17 @@
-# Generated from:
-# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+# Generated with zope.meta (https://zopemeta.readthedocs.io/) from:
+# https://github.com/zopefoundation/meta/tree/master/src/zope/meta/pure-python
 [meta]
 template = "pure-python"
-commit-id = "2921ca42"
+commit-id = "6603f967"
 
 [python]
 with-pypy = true
 with-docs = true
 with-sphinx-doctests = false
 with-windows = true
-with-future-python = false
+with-future-python = true
 with-macos = false
+with-free-threaded-python = false
 
 [coverage]
 fail-under = 84.4
@@ -64,3 +65,6 @@ additional-config = [
 
 [pre-commit]
 teyit-exclude = "tests/testrunner-ex/sample2/badsyntax\\.py"
+
+[pypi]
+trusted-publishing = true
