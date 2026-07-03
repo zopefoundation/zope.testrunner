@@ -477,7 +477,7 @@ Let's run tests including a module with some bad syntax:
     Traceback (most recent call last):
       File "/home/benji/workspace/all-the-trunks/zope.testrunner/src/zope/testrunner/testrunner-ex/sample2/sample21/sampletests_i.py", line 16, in <module>
         import zope.testrunner.huh  # noqa: F401...
-    ModuleNotFoundError: No module named 'zope.testrunner.huh'
+    ModuleNotFoundError: No module named 'zope.testrunner.huh'...
     ]
     test: sample2.sample23.sampletests_i
     tags: zope:import_error
