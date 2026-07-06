@@ -7,6 +7,12 @@
 
 - Move package metadata from setup.py to pyproject.toml.
 
+- Add support for Python 3.15: Restore the pre-3.15 behavior of reporting a
+  doctest as a single test even if it contains multiple examples.  Python 3.15
+  changed ``doctest.DocTestCase`` to report each example as a separate subtest
+  (`python/cpython#108885 <https://github.com/python/cpython/issues/108885>`_),
+  which broke zope.testrunner's failure reporting.
+
 
 8.2 (2026-01-23)
 ================

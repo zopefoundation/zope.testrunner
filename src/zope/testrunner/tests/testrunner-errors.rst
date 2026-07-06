@@ -826,7 +826,7 @@ Then run the tests:
     Traceback (most recent call last):
       File "testrunner-ex/sample2/sample21/sampletests_i.py", line 15, in ?
         import zope.testrunner.huh  # noqa: F401
-    ModuleNotFoundError: No module named 'zope.testrunner.huh'
+    ModuleNotFoundError: No module named 'zope.testrunner.huh'...
     <BLANKLINE>
     <BLANKLINE>
     Module: sample2.sample23.sampletests_i
