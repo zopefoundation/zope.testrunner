@@ -2,7 +2,7 @@
  zope.testrunner Changelog
 ===========================
 
-8.3 (unreleased)
+8.3 (2026-07-30)
 ================
 
 - Move package metadata from setup.py to pyproject.toml.
