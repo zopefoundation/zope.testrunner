@@ -2,7 +2,7 @@ Debugging cyclic garbage and ResourceWarnings
 =============================================
 
 The --gc-after-test option can be used
-to detect the creation of cyclic garbage and diagnose ``ResourceWarning``s.
+to detect the creation of cyclic garbage and diagnose ``ResourceWarning`` s.
 
 Note: Python writes ``ResourceWarning`` messages to ``stderr``
 which it not captured by ``doctest``. The sample output below
@@ -88,7 +88,7 @@ therefore does not show the warnings (even though two are issued).
     Note: starting with Python 3.13, the garbage collector identifies
     an instance and its ``__dict__``; as a consequence, cycles
     appear smaller than in preceding versions (not
-    mentioning the involved ``__dict__``s).
+    mentioning the involved ``__dict__`` s).
     >>> sys.argv = 'test --gc-after-test -vvvv'.split()
     >>> _ = testrunner.run_internal(defaults)
     Running tests at level 1
