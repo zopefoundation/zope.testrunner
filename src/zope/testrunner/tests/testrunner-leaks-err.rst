@@ -1,4 +1,4 @@
-Debugging Memory Leaks without a debug build of Python 
+Debugging Memory Leaks without a debug build of Python
 ======================================================
 
 To use the --report-refcounts (-r) to detect or debug memory leaks,
@@ -13,7 +13,7 @@ get an error message:
     ...     ]
 
     >>> from zope import testrunner
-    
+
     >>> sys.argv = 'test -r -N6'.split()
     >>> _ = testrunner.run_internal(defaults)
             The Python you are running was not configured

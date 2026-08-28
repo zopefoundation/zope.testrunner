@@ -14,7 +14,7 @@ this option to configure and then build Python.)
     ...     ]
 
     >>> from zope import testrunner
-    
+
     >>> sys.argv = 'test --layer Layer11$ --layer Layer12$ -N4 -r'.split()
     >>> _ = testrunner.run_internal(defaults)
     Running samplelayers.Layer11 tests:
@@ -24,13 +24,13 @@ this option to configure and then build Python.)
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.013 seconds.
     Iteration 2
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
-      sys refcount=100401   change=0     
+      sys refcount=100401   change=0
     Iteration 3
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
-      sys refcount=100401   change=0     
+      sys refcount=100401   change=0
     Iteration 4
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.013 seconds.
-      sys refcount=100401   change=0     
+      sys refcount=100401   change=0
     Running samplelayers.Layer12 tests:
       Tear down samplelayers.Layer11 in 0.000 seconds.
       Set up samplelayers.Layer12 in 0.000 seconds.
@@ -38,13 +38,13 @@ this option to configure and then build Python.)
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.013 seconds.
     Iteration 2
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
-      sys refcount=100411   change=0     
+      sys refcount=100411   change=0
     Iteration 3
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
-      sys refcount=100411   change=0     
+      sys refcount=100411   change=0
     Iteration 4
       Ran 26 tests with 0 failures, 0 errors and 0 skipped in 0.012 seconds.
-      sys refcount=100411   change=0     
+      sys refcount=100411   change=0
     Tearing down left over layers:
       Tear down samplelayers.Layer12 in 0.000 seconds.
       Tear down samplelayers.Layer1 in 0.000 seconds.
@@ -92,7 +92,7 @@ type (or class):
       Running:
         .
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
-      sum detail refcount=95832    sys refcount=105668   change=16    
+      sum detail refcount=95832    sys refcount=105668   change=16
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
         -------------------------------------------------------  -----   ----
@@ -111,7 +111,7 @@ type (or class):
       Running:
         .
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
-      sum detail refcount=95844    sys refcount=105680   change=12    
+      sum detail refcount=95844    sys refcount=105680   change=12
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
         -------------------------------------------------------  -----   ----
@@ -130,7 +130,7 @@ type (or class):
       Running:
         .
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
-      sum detail refcount=95856    sys refcount=105692   change=12    
+      sum detail refcount=95856    sys refcount=105692   change=12
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
         -------------------------------------------------------  -----   ----
@@ -148,7 +148,7 @@ type (or class):
       Running:
         .
       Ran 1 tests with 0 failures, 0 errors and 0 skipped in 0.000 seconds.
-      sum detail refcount=95868    sys refcount=105704   change=12    
+      sum detail refcount=95868    sys refcount=105704   change=12
         Leak details, changes in instances and refcounts by type/class:
         type/class                                               insts   refs
         -------------------------------------------------------  -----   ----
@@ -195,7 +195,7 @@ str
 
 dict
     We leak 2 of these, one for each ClassicLeakable and Leakable
-    instance. 
+    instance.
 
 classobj
     We increase the number of classobj instance references by one each
