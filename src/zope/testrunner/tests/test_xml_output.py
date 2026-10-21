@@ -72,7 +72,7 @@ class TestXMLOutput(Base):
         self.assertTrue(self.reports_folder.exists())
 
         # There are 5 reports:
-        reports = [x for x in self.reports_folder.iterdir()]
+        reports = [*self.reports_folder.iterdir()]
         self.assertEqual(len(reports), 5)
 
     def test_xml_report_details(self):
@@ -130,7 +130,7 @@ class TextXMLOutputWithErrors(Base):
         self._run_tests()
 
         self.assertTrue(self.reports_folder.exists())
-        self.assertEqual(len([x for x in self.reports_folder.iterdir()]), 106)
+        self.assertEqual(len([*self.reports_folder.iterdir()]), 106)
 
     def test_xml_report_with_errors_details(self):
         sys.argv = 'test --tests-pattern ^sampletests(f|_e|_f)?$ '.split()
