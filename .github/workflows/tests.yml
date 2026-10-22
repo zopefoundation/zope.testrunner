@@ -33,11 +33,11 @@ jobs:
         - ["pypy-3.11", "pypy3"]
         - ["3.11", "docs"]
         - ["3.11", "coverage"]
-        - ["3.10",  "py310-subunit"]
         - ["3.11",  "py311-subunit"]
         - ["3.12",  "py312-subunit"]
         - ["3.13",  "py313-subunit"]
         - ["3.14",  "py314-subunit"]
+        - ["3.15",  "py315-subunit"]
         - ["pypy-3.11", "pypy3-subunit"]
         exclude:
           - { os: ["windows", "windows-latest"], config: ["3.11", "release-check"] }
