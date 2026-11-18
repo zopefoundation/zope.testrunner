@@ -9,6 +9,11 @@
 
 - Drop support for Python 3.10.
 
+- Fix running layers in a subprocess on Python 3.15 when started via
+  ``python -m zope.testrunner``: our ``profiling`` module shadowed the new
+  stdlib ``profiling`` package.
+  (`#210 <https://github.com/zopefoundation/zope.testrunner/issues/210>`_)
+
 
 8.3 (2026-07-30)
 ================

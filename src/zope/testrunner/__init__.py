@@ -66,7 +66,15 @@ def _script_parts(args=None):
         # make sure we remember the absolute path early -- the tests might
         # do an os.chdir()
         script_parts[0] = os.path.abspath(script_parts[0])
-        if not os.path.exists(script_parts[0]):
+        main_py = os.path.join(os.path.dirname(__file__), '__main__.py')
+        if (os.path.exists(script_parts[0])
+                and os.path.samefile(script_parts[0], main_py)):
+            # Started via `python -m zope.testrunner`. Running __main__.py
+            # as a script would put this package's directory on sys.path,
+            # so our modules would shadow stdlib modules of the same name
+            # (e.g. `profiling` on Python 3.15+).
+            script_parts = ['-m', 'zope.testrunner']
+        elif not os.path.exists(script_parts[0]):
             # uhh, no wrapper script?  this happens on Windows sometimes,
             # where there are like three wrapper scripts with various suffixes,
             # and I don't want to go looking up what they might be.
