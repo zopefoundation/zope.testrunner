@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zope.testrunner"
-version = "8.4.dev0"
+version = "8.4"
 description = "Zope testrunner script."
 license = "ZPL-2.1"
 classifiers = [
